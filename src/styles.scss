@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+// @import "tailwindcss";
+
+html, body { height: 100%; }
+body { 
+    margin: 0; 
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+*{
+    box-sizing: border-box;
+}
+
+
+:root {
+    --primary-color: #303f9f;
+    --secondary-color: #9d0054;
+    --primary-font-color: #ffffff;
+    --over-layer-color: rgba(190, 186, 186, 0.8);
+    --rem-to-px: 10px;
+    --overdue-bg-color: #FF5151;
+    --incomplete-bg-color:#ff9800;
+    --upcoming-bg-color: #D5B60A;
+    --incomplete-badge-bg-color: #F57C00;
+    --overdue-badge-bg-color: #E53935;
+    --upcoming-badge-bg-color: #a6860a;
+    --overdue-badge-txt-color: #000000; 
+    --incomplete-badge-txt-color: #000000; 
+    --upcoming-badge-txt-color: #000000;
+    --my-theme-bg: #2c3e50
+}

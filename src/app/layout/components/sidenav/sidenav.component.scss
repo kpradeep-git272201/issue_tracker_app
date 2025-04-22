@@ -1,0 +1,130 @@
+
+
+
+mat-sidenav-container {
+    height: calc(100% - 8%);
+}
+
+mat-sidenav {
+    width: 250px;
+    height: 100%;
+    background-color: var(--my-theme-bg);
+    transition: width 250ms ease-in;
+}
+
+mat-sidenav-content {
+    height: calc(100% - 8%);
+    padding-left: 20px;
+}
+
+.nav-list {
+    list-style-type: none;
+    /* Remove default list styles */
+    padding: 0;
+    /* Remove default padding */
+    margin: 0;
+    /* Remove default margin */
+    padding-left: 28px;
+}
+
+.nav-list-item {
+    margin: 15px 0;
+    /* Space between items */
+    display: flex;
+    /* Align items */
+    align-items: center;
+    /* Center items vertically */
+}
+
+.nav-list-item i {
+    margin-right: 10px;
+    /* Space between icon and text */
+    font-size: 20px;
+    /* Icon size */
+}
+
+.nav-list-item a {
+    text-decoration: none;
+    /* Remove underline from links */
+    color: white;
+    /* Link color */
+    transition: color 0.3s;
+    /* Smooth transition for hover effect */
+}
+
+mat-icon {
+    font-size: 20px;
+    position: absolute;
+    color: white;
+    margin-top: 3px;
+}
+
+mat-icon:hover {
+    color: #3498db;
+    /* Change color on hover */
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+li {
+    a {
+        margin-left: 30px;
+    }
+}
+.nav-list-item a:hover{
+    color: #3498db;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.app-div {
+   position: relative;
+   overflow: auto;
+}
+
+mat-expansion-panel{
+    background-color: var(--my-theme-bg);
+    border-radius: 0px;
+    color: white;
+}
+::ng-deep.mat-expansion-panel-header-title{
+    color: white !important;
+}
+::ng-deep.mat-expansion-panel-header {
+    padding: 0px !important;
+    padding-right: 20px !important;
+}
+
+
+::ng-deep.mat-expansion-panel:not([class*=mat-elevation-z]){
+    box-shadow: none !important;
+}
+mat-panel-title{
+    span{
+        margin-left: 30px;
+    }
+}
+mat-panel-title a:hover{
+    color: #3498db;
+}
+::ng-deep.mat-expansion-indicator::after{
+    color: white !important;
+}
+mat-expansion-panel-header{
+    height: 38px;
+}
+
+.nav-list-item{
+    margin: 0px;
+    height: 38px;
+}
+
+.myClass:hover span {
+    color: #3498db; /* Replace with your preferred color */
+    cursor: pointer;
+}
+
+
+.mat-drawer {
+    border-bottom-right-radius: 0rem !important;
+  }

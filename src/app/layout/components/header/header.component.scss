@@ -1,0 +1,19 @@
+
+::ng-deep.mat-drawer{
+    border-top-right-radius: 0rem !important
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+mat-toolbar{
+    height: 8%;
+    background-color: var(--my-theme-bg);
+    color: white;
+}
+
+.custom-icon {
+    width: 20px; /* Adjust size */
+    height: 20px; /* Adjust size */
+    color: black;
+}

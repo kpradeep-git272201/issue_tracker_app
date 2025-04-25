@@ -9,7 +9,7 @@ import { MaterialModule } from '../../../material/material.module';
 })
 export class HeaderComponent {
   opened=true;
-
+  activeTab = 'Dashboard';
   @Output() openedStatus = new EventEmitter<any>();
 
 
@@ -17,5 +17,23 @@ export class HeaderComponent {
     this.opened=!this.opened;
     this.openedStatus.emit(this.opened)
   }
-  
+  setActiveTab(tab: string): void {
+    this.activeTab = tab;
+   
+  }
+
+  onTabClick(tab: string): void {
+    console.log('Tab clicked:', tab);
+    this.setActiveTab(tab);
+    // // Example: navigation
+    // switch (tab) {
+    //   case 'Dashboard':
+    //     this.router.navigate(['/dashboard']);
+    //     break;
+    //   case 'report':
+    //     this.router.navigate(['/report']);
+    //     break;
+    //   // Add more cases as needed
+    // }
+  }
 }

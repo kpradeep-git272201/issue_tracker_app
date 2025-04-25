@@ -1,28 +1,31 @@
-<mat-toolbar color="primary">
-    <button (click)="openedSideNav()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <span>My Application</span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>share</mat-icon>
-    </button>
-    <button [matMenuTriggerFor]="menu" mat-icon-button class="example-icon"
-        aria-label="Example icon-button with share icon">
-        <mat-icon>person</mat-icon>
-    </button>
-</mat-toolbar>
-<mat-menu #menu="matMenu">
-    <button mat-menu-item>
-        <mat-icon>settings</mat-icon>
-        <span>Setting</span>
-    </button>
-    <button mat-menu-item>
-        <mat-icon>person</mat-icon>
-        <span>Profile</span>
-    </button>
-    <button mat-menu-item >
-        <mat-icon svgIcon="logout-icon" class="custom-icon"></mat-icon>
-        <span>Logout</span>
-    </button>
-</mat-menu>
+<mat-toolbar color="primary" class="sub-header">
+    <!-- <button (click)="openedSideNav()" mat-icon-button class="menu-button" aria-label="Menu">
+      <mat-icon>menu</mat-icon>
+    </button> -->
+  
+    <!-- <span class="example-spacer"></span> -->
+  
+    <nav class="sub-nav">
+      <a class="sub-nav-link" (click)="onTabClick('Dashboard')" [ngClass]="{ 'active': activeTab === 'Dashboard' }">
+        <mat-icon svgIcon="dashboard" class="nav-icon"></mat-icon>
+        <span class="menu-text">Dashboard</span>
+      </a>
+      <a class="sub-nav-link" (click)="onTabClick('Report')" [ngClass]="{ 'active': activeTab === 'Report' }">
+        <mat-icon svgIcon="Report" class="nav-icon"></mat-icon>
+        <span class="menu-text">Report</span>
+      </a>
+      <a class="sub-nav-link" (click)="onTabClick('Projects')" [ngClass]="{ 'active': activeTab === 'Projects' }">
+        <mat-icon svgIcon="Projects" class="nav-icon"></mat-icon>
+        <span class="menu-text">Projects</span>
+      </a>
+      <a class="sub-nav-link" (click)="onTabClick('Departments')" [ngClass]="{ 'active': activeTab === 'Departments' }">
+        <mat-icon svgIcon="Departments" class="nav-icon"></mat-icon>
+        <span class="menu-text">Departments</span>
+      </a>
+      <a class="sub-nav-link" (click)="onTabClick('Administration')" [ngClass]="{ 'active': activeTab === 'Administration' }">
+        <mat-icon svgIcon="Administration" class="nav-icon"></mat-icon>
+        <span class="menu-text">Administration</span>
+      </a>
+    </nav>
+  </mat-toolbar>
+  

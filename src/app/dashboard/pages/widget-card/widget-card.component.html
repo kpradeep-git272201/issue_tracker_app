@@ -1,0 +1,16 @@
+<div class="dashboard-container">
+    <mat-card class="dashboard-card" *ngFor="let card of cards">
+      <div class="card-header">
+        <div>
+          <div class="card-title">{{ card.title }}</div>
+          <div class="card-value"> {{ card.value | inrFormat:card.amountType }}</div>
+        </div>
+        <mat-icon class="card-icon" [ngClass]="card.iconBg">{{ card.icon }}</mat-icon>
+      </div>
+      <div class="card-footer" [ngClass]="{ 'positive': card.trend === 'up', 'negative': card.trend === 'down' }">
+        <mat-icon>{{ card.trend === 'up' ? 'arrow_upward' : 'arrow_downward' }}</mat-icon>
+        <span>{{ card.change }}% vs last year</span>
+      </div>
+    </mat-card>
+  </div>
+  

@@ -1,130 +1,163 @@
-
-
-
 mat-sidenav-container {
-    height: calc(100% - 8%);
+    height: calc(100% - 10.634rem);
 }
 
 mat-sidenav {
-    width: 250px;
-    height: 100%;
-    background-color: var(--my-theme-bg);
-    transition: width 250ms ease-in;
+  width: 19.313rem;
+  height: 100%;
+  background-color: #FFFFFF;
+  transition: width 0.3s ease-in;
+
+  @media (max-width: 768px) {
+    width: 100vw;
+  }
 }
 
 mat-sidenav-content {
-    height: calc(100% - 8%);
     padding-left: 20px;
-}
-
-.nav-list {
-    list-style-type: none;
-    /* Remove default list styles */
-    padding: 0;
-    /* Remove default padding */
-    margin: 0;
-    /* Remove default margin */
-    padding-left: 28px;
-}
-
-.nav-list-item {
-    margin: 15px 0;
-    /* Space between items */
-    display: flex;
-    /* Align items */
-    align-items: center;
-    /* Center items vertically */
-}
-
-.nav-list-item i {
-    margin-right: 10px;
-    /* Space between icon and text */
-    font-size: 20px;
-    /* Icon size */
-}
-
-.nav-list-item a {
-    text-decoration: none;
-    /* Remove underline from links */
-    color: white;
-    /* Link color */
-    transition: color 0.3s;
-    /* Smooth transition for hover effect */
-}
-
-mat-icon {
-    font-size: 20px;
-    position: absolute;
-    color: white;
-    margin-top: 3px;
-}
-
-mat-icon:hover {
-    color: #3498db;
-    /* Change color on hover */
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-li {
-    a {
-        margin-left: 30px;
+    overflow-x: hidden;
+  
+    @media (max-width: 768px) {
+      padding-left: 10px;
     }
-}
-.nav-list-item a:hover{
-    color: #3498db;
-    cursor: pointer;
-    transition: color 0.3s;
-}
+  }
 
-.app-div {
-   position: relative;
-   overflow: auto;
-}
-
-mat-expansion-panel{
-    background-color: var(--my-theme-bg);
+mat-expansion-panel {
+    background-color: #FFFFFF;
     border-radius: 0px;
-    color: white;
 }
-::ng-deep.mat-expansion-panel-header-title{
+
+::ng-deep.mat-expansion-panel-header-title {
     color: white !important;
 }
+
 ::ng-deep.mat-expansion-panel-header {
     padding: 0px !important;
     padding-right: 20px !important;
-}
 
-
-::ng-deep.mat-expansion-panel:not([class*=mat-elevation-z]){
-    box-shadow: none !important;
-}
-mat-panel-title{
-    span{
-        margin-left: 30px;
+    @media (max-width: 768px) {
+        padding-right: 10px !important;
     }
 }
-mat-panel-title a:hover{
+
+::ng-deep.mat-expansion-panel:not([class*=mat-elevation-z]) {
+    box-shadow: none !important;
+}
+
+mat-panel-title {
+    span {
+        margin-left: 30px;
+
+        @media (max-width: 768px) {
+            margin-left: 15px;
+        }
+    }
+}
+
+mat-panel-title a:hover {
     color: #3498db;
 }
-::ng-deep.mat-expansion-indicator::after{
+
+::ng-deep.mat-expansion-indicator::after {
     color: white !important;
 }
-mat-expansion-panel-header{
+
+mat-expansion-panel-header {
     height: 38px;
-}
 
-.nav-list-item{
-    margin: 0px;
-    height: 38px;
+    @media (max-width: 768px) {
+        height: auto;
+    }
 }
-
-.myClass:hover span {
-    color: #3498db; /* Replace with your preferred color */
-    cursor: pointer;
-}
-
 
 .mat-drawer {
     border-bottom-right-radius: 0rem !important;
-  }
+}
+
+.filter {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0px;
+    vertical-align: middle;
+    color: #3D3D3D;
+    @media (max-width: 768px) {
+        font-size: 14px;
+    }
+}
+
+.filter-panel {
+    // width: 19.313rem;
+    padding: 1rem;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    background: #fff;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+
+    @media (max-width: 768px) {
+        width: 100%;
+        padding: 0.8rem;
+    }
+}
+
+h4 {
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+section {
+    margin-bottom: 1.5rem;
+}
+
+h5 {
+    margin: 0.5rem 0;
+    font-size: 13px;
+    color: #555;
+}
+
+select {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    padding: 0.4rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input[type='checkbox'] {
+    margin-right: 0.5rem;
+}
+
+input[type='range'] {
+    width: 100%;
+}
+
+button {
+    width: 100%;
+    padding: 0.6rem;
+    border: none;
+    background-color: #006eff;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+
+    @media (max-width: 768px) {
+        padding: 0.5rem;
+        font-size: 14px;
+    }
+}
+
+.comparison {
+    font-size: 12px;
+    margin-top: -1rem;
+}
+
+.custom-icon-color {
+    fill: #FFFFFF !important;
+}

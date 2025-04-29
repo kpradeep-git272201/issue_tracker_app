@@ -9,7 +9,7 @@ import { MaterialModule } from '../../../material/material.module';
 })
 export class HeaderComponent {
   opened=true;
-  activeTab = 'Dashboard';
+  activeTab: string = 'Dashboard'; 
   @Output() openedStatus = new EventEmitter<any>();
 
 

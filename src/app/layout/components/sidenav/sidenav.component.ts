@@ -57,7 +57,9 @@ export class SidenavComponent {
   getOpenedStat(event: any) {
     this.opened = event;
   }
-
+  getOpenSidenav(){
+    this.opened = !this.opened;
+  }
 
   /** *************************************** */
   exportData() {

@@ -16,7 +16,7 @@ export class WidgetCardComponent {
       amountType: 'Cr',
       change: 8.2,
       trend: 'up',
-      icon: 'trending_up',
+      icon: 'TotalRequests',
       iconBg: 'blue-bg'
     },
     {
@@ -25,7 +25,7 @@ export class WidgetCardComponent {
       amountType: 'Cr',
       change: 18.2,
       trend: 'up',
-      icon: 'currency_rupee',
+      icon: 'Currency',
       iconBg: 'green-bg'
     },
     {
@@ -34,7 +34,7 @@ export class WidgetCardComponent {
       amountType: 'Cr',
       change: -3.2,
       trend: 'down',
-      icon: 'account_balance_wallet',
+      icon: 'Remaining',
       iconBg: 'yellow-bg'
     },
     {
@@ -43,7 +43,7 @@ export class WidgetCardComponent {
       amountType: 'Dr', // Not an amount, so no Cr/Dr
       change: 8.2,
       trend: 'up',
-      icon: 'task_alt',
+      icon: 'CompletedProjects',
       iconBg: 'purple-bg'
     }
   ];

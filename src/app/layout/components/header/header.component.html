@@ -1,29 +1,30 @@
 <mat-toolbar color="primary" class="sub-header">
     <!-- <button (click)="openedSideNav()" mat-icon-button class="menu-button" aria-label="Menu">
       <mat-icon>menu</mat-icon>
+      <span> {{opened}}</span>
     </button> -->
   
-    <!-- <span class="example-spacer"></span> -->
-  
+
+    
     <nav class="sub-nav">
       <a class="sub-nav-link" (click)="onTabClick('Dashboard')" [ngClass]="{ 'active': activeTab === 'Dashboard' }">
-        <mat-icon svgIcon="dashboard" class="nav-icon"></mat-icon>
+        <mat-icon class="icon-size" svgIcon="dashboard"></mat-icon>
         <span class="menu-text">Dashboard</span>
       </a>
       <a class="sub-nav-link" (click)="onTabClick('Report')" [ngClass]="{ 'active': activeTab === 'Report' }">
-        <mat-icon svgIcon="Report" class="nav-icon"></mat-icon>
+        <mat-icon class="icon-size" svgIcon="Report"></mat-icon>
         <span class="menu-text">Report</span>
       </a>
       <a class="sub-nav-link" (click)="onTabClick('Projects')" [ngClass]="{ 'active': activeTab === 'Projects' }">
-        <mat-icon svgIcon="Projects" class="nav-icon"></mat-icon>
+        <mat-icon class="icon-size" svgIcon="Projects"></mat-icon>
         <span class="menu-text">Projects</span>
       </a>
       <a class="sub-nav-link" (click)="onTabClick('Departments')" [ngClass]="{ 'active': activeTab === 'Departments' }">
-        <mat-icon svgIcon="Departments" class="nav-icon"></mat-icon>
+        <mat-icon class="icon-size" svgIcon="Departments"></mat-icon>
         <span class="menu-text">Departments</span>
       </a>
       <a class="sub-nav-link" (click)="onTabClick('Administration')" [ngClass]="{ 'active': activeTab === 'Administration' }">
-        <mat-icon svgIcon="Administration" class="nav-icon"></mat-icon>
+        <mat-icon class="icon-size" svgIcon="Administration"></mat-icon>
         <span class="menu-text">Administration</span>
       </a>
     </nav>

@@ -37,7 +37,8 @@ export class IconsService {
       'unlocked',
       'user',
       'View',
-      'dashboard'
+      'dashboard',
+      'Currency'
     ];
   }
 }

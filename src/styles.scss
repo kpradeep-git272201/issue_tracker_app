@@ -36,3 +36,8 @@ body {
     --main-header-bg: #FFFFFF;
 
 }
+
+
+  ::ng-deep .custom-login-dialog.mat-dialog-container {
+    border-radius: 4px !important;
+  }

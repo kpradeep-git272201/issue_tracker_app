@@ -15,7 +15,7 @@
         <mat-icon svgIcon="Settings" class="nav-icon"></mat-icon>
       </button>
   
-      <a mat-flat-button href="https://www.google.com/" target="_blank" class="admin-login-btn">
+      <a mat-flat-button (click)="getLogin($event)" target="_blank" class="admin-login-btn">
         <mat-icon>person_outline</mat-icon>
         <span class="btn-text">Admin Login</span>
       </a>

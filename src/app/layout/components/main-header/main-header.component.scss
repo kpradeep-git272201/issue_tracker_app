@@ -124,3 +124,7 @@
         padding: 0.4rem 0.8rem;
     }
 }
+
+::ng-deep .custom-login-dialog {
+    border-radius: 4px !important; // Set to desired radius
+  }

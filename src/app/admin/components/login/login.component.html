@@ -1,0 +1,41 @@
+<mat-dialog-content class="login-container">
+    <div class="login-header">
+      <mat-icon style="color: #0D6EFD; margin-top: -20px;">person</mat-icon> <span style="color: #0D6EFD;margin-top: -20px;">{{data.title}}</span>
+      <mat-icon class="close-button" (click)="closeDialog()">close</mat-icon>
+    </div>
+ 
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-icon matPrefix>person</mat-icon>
+        <input matInput placeholder="Username" formControlName="username">
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-icon matPrefix>lock</mat-icon>
+        <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password">
+        <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+  
+      <div class="captcha-box">
+        <canvas id="captchaCanvas" width="160" height="50" style="margin-bottom: 20px;"></canvas>
+        <mat-icon class="refresh" (click)="generateCaptcha()">refresh</mat-icon>
+        <mat-form-field class="captcha-input" appearance="outline">
+          <mat-icon matPrefix>arrow_forward</mat-icon>
+          <input matInput placeholder="Captcha" formControlName="captcha">
+        </mat-form-field>
+      </div>
+  
+      <div class="button-group">
+        <button mat-flat-button color="primary" type="submit" class="login">Login</button>
+        <button mat-flat-button color="warn" type="reset" class="reset" (click)="loginForm.reset()">Reset</button>
+      </div>
+  
+      <div class="forgot-password">
+        <mat-icon>lock_open</mat-icon>
+        Forgot Password? <a>Click Here</a>
+      </div>
+    </form>
+  </mat-dialog-content>
+  

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
 import { SharedModule } from '../../../shared/shared.module';
+import { InrFormatPipe } from "../../../pipes/inr-format.pipe";
 
 @Component({
   selector: 'app-widget-card',
-  imports: [MaterialModule,SharedModule],
+  imports: [MaterialModule, SharedModule, InrFormatPipe],
   templateUrl: './widget-card.component.html',
   styleUrl: './widget-card.component.scss'
 })

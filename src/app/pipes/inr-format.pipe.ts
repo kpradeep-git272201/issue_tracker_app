@@ -2,14 +2,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'inrFormat',
-  standalone: true 
+  standalone: true
 })
 export class InrFormatPipe implements PipeTransform {
 
-  transform(value: string | number, amountType?: string): string {
+
+  transform(value: any | number, amountType?: any): string {
     if (!value) return '';
     
-    let formattedValue = `₹${value}`;
+    let formattedValue = `\u20B9${value}`; // uincode
     
     if (amountType) {
       formattedValue += ` ${amountType}`;

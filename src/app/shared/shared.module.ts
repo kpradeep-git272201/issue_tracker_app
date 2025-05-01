@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InrFormatPipe } from './inr-format.pipe';
+import { ChartComponent } from './chart/chart.component';
 
 
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
-    InrFormatPipe
+    CommonModule, 
+    ChartComponent
   ],
-  exports:[InrFormatPipe]
+  exports: [ChartComponent]
 })
 export class SharedModule { }

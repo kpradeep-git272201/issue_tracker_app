@@ -3,7 +3,7 @@
       <div class="card-header">
         <div>
           <div class="card-title">{{ card.title }}</div>
-          <div class="card-value"> {{ card.value | inrFormat:card.amountType }}</div>
+          <div class="card-value"> {{ card.value | inrFormat: card.amountType }}</div>
         </div>
         <mat-icon [svgIcon]="card.icon" [ngClass]="card.iconBg" class="circle-icon"></mat-icon>
       </div>

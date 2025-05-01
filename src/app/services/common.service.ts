@@ -7,6 +7,30 @@ export class CommonService {
 
   constructor() { }
 
+  getDonutData (){
+    return [
+      { category: 'Label 1', value: 12 },
+      { category: 'Label 2', value: 22 },
+      { category: 'Label 3', value: 12 },
+      { category: 'Label 4', value: 12 },
+      { category: 'Label 5', value: 7 },
+      { category: 'Label 6', value: 7 },
+    ];
+  }
+
+  getPieData  (){
+    return [
+      { category: 'A', value: 40 },
+      { category: 'B', value: 60 }
+    ];
+  }
+  getBarData (){
+    return [
+      { category: 'Jan', value: 20 },
+      { category: 'Feb', value: 40 },
+      { category: 'Mar', value: 60 }
+    ];
+  }
   getAppList(){
     return [
       {

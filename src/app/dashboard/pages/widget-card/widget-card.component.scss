@@ -1,0 +1,87 @@
+.dashboard-container {
+
+    gap: 24px;
+    padding-top: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    // gap: 16px;
+    justify-content : space-around;
+    padding-right: 24px;
+  }
+  
+  .dashboard-card {
+    width: 370px;
+    height: 138px;
+    min-width: 250px;
+    border-radius: 12px;
+    padding: 24px;
+    gap: 16px;
+    background-color: #FFFFFF;
+  
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .card-title {
+    font-size: 0.875rem;
+    color: #666;
+  }
+  
+  .card-value {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  .card-icon {
+    font-size: 32px;
+    border-radius: 50%;
+    padding: 8px;
+    color: white;
+  }
+  
+  .green-bg {
+    background-color: #CFFFDE;
+  }
+  
+  .blue-bg {
+    background-color: #DBEAFE;
+  }
+  
+  .yellow-bg {
+    background-color: #FFFAC0;
+  }
+  
+  .purple-bg {
+    background-color: #DFDBFE;
+  }
+  
+  .card-footer {
+    margin-top: 12px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .card-footer.positive {
+    color: #4caf50;
+  }
+  
+  .card-footer.negative {
+    color: #f44336;
+  }
+  
+  .circle-icon{
+    width: 2.813rem;
+    height: 2.813rem;
+    padding-top: 0.875rem;
+    padding-right: 0.875rem;
+    padding-bottom: 0.875rem;
+    padding-left: 0.875rem;
+    gap: 0.563rem;
+    border-radius: 3.125rem;
+  }

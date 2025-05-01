@@ -1,34 +1,40 @@
 <app-header (openedStatus)="getOpenedStat($event)"></app-header>
 <mat-sidenav-container>
-    <mat-sidenav [(opened)]="opened" mode="side">
-        <div *ngIf="appList" class="app-div">
-            <ul class="nav-list" *ngFor="let app of appList">
-                <li class="nav-list-item"
-                    *ngIf="app.childApp==false">
-                    <mat-icon>{{app.icon}}</mat-icon>
-                    <a>{{app.appName}}</a>
-                </li>
-                <mat-accordion multi="false" *ngIf="app.childApp==true">
-                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                        <mat-expansion-panel-header>
-                            <mat-panel-title class="myClass">
-                                <mat-icon>{{app.icon}}</mat-icon>
-                                <span>{{app.appName}}</span>
-                            </mat-panel-title>
-                        </mat-expansion-panel-header>
-                        <mat-divider></mat-divider>
-                        <div class="app-div" *ngFor="let subApp of app.subApps">
-                            <li class="nav-list-item">
-                                <mat-icon>{{subApp.icon}}</mat-icon>
-                                <a>{{subApp.subAppName}}</a>
-                            </li>
-                        </div>
-                    </mat-expansion-panel>
-                </mat-accordion>
-            </ul>
+    <mat-sidenav [(opened)]="opened" mode="side" 
+    [class.sidenav-opened]="opened"
+    [class.sidenav-closed]="!opened"
+    [style.width]="opened ? '19.313rem' : '4rem'">
+        <div class="filter-panel">
+            <h4 (click)="getOpenSidenav()" style="margin-top: 0rem; cursor: pointer;" class="filter-underline">
+                <mat-icon svgIcon="Filter" style="padding-right: 0.125rem; margin-bottom: -1px;"></mat-icon>
+                <span *ngIf="opened" class="filter">FILTERS</span>
+            </h4>
+            <app-geographical-filter [opened]="opened"></app-geographical-filter>
+
+            <section>
+             <app-developement-category [opened]="opened"></app-developement-category>
+            </section>
+
+            <section>
+               <app-project-status [opened]="opened"></app-project-status>
+            </section>
+
+            <section>
+                <app-time-period [opened]="opened"></app-time-period>
+            </section>
+
+          
+
+            <button *ngIf="opened" mat-button (click)="exportData()">
+                <mat-icon svgIcon="export" class="nav-icon custom-icon-color"></mat-icon>
+                <span style="color: #FFFFFF;">Export Data</span>     
+            </button>
         </div>
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content [ngClass]="opened ? 'main-content-opened' : 'main-content-closed'"
+    [style.margin-left]="opened ? '19.313rem' : '4rem'"
+    [style.padding-left]="opened ? '24px' : '24px'">
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
+

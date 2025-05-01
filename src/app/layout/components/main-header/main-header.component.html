@@ -1,0 +1,23 @@
+<mat-toolbar class="main-header">
+    <div class="toolbar-left">
+      <img class="emblem" src="/icons/emblemofindian.svg" alt="Emblem of India" />
+      <img class="container" src="/icons/Container.svg" alt="Container" />
+    </div>
+  
+    <span class="spacer"></span>
+  
+    <div class="toolbar-actions">
+      <button mat-icon-button aria-label="Notification">
+        <mat-icon svgIcon="Notification" class="nav-icon"></mat-icon>
+      </button>
+  
+      <button mat-icon-button aria-label="Settings">
+        <mat-icon svgIcon="Settings" class="nav-icon"></mat-icon>
+      </button>
+  
+      <a mat-flat-button (click)="getLogin($event)" target="_blank" class="admin-login-btn">
+        <mat-icon>person_outline</mat-icon>
+        <span class="btn-text">Admin Login</span>
+      </a>
+    </div>
+  </mat-toolbar>

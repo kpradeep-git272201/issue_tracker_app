@@ -7,6 +7,8 @@ body {
     font-family: "Poppins", sans-serif;
     font-weight: 300;
     font-style: normal;
+    overflow-x: hidden;
+    // background-color: #F4F4F4;
 }
 *{
     box-sizing: border-box;
@@ -28,5 +30,14 @@ body {
     --overdue-badge-txt-color: #000000; 
     --incomplete-badge-txt-color: #000000; 
     --upcoming-badge-txt-color: #000000;
-    --my-theme-bg: #2c3e50
+    --my-theme-bg: #2c3e50;
+    --sub-header-bg: #D6D6D6;
+    --sub-header-border: #D6D6D6;
+    --main-header-bg: #FFFFFF;
+
 }
+
+
+  ::ng-deep .custom-login-dialog.mat-dialog-container {
+    border-radius: 4px !important;
+  }

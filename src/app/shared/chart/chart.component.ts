@@ -6,12 +6,15 @@ import {
   NgZone,
   ViewChild,
   ElementRef,
+  Inject,
+  PLATFORM_ID,
 } from '@angular/core';
 import * as am5 from '@amcharts/amcharts5';
 import * as am5percent from '@amcharts/amcharts5/percent';
 import * as am5xy from '@amcharts/amcharts5/xy';
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import { MaterialModule } from '../../material/material.module';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-chart',
@@ -26,9 +29,12 @@ export class ChartComponent implements OnInit, OnDestroy {
 
   private root!: am5.Root;
 
-  constructor(private zone: NgZone) { }
+  constructor(private zone: NgZone,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) { }
 
   ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId) && this.chartDiv?.nativeElement)
     this.zone.runOutsideAngular(() => {
       this.root = am5.Root.new(this.chartDiv.nativeElement);
       this.root.setThemes([am5themes_Animated.new(this.root)]);

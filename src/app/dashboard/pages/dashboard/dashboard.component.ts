@@ -11,17 +11,12 @@ import { CommonService } from '../../../services/common.service';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-  donutData: any = [];
-  pieData: any = [];
-  barData: any = [];
 
   constructor(private commonService: CommonService) {
 
   }
 
   ngOnInit() {
-    this.donutData = this.commonService.getDonutData();
-    this.pieData = this.commonService.getPieData();
-    this.barData = this.commonService.getBarData();
+
   }
 }

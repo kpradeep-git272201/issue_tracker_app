@@ -1,10 +1,19 @@
 <app-widget-card></app-widget-card>
 
-<h2>Donut Chart</h2>
-<app-chart [chartType]="'donut'" [chartData]="donutData"></app-chart>
-
-<h2>Pie Chart</h2>
-<app-chart [chartType]="'pie'" [chartData]="pieData"></app-chart>
-
-<h2>Bar Chart</h2>
-<app-chart [chartType]="'bar'" [chartData]="barData"></app-chart>
+<mat-grid-list cols="2" rowHeight="2:1" gutterSize="1rem" style="margin-right: 1.5rem; margin-top: 1.5rem;">
+    <mat-grid-tile class="titles">
+        <div style="height: 100%; width: 100%;">
+            <app-donut-chart style="height: 100%; width: 100%; display: block;"></app-donut-chart>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile class="titles">
+        <div style="height: 100%; width: 100%;">
+            <app-pie-chart style="height: 100%; width: 100%; display: block;"></app-pie-chart>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile class="titles">
+        <div style="height: 100%; width: 100%;">
+            <app-bar-chart style="height: 100%; width: 100%; display: block;"></app-bar-chart>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>

@@ -120,3 +120,8 @@
     color: #f44336;
     /* Material red */
 }
+
+::ng-deep .mat-mdc-dialog-surface {
+    border-radius: 12px !important; 
+  }
+  

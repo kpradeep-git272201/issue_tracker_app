@@ -102,9 +102,10 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    justify-content: space-between;
 
     @media (max-width: 768px) {
-        flex-direction: column;
+        flex-direction: row;
         align-items: stretch;
         gap: 0.5rem;
         width: 100%;
@@ -127,4 +128,8 @@
 
 ::ng-deep .custom-login-dialog {
     border-radius: 4px !important; // Set to desired radius
+  }
+
+  .toolbar-left{
+    display: flex;
   }

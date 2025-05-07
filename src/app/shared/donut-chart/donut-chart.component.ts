@@ -71,7 +71,10 @@ export class DonutChartComponent {
         series.ticks.template.set("visible", false);
   
         series.slices.template.setAll({
-          tooltipText: "{category}: {value}"
+          tooltipText: "{category}: {value}",
+          stroke: am5.color(0xffffff), 
+          strokeWidth: 1, 
+          strokeOpacity: 1
         });
   
         series.data.setAll(this.donutData);

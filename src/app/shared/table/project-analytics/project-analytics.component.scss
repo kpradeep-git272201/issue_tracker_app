@@ -1,0 +1,57 @@
+.main-card{
+    background-color: #FFFFFF;
+    margin-right: 1.5rem;
+    width: 100%;
+    margin: auto;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
+}
+.example-spacer {
+    flex: 1 1 auto;
+  }
+.export-icon{
+    transform: rotate(90deg);
+    transition: transform 0.3s ease;
+}
+
+.table-container {
+    overflow-x: auto;
+  }
+  
+  mat-toolbar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+  
+    span {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  
+    .example-spacer {
+      flex: 1 1 auto;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    mat-toolbar button,
+    mat-toolbar .export-icon {
+      font-size: 12px;
+    }
+  
+    mat-header-cell, mat-cell {
+      padding: 8px;
+      font-size: 13px;
+    }
+  
+    mat-progress-bar {
+      height: 4px;
+    }
+  
+    .chip {
+      font-size: 12px;
+      padding: 4px;
+    }
+  }

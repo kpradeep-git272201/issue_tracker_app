@@ -15,7 +15,7 @@ export class MainHeaderComponent {
 
   }
 
-  getLogin(event: MouseEvent) {
+  getLogin() {
     const dialogRef = this.dialog.open(LoginComponent, {
       disableClose: true,
       hasBackdrop: true,
@@ -24,16 +24,21 @@ export class MainHeaderComponent {
       data: {
         title: 'Login',
       },
-
     });
-
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog closed. Received:', result);
-
     });
   }
 
   closeDialog(){
 
+  }
+
+  getDialog(action:string){
+    if(action=='Notification'){
+
+    }else if(action=='Settings'){
+
+    }
   }
 }

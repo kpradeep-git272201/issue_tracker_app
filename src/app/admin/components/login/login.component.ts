@@ -14,10 +14,10 @@ export class LoginComponent {
   hide = true;
   captchaText: string = '';
   captchaInput: string = '';
+  invalidLoginCount:number = 0;
   constructor( private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<LoginComponent>){
-
   }
 
   ngOnInit(){
@@ -25,7 +25,7 @@ export class LoginComponent {
       username: ['', Validators.required],
       password: ['', Validators.required],
       captchaText: [''],
-      captcha: ['', Validators.required]
+      captcha: ['']
     });
 
     this.generateCaptcha();
@@ -71,11 +71,27 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       console.log('Login Data:', this.loginForm.value);
-      this.dialogRef.close();
+      this.invalidLoginCount++;
+      this.updateCaptchaValidator(this.invalidLoginCount);
+      // this.dialogRef.close();
     }
   }
 
   closeDialog(): void {
     this.dialogRef.close();
+  }
+
+
+  updateCaptchaValidator(invalidLoginCount: number) {
+    const captchaControl = this.loginForm.get('captcha');
+    if (!captchaControl) return;
+  
+    if (invalidLoginCount >= 5) {
+      captchaControl.setValidators([Validators.required]);
+    } else {
+      captchaControl.clearValidators();
+    }
+  
+    captchaControl.updateValueAndValidity();
   }
 }

@@ -99,7 +99,7 @@ import {
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   imports: [
     CommonModule,
@@ -147,7 +147,6 @@ import {
     ScrollingModule,
     FormsModule,
     ReactiveFormsModule,
-
     MatFormFieldModule,
   ],
   providers: [provideHttpClient(withInterceptorsFromDi())],

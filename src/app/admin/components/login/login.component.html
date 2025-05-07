@@ -18,7 +18,7 @@
         </button>
       </mat-form-field>
   
-      <div class="captcha-box">
+      <div class="captcha-box" [style.display]="(invalidLoginCount>=5)? '' :'none'">
         <canvas id="captchaCanvas" width="160" height="50" style="margin-bottom: 20px;"></canvas>
         <mat-icon class="refresh" (click)="generateCaptcha()">refresh</mat-icon>
         <mat-form-field class="captcha-input" appearance="outline">

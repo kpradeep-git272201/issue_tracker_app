@@ -75,7 +75,10 @@ export class PieChartComponent {
   
  
         series.slices.template.setAll({
-          tooltipText: "{category}: {value}"
+          tooltipText: "{category}: {value}",
+          stroke: am5.color(0xffffff), 
+          strokeWidth: 1, 
+          strokeOpacity: 1
         });
   
  

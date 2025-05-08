@@ -1,0 +1,13 @@
+<h3 mat-dialog-title style="background-color: lightgray;">{{ data.title }}</h3>
+<mat-dialog-content>
+  <mat-selection-list>
+    <mat-list-option *ngFor="let col of columns" [selected]="selectedFields.includes(col.field)" (click)="onToggle(col.field)">
+      {{ col.header }}
+    </mat-list-option>
+  </mat-selection-list>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancel</button>
+  <button mat-button color="primary" (click)="save()">Apply</button>
+</mat-dialog-actions>

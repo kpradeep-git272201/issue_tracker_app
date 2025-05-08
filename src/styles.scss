@@ -41,3 +41,10 @@ body {
   ::ng-deep .custom-login-dialog.mat-dialog-container {
     border-radius: 4px !important;
   }
+
+::ng-deep .mat-mdc-dialog-surface {
+  border-radius: 12px !important; 
+}
+.font-16{
+  font-size: 1rem;
+}

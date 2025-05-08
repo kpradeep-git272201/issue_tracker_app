@@ -1,5 +1,7 @@
 import { Component, computed, Input, signal } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
+import { MatDialog } from '@angular/material/dialog';
+import { ColumnMenuComponent } from '../../../dialog-module/column-menu/column-menu.component';
 
 
 
@@ -14,7 +16,7 @@ export class GenericTableComponent {
   @Input() data: any[] = [];
   @Input() columns: any[] = [];
   @Input() enableGlobalSearch = true;
-
+  visibleColumnFields = signal<string[]>([]);
   searchText = signal('');
   columnFilters = signal<{ [key: string]: string }>({});
 
@@ -26,6 +28,19 @@ export class GenericTableComponent {
   sortField = signal<string | null>(null);
   sortAsc = signal<boolean>(true);
 
+  constructor(private dialog: MatDialog){
+
+  }
+
+  ngOnInit() {
+    this.visibleColumnFields.set(this.columns.filter(col => col.visible !== false).map(col => col.field));
+  }
+
+  displayedColumns(): string[] {
+    return this.columns
+      .filter(col => this.visibleColumnFields().includes(col.field))
+      .map(col => col.field);
+  }
   //Computed filteredRows (reactive)
   filteredRows = computed(() => this.filteredData());
 
@@ -73,10 +88,6 @@ export class GenericTableComponent {
     }
   }
 
-  displayedColumns(): string[] {
-    return this.columns.filter(col => col.visible).map(col => col.field);
-  }
-
   applyGlobalFilter() {
     this.searchText.set(this.globalFilter.toLowerCase());
     this.currentPage = 1;
@@ -102,5 +113,25 @@ export class GenericTableComponent {
     if (this.currentPage > 1) {
       this.currentPage--;
     }
+  }
+
+
+  getColumnMenu() {
+    const dialogRef = this.dialog.open(ColumnMenuComponent, {
+      disableClose: true,
+      hasBackdrop: true,
+      width: '350px',
+      panelClass: 'custom-login-dialog',
+      data: {
+        title: 'Column Menu',
+        columns: this.columns
+      },
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (Array.isArray(result)) {
+        this.visibleColumnFields.set(result);
+      }
+    });
   }
 }

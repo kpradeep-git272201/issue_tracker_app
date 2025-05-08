@@ -29,3 +29,16 @@ input[type='checkbox'] {
 input[type='range'] {
     width: 100%;
 }
+
+.apply-btn{
+    border: none;
+    background: #FFC107;
+    color: white;
+    padding: 3px 20px;
+    border-radius: 6px;
+    outline: none;
+    transition: 0.3s ease-out;
+}
+.apply-btn:hover{
+    background: #b38e21;
+}

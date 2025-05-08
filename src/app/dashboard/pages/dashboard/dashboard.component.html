@@ -23,5 +23,12 @@
             </div>
         </mat-grid-tile>
     </mat-grid-list>
+   <!-- dynamic table -->
+    <app-generic-table
+        [data]="tableData"
+        [columns]="tableColumns"
+        [enableGlobalSearch]="true"
+    ></app-generic-table>
+
     <app-project-analytics style="margin-bottom: 1.5rem;"></app-project-analytics>
 </div>

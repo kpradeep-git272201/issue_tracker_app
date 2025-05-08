@@ -6,6 +6,7 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { DonutChartComponent } from './donut-chart/donut-chart.component';
 import { DataTableComponent } from './table/data-table/data-table.component';
 import { ProjectAnalyticsComponent } from './table/project-analytics/project-analytics.component';
+import { GenericTableComponent } from './table/generic-table/generic-table.component';
 
 
 
@@ -18,7 +19,8 @@ import { ProjectAnalyticsComponent } from './table/project-analytics/project-ana
     BarChartComponent,
     DonutChartComponent,
     DataTableComponent,
-    ProjectAnalyticsComponent
+    ProjectAnalyticsComponent,
+    GenericTableComponent
   ],
   exports: [
     ChartComponent,
@@ -26,7 +28,8 @@ import { ProjectAnalyticsComponent } from './table/project-analytics/project-ana
     BarChartComponent,
     DonutChartComponent,
     DataTableComponent,
-    ProjectAnalyticsComponent
+    ProjectAnalyticsComponent,
+    GenericTableComponent
   ]
 })
 export class SharedModule { }

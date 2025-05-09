@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
 import { CommonService } from '../../../services/common.service';
 import { any } from '@amcharts/amcharts5/.internal/core/util/Array';
+import { SharedService } from '../../../services/shared.service';
 
 @Component({
   selector: 'app-geographical-filter',
@@ -22,7 +23,9 @@ export class GeographicalFilterComponent {
   selectedStateCode: number | null = null;
   selectedDistrictCode: number | null = null;
 
-  constructor(private commonService: CommonService) {}
+  constructor(private commonService: CommonService,
+    private sharedService: SharedService
+  ) {}
 
   ngOnInit(): void {
     this.stateList = this.commonService.getStateList();
@@ -47,8 +50,7 @@ export class GeographicalFilterComponent {
       districtCode: this.selectedDistrictCode
     };
     this.dataEmitter.emit(selectedFilters);
-    // this.commonService.setFilteredData(selectedFilters);
-        // this.commonService.setFilteredData(selectedFilters);
+    this.sharedService.updateDataFilter(selectedFilters);
   }
 
   

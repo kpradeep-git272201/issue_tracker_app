@@ -9,7 +9,7 @@
                 <mat-icon svgIcon="Filter" style="padding-right: 0.125rem; margin-bottom: -1px;"></mat-icon>
                 <span *ngIf="opened" class="filter">FILTERS</span>
             </h4>
-            <app-geographical-filter [opened]="opened" (dataEmitter)="receiveData($event)"></app-geographical-filter>
+            <app-geographical-filter [opened]="opened"></app-geographical-filter>
 
             <section>
              <app-developement-category [opened]="opened"></app-developement-category>

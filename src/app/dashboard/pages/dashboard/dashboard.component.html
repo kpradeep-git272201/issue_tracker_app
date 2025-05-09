@@ -24,7 +24,7 @@
         </mat-grid-tile>
     </mat-grid-list>
    <!-- dynamic table -->
-    <app-generic-table
+    <app-generic-table *ngIf="tableColumns"
         [data]="tableData"
         [columns]="tableColumns"
         [enableGlobalSearch]="true"

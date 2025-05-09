@@ -42,7 +42,7 @@ export class CommonService {
   }
 
 
-  setFilteredData(selectedData:any) {
+  setFilteredData(selectedData: any) {
     console.log(selectedData)
     this.donutData = [
       { category: 'Filtered A', value: 30 },
@@ -66,7 +66,7 @@ export class CommonService {
 
 
 
-  getAppList(){
+  getAppList() {
     return [
       {
         appId: 101,
@@ -130,7 +130,7 @@ export class CommonService {
           },
         ]
       },
-  
+
       {
         appId: 104,
         appName: "Customer",
@@ -276,10 +276,214 @@ export class CommonService {
         { districtCode: 121, districtNameEnglish: "Ambedkar Nagar" }
       ]
     };
-  
+
     return districtsByState[stateCode] || [];
   }
-  
-  
-}
 
+
+  getReportData() {
+    return {
+      tableColumns: [
+        { field: 'gp', header: 'GP', filterType: 'dropdown', filterOptions: ['Patto Jawahar Singh', 'Beer Badhni', 'Ransih Kalan', 'Patto Hira Singh', 'Nangal', 'Lopon', 'Geziana', 'Saidoke', 'Takhtupura', 'Badhni Khurd'], visible: true },
+        { field: 'gpCode', header: 'GP Code', sortable: true, visible: true },
+        { field: 'schemeName', header: 'Scheme Name', visible: true },
+        { field: 'schemeComponent', header: 'Scheme Component', visible: true },
+        { field: 'focusArea', header: 'Focus Area', visible: true },
+        { field: 'activityCode', header: 'Activity Code', visible: true },
+        { field: 'activityName', header: 'Activity Name', visible: true },
+        { field: 'locationOfAsset', header: 'Location of Asset', visible: true },
+        { field: 'estimatedCost', header: 'Estimated Cost', sortable: true, visible: true },
+        { field: 'technicalSanctionedAmount', header: 'Tech. Sanctioned Amount', visible: true },
+        { field: 'administrativeSanctionedAmount', header: 'Admin. Sanctioned Amount', visible: true },
+        { field: 'expenditure', header: 'Expenditure', visible: true },
+        { field: 'activityStatus', header: 'Status', filterType: 'dropdown', filterOptions: ['Activity Approved'], visible: true },
+        { field: 'financialYear', header: 'Financial Year', filterType: 'dropdown', filterOptions: ['2025-2026', '2023-2024'], visible: true },
+        { field: 'stateCode', header: 'State Code', sortable: true, visible: true },
+        { field: 'districtCode', header: 'District Code', sortable: true, visible: true }
+      ],
+      tableData: [
+        {
+          "gp": "Patto Jawahar Singh",
+          "gpCode": "236289",
+          "schemeName": "XV Finance Commission",
+          "schemeComponent": "Tied Grant",
+          "focusArea": "Drinking water",
+          "activityCode": "106179455",
+          "activityName": "Water Supply to villages",
+          "locationOfAsset": "Patto Jawahar Singh (153)",
+          "estimatedCost": 174530,
+          "technicalSanctionedAmount": null,
+          "administrativeSanctionedAmount": null,
+          "expenditure": null,
+          "activityStatus": "Activity Approved",
+          "financialYear": "2025-2026",
+          "stateCode": 28,
+          "districtCode": 745
+        },
+        {
+          "gp": "Beer Badhni",
+          "gpCode": "17281",
+          "schemeName": "XV Finance Commission",
+          "schemeComponent": "Tied Grant",
+          "focusArea": "Drinking water",
+          "activityCode": "106183797",
+          "activityName": "Water Supply to villages",
+          "locationOfAsset": "Bir Badni (102)",
+          "estimatedCost": 195260,
+          "technicalSanctionedAmount": null,
+          "administrativeSanctionedAmount": null,
+          "expenditure": null,
+          "activityStatus": "Activity Approved",
+          "financialYear": "2023-2024",
+          "stateCode": 10,
+          "districtCode": 611
+        },
+        {
+          "gp": "Ransih Kalan",
+          "gpCode": "17307",
+          "schemeName": "XV Finance Commission",
+          "schemeComponent": "Tied Grant",
+          "focusArea": "Drinking water",
+          "activityCode": "106186378",
+          "activityName": "Water Supply to villages",
+          "locationOfAsset": "Ransih Kalan (156)",
+          "estimatedCost": 489510,
+          "technicalSanctionedAmount": null,
+          "administrativeSanctionedAmount": null,
+          "expenditure": null,
+          "activityStatus": "Activity Approved",
+          "financialYear": "2025-2026",
+          "stateCode": 28,
+          "districtCode": 745
+        },
+        {
+          "gp": "Patto Hira Singh",
+          "gpCode": "17304",
+          "schemeName": "XV Finance Commission",
+          "schemeComponent": "Tied Grant",
+          "focusArea": "Drinking water",
+          "activityCode": "106188579",
+          "activityName": "Water Supply to villages",
+          "locationOfAsset": "Patto Hira Singh (154)",
+          "estimatedCost": 1192320,
+          "technicalSanctionedAmount": null,
+          "administrativeSanctionedAmount": null,
+          "expenditure": null,
+          "activityStatus": "Activity Approved",
+          "financialYear": "2023-2024",
+          "stateCode": 10,
+          "districtCode": 611
+        },
+        {
+          "gp": "Nangal",
+          "gpCode": "17301",
+          "schemeName": "XV Finance Commission",
+          "schemeComponent": "Tied Grant",
+          "focusArea": "Drinking water",
+          "activityCode": "106204574",
+          "activityName": "Water Supply to villages",
+          "locationOfAsset": "Nangal (164)",
+          "estimatedCost": 497985,
+          "technicalSanctionedAmount": null,
+          "administrativeSanctionedAmount": null,
+          "expenditure": null,
+          "activityStatus": "Activity Approved",
+          "financialYear": "2025-2026",
+          "stateCode": 28,
+          "districtCode": 745
+        },
+        {
+          "gp": "Lopon",
+          "gpCode": "17296",
+          "schemeName": "XV Finance Commission",
+          "schemeComponent": "Tied Grant",
+          "focusArea": "Drinking water",
+          "activityCode": "106207918",
+          "activityName": "Water Supply to villages",
+          "locationOfAsset": "Lopon (99)",
+          "estimatedCost": 1594390,
+          "technicalSanctionedAmount": null,
+          "administrativeSanctionedAmount": null,
+          "expenditure": null,
+          "activityStatus": "Activity Approved",
+          "financialYear": "2023-2024",
+          "stateCode": 10,
+          "districtCode": 611
+        },
+        {
+          "gp": "Geziana",
+          "gpCode": "17289",
+          "schemeName": "XV Finance Commission",
+          "schemeComponent": "Tied Grant",
+          "focusArea": "Drinking water",
+          "activityCode": "106208670",
+          "activityName": "Water Supply to villages",
+          "locationOfAsset": "Ghaziana (147)",
+          "estimatedCost": 320390,
+          "technicalSanctionedAmount": null,
+          "administrativeSanctionedAmount": null,
+          "expenditure": null,
+          "activityStatus": "Activity Approved",
+          "financialYear": "2025-2026",
+          "stateCode": 28,
+          "districtCode": 745
+        },
+        {
+          "gp": "Saidoke",
+          "gpCode": "17311",
+          "schemeName": "XV Finance Commission",
+          "schemeComponent": "Tied Grant",
+          "focusArea": "Drinking water",
+          "activityCode": "106209504",
+          "activityName": "Water Supply to villages",
+          "locationOfAsset": "Saido -Ke (159)",
+          "estimatedCost": 1401110,
+          "technicalSanctionedAmount": null,
+          "administrativeSanctionedAmount": null,
+          "expenditure": null,
+          "activityStatus": "Activity Approved",
+          "financialYear": "2023-2024",
+          "stateCode": 10,
+          "districtCode": 611
+        },
+        {
+          "gp": "Takhtupura",
+          "gpCode": "17312",
+          "schemeName": "XV Finance Commission",
+          "schemeComponent": "Tied Grant",
+          "focusArea": "Drinking water",
+          "activityCode": "106336540",
+          "activityName": "Water Supply to villages",
+          "locationOfAsset": "Takhtu Pura (162)",
+          "estimatedCost": 836770,
+          "technicalSanctionedAmount": null,
+          "administrativeSanctionedAmount": null,
+          "expenditure": null,
+          "activityStatus": "Activity Approved",
+          "financialYear": "2025-2026",
+          "stateCode": 28,
+          "districtCode": 745
+        },
+        {
+          "gp": "Badhni Khurd",
+          "gpCode": "17277",
+          "schemeName": "XV Finance Commission",
+          "schemeComponent": "Tied Grant",
+          "focusArea": "Drinking water",
+          "activityCode": "106717727",
+          "activityName": "Water Supply to villages",
+          "locationOfAsset": "Badhni Khurd (100)",
+          "estimatedCost": 314440,
+          "technicalSanctionedAmount": null,
+          "administrativeSanctionedAmount": null,
+          "expenditure": null,
+          "activityStatus": "Activity Approved",
+          "financialYear": "2023-2024",
+          "stateCode": 10,
+          "districtCode": 611
+        }
+      ]
+    }
+  }
+
+}

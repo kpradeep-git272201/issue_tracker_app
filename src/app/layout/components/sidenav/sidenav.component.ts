@@ -9,6 +9,7 @@ import { ProjectStatusComponent } from '../project-status/project-status.compone
 import { GeographicalFilterComponent } from '../geographical-filter/geographical-filter.component';
 import { TimePeriodComponent } from '../time-period/time-period.component';
 import { DevelopementCategoryComponent } from '../developement-category/developement-category.component';
+import { SharedService } from '../../../services/shared.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -21,18 +22,12 @@ export class SidenavComponent {
   opened = true;
   activeRoute: string | undefined;
   panelOpenState = false;
-
-
- 
-
-
-
-
   timePeriod = 2023;
   comparisonTool = false;
 
-
-  constructor(private commonService: CommonService){
+  constructor(private commonService: CommonService,
+    private sharedService: SharedService
+  ){
 
   }
 
@@ -59,7 +54,5 @@ export class SidenavComponent {
     //   comparisonTool: this.comparisonTool
     // });
   }
-  receiveData(event:any){
-    console.log(JSON.stringify(event));
-  }
+
 }

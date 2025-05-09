@@ -13,8 +13,23 @@ import { ColumnMenuComponent } from '../../../dialog-module/column-menu/column-m
   styleUrl: './generic-table.component.scss'
 })
 export class GenericTableComponent {
-  @Input() data: any[] = [];
-  @Input() columns: any[] = [];
+  @Input() set data(value: any[]) {
+    this._data.set(value);
+  }
+  private _data = signal<any[]>([]);
+  get data() {
+    return this._data();
+  }
+  
+  @Input() set columns(value: any[]) {
+    this._columns.set(value);
+    this.visibleColumnFields.set(value.filter(col => col.visible !== false).map(col => col.field));
+  }
+  private _columns = signal<any[]>([]);
+  get columns() {
+    return this._columns();
+  }
+
   @Input() enableGlobalSearch = true;
   visibleColumnFields = signal<string[]>([]);
   searchText = signal('');
@@ -28,20 +43,22 @@ export class GenericTableComponent {
   sortField = signal<string | null>(null);
   sortAsc = signal<boolean>(true);
 
-  constructor(private dialog: MatDialog){
+  constructor(private dialog: MatDialog) {
 
   }
 
   ngOnInit() {
     this.visibleColumnFields.set(this.columns.filter(col => col.visible !== false).map(col => col.field));
   }
+  ngOnChanges() {
 
+  } 
   displayedColumns(): string[] {
     return this.columns
       .filter(col => this.visibleColumnFields().includes(col.field))
       .map(col => col.field);
   }
-  //Computed filteredRows (reactive)
+
   filteredRows = computed(() => this.filteredData());
 
   filteredData = computed(() => {
@@ -127,7 +144,7 @@ export class GenericTableComponent {
         columns: this.columns
       },
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (Array.isArray(result)) {
         this.visibleColumnFields.set(result);

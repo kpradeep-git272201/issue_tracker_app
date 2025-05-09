@@ -3,7 +3,7 @@
       <mat-card-header style="width: 100%;">
         <span class="header-name">Report Name</span>
         <div class="table-toolbar" *ngIf="enableGlobalSearch">
-          <mat-form-field appearance="outline" class="search-field">
+          <mat-form-field *ngIf="enableGlobalSearch" appearance="outline" class="search-field">
             <mat-label>Search</mat-label>
             <input matInput type="text" [(ngModel)]="globalFilter" (input)="applyGlobalFilter()" />
           </mat-form-field>

@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
 import { CommonService } from '../../../services/common.service';
+import { any } from '@amcharts/amcharts5/.internal/core/util/Array';
 
 @Component({
   selector: 'app-geographical-filter',
@@ -10,6 +11,7 @@ import { CommonService } from '../../../services/common.service';
   styleUrl: './geographical-filter.component.scss'
 })
 export class GeographicalFilterComponent {
+  @Output() dataEmitter = new EventEmitter<any>();
   @Input() opened: boolean = false;
   financialYr = ['2025-2026', '2024-2025', '2023-2024', '2022-2023'];
 
@@ -39,7 +41,13 @@ export class GeographicalFilterComponent {
   
 
   applyFilter() {
-    this.commonService.setFilteredData();
+    const selectedFilters = {
+      financialYear: this.selectedFincialYr,
+      stateCode: this.selectedStateCode,
+      districtCode: this.selectedDistrictCode
+    };
+    this.dataEmitter.emit(selectedFilters);
+    // this.commonService.setFilteredData(selectedFilters);
   }
 
   

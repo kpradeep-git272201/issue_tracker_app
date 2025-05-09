@@ -42,8 +42,8 @@ export class CommonService {
   }
 
 
-  setFilteredData() {
-    debugger
+  setFilteredData(selectedData:any) {
+    console.log(selectedData)
     this.donutData = [
       { category: 'Filtered A', value: 30 },
       { category: 'Filtered B', value: 70 },

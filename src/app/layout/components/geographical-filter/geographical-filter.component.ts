@@ -48,6 +48,7 @@ export class GeographicalFilterComponent {
     };
     this.dataEmitter.emit(selectedFilters);
     // this.commonService.setFilteredData(selectedFilters);
+        // this.commonService.setFilteredData(selectedFilters);
   }
 
   

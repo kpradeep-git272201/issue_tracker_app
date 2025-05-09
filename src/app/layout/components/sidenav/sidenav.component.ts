@@ -59,4 +59,7 @@ export class SidenavComponent {
     //   comparisonTool: this.comparisonTool
     // });
   }
+  receiveData(event:any){
+    console.log(JSON.stringify(event));
+  }
 }

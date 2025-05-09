@@ -5,32 +5,67 @@ import { Injectable } from '@angular/core';
 })
 export class CommonService {
 
+  private donutData: any[] = [
+    { category: 'Education', value: 25 },
+    { category: 'Healthcare', value: 15 },
+    { category: 'Infrastructure', value: 20 },
+    { category: 'Agriculture', value: 10 },
+    { category: 'Employment', value: 18 },
+    { category: 'Social Welfare', value: 12 }
+  ];
+
+  private pieData: any[] = [
+    { category: 'Initial X', value: 75 },
+    { category: 'Initial Y', value: 25 }
+  ];
+
+  private barData: any[] = [
+    { category: 'Jan', value: 100 },
+    { category: 'Feb', value: 50 }
+  ];
+
+
+
+
   constructor() { }
 
-  getDonutData (){
-    return [
-      { category: 'Label 1', value: 12 },
-      { category: 'Label 2', value: 22 },
-      { category: 'Label 3', value: 12 },
-      { category: 'Label 4', value: 12 },
-      { category: 'Label 5', value: 7 },
-      { category: 'Label 6', value: 7 },
+  getDonutData() {
+    return this.donutData;
+  }
+
+  getPieData() {
+    return this.pieData;
+  }
+
+  getBarData() {
+    return this.barData;
+  }
+
+
+  setFilteredData(selectedData:any) {
+    console.log(selectedData)
+    this.donutData = [
+      { category: 'Filtered A', value: 30 },
+      { category: 'Filtered B', value: 70 },
+      { category: 'Filtered C', value: 73 },
+      { category: 'Filtered D', value: 15 },
+      { category: 'Filtered E', value: 70 },
+      { category: 'Filtered F', value: 70 },
+    ];
+
+    this.pieData = [
+      { category: 'Filtered X', value: 55 },
+      { category: 'Filtered Y', value: 45 }
+    ];
+
+    this.barData = [
+      { category: 'Apr', value: 90 },
+      { category: 'May', value: 60 }
     ];
   }
 
-  getPieData  (){
-    return [
-      { category: 'A', value: 40 },
-      { category: 'B', value: 60 }
-    ];
-  }
-  getBarData (){
-    return [
-      { category: 'Jan', value: 20 },
-      { category: 'Feb', value: 40 },
-      { category: 'Mar', value: 60 }
-    ];
-  }
+
+
   getAppList(){
     return [
       {
@@ -211,4 +246,40 @@ export class CommonService {
       },
     ];
   }
+
+  //filter json
+  getStateList() {
+    return [
+      { state_code: 28, state_name_english: 'ANDHRA PRADESH' },
+      { state_code: 10, state_name_english: 'BIHAR' },
+      { state_code: 9, state_name_english: 'UTTAR PRADESH' }
+    ];
+  }
+
+
+
+  getDistrictList(stateCode: number) {
+    const districtsByState: { [key: number]: { districtCode: number, districtNameEnglish: string }[] } = {
+      28: [
+        { districtCode: 745, districtNameEnglish: "Alluri Sitharama Raju" },
+        { districtCode: 744, districtNameEnglish: "Anakapalli" },
+        { districtCode: 517, districtNameEnglish: "Prakasam" },
+      ],
+      10: [
+        { districtCode: 188, districtNameEnglish: "Araria" },
+        { districtCode: 611, districtNameEnglish: "Arwal" },
+        { districtCode: 189, districtNameEnglish: "Aurangabad" },
+      ],
+      9: [
+        { districtCode: 118, districtNameEnglish: "Agra" },
+        { districtCode: 119, districtNameEnglish: "Aligarh" },
+        { districtCode: 121, districtNameEnglish: "Ambedkar Nagar" }
+      ]
+    };
+  
+    return districtsByState[stateCode] || [];
+  }
+  
+  
 }
+

@@ -122,7 +122,6 @@ export class BarChartComponent {
   
         series.data.setAll(this.barData);
   
-        // ✅ Add legend below chart
         const legend = chart.children.push(
           am5.Legend.new(this.root, {
             centerX: am5.percent(50),

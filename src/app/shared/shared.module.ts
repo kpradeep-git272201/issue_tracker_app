@@ -7,6 +7,8 @@ import { DonutChartComponent } from './donut-chart/donut-chart.component';
 import { DataTableComponent } from './table/data-table/data-table.component';
 import { ProjectAnalyticsComponent } from './table/project-analytics/project-analytics.component';
 import { GenericTableComponent } from './table/generic-table/generic-table.component';
+import { GenericChartComponent } from './charts/generic-chart/generic-chart.component';
+import { DrowChartComponent } from './charts/drow-chart/drow-chart.component';
 
 
 
@@ -20,7 +22,9 @@ import { GenericTableComponent } from './table/generic-table/generic-table.compo
     DonutChartComponent,
     DataTableComponent,
     ProjectAnalyticsComponent,
-    GenericTableComponent
+    GenericTableComponent,
+    GenericChartComponent,
+    DrowChartComponent
   ],
   exports: [
     ChartComponent,
@@ -29,7 +33,9 @@ import { GenericTableComponent } from './table/generic-table/generic-table.compo
     DonutChartComponent,
     DataTableComponent,
     ProjectAnalyticsComponent,
-    GenericTableComponent
+    GenericTableComponent,
+    GenericChartComponent,
+    DrowChartComponent
   ]
 })
 export class SharedModule { }

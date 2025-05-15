@@ -366,14 +366,6 @@ export class CommonService {
           "expenditure": null,
           "activityStatus": "Activity Approved",
           "financialYear": "2025-2026",
-         
-          
-
-
-
-
-
-          
           "districtCode": 745
         },
         {
@@ -542,4 +534,137 @@ export class CommonService {
     }
   }
 
+
+  getChartData(){
+    return [
+      {
+        "financialYear": "2025-2026",
+        "stateCode": "28",
+        "districtCode": "118",
+        "chartId": "ThemeWiseActivitiesDistribution",
+        "chartType": "Theme Wise Activities Distribution",
+        "data": [
+          { "category": "Theme 1 - Poverty Free and Enhanced Livelihoods Village", "value": 17.8 },
+          { "category": "Theme 2 - Healthy Village", "value": 7.9 },
+          { "category": "Theme 3 - Child Friendly Village", "value": 4.3 },
+          { "category": "Theme 4 - Water Sufficient Village", "value": 14.3 },
+          { "category": "Theme 5 - Clean and Green Village", "value": 17.1 },
+          { "category": "Theme 6 - Self-sufficient Infrastructure in Village", "value": 26.7 },
+          { "category": "Theme 7 - Socially Just and Socially Secured Village", "value": 5.2 },
+          { "category": "Theme 8 - Village with Good Governance", "value": 2.5 },
+          { "category": "Theme 9 - Women Friendly Village", "value": 3.2 }
+        ]
+      },
+      {
+        "financialYear": "2025-2026",
+        "stateCode": "28",
+        "districtCode": "118",
+        "chartId": "SectorWiseActivitiesDistribution",
+        "chartType": "Sector Wise Activities Distribution",
+        "data": [
+          { "category": "XV Finance Commission", "value": 14.2 },
+          { "category": "4th State Finance Commission (West Bengal)", "value": 1.3 },
+          { "category": "5th State Finance Commission (Himachal Pradesh)", "value": 3.7 },
+          { "category": "5TH STATE FINANCE COMMISSION (Odisha)", "value": 5.8 },
+          { "category": "5th State Finance Commission (Uttar Pradesh)", "value": 9.1 },
+          { "category": "5th State Finance Commission (West Bengal)", "value": 2.4 },
+          { "category": "6th State Finance Commission (Sikkim)", "value": 1.2 },
+          { "category": "AMA ODISHA NABIN ODISHA (Odisha)", "value": 0.9 },
+          { "category": "Antyeshti Sthalon Ka Vikas (Uttar Pradesh)", "value": 2.5 },
+          { "category": "AWC BUILDING (Odisha)", "value": 0.6 },
+          { "category": "Backward Area Sub Plan (BASP) (Himachal Pradesh)", "value": 0.3 },
+          { "category": "Bahuddeshiye Panchayat Bhawan (Uttar Pradesh)", "value": 0.5 },
+          { "category": "Chief Minister Relief Fund (Himachal Pradesh)", "value": 1.1 },
+          { "category": "CRITICAL GAP FUND (CGF) (Odisha)", "value": 1.9 },
+          { "category": "DISTRICT MINERAL FUND (Odisha)", "value": 1.4 },
+          { "category": "Fourth State Finance Camission (Uttarakhand)", "value": 6.3 },
+          { "category": "Gaon ke Galiyon ka Antrik Vidyutikaran (Chhattisgarh)", "value": 0.2 },
+          { "category": "Gram Panchayaton Ko Moolbhoot Karyon Hetu Anudan (Chhattisgarh)", "value": 0.3 },
+          { "category": "Grant-in-Aid (Assistant to Gram Panchayat)", "value": 0.9 },
+          { "category": "Grant-in-Aid (General) (Andaman And Nicobar Islands)", "value": 3.4 },
+          { "category": "Grant-In-Aid (Honorarium) (Andaman And Nicobar Islands)", "value": 0.7 },
+          { "category": "Grant-In-Aid (Maintenance) (Andaman And Nicobar Islands)", "value": 1.0 },
+          { "category": "Grant-In-Aid (Matching Grant) (Andaman And Nicobar Islands)", "value": 1.3 },
+          { "category": "Grant-in-Aid (Rural Road CCA) (Andaman And Nicobar Islands)", "value": 1.2 },
+          { "category": "Grant-in-Aid (Rural Road General) (Andaman And Nicobar Islands)", "value": 3.9 },
+          { "category": "Grant-in-Aid (Rural Water Supply) (Andaman And Nicobar Islands)", "value": 1.0 },
+          { "category": "Grant-in-Aid (Sewerage & Sanitation) (Andaman And Nicobar Islands)", "value": 1.3 },
+          { "category": "Haryana Gramin Vikas Yojana (Haryana)", "value": 3.7 },
+          { "category": "Incentivisation of Panchayats - Rashtriya Gram Swaraj Abhiyan", "value": 2.4 },
+          { "category": "Integrated Child Development Services", "value": 3.1 },
+          { "category": "Jal Jeevan Mission", "value": 4.7 },
+          { "category": "Janpad Panchayat Vikas Nidhi (Chhattisgarh)", "value": 0.2 },
+          { "category": "Local Area Development Plan (Himachal Pradesh)", "value": 0.5 },
+          { "category": "Member of Legislative Assembly Constituency Development Scheme (Tamil Nadu)", "value": 0.4 },
+          { "category": "MG National Rural Employment Guarantee Act", "value": 10.3 },
+          { "category": "Mid-Day Meal Scheme", "value": 1.8 },
+          { "category": "MLA Local Area Development Scheme (Chhattisgarh)", "value": 0.3 },
+          { "category": "Mukhya Mantri Adarsh Gram Yojana (MMAGY) (Himachal Pradesh)", "value": 0.7 },
+          { "category": "Mukhya Mantri Awas Yojana (Himachal Pradesh)", "value": 0.1 },
+          { "category": "Mukhya Mantri Gram Path Yojna (Himachal Pradesh)", "value": 0.3 },
+          { "category": "Mukhya Mantri Panchayat Protsahan Purashkar Yojna (Uttar Pradesh)", "value": 1.1 },
+          { "category": "Mukhya Mantri Samgra Grameen Vikas Yojna (Chhattisgarh)", "value": 0.2 },
+          { "category": "National Rural Health Mission - NRHM", "value": 2.9 },
+          { "category": "National Rural Livelihood Mission", "value": 3.3 },
+          { "category": "National Rurban Mission", "value": 2.1 },
+          { "category": "Own Funds", "value": 12.4 },
+          { "category": "Panchayat Development Fund (Tripura)", "value": 1.9 },
+          { "category": "Panchayat Extension to Scheduled Areas (Maharashtra)", "value": 2.2 },
+          { "category": "Panchayat Padadhikarion Ko Mandeya evam Suvidhayen (Chhattisgarh)", "value": 0.3 },
+          { "category": "Pradhan Mantri Gram Sadak Yojana - PMGSY", "value": 2.6 },
+          { "category": "Pradhan Mantri Krishi Sinchayi Yojna", "value": 1.5 },
+          { "category": "Prime Minister Gramin Awaas Yojana", "value": 4.2 },
+          { "category": "Rashtriya Gram Swaraj Abhiyan", "value": 2.9 },
+          { "category": "Rashtriya Krishi Vikas Yojana - RKVY", "value": 1.6 },
+          { "category": "Sachiviya Vyavastha (Chhattisgarh)", "value": 0.1 },
+          { "category": "Sarva Shiksha Abhiyan - SSA", "value": 1.5 },
+          { "category": "Sectoral Decentralized Planning (Himachal Pradesh)", "value": 1.2 },
+          { "category": "SFFC (Kerala)", "value": 1.3 },
+          { "category": "Shradhanjali Yojna (Chhattisgarh)", "value": 0.1 },
+          { "category": "Special Component Sub Plan for Scheduled Castes (Himachal Pradesh)", "value": 0.3 },
+          { "category": "State Finance Commission Grants (Tamil Nadu)", "value": 2.5 },
+          { "category": "State Finance Commission~SFC (Telangana)", "value": 3.9 },
+          { "category": "State Finance Commission-VI (Rajasthan)", "value": 6.2 },
+          { "category": "State Plan of Agriculture (Tripura)", "value": 0.1 },
+          { "category": "State Plan of ARDD (Tripura)", "value": 0.1 },
+          { "category": "State Plan of Fishery (Tripura)", "value": 0.1 },
+          { "category": "State Plan of Horticulture (Tripura)", "value": 0.1 },
+          { "category": "State Plan of PWD (Tripura)", "value": 0.1 },
+          { "category": "Swachh Bharat Mission", "value": 7.1 },
+          { "category": "Third State Finance Commission Manipur (Manipur)", "value": 1.3 },
+          { "category": "Tourism Development (Himachal Pradesh)", "value": 1.0 },
+          { "category": "Tripura Panchayat Development Fund (Tripura)", "value": 1.1 },
+          { "category": "Vidhayak Kashetriya Vikas Nidhi Yojna (Himachal Pradesh)", "value": 1.5 },
+          { "category": "Vidhayak Nidhi (Madhya Pradesh)", "value": 2.0 },
+          { "category": "Vikas Me Jan Sehyog (Himachal Pradesh)", "value": 0.8 },
+          { "category": "Zila Panchayat Vikas Nidhi (Chhattisgarh)", "value": 0.3 }
+        ]
+      },
+      {
+        "financialYear": "2025-2026",
+        "stateCode": "28",
+        "districtCode": "118",
+        "chartId": "LowCost/NoCostActivities",
+        "chartType": "Low Cost / No Cost Activities",
+        "data": [
+          { "category": "VPRP Beneficiaries", "value": 59.0 },
+          { "category": "Community Service", "value": 16.3 },
+          { "category": "Beneficiaries", "value": 13.5 },
+          { "category": "Training/Capacity Building", "value": 11.3 }
+        ]
+      },
+      {
+        "financialYear": "2025-2026",
+        "stateCode": "28",
+        "districtCode": "118",
+        "chartId": "Non-AssetBasedActivities",
+        "chartType": "Non-Asset Based Activities",
+        "data": [
+          { "category": "Operational", "value": 40.0 },
+          { "category": "Community Service", "value": 34.2 },
+          { "category": "Training/Capacity Building", "value": 25.9 }
+        ]
+      }
+    ]    
+  }
 }

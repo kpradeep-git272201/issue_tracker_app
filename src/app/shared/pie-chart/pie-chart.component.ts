@@ -8,6 +8,7 @@ import {
   ElementRef,
   Inject,
   PLATFORM_ID,
+  signal,
 } from '@angular/core';
 import * as am5 from '@amcharts/amcharts5';
 import * as am5percent from '@amcharts/amcharts5/percent';
@@ -16,6 +17,8 @@ import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import { MaterialModule } from '../../material/material.module';
 import { isPlatformBrowser } from '@angular/common';
 import { CommonService } from '../../services/common.service';
+import { Subscription } from 'rxjs';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-pie-chart',
@@ -24,19 +27,35 @@ import { CommonService } from '../../services/common.service';
   styleUrl: './pie-chart.component.scss'
 })
 export class PieChartComponent {
+  private _data = signal<any[]>([]);
+  @Input() set data(value: any[]) {
+    this._data.set(value);
+    
+  }
+
+
   pieData:any=[];
   @ViewChild('chartdiv', { static: true }) chartDiv!: ElementRef;
 
-
+ 
   private root!: am5.Root;
+  private filterSubscription!: Subscription;
 
   constructor(private zone: NgZone,
     @Inject(PLATFORM_ID) private platformId: Object,
-    private commonService: CommonService
+    private commonService: CommonService,
+        private sharedService : SharedService
   ) { }
 
   ngOnInit(): void {
     this.pieData = this.commonService.getPieData();
+    this.filterSubscription = this.sharedService.currentDataFilter.subscribe((filter) => {
+      if (filter?.stateCode !== null && filter?.financialYear) {
+        this.commonService.setFilteredData(filter);
+        this.pieData = this.commonService.getPieData();
+        this.updateChart();
+      }
+    });
   }
   ngOnDestroy(): void {
     this.root?.dispose();
@@ -99,5 +118,12 @@ export class PieChartComponent {
       });
     }
   }
-  
+
+
+  updateChart() {
+    if (this.root) {
+      this.root.dispose();
+    }
+    this.createPieChart();
+  }
 }

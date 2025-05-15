@@ -16,6 +16,8 @@ import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import { MaterialModule } from '../../material/material.module';
 import { isPlatformBrowser } from '@angular/common';
 import { CommonService } from '../../services/common.service';
+import { Subscription } from 'rxjs';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-donut-chart',
@@ -27,16 +29,25 @@ export class DonutChartComponent {
   donutData:any=[];
   @ViewChild('chartdiv', { static: true }) chartDiv!: ElementRef;
 
-
+  private filterSubscription!: Subscription;
   private root!: am5.Root;
 
   constructor(private zone: NgZone,
     @Inject(PLATFORM_ID) private platformId: Object,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private sharedService : SharedService
   ) { }
 
   ngOnInit(): void {
     this.donutData = this.commonService.getDonutData();
+    this.filterSubscription = this.sharedService.currentDataFilter.subscribe((filter) => {
+      if (filter?.stateCode !== null && filter?.financialYear) {
+        this.commonService.setFilteredData(filter);
+        this.donutData = this.commonService.getDonutData();
+        this.updateChart();
+      }
+    });
+
   }
   ngOnDestroy(): void {
     this.root?.dispose();
@@ -92,6 +103,13 @@ export class DonutChartComponent {
       });
     }
   }
-  
+
+
+  updateChart() {
+    if (this.root) {
+      this.root.dispose();
+    }
+    this.createDonutChart();
+  }
   
 }

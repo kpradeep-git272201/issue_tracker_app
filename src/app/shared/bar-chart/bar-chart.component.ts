@@ -9,6 +9,8 @@ import {
   Inject,
   PLATFORM_ID,
 } from '@angular/core';
+import { Subscription } from 'rxjs';
+
 import * as am5 from '@amcharts/amcharts5';
 import * as am5percent from '@amcharts/amcharts5/percent';
 import * as am5xy from '@amcharts/amcharts5/xy';
@@ -16,6 +18,7 @@ import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import { MaterialModule } from '../../material/material.module';
 import { isPlatformBrowser } from '@angular/common';
 import { CommonService } from '../../services/common.service';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-bar-chart',
@@ -28,14 +31,23 @@ export class BarChartComponent {
 
   barData:any=[]
   private root!: am5.Root;
+  private filterSubscription!: Subscription;
 
   constructor(private zone: NgZone,
     @Inject(PLATFORM_ID) private platformId: Object,
-        private commonService: CommonService
+        private commonService: CommonService,
+        private sharedService : SharedService
   ) { }
 
   ngOnInit(): void {
     this.barData = this.commonService.getBarData();
+    this.filterSubscription = this.sharedService.currentDataFilter.subscribe((filter) => {
+      if (filter?.stateCode !== null && filter?.financialYear) {
+        this.commonService.setFilteredData(filter);
+        this.barData = this.commonService.getBarData();
+        this.updateChart();
+      }
+    });
   }
 
   ngAfterViewInit() {
@@ -77,7 +89,7 @@ export class BarChartComponent {
   
         const series = chart.series.push(
           am5xy.ColumnSeries.new(this.root, {
-            name: 'Series', // Required for legend display
+            name: 'Series',
             xAxis: xAxis,
             yAxis: yAxis,
             valueYField: 'value',
@@ -128,5 +140,10 @@ export class BarChartComponent {
   
   
   
-  
+  updateChart() {
+    if (this.root) {
+      this.root.dispose();
+    }
+    this.createBarChart();
+  }
 }

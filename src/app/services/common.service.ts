@@ -23,10 +23,6 @@ export class CommonService {
     { category: 'Jan', value: 100 },
     { category: 'Feb', value: 50 }
   ];
-
-
-
-
   constructor() { }
 
   getDonutData() {
@@ -40,30 +36,83 @@ export class CommonService {
   getBarData() {
     return this.barData;
   }
+   stateDataMap:any = {
+    28: {
+      donutData: [
+        { category: 'Filtered A', value: 30 },
+        { category: 'Filtered B', value: 70 },
+        { category: 'Filtered C', value: 73 },
+        { category: 'Filtered D', value: 15 },
+        { category: 'Filtered E', value: 70 },
+        { category: 'Filtered F', value: 70 },
+      ],
+      pieData: [
+        { category: 'Filtered X', value: 55 },
+        { category: 'Filtered Y', value: 45 },
+      ],
+      barData: [
+        { category: 'Apr', value: 90 },
+        { category: 'May', value: 60 },
+      ],
+    },
+    10: {
+      donutData: [
+        { category: 'Filtered G', value: 20 },
+        { category: 'Filtered H', value: 80 },
+        { category: 'Filtered I', value: 40 },
+        { category: 'Filtered J', value: 40 },
+        { category: 'Filtered K', value: 40 },
+        { category: 'Filtered L', value: 40 },
+      ],
+      pieData: [
+        { category: 'Filtered Z', value: 65 },
+        { category: 'Filtered W', value: 35 },
+      ],
+      barData: [
+        { category: 'Apr', value: 75 },
+        { category: 'May', value: 50 },
+      ],
+    },
+    9: {
+      donutData: [
+        { category: 'Filtered M', value: 60 },
+        { category: 'Filtered N', value: 30 },
+        { category: 'Filtered O', value: 50 },
+        { category: 'Filtered P', value: 50 },
+        { category: 'Filtered Q', value: 50 },
+        { category: 'Filtered R', value: 50 },
+      ],
+      pieData: [
+        { category: 'Filtered M', value: 70 },
+        { category: 'Filtered N', value: 30 },
+      ],
+      barData: [
+        { category: 'Apr', value: 85 },
+        { category: 'May', value: 45 },
+      ],
+    },
+  };
 
+  
 
   setFilteredData(selectedData: any) {
-    console.log(selectedData)
-    this.donutData = [
-      { category: 'Filtered A', value: 30 },
-      { category: 'Filtered B', value: 70 },
-      { category: 'Filtered C', value: 73 },
-      { category: 'Filtered D', value: 15 },
-      { category: 'Filtered E', value: 70 },
-      { category: 'Filtered F', value: 70 },
-    ];
-
-    this.pieData = [
-      { category: 'Filtered X', value: 55 },
-      { category: 'Filtered Y', value: 45 }
-    ];
-
-    this.barData = [
-      { category: 'Apr', value: 90 },
-      { category: 'May', value: 60 }
-    ];
+    const stateCode = selectedData.stateCode;
+  
+    const stateData = this.stateDataMap[stateCode];
+    if (stateData) {
+      this.donutData = stateData.donutData;
+      this.pieData = stateData.pieData;
+      this.barData = stateData.barData;
+    } else {
+      console.warn('No data found for stateCode:', stateCode);
+      this.donutData = [];
+      this.pieData = [];
+      this.barData = [];
+    }
+  
+    console.log('Filtered data set for stateCode:', stateCode);
   }
-
+  
 
 
   getAppList() {
@@ -317,7 +366,14 @@ export class CommonService {
           "expenditure": null,
           "activityStatus": "Activity Approved",
           "financialYear": "2025-2026",
-          "stateCode": 28,
+         
+          
+
+
+
+
+
+          
           "districtCode": 745
         },
         {

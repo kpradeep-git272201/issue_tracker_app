@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { IconsService } from './icons.service';
+import { IconsService } from '../icons/icons.service';
 
 describe('IconsService', () => {
   let service: IconsService;

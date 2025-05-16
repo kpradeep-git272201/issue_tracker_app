@@ -13,8 +13,8 @@ import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import { isPlatformBrowser } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { MaterialModule } from '../../../material/material.module';
-import { CommonService } from '../../../services/common.service';
-import { SharedService } from '../../../services/shared.service';
+import { CommonService } from '../../../services/planning/common.service';
+import { SharedService } from '../../../services/filter/shared.service';
 import { DrowChartComponent } from '../drow-chart/drow-chart.component';
 @Component({
   selector: 'app-generic-chart',

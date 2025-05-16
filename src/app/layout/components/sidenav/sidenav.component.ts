@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
-import { CommonService } from '../../../services/common.service';
+import { CommonService } from '../../../services/planning/common.service';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
@@ -9,7 +9,7 @@ import { ProjectStatusComponent } from '../project-status/project-status.compone
 import { GeographicalFilterComponent } from '../geographical-filter/geographical-filter.component';
 import { TimePeriodComponent } from '../time-period/time-period.component';
 import { DevelopementCategoryComponent } from '../developement-category/developement-category.component';
-import { SharedService } from '../../../services/shared.service';
+import { SharedService } from '../../../services/filter/shared.service';
 
 @Component({
   selector: 'app-sidenav',

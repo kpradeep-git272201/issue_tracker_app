@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SidenavComponent } from "./layout/components/sidenav/sidenav.component";
 import { MainHeaderComponent } from './layout/components/main-header/main-header.component';
-import { IconsService } from './services/icons.service';
+import { IconsService } from './services/icons/icons.service';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FooterComponent } from './layout/components/footer/footer.component';

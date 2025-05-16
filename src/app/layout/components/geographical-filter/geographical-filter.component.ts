@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
-import { CommonService } from '../../../services/common.service';
+import { CommonService } from '../../../services/planning/common.service';
 import { any } from '@amcharts/amcharts5/.internal/core/util/Array';
-import { SharedService } from '../../../services/shared.service';
+import { SharedService } from '../../../services/filter/shared.service';
 
 @Component({
   selector: 'app-geographical-filter',

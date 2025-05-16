@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
 import { SharedModule } from '../../../shared/shared.module';
-import { InrFormatPipe } from "../../../pipes/inr-format.pipe";
+import { InrFormatPipe } from "../../../pipes/currency/inr-format.pipe";
 
 @Component({
   selector: 'app-widget-card',

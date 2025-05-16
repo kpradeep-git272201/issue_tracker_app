@@ -3,8 +3,8 @@ import { isPlatformBrowser } from '@angular/common';
 import { MaterialModule } from '../../../material/material.module';
 import { WidgetCardComponent } from '../widget-card/widget-card.component';
 import { SharedModule } from '../../../shared/shared.module';
-import { CommonService } from '../../../services/common.service';
-import { SharedService } from '../../../services/shared.service';
+import { CommonService } from '../../../services/planning/common.service';
+import { SharedService } from '../../../services/filter/shared.service';
 
 @Component({
   selector: 'app-dashboard',

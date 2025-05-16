@@ -94,11 +94,23 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
         series.labels.template.set("visible", false);
         series.ticks.template.set("visible", false);
         
-        series.slices.template.setAll({
-          tooltipText: "{category}: {value}",
-          stroke: am5.color(0xffffff),
-          strokeWidth: 1,
-          strokeOpacity: 1,
+        const total = this.donutData.reduce((acc: any, item: { value: any; }) => acc + item.value, 0);
+        series.slices.template.adapters.add("tooltipText", (text, target) => {
+          const dataItem = target.dataItem;
+          debugger
+          if (dataItem) {
+            const value = (dataItem as any).get("valueWorking") as number;
+            const category = (dataItem as any).get("category") as string;
+      
+            const percentage = (value / total) * 100;
+            console.log(percentage)
+            if (percentage > 5) {
+              return `${category}: (${percentage.toFixed(1)}%)`;
+            } else {
+              return `${category}: ${value}`;
+            }
+          }
+          return text;
         });
   
         series.data.setAll(this.donutData);
@@ -160,7 +172,7 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
     this.updateChart(type); // recreate chart based on type
   }
 
-  createPieChart(){
+  createPieChart() {
     if (isPlatformBrowser(this.platformId) && this.chartDiv?.nativeElement) {
       this.zone.runOutsideAngular(() => {
         this.root = am5.Root.new(this.chartDiv.nativeElement);
@@ -188,21 +200,44 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
         // Series config
         const series = chart.series.push(
           am5percent.PieSeries.new(this.root, {
-            valueField: 'value',
-            categoryField: 'category',
+            valueField: "value",
+            categoryField: "category",
           })
         );
   
-        // Series styles
+
         series.labels.template.set("visible", false);
         series.ticks.template.set("visible", false);
+  
+        // Calculate total value for percentage calculation
+        const total = this.donutData.reduce((acc: any, item: { value: any; }) => acc + item.value, 0);
+  
+        // Adapter to customize tooltip text with conditional percentage
+        series.slices.template.adapters.add("tooltipText", (text, target) => {
+          const dataItem = target.dataItem;
+          if (dataItem) {
+            const value = (dataItem as any).get("value") as number;
+            const category = (dataItem as any).get("category") as string;
+  
+            const percentage = (value / total) * 100;
+  
+            if (percentage > 5) {
+              return `${category}: (${percentage.toFixed(1)}%)`;
+            } else {
+              return `${category}: ${value}`;
+            }
+          }
+          return text;
+        });
+  
+        // Apply some basic slice styles
         series.slices.template.setAll({
-          tooltipText: "{category}: {value}",
           stroke: am5.color(0xffffff),
           strokeWidth: 1,
           strokeOpacity: 1,
         });
   
+        // Set data
         series.data.setAll(this.donutData);
   
         // Legend container (50%)
@@ -217,8 +252,8 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
             maxHeight: 300,
             marginTop: 50,
             verticalScrollbar: am5.Scrollbar.new(this.root, {
-              orientation: "vertical"
-            })
+              orientation: "vertical",
+            }),
           })
         );
   
@@ -226,7 +261,7 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
         legend.labels.template.setAll({
           oversizedBehavior: "truncate",
           maxWidth: 160,
-          tooltipText: "{category}"
+          tooltipText: "{category}",
         });
   
         // Add data to legend
@@ -237,6 +272,7 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
       });
     }
   }
+  
 
   createBarChart() {
     if (isPlatformBrowser(this.platformId) && this.chartDiv?.nativeElement) {

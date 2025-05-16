@@ -66,9 +66,9 @@ export class DashboardComponent {
   
     if (filterData) {
       const filteredData = reportData.tableData.filter((item: any) => {
-        const matchesYear = filterData.financialYear ? item.financialYear === filterData.financialYear : true;
-        const matchesState = filterData.stateCode ? item.stateCode === filterData.stateCode : true;
-        const matchesDistrict = filterData.districtCode ? item.districtCode === filterData.districtCode : true;
+        const matchesYear = filterData.financialYear ? item.financialYear == filterData.financialYear : true;
+        const matchesState = filterData.stateCode ? item.stateCode == filterData.stateCode : true;
+        const matchesDistrict = filterData.districtCode ? item.districtCode == filterData.districtCode : true;
   
         return matchesYear && matchesState && matchesDistrict;
       });

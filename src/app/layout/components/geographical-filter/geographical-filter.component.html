@@ -19,7 +19,11 @@
         <option [ngValue]="null">All Districts</option>
         <option *ngFor="let dist of districtList" [ngValue]="dist.districtCode">{{ dist.districtNameEnglish }}</option>
       </select>
-      
-    <button class="apply-btn" (click)="applyFilter()">apply filter</button>
+      <div style="text-align: center;">
+        <a mat-flat-button (click)="applyFilter()" target="_blank" class="admin-login-btn">
+        <mat-icon>filter_list</mat-icon>
+        <span class="btn-text">Apply Filter</span>
+      </a>
+      </div>
 
 </section>

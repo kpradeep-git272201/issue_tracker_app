@@ -48,10 +48,32 @@ export class GenericChartComponent {
     //     // this.updateChart();
     //   }
     // });
+    this.getGeographicalFilter();
 
   }
- 
-
+   getGeographicalFilter(){
+    this.sharedService.currentDataFilter.subscribe((data) => {
+      this.getChartFilter(data);
+    });
+  }
+  getChartFilter(filterData: any) {
+    const chartData = this.commonService.getChartData();
+  
+    if (filterData) {
+      const filteredData = chartData.filter((item: any) => {
+        const matchesYear = filterData.financialYear ? item.financialYear == filterData.financialYear : true;
+        const matchesState = filterData.stateCode ? item.stateCode == filterData.stateCode : true;
+        const matchesDistrict = filterData.districtCode ? item.districtCode == filterData.districtCode : true;
+  
+        return matchesYear && matchesState && matchesDistrict;
+      });
+  
+      setTimeout(() => {
+        this.chartData = [...filteredData];
+        this.chartData=(this.chartData.length>0)?this.chartData: [{data:[]}];
+      }, 0);
+    }
+  }
   onResize(event: any) {
     if (this.isBrowser) {
       this.setGridBreakpoint(event.target.innerWidth);

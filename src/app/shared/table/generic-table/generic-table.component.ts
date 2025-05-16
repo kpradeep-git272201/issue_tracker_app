@@ -2,7 +2,7 @@ import { Component, computed, Input, signal } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
 import { MatDialog } from '@angular/material/dialog';
 import { ColumnMenuComponent } from '../../../dialog-module/column-menu/column-menu.component';
-
+import * as XLSX from 'xlsx';
 
 
 @Component({
@@ -80,7 +80,7 @@ export class GenericTableComponent {
       if (val) {
         result = result.filter(row => row[field] === val);
       }
-    });
+    }); 
 
     // Sorting
     const field = this.sortField();
@@ -150,5 +150,17 @@ export class GenericTableComponent {
         this.visibleColumnFields.set(result);
       }
     });
+  }
+
+  exportExcel(){
+    const fileName="ExcelSheet.xlsx";
+    let data = document.getElementById("table-data");
+    const ws:XLSX.WorkSheet = XLSX.utils.table_to_sheet(data);
+    /** generate workbook and addworksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    /** save file name */
+    XLSX.writeFile(wb, fileName);
+
   }
 }

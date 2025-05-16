@@ -539,7 +539,7 @@ export class CommonService {
     return [
       {
         "financialYear": "2025-2026",
-        "stateCode": "28",
+        "stateCode": "9",
         "districtCode": "118",
         "chartId": "ThemeWiseActivitiesDistribution",
         "chartType": "Theme Wise Activities Distribution",
@@ -557,7 +557,7 @@ export class CommonService {
       },
       {
         "financialYear": "2025-2026",
-        "stateCode": "28",
+        "stateCode": "9",
         "districtCode": "118",
         "chartId": "SchemeWiseBudgetaryAllocation",
         "chartType": "Scheme Wise Budgetary Allocation",
@@ -642,7 +642,7 @@ export class CommonService {
       },
       {
         "financialYear": "2025-2026",
-        "stateCode": "28",
+        "stateCode": "9",
         "districtCode": "118",
         "chartId": "LowCost/NoCostActivities",
         "chartType": "Low Cost / No Cost Activities",
@@ -655,7 +655,7 @@ export class CommonService {
       },
       {
         "financialYear": "2025-2026",
-        "stateCode": "28",
+        "stateCode": "9",
         "districtCode": "118",
         "chartId": "Non-AssetBasedActivities",
         "chartType": "Non-Asset Based Activities",

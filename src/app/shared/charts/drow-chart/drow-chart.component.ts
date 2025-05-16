@@ -93,7 +93,14 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
         // Series styles
         series.labels.template.set("visible", false);
         series.ticks.template.set("visible", false);
-        
+        series.labels.template.setAll({
+          text: "{value.percent.formatNumber('0.0')}%",  // or "{value}" or "{category}: {value}"
+          visible: true,
+          fontSize: 12,
+          fill: am5.color(0xffffff), // Make it visible on colored backgrounds
+          centerX: am5.percent(50),  // Center inside the slice
+          centerY: am5.percent(50)
+        });
         const total = this.donutData.reduce((acc: any, item: { value: any; }) => acc + item.value, 0);
         series.slices.template.adapters.add("tooltipText", (text, target) => {
           const dataItem = target.dataItem;
@@ -141,7 +148,10 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
   
         // Add data to legend
         legend.data.setAll(series.dataItems);
-  
+        legend.itemContainers.each((itemContainer:any) => {
+          itemContainer.set("clickable", false); 
+          itemContainer.events.disableType("click");
+        });
         // Animate chart
         series.appear(1000, 100);
       });
@@ -239,10 +249,12 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
   
         // Set data
         series.data.setAll(this.donutData);
-  
+
         // Legend container (50%)
         const legend = container.children.push(
           am5.Legend.new(this.root, {
+               centerY: am5.percent(50),
+              y: am5.percent(50),
             nameField: "category",
             fillField: "fill",
             strokeField: "stroke",

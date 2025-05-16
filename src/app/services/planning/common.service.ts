@@ -559,8 +559,8 @@ export class CommonService {
         "financialYear": "2025-2026",
         "stateCode": "28",
         "districtCode": "118",
-        "chartId": "SectorWiseActivitiesDistribution",
-        "chartType": "Sector Wise Activities Distribution",
+        "chartId": "SchemeWiseBudgetaryAllocation",
+        "chartType": "Scheme Wise Budgetary Allocation",
         "data": [
           { "category": "XV Finance Commission", "value": 14.2 },
           { "category": "4th State Finance Commission (West Bengal)", "value": 1.3 },

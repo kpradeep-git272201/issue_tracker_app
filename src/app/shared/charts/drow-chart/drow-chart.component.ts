@@ -57,108 +57,7 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.createDonutChart();
   }
-  createDonutChart() {
-    if (isPlatformBrowser(this.platformId) && this.chartDiv?.nativeElement) {
-      this.zone.runOutsideAngular(() => {
-        this.root = am5.Root.new(this.chartDiv.nativeElement);
-        (this.root as any)._logo?.set("forceHidden", true);
-        this.root.setThemes([am5themes_Animated.new(this.root)]);
   
-        // Main container with 2 children: chart and legend
-        const container = this.root.container.children.push(
-          am5.Container.new(this.root, {
-            layout: this.root.horizontalLayout,
-            width: am5.percent(100),
-            height: am5.percent(100),
-          })
-        );
-  
-        // Pie chart container (50%)
-        const chart = container.children.push(
-          am5percent.PieChart.new(this.root, {
-            innerRadius: am5.percent(70),
-            width: am5.percent(50),
-            layout: this.root.verticalLayout,
-          })
-        );
-  
-        // Series config
-        const series = chart.series.push(
-          am5percent.PieSeries.new(this.root, {
-            valueField: 'value',
-            categoryField: 'category',
-          })
-        );
-  
-        // Series styles
-        series.labels.template.set("visible", false);
-        series.ticks.template.set("visible", false);
-        series.labels.template.setAll({
-          text: "{value.percent.formatNumber('0.0')}%",  // or "{value}" or "{category}: {value}"
-          visible: true,
-          fontSize: 12,
-          fill: am5.color(0xffffff), // Make it visible on colored backgrounds
-          centerX: am5.percent(50),  // Center inside the slice
-          centerY: am5.percent(50)
-        });
-        const total = this.donutData.reduce((acc: any, item: { value: any; }) => acc + item.value, 0);
-        series.slices.template.adapters.add("tooltipText", (text, target) => {
-          const dataItem = target.dataItem;
-          debugger
-          if (dataItem) {
-            const value = (dataItem as any).get("valueWorking") as number;
-            const category = (dataItem as any).get("category") as string;
-      
-            const percentage = (value / total) * 100;
-            console.log(percentage)
-            if (percentage > 5) {
-              return `${category}: (${percentage.toFixed(1)}%)`;
-            } else {
-              return `${category}: ${value}`;
-            }
-          }
-          return text;
-        });
-  
-        series.data.setAll(this.donutData);
-  
-        // Legend container (50%)
-        const legend = container.children.push(
-          am5.Legend.new(this.root, {
-            nameField: "category",
-            fillField: "fill",
-            strokeField: "stroke",
-            width: am5.percent(50),
-            height: am5.percent(100),
-            layout: this.root.verticalLayout,
-            maxHeight: 300,
-            marginTop: 50,
-            verticalScrollbar: am5.Scrollbar.new(this.root, {
-              orientation: "vertical"
-            })
-          })
-        );
-  
-        // Ellipsis on legend labels and tooltip on hover
-        legend.labels.template.setAll({
-          oversizedBehavior: "truncate",
-          maxWidth: 160,
-          tooltipText: "{category}"
-        });
-  
-        // Add data to legend
-        legend.data.setAll(series.dataItems);
-        legend.itemContainers.each((itemContainer:any) => {
-          itemContainer.set("clickable", false); 
-          itemContainer.events.disableType("click");
-        });
-        // Animate chart
-        series.appear(1000, 100);
-      });
-    }
-  }
-  
-
 
   updateChart(type?:any) {
     if (this.root) {
@@ -175,13 +74,105 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
     }
 
   }
-
+  
   switchChart(type: string) {
     this.chartType = type;
-
-    this.updateChart(type); // recreate chart based on type
+    this.updateChart(type); 
   }
+createDonutChart() {
+  if (isPlatformBrowser(this.platformId) && this.chartDiv?.nativeElement) {
+    this.zone.runOutsideAngular(() => {
+      this.root = am5.Root.new(this.chartDiv.nativeElement);
+      (this.root as any)._logo?.set("forceHidden", true);
+      this.root.setThemes([am5themes_Animated.new(this.root)]);
 
+      // Main container with 2 children: chart and legend
+      const container = this.root.container.children.push(
+        am5.Container.new(this.root, {
+          layout: this.root.horizontalLayout,
+          width: am5.percent(100),
+          height: am5.percent(100),
+        })
+      );
+
+      // Pie chart container (50%)
+      const chart = container.children.push(
+        am5percent.PieChart.new(this.root, {
+          innerRadius: am5.percent(60),
+          width: am5.percent(50),
+          layout: this.root.verticalLayout,
+        })
+      );
+
+      // Series config
+      const series = chart.series.push(
+        am5percent.PieSeries.new(this.root, {
+          valueField: 'value',
+          categoryField: 'category',
+        })
+      );
+
+
+      series.ticks.template.set("visible", false);
+
+      series.labels.template.setAll({
+        text: "{value.percent.formatNumber('0.0')}%", // Display percentage
+        visible: true,
+        fontSize: 12,
+        fill: am5.color(0xffffff),
+        centerX: am5.percent(50),
+        centerY: am5.percent(50)
+      });
+
+      // Slice styles with rounded corners
+      series.slices.template.setAll({
+        stroke: am5.color(0xffffff),
+        strokeWidth: 1,
+        strokeOpacity: 1,
+        cornerRadius: 4
+      });
+
+      // Set data
+      series.data.setAll(this.donutData);
+
+      // Legend container (50%)
+      const legend = container.children.push(
+        am5.Legend.new(this.root, {
+          nameField: "category",
+          fillField: "fill",
+          strokeField: "stroke",
+          width: am5.percent(50),
+          height: am5.percent(100),
+          layout: this.root.verticalLayout,
+          maxHeight: 300,
+          marginTop: 50,
+          verticalScrollbar: am5.Scrollbar.new(this.root, {
+            orientation: "vertical"
+          })
+        })
+      );
+
+      // Legend label truncation and tooltip
+      legend.labels.template.setAll({
+        oversizedBehavior: "truncate",
+        maxWidth: 160,
+        tooltipText: "{category}"
+      });
+
+      // Disable legend click toggling
+      legend.data.setAll(series.dataItems);
+      legend.itemContainers.each((itemContainer: any) => {
+        itemContainer.set("clickable", false);
+        itemContainer.events.disableType("click");
+      });
+
+      // Animate chart
+      series.appear(1000, 100);
+    });
+  }
+}
+
+  
   createPieChart() {
     if (isPlatformBrowser(this.platformId) && this.chartDiv?.nativeElement) {
       this.zone.runOutsideAngular(() => {
@@ -222,29 +213,12 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
         // Calculate total value for percentage calculation
         const total = this.donutData.reduce((acc: any, item: { value: any; }) => acc + item.value, 0);
   
-        // Adapter to customize tooltip text with conditional percentage
-        series.slices.template.adapters.add("tooltipText", (text, target) => {
-          const dataItem = target.dataItem;
-          if (dataItem) {
-            const value = (dataItem as any).get("value") as number;
-            const category = (dataItem as any).get("category") as string;
-  
-            const percentage = (value / total) * 100;
-  
-            if (percentage > 5) {
-              return `${category}: (${percentage.toFixed(1)}%)`;
-            } else {
-              return `${category}: ${value}`;
-            }
-          }
-          return text;
-        });
-  
         // Apply some basic slice styles
         series.slices.template.setAll({
           stroke: am5.color(0xffffff),
           strokeWidth: 1,
           strokeOpacity: 1,
+          cornerRadius: 4
         });
   
         // Set data
@@ -285,7 +259,6 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
     }
   }
   
-
   createBarChart() {
     if (isPlatformBrowser(this.platformId) && this.chartDiv?.nativeElement) {
       this.zone.runOutsideAngular(() => {

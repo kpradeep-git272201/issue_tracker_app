@@ -15,11 +15,11 @@
         <option *ngFor="let state of stateList" [ngValue]="state.state_code">{{ state.state_name_english }}</option>
       </select>
       
-      <select [(ngModel)]="selectedDistrictCode">
+      <select *ngIf="opened" [(ngModel)]="selectedDistrictCode">
         <option [ngValue]="null">All Districts</option>
         <option *ngFor="let dist of districtList" [ngValue]="dist.districtCode">{{ dist.districtNameEnglish }}</option>
       </select>
-      <div style="text-align: center;">
+      <div *ngIf="opened" style="text-align: center;">
         <a mat-flat-button (click)="applyFilter()" target="_blank" class="admin-login-btn">
         <mat-icon>filter_list</mat-icon>
         <span class="btn-text">Apply Filter</span>

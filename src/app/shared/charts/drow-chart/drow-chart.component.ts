@@ -110,6 +110,7 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
 
         // Slice styles with rounded corners
         series.slices.template.setAll({
+          // tooltipY: -10,
           stroke: am5.color(0xffffff),
           strokeWidth: 1,
           strokeOpacity: 1,

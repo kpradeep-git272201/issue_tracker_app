@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { AuthService } from '../../../services/planning/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,10 +15,11 @@ export class LoginComponent {
   hide = true;
   captchaText: string = '';
   captchaInput: string = '';
-  invalidLoginCount:number = 0;
+  count:number = 0;
   constructor( private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<LoginComponent>){
+    private dialogRef: MatDialogRef<LoginComponent>,
+    private authService: AuthService){
   }
 
   ngOnInit(){
@@ -25,7 +27,7 @@ export class LoginComponent {
       username: ['', Validators.required],
       password: ['', Validators.required],
       captchaText: [''],
-      captcha: ['']
+      captchaInput: ['']
     });
 
     this.generateCaptcha();
@@ -70,28 +72,40 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log('Login Data:', this.loginForm.value);
-      this.invalidLoginCount++;
-      this.updateCaptchaValidator(this.invalidLoginCount);
+      const loginData=this.loginForm.getRawValue();
+      this.count++;
+      if (this.count >= 5 && loginData.captchaInput !== loginData.captchaText) {
+      alert('Captcha does not match!');
+      this.generateCaptcha(); // regenerate if wrong
+      this.updateCaptchaValidator(this.count);
+      return;
+    }
+    const success = this.authService.login(loginData.username, loginData.password);
+    if (success) {
+      this.dialogRef.close();
+      // this.router.navigate(['/dashboard']); // protected route
+    } else {
+      this.updateCaptchaValidator(this.count);
+      this.generateCaptcha(); // optionally regenerate captcha
+    }
       // this.dialogRef.close();
     }
   }
 
-  closeDialog(): void {
-    this.dialogRef.close();
-  }
-
-
-  updateCaptchaValidator(invalidLoginCount: number) {
-    const captchaControl = this.loginForm.get('captcha');
+  updateCaptchaValidator(count: number) {
+    const captchaControl = this.loginForm.get('captchaInput');
     if (!captchaControl) return;
   
-    if (invalidLoginCount >= 5) {
+    if (count >= 5) {
       captchaControl.setValidators([Validators.required]);
     } else {
       captchaControl.clearValidators();
     }
   
     captchaControl.updateValueAndValidity();
+  }
+
+  closeDialog(): void {
+    this.dialogRef.close();
   }
 }

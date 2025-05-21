@@ -5,21 +5,44 @@
     </div>
  
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="outline" class="full-width">
+      <mat-form-field appearance="outline" class="full-width input-spacing">
+
+
         <mat-icon matPrefix>person</mat-icon>
-        <input matInput placeholder="Username" formControlName="username">
+        <input matInput placeholder="Username" formControlName="username" required>
+      
+        <mat-error *ngIf="loginForm.get('username')?.hasError('required') && loginForm.get('username')?.touched">
+          Username is required
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('username')?.hasError('minlength') && loginForm.get('username')?.touched">
+          Username must be at least 5 characters long
+        </mat-error>
       </mat-form-field>
-  
+    
       <mat-form-field appearance="outline" class="full-width">
         <mat-icon matPrefix>lock</mat-icon>
-        <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password">
+        <input matInput
+               placeholder="Password"
+               [type]="hide ? 'password' : 'text'"
+               formControlName="password"
+               required>
+        
         <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
           <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
+      
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
+          Password must be at least 6 characters long
+        </mat-error>
       </mat-form-field>
+      
   
-      <div class="captcha-box" [style.display]="(invalidLoginCount>=5)? '' :'none'">
-        <canvas id="captchaCanvas" width="160" height="50" style="margin-bottom: 20px;"></canvas>
+        <div class="captcha-box" [style.display]="(invalidLoginCount >= 5) ? '' : 'none'">
+
+        <canvas id="captchaCanvas" width="160" height="50"></canvas>
         <mat-icon class="refresh" (click)="generateCaptcha()">refresh</mat-icon>
         <mat-form-field class="captcha-input" appearance="outline">
           <mat-icon matPrefix>arrow_forward</mat-icon>
@@ -29,7 +52,10 @@
   
       <div class="button-group">
         <button mat-flat-button color="primary" type="submit" class="login">Login</button>
-        <button mat-flat-button color="warn" type="reset" class="reset" (click)="loginForm.reset()">Reset</button>
+       <!--  <button mat-flat-button color="warn" type="reset" class="reset" (click)="loginForm.reset()">Reset</button> -->
+
+       <button mat-flat-button color="warn" type="reset"  class="reset" (click)="resetForm()"> Reset</button>
+
       </div>
   
       <div class="forgot-password">

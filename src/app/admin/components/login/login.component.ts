@@ -2,6 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ChangeDetectorRef } from '@angular/core';
+
 
 @Component({
   selector: 'app-login',
@@ -10,26 +12,51 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  loginForm: FormGroup | any;
+
+  
+  /* loginForm: FormGroup | any;
   hide = true;
   captchaText: string = '';
   captchaInput: string = '';
+  
   invalidLoginCount:number = 0;
   constructor( private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<LoginComponent>){
-  }
+  } */
+
+      loginForm: FormGroup;
+      hide = true;
+      captchaText: string = '';
+      captchaInput: string = '';
+      invalidLoginCount: number = 0;
+    
+      constructor(
+        private fb: FormBuilder,
+        @Inject(MAT_DIALOG_DATA) public data: any,
+        private dialogRef: MatDialogRef<LoginComponent>,
+        private cdRef: ChangeDetectorRef
+        
+      ) {
+        this.loginForm = this.fb.group({
+          username: ['', [Validators.required, Validators.minLength(5)]],
+          password: ['', [Validators.required, Validators.minLength(6)]]
+        });
+        
+      }
+
 
   ngOnInit(){
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
+      username: ['', [Validators.required, Validators.minLength(5)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       captchaText: [''],
       captcha: ['']
     });
-
+  
     this.generateCaptcha();
   }
+  
 
   generateCaptcha(): void {
     const canvas = document.getElementById('captchaCanvas') as HTMLCanvasElement;
@@ -66,21 +93,39 @@ export class LoginComponent {
     }
     ctx.setTransform(1, 0, 0, 1, 0, 0); 
   }
-  
 
+/* 
   onSubmit() {
     if (this.loginForm.valid) {
       console.log('Login Data:', this.loginForm.value);
       this.invalidLoginCount++;
       this.updateCaptchaValidator(this.invalidLoginCount);
-      // this.dialogRef.close();
+      
     }
-  }
+  } */
 
+  
+  onSubmit(): void {
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return;
+    }
+  
+    this.invalidLoginCount++;
+  
+    this.updateCaptchaValidator(this.invalidLoginCount);
+  
+    if (this.invalidLoginCount === 5) {
+      this.generateCaptcha(); 
+    }
+  
+    console.log('Login attempt with data:', this.loginForm.value);
+  
+  }
+  
   closeDialog(): void {
     this.dialogRef.close();
   }
-
 
   updateCaptchaValidator(invalidLoginCount: number) {
     const captchaControl = this.loginForm.get('captcha');
@@ -94,4 +139,22 @@ export class LoginComponent {
   
     captchaControl.updateValueAndValidity();
   }
+
+
+  resetForm(): void {
+    this.loginForm.reset();
+    this.invalidLoginCount = 0;
+    this.updateCaptchaValidator(this.invalidLoginCount);
+  
+    const canvas = document.getElementById('captchaCanvas') as HTMLCanvasElement;
+    const ctx = canvas?.getContext('2d');
+    if (ctx) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  
+    this.cdRef.detectChanges(); 
+  }
+  
+
+  
 }

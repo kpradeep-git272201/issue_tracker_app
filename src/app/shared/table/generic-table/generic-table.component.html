@@ -1,77 +1,102 @@
 <div class="table-wrapper">
-    <mat-card>
-      <mat-card-header style="width: 100%;">
-        <span class="header-name">Report Name</span>
-        <div class="table-toolbar" *ngIf="enableGlobalSearch">
-          <mat-form-field *ngIf="enableGlobalSearch" appearance="outline" class="search-field">
-            <mat-label>Search</mat-label>
-            <input matInput type="text" [(ngModel)]="globalFilter" (input)="applyGlobalFilter()" />
-          </mat-form-field>
+  <mat-card>
 
-         
-          <button mat-button color="primary" (click)="getColumnMenu()">
-            <mat-icon>reorder</mat-icon>
-            Field Menu
-          </button>
-          <button mat-button color="primary" (click)="exportExcel()">
-            <mat-icon class="export-icon">get_app</mat-icon>
-            Export
-          </button>
-        </div>
-      </mat-card-header>
-  
-      <mat-card-content>
-        <div class="table-container">
-          <table class="data-table" id="table-data">
-            <thead>
-              <tr style="background-color: #F9FAFB;">
-                <th class="font-16">#</th>
-                <ng-container *ngFor="let col of columns">
-                  <th *ngIf="displayedColumns().includes(col.field)" (click)="sortBy(col.field)" class="font-16">
-                    {{ col.header }}
-                    <span *ngIf="sortField() === col.field">
-                      {{ sortAsc() ? '▲' : '▼' }}
-                    </span>
-                  </th>
-                </ng-container>
-              </tr>
-            </thead>
-            <tbody>
-                <tr *ngIf="pagedData().length === 0">
-                <td [attr.colspan]="columns.length + 1" class="no-data">
-                    No data available
+    <div class="header-container">
+      <h2 class="header-title">Detailed Project Analytics</h2>
+
+      <div class="header-actions">
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-icon matPrefix>search</mat-icon>
+          <input
+            matInput placeholder="Search"
+            type="text"
+            [(ngModel)]="globalFilter"
+            (input)="applyGlobalFilter()" />
+        </mat-form-field>
+
+        <button mat-stroked-button class="action-button" (click)="getColumnMenu()">
+          <mat-icon>filter_list</mat-icon>
+          <span>Filters</span>
+          <mat-icon>expand_more</mat-icon>
+        </button>
+
+        <button mat-button color="primary" (click)="exportExcel()" class="export-button">
+          <mat-icon class="export-icon">download</mat-icon>
+          Export
+        </button>
+      </div>
+    </div>
+
+    <mat-card-content>
+      <div class="table-container">
+        <table class="data-table" id="table-data">
+          <thead>
+            <tr style="background-color: #F9FAFB;">
+              <th class="font-16">#</th>
+              <ng-container *ngFor="let col of columns">
+                <th *ngIf="displayedColumns().includes(col.field)" (click)="sortBy(col.field)" class="font-16">
+                  {{ col.header }}
+                  <span *ngIf="sortField() === col.field">
+                    {{ sortAsc() ? '▲' : '▼' }}
+                  </span>
+                </th>
+              </ng-container>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="pagedData().length === 0">
+              <td [attr.colspan]="columns.length + 1" class="no-data">
+                No data available
+              </td>
+            </tr>
+            <tr *ngFor="let item of pagedData(); let i = index;">
+              <td class="font-16">{{ i + 1 }}</td>
+              <ng-container *ngFor="let col of columns">
+                <td *ngIf="displayedColumns().includes(col.field)" class="font-16">
+                  {{ item[col.field] }}
                 </td>
-                </tr>
-              <tr *ngFor="let item of pagedData(); let i = index;">
-                <td class="font-16">{{ i + 1 }}</td>
-                <ng-container *ngFor="let col of columns">
-                  <td *ngIf="displayedColumns().includes(col.field)" class="font-16">
-                    {{ item[col.field] }}
-                  </td>
-                </ng-container>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-  
-        <div class="pagination-controls">
-          <div class="navigation-buttons">
-            <mat-form-field appearance="outline" class="page-size-field">
-              <mat-label>Page</mat-label>
-              <mat-select [(value)]="pageSize">
-                <mat-option *ngFor="let size of [5, 10, 20, 50]" [value]="size">{{ size }}</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <button mat-icon-button (click)="prevPage()" [disabled]="currentPage === 1">
-                    <mat-icon class="previous">skip_previous</mat-icon>
-            </button>
-            <span>Page {{ currentPage }} of {{ totalPages }}</span>
-            <button mat-icon-button (click)="nextPage()" [disabled]="currentPage === totalPages">
-                    <mat-icon class="next">skip_next</mat-icon>
-            </button>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  
+              </ng-container>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-card-content>
+
+    <!-- Footer starts here -->
+    <div class="custom-footer">
+      <div class="rows-dropdown-wrapper">
+        <mat-form-field appearance="outline" class="page-size-field" style="width: 100px;">
+          <mat-label>Page</mat-label>
+         <!--  <mat-select [(value)]="pageSize"> -->
+
+            <mat-select [value]="pageSize" (selectionChange)="onPageSizeChange($event.value)">
+
+
+            <mat-option *ngFor="let size of [5, 10, 20, 50]" [value]="size">{{ size }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="pagination-controls">
+        <button mat-icon-button (click)="prevPage()" [disabled]="currentPage === 1">
+          <mat-icon>skip_previous</mat-icon>
+        </button>
+
+        <ng-container *ngIf="pageNumbers.length > 0">
+          <button
+            class="page-btn"
+            *ngFor="let page of pageNumbers"
+            [class.active]="page === currentPage"
+            (click)="goToPage(page)">
+            {{ page }}
+          </button>
+        </ng-container>
+
+        <button mat-icon-button (click)="nextPage()" [disabled]="currentPage === totalPages">
+          <mat-icon>skip_next</mat-icon>
+        </button>
+      </div>
+    </div>
+
+  </mat-card>
+</div>

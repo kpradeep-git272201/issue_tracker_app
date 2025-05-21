@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ColumnMenuComponent } from '../../../dialog-module/column-menu/column-menu.component';
 import * as XLSX from 'xlsx';
 
-
 @Component({
   selector: 'app-generic-table',
   standalone: true,
@@ -20,7 +19,7 @@ export class GenericTableComponent {
   get data() {
     return this._data();
   }
-  
+
   @Input() set columns(value: any[]) {
     this._columns.set(value);
     this.visibleColumnFields.set(value.filter(col => col.visible !== false).map(col => col.field));
@@ -43,16 +42,14 @@ export class GenericTableComponent {
   sortField = signal<string | null>(null);
   sortAsc = signal<boolean>(true);
 
-  constructor(private dialog: MatDialog) {
-
-  }
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit() {
-    this.visibleColumnFields.set(this.columns.filter(col => col.visible !== false).map(col => col.field));
+    this.visibleColumnFields.set(
+      this.columns.filter(col => col.visible !== false).map(col => col.field)
+    );
   }
-  ngOnChanges() {
 
-  } 
   displayedColumns(): string[] {
     return this.columns
       .filter(col => this.visibleColumnFields().includes(col.field))
@@ -80,7 +77,7 @@ export class GenericTableComponent {
       if (val) {
         result = result.filter(row => row[field] === val);
       }
-    }); 
+    });
 
     // Sorting
     const field = this.sortField();
@@ -132,6 +129,37 @@ export class GenericTableComponent {
     }
   }
 
+  goToPage(page: number) {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+    }
+  }
+
+  onPageSizeChange(newSize: number) {
+    this.pageSize = newSize;
+    this.currentPage = 1; // Reset to first page when page size changes
+  }
+
+  get pageNumbers(): number[] {
+    const total = this.totalPages;
+    const current = this.currentPage;
+    const range: number[] = [];
+
+    const maxVisible = 5;
+    let start = Math.max(1, current - Math.floor(maxVisible / 2));
+    let end = start + maxVisible - 1;
+
+    if (end > total) {
+      end = total;
+      start = Math.max(1, end - maxVisible + 1);
+    }
+
+    for (let i = start; i <= end; i++) {
+      range.push(i);
+    }
+
+    return range;
+  }
 
   getColumnMenu() {
     const dialogRef = this.dialog.open(ColumnMenuComponent, {
@@ -152,15 +180,12 @@ export class GenericTableComponent {
     });
   }
 
-  exportExcel(){
-    const fileName="ExcelSheet.xlsx";
+  exportExcel() {
+    const fileName = "ExcelSheet.xlsx";
     let data = document.getElementById("table-data");
-    const ws:XLSX.WorkSheet = XLSX.utils.table_to_sheet(data);
-    /** generate workbook and addworksheet */
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(data);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-    /** save file name */
     XLSX.writeFile(wb, fileName);
-
   }
 }

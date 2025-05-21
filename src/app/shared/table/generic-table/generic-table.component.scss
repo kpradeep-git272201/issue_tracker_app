@@ -1,162 +1,361 @@
+/* === GENERAL LAYOUT === */
 .table-wrapper {
-    margin-right: 1.5rem;
-     margin-top: 1.5rem;
-  }
-  
-  .header-name {
-    font-family: Inter;
-    font-weight: 600;
-    font-size: 20px;
-    color: #000;
-    text-align: left;
-    width: 100%;
-  }
-  
-  .table-toolbar {
-    width: 100%;
-    text-align: right;
-    justify-content: flex-end;
-    gap: 1rem;
-    align-items: center;
-  }
-  
-  .export-icon {
-    // transform: rotate(90deg);
-    transition: transform 0.3s ease;
-  }
-  
-  .search-field {
-    margin-right: 10px;
-    .mat-form-field-wrapper {
-      padding: 0 !important;
-    }
-  
-    .mat-form-field-infix {
-      padding: 0.2em 0 !important;
-    }
-  
-    .mat-input-element {
-      height: 1.6em;
-      font-size: 13px;
-      padding: 4px 0;
-    }
-  
-    .mat-form-field-label {
-      font-size: 12px;
-    }
-  }
-  
-  .table-container {
-    overflow: auto;
-    max-height: 600px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .data-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 800px;
-    text-align: left;
-  
-    thead {
-      position: sticky;
-      top: 0;
-      background-color: #f4f4f4;
-      z-index: 1;
-  
-      th {
-        border: 1px solid #ddd;
-        padding: 0.75rem;
-        font-weight: bold;
-        cursor: pointer;
-        white-space: nowrap;
-      }
-    }
-  
-    td {
-      border: 1px solid #ddd;
-      padding: 0.75rem;
-      white-space: nowrap;
-    }
-  }
-  
-  .pagination-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1rem;
-    flex-wrap: wrap;
-  
-    .page-size-field {
-      width: 100px;
-    }
-  
-    .navigation-buttons {
-      // display: flex;
-      height: 3.063rem;
-      // align-items: center;
-      gap: 1rem;
-      margin-left: auto;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .data-table th,
-    .data-table td {
-      padding: 0.5rem;
-      font-size: 14px;
-    }
-  
-    .table-container {
-      max-height: none;
-    }
-  
-    .table-wrapper {
-      padding: 0.5rem;
-    }
-  
-    .pagination-controls {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .data-table th,
-    .data-table td {
-      font-size: 12px;
-    }
-  
-    .pagination-controls {
-      flex-direction: column;
-    }
-  }
-  
-
-  .no-data {
-    text-align: center;
-    padding: 3rem !important;
-    font-style: italic;
-    color: #999;
-  }
-
-  mat-card{
-    background-color: #FFFFFF;
-    box-shadow: 0px 4px 10px 0px #0000001A;
-    border-radius: 12px;
-    border: 1px solid var(--border-primary, #E1E7EC)
-  }
-
-  ::ng-deep.mat-mdc-form-field-has-icon-prefix .mat-mdc-text-field-wrapper {
-    height: 3.063rem !important;
-    align-items: center !important;
+  margin: 1.5rem 1.5rem 0 0;
 }
 
-::ng-deep.mat-mdc-text-field-wrapper {
-    width: 100%;
-    z-index: 0;
-    height: 3.063rem !important;
-    align-items: center !important;
+.header-name {
+  font-family: Inter, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #000;
+  text-align: left;
+  width: 100%;
+}
+
+.table-toolbar {
+  width: 100%;
+  text-align: right;
+  justify-content: flex-end;
+  gap: 1rem;
+  align-items: center;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.data-table {
+  width: max-content; /* Allow table to grow beyond parent width */
+  border-collapse: collapse;
+  font-family: 'Inter', sans-serif;
+  table-layout: auto;
+}
+
+.data-table th,
+.data-table td {
+  padding: 12px 24px; /* More padding for better spacing */
+  text-align: left;
+  font-size: 14px;
+  color: #1F2937;
+  // text-align: center;     
+  vertical-align: middle;
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+.data-table thead {
+  background-color: #F9FAFB;
+  font-weight: 600;
+}
+
+
+/* === HEADER SECTION === */
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: #fff;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.header-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+
+
+/* === SEARCH FIELD (Aligned to Filter Button Height) === */
+
+.search-field {
+  width: 240px;
+  height: 40px;
+  border-radius: 8px;
+
+  .mat-form-field-wrapper {
+    padding: 0 !important;
+    height: 100%;
+  }
+
+  .mat-form-field-flex {
+    height: 100%;
+    align-items: center;
+  }
+
+  .mat-form-field-infix {
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  .mat-input-element {
+    font-size: 14px;
+    line-height: 40px;
+    height: 40px;
+    padding: 0 8px !important;
+    box-sizing: border-box;
+  }
+
+  .mat-icon {
+    font-size: 20px;
+    margin-left: 6px;
+    margin-right: 4px;
+    align-self: center;
+    color: #888;
+  }
+
+  .mat-form-field-label {
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6);
+    padding: 0;
+    margin: 0;
+  }
+
+  &.mat-form-field-should-float .mat-form-field-label {
+    top: 1.2em !important;
+    transform: translateY(0) scale(0.75) !important;
+  }
+}
+
+
+/* === FILTER & EXPORT BUTTONS === */
+
+.action-button {
+  height: 40px;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #f5f5f5;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.export-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  color: #1a73e8;
+  padding: 8px;
+}
+
+.export-icon {
+  transition: transform 0.3s ease;
+}
+
+
+/* === PAGINATION === */
+
+.custom-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.rows-dropdown-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.rows-dropdown {
+  height: 32px;
+  padding: 4px 12px;
+  font-size: 14px;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  background-color: white;
+  appearance: none;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.page-btn,
+.nav-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-btn:hover,
+.nav-btn:hover {
+  background-color: #F3F4F6;
+}
+
+.page-btn.active {
+  background-color: #FF4500;
+  color: white;
+}
+
+.nav-btn:disabled {
+  background-color: #F9FAFB;
+  color: #D1D5DB;
+  cursor: not-allowed;
+}
+
+.ellipsis {
+  padding: 0 4px;
+  color: #6B7280;
+}
+
+
+/* === NO DATA STATE === */
+
+.no-data {
+  text-align: center;
+  padding: 3rem !important;
+  font-style: italic;
+  color: #999;
+}
+
+
+/* === CARD STYLING === */
+
+mat-card {
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 10px 0px #0000001A;
+  border-radius: 12px;
+  border: 1px solid var(--border-primary, #E1E7EC);
+}
+
+
+/* === ANGULAR MATERIAL HEIGHT FIXES (if needed) === */
+
+::ng-deep .mat-mdc-text-field-wrapper,
+::ng-deep .mat-mdc-form-field-flex {
+  height: 40px !important;
+  align-items: center !important;
+}
+
+
+/* === RESPONSIVE BREAKPOINTS === */
+
+@media (max-width: 480px) {
+  .data-table th,
+  .data-table td {
+    font-size: 12px;
+  }
+
+  .pagination-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navigation-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+
+    span {
+      font-size: 12px;
+    }
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .data-table th,
+  .data-table td {
+    padding: 0.5rem;
+    font-size: 14px;
+  }
+
+  .table-wrapper {
+    padding: 0.5rem;
+  }
+
+  .pagination-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navigation-buttons {
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.75rem;
+
+    span {
+      font-size: 13px;
+    }
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .navigation-buttons {
+    flex-direction: row;
+    gap: 1rem;
+
+    span {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (min-width: 993px) and (max-width: 1200px) {
+  .navigation-buttons {
+    gap: 1rem;
+
+    span {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (min-width: 1201px) {
+  .navigation-buttons {
+    gap: 1.25rem;
+
+    span {
+      font-size: 15px;
+    }
+  }
+}
+
+.export-button {
+  display: flex;
+  align-items: center;
+  gap: 4px; /* Decrease this value to tighten the spacing */
+  padding: 4px 8px;
+  font-size: 18px;
+}
+
+.export-icon {
+  font-size: 24px;
+  margin-right: 2px; /* Or 0 to remove all space */
 }

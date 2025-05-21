@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    
 
     .login-header {
         font-size: 1.25rem;
@@ -23,6 +24,7 @@
         display: flex;
         align-items: center;
         margin-bottom: 16px;
+        margin-top: -10px;
 
         .captcha-img {
             width: 100px;
@@ -104,7 +106,7 @@
 }
 
 .refresh {
-    margin-top: -19px;
+    margin-top:19px;
     margin-left: 4px;
     margin-right: 4px;
     cursor: pointer;
@@ -116,12 +118,20 @@
     padding: 20px;
 }
 
+
 .close-button:hover {
     color: #f44336;
+    cursor: pointer;
     /* Material red */
 }
 
 ::ng-deep .mat-mdc-dialog-surface {
     border-radius: 12px !important; 
 }
-  
+.input-spacing {
+    margin-bottom: 2px !important; 
+  }
+  .mat-form-field {
+    margin-bottom: 0 !important;
+  }
+    

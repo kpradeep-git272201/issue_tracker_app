@@ -38,7 +38,8 @@ export class IconsService {
       'user',
       'View',
       'dashboard',
-      'Currency'
+      'Currency',
+      'HeaderIcon'
     ];
   }
 }

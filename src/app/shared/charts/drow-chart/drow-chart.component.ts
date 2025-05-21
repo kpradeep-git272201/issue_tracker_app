@@ -309,7 +309,7 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
         this.root = am5.Root.new(this.chartDiv.nativeElement);
         (this.root as any)._logo?.set('forceHidden', true);
         this.root.setThemes([am5themes_Animated.new(this.root)]);
-
+  
         // Create main container
         const container = this.root.container.children.push(
           am5.Container.new(this.root, {
@@ -318,62 +318,80 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
             height: am5.percent(100),
           }),
         );
-
-        // Chart container (50%)
+  
+        // Chart container (100%)
         const chart = container.children.push(
           am5xy.XYChart.new(this.root, {
-            panX: false,
+            panX: true,
             panY: false,
-            wheelX: 'none',
+            wheelX: 'panX',
             wheelY: 'none',
             layout: this.root.verticalLayout,
-            width: am5.percent(50),
+            width: am5.percent(500),
           }),
         );
+        
+        chart.set('scrollbarX', am5.Scrollbar.new(this.root, {
+          orientation: 'horizontal',
+          height: 10,
+        }));
+        
 
-        // Category Axis (Y)
-        const yAxis = chart.yAxes.push(
+        // Category Axis (X)
+        const xAxis = chart.xAxes.push(
           am5xy.CategoryAxis.new(this.root, {
             categoryField: 'category',
-            renderer: am5xy.AxisRendererY.new(this.root, {
-              minGridDistance: 10,
-              inversed: true,
+            renderer: am5xy.AxisRendererX.new(this.root, {
+              minGridDistance: 20,
               cellStartLocation: 0.1,
               cellEndLocation: 0.9,
             }),
           }),
         );
-
-        // Value Axis (X)
-        const xAxis = chart.xAxes.push(
+        xAxis.get('renderer').labels.template.setAll({
+          rotation: -45,         
+          centerY: am5.p50,
+          centerX: am5.p100,
+          paddingRight: 15,
+          oversizedBehavior: "wrap",
+          maxWidth: 100,
+        });
+        
+        // Value Axis (Y)
+        const yAxis = chart.yAxes.push(
           am5xy.ValueAxis.new(this.root, {
-            renderer: am5xy.AxisRendererX.new(this.root, {}),
+            renderer: am5xy.AxisRendererY.new(this.root, {}),
           }),
         );
-
+  
         // Series
         const series = chart.series.push(
           am5xy.ColumnSeries.new(this.root, {
             name: 'Value',
             xAxis: xAxis,
             yAxis: yAxis,
-            valueXField: 'value',
-            categoryYField: 'category',
+            valueYField: 'value',
+            categoryXField: 'category',
             tooltip: am5.Tooltip.new(this.root, {
               labelText: '{category}: {value}',
             }),
           }),
         );
-
+  
         series.columns.template.setAll({
-          height: am5.percent(90),
+          width: am5.percent(90),
           strokeOpacity: 0,
         });
-
+  
         // Set data
-        yAxis.data.setAll(this.dataChart);
+        xAxis.setAll({
+          start: 0,
+          end: 1,
+        });
+        
+        xAxis.data.setAll(this.dataChart,); 
         series.data.setAll(this.dataChart);
-
+  
         // Legend (50%)
         const legend = container.children.push(
           am5.Legend.new(this.root, {
@@ -390,20 +408,23 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
             }),
           }),
         );
-
+  
         legend.labels.template.setAll({
           oversizedBehavior: 'truncate',
           maxWidth: 160,
           tooltipText: '{category}',
         });
-
-        legend.data.setAll(series.dataItems);
-
+  
+        // Optional: wait until chart is ready before setting legend data
+        this.root.events.once('frameended', () => {
+          legend.data.setAll(series.dataItems);
+        });
+  
+        // Appear animation
         chart.appear(1000, 100);
       });
     }
   }
-
   createTreeChart() {}
 }
 

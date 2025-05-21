@@ -3,6 +3,7 @@ import { MaterialModule } from '../../../material/material.module';
 import { CommonService } from '../../../services/planning/common.service';
 import { any } from '@amcharts/amcharts5/.internal/core/util/Array';
 import { SharedService } from '../../../services/filter/shared.service';
+import { FinyearService } from '../../../services/json/financialYear/finyear.service';
 
 @Component({
   selector: 'app-geographical-filter',
@@ -14,21 +15,21 @@ import { SharedService } from '../../../services/filter/shared.service';
 export class GeographicalFilterComponent {
   @Output() dataEmitter = new EventEmitter<any>();
   @Input() opened: boolean = false;
-  financialYr = ['2025-2026', '2024-2025', '2023-2024', '2022-2023'];
-
   stateList: any[] = [];
   districtList: any[] = [];
-
   selectedFincialYr = '';
   selectedStateCode: number | null = null;
   selectedDistrictCode: number | null = null;
+  financialYr: any=[];
 
   constructor(private commonService: CommonService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private finYrService: FinyearService
   ) {}
 
   ngOnInit(): void {
     this.stateList = this.commonService.getStateList();
+    this.financialYr=this.finYrService.getFinYr();
   }
 
   onStateChange(stateCode: number | null): void {

@@ -2,12 +2,12 @@ import { Component, Inject } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-<<<<<<< HEAD
+
 import { ChangeDetectorRef } from '@angular/core';
 
-=======
+
 import { AuthService } from '../../../services/planning/auth.service';
->>>>>>> 4932668e0c2d7f7d430c7e509dbda63041ffd21b
+
 
 @Component({
   selector: 'app-login',
@@ -22,7 +22,7 @@ export class LoginComponent {
   hide = true;
   captchaText: string = '';
   captchaInput: string = '';
-<<<<<<< HEAD
+
   
   invalidLoginCount:number = 0;
   constructor( private fb: FormBuilder,
@@ -49,15 +49,6 @@ export class LoginComponent {
         });
         
       }
-
-=======
-  count:number = 0;
-  constructor( private fb: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<LoginComponent>,
-    private authService: AuthService){
-  }
->>>>>>> 4932668e0c2d7f7d430c7e509dbda63041ffd21b
 
   ngOnInit(){
     this.loginForm = this.fb.group({
@@ -110,11 +101,6 @@ export class LoginComponent {
 /* 
   onSubmit() {
     if (this.loginForm.valid) {
-<<<<<<< HEAD
-      console.log('Login Data:', this.loginForm.value);
-      this.invalidLoginCount++;
-      this.updateCaptchaValidator(this.invalidLoginCount);
-=======
       const loginData=this.loginForm.getRawValue();
       this.count++;
       if (this.count >= 5 && loginData.captchaInput !== loginData.captchaText) {
@@ -132,38 +118,11 @@ export class LoginComponent {
       this.generateCaptcha(); // optionally regenerate captcha
     }
       // this.dialogRef.close();
->>>>>>> 4932668e0c2d7f7d430c7e509dbda63041ffd21b
     }
   } */
 
-<<<<<<< HEAD
-  
-  onSubmit(): void {
-    if (this.loginForm.invalid) {
-      this.loginForm.markAllAsTouched();
-      return;
-    }
-  
-    this.invalidLoginCount++;
-  
-    this.updateCaptchaValidator(this.invalidLoginCount);
-  
-    if (this.invalidLoginCount === 5) {
-      this.generateCaptcha(); 
-    }
-  
-  }
-  
-  closeDialog(): void {
-    this.dialogRef.close();
-  }
-
-  updateCaptchaValidator(invalidLoginCount: number) {
-    const captchaControl = this.loginForm.get('captcha');
-=======
   updateCaptchaValidator(count: number) {
     const captchaControl = this.loginForm.get('captchaInput');
->>>>>>> 4932668e0c2d7f7d430c7e509dbda63041ffd21b
     if (!captchaControl) return;
   
     if (count >= 5) {
@@ -175,26 +134,7 @@ export class LoginComponent {
     captchaControl.updateValueAndValidity();
   }
 
-<<<<<<< HEAD
-
-  resetForm(): void {
-    this.loginForm.reset();
-    this.invalidLoginCount = 0;
-    this.updateCaptchaValidator(this.invalidLoginCount);
-  
-    const canvas = document.getElementById('captchaCanvas') as HTMLCanvasElement;
-    const ctx = canvas?.getContext('2d');
-    if (ctx) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-  
-    this.cdRef.detectChanges(); 
-  }
-
-  
-=======
   closeDialog(): void {
     this.dialogRef.close();
   }
->>>>>>> 4932668e0c2d7f7d430c7e509dbda63041ffd21b
 }

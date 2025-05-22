@@ -22,7 +22,7 @@ export class AuthService {
   }
   login(username: string, password: string): boolean {
     // Temporary static login check (replace with API in future)
-    if (this.isBrowser() && username === 'Demo' && password === 'Demo@123') {
+    if (this.isBrowser() && username === 'Demo123' && password === 'Demo@123') {
       localStorage.setItem('isLoggedIn', 'true');
       localStorage.setItem('username', username);
         this.isLoggedInSubject.next(true);

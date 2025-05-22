@@ -118,8 +118,6 @@ export class LoginComponent {
       this.generateCaptcha(); 
     }
   
-    console.log('Login attempt with data:', this.loginForm.value);
-  
   }
   
   closeDialog(): void {
@@ -153,7 +151,6 @@ export class LoginComponent {
   
     this.cdRef.detectChanges(); 
   }
-  
 
   
 }

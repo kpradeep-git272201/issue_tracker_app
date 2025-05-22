@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -19,6 +19,7 @@ export class LoginComponent {
   constructor( private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<LoginComponent>,
+     private cdRef: ChangeDetectorRef,
     private authService: AuthService){
   }
 

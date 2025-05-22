@@ -40,14 +40,8 @@
       </mat-form-field>
       
   
-<<<<<<< HEAD
-        <div class="captcha-box" [style.display]="(invalidLoginCount >= 5) ? '' : 'none'">
-
-        <canvas id="captchaCanvas" width="160" height="50"></canvas>
-=======
       <div class="captcha-box" [style.display]="(count>=5)? '' :'none'">
         <canvas id="captchaCanvas" width="160" height="50" style="margin-bottom: 20px;"></canvas>
->>>>>>> 4932668e0c2d7f7d430c7e509dbda63041ffd21b
         <mat-icon class="refresh" (click)="generateCaptcha()">refresh</mat-icon>
         <mat-form-field class="captcha-input" appearance="outline">
           <mat-icon matPrefix>arrow_forward</mat-icon>
@@ -59,7 +53,7 @@
         <button mat-flat-button color="primary" type="submit" class="login">Login</button>
        <!--  <button mat-flat-button color="warn" type="reset" class="reset" (click)="loginForm.reset()">Reset</button> -->
 
-       <button mat-flat-button color="warn" type="reset"  class="reset" (click)="resetForm()"> Reset</button>
+       <button mat-flat-button color="warn" type="reset"  class="reset"> Reset</button>
 
       </div>
   

@@ -1,6 +1,7 @@
 <div class="table-wrapper">
   <mat-card>
 
+    <!-- Header with title and actions -->
     <div class="header-container">
       <h2 class="header-title">Detailed Project Analytics</h2>
 
@@ -20,13 +21,14 @@
           <mat-icon>expand_more</mat-icon>
         </button>
 
-        <button mat-button color="primary" (click)="exportExcel()" class="export-button">
-          <mat-icon class="export-icon">download</mat-icon>
-          Export
+        <button mat-stroked-button class="action-button" (click)="exportExcel()">
+          <mat-icon>download</mat-icon>
+          <span>Export</span>
         </button>
       </div>
     </div>
 
+    <!-- Table Content -->
     <mat-card-content>
       <div class="table-container">
         <table class="data-table" id="table-data">
@@ -45,12 +47,13 @@
           </thead>
           <tbody>
             <tr *ngIf="pagedData().length === 0">
-              <td [attr.colspan]="columns.length + 1" class="no-data">
-                No data available
+              <td [attr.colspan]="columns.length + 1" class="no-data-cell">
+                <div class="no-data-wrapper">No data available</div>
               </td>
             </tr>
+
             <tr *ngFor="let item of pagedData(); let i = index;">
-              <td class="font-16">{{ i + 1 }}</td>
+              <td class="font-16">{{ (currentPage - 1) * pageSize + i + 1 }}</td>
               <ng-container *ngFor="let col of columns">
                 <td *ngIf="displayedColumns().includes(col.field)" class="font-16">
                   {{ item[col.field] }}
@@ -62,23 +65,23 @@
       </div>
     </mat-card-content>
 
-    <!-- Footer starts here -->
+    <!-- Footer -->
     <div class="custom-footer">
       <div class="rows-dropdown-wrapper">
         <mat-form-field appearance="outline" class="page-size-field" style="width: 100px;">
           <mat-label>Page</mat-label>
-         <!--  <mat-select [(value)]="pageSize"> -->
-
-            <mat-select [value]="pageSize" (selectionChange)="onPageSizeChange($event.value)">
-
-
+          <mat-select [value]="pageSize" (selectionChange)="onPageSizeChange($event.value)">
             <mat-option *ngFor="let size of [5, 10, 20, 50]" [value]="size">{{ size }}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
 
+      <!-- Pagination Controls -->
       <div class="pagination-controls">
-        <button mat-icon-button (click)="prevPage()" [disabled]="currentPage === 1">
+        <button 
+          mat-icon-button 
+          (click)="prevPage()" 
+          [disabled]="currentPage === 1 || pageNumbers.length === 0">
           <mat-icon>skip_previous</mat-icon>
         </button>
 
@@ -92,7 +95,10 @@
           </button>
         </ng-container>
 
-        <button mat-icon-button (click)="nextPage()" [disabled]="currentPage === totalPages">
+        <button 
+          mat-icon-button 
+          (click)="nextPage()" 
+          [disabled]="currentPage === totalPages || pageNumbers.length === 0">
           <mat-icon>skip_next</mat-icon>
         </button>
       </div>

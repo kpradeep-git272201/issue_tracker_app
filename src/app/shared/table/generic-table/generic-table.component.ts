@@ -137,7 +137,7 @@ export class GenericTableComponent {
 
   onPageSizeChange(newSize: number) {
     this.pageSize = newSize;
-    this.currentPage = 1; // Reset to first page when page size changes
+    this.currentPage = 1; 
   }
 
   get pageNumbers(): number[] {

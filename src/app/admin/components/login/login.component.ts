@@ -100,7 +100,6 @@ export class LoginComponent {
       console.log('Login Data:', this.loginForm.value);
       this.invalidLoginCount++;
       this.updateCaptchaValidator(this.invalidLoginCount);
-      
     }
   } */
 

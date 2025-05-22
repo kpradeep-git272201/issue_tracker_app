@@ -109,4 +109,18 @@ export class LoginComponent {
   closeDialog(): void {
     this.dialogRef.close();
   }
+
+  resetForm(): void {
+    this.loginForm.reset();
+    this.count = 0;
+    this.updateCaptchaValidator(this.count);
+  
+    const canvas = document.getElementById('captchaCanvas') as HTMLCanvasElement;
+    const ctx = canvas?.getContext('2d');
+    if (ctx) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  
+    this.cdRef.detectChanges(); 
+  }
 }

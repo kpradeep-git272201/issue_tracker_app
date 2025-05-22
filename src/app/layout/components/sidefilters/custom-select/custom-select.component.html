@@ -1,0 +1,47 @@
+<div class="select-wrapper" (clickOutside)="dropdownOpen = false">
+    <div class="selected-box" (click)="dropdownOpen = !dropdownOpen">
+      <div *ngIf="selected; else placeholderTpl" class="selected-item">
+        <img [src]="selected.flag" style="width: 18px;" />
+        <span>{{ selected[optionLabel] }}</span>
+      </div>
+      <ng-template #placeholderTpl>
+        <span class="placeholder">{{ placeholder }}</span>
+      </ng-template>
+      <span *ngIf="showClear && selected" class="clear" (click)="clearSelection()">
+        <mat-icon class="clear-icon">close</mat-icon>
+      </span>
+      <span class="clear" *ngIf="showClear && !selected">
+        <mat-icon class="clear-icon">keyboard_arrow_down</mat-icon>
+      </span>
+    </div>
+  
+    <div *ngIf="dropdownOpen" class="dropdown">
+      <div class="search-wrapper">
+        <mat-icon class="search-icon">search</mat-icon>
+        <input
+          type="text"
+          [(ngModel)]="filterText"
+          placeholder="Search..."
+          class="search-input"
+        />
+        <mat-icon
+          class="clear-icon"
+          *ngIf="filterText"
+          (click)="filterText = ''"
+          >close</mat-icon
+        >
+      </div>
+  
+      <div
+        *ngFor="let option of filteredOptions"
+        class="dropdown-item"
+        (click)="selectOption(option)"
+      >
+        <img [src]="option.flag" style="width: 18px;" />
+        <span>{{ option[optionLabel] }}</span>
+        <!-- Tick mark for selected option -->
+        <mat-icon *ngIf="selected && option === selected" class="tick-mark">check</mat-icon>
+      </div>
+    </div>
+  </div>
+  

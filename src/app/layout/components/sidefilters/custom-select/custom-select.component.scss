@@ -1,0 +1,136 @@
+.select-wrapper {
+    position: relative;
+    width: 100%;
+    // max-width: 220px;
+    font-family: Arial;
+  }
+  
+  .selected-box {
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .selected-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .placeholder {
+    color: #888;
+  }
+  
+  .clear {
+    margin-left: auto;
+    color: red;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .dropdown {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    width: 100%;
+    z-index: 999;
+    // max-height: 200px;
+    overflow-y: auto;
+    margin-top: 2px;
+    border-radius: 4px;
+  }
+  
+  .dropdown-item {
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #eee;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 6px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+  }
+  
+  ::ng-deep .placeholder {
+    cursor: default;         // override wait cursor
+    opacity: 1;              // make fully visible
+    background-color: transparent; // remove any bg
+  }
+
+  .search-wrapper {
+    position: relative;
+    width: 100%;
+  }
+  
+  .search-icon,
+  .clear-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 20px;
+  }
+  
+  .search-icon {
+    left: 8px;
+  }
+  .clear-icon {
+    left: -16px;
+  }
+  .clear-icon {
+    right: 8px;
+    cursor: pointer;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 6px 28px 6px 32px; /* extra padding for icons */
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+  }
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    position: relative;
+    padding-right: 24px; /* space for tick */
+  }
+  
+  .tick-mark {
+    position: absolute;
+    right: 8px;
+  }
+  
+  .selected-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .clear {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+  }
+  
+
+  

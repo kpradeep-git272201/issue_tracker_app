@@ -1,0 +1,41 @@
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MaterialModule } from '../../../../material/material.module';
+
+@Component({
+  selector: 'app-custom-select',
+  imports: [MaterialModule],
+  templateUrl: './custom-select.component.html',
+  styleUrl: './custom-select.component.scss'
+})
+export class CustomSelectComponent {
+  @Input() options: any[] = [];
+  @Input() optionLabel: string = 'label';
+  @Input() placeholder: string = 'Select';
+  @Input() filterBy: string = 'label';
+  @Input() showClear: boolean = false;
+  @Input() selected: any = null;
+
+  @Output() selectedChange = new EventEmitter<any>();
+
+  filterText: string = '';
+  dropdownOpen: boolean = false;
+
+  get filteredOptions() {
+    if (!this.filterText) return this.options;
+    return this.options.filter(opt =>
+      opt[this.filterBy].toLowerCase().includes(this.filterText.toLowerCase())
+    );
+  }
+
+  selectOption(option: any) {
+    this.selected = option;
+    this.selectedChange.emit(option);
+    this.dropdownOpen = false;
+  }
+
+  clearSelection() {
+    this.selected = null;
+    this.selectedChange.emit(null);
+    this.filterText = '';
+  }
+}

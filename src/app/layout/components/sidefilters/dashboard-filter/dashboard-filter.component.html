@@ -1,1 +1,10 @@
-<p>dashboard-filter works!</p>
+<section>
+  <app-custom-select
+    [options]="countries"
+    [(selected)]="selectedCountry"
+    optionLabel="name"
+    filterBy="name"
+    [showClear]="true"
+    placeholder="Select a State"
+  ></app-custom-select>
+</section>

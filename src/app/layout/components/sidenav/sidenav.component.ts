@@ -5,40 +5,51 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
-import { ProjectStatusComponent } from '../project-status/project-status.component';
-import { GeographicalFilterComponent } from '../geographical-filter/geographical-filter.component';
 import { TimePeriodComponent } from '../time-period/time-period.component';
-import { DevelopementCategoryComponent } from '../developement-category/developement-category.component';
+
 import { SharedService } from '../../../services/filter/shared.service';
+import { ProjectStatusComponent } from '../sidefilters/project-status/project-status.component';
+
+import { DevelopementCategoryComponent } from '../sidefilters/developement-category/developement-category.component';
+import { GeographicalFilterComponent } from '../sidefilters/geographical-filter/geographical-filter.component';
+import { DashboardFilterComponent } from '../sidefilters/dashboard-filter/dashboard-filter.component';
 
 @Component({
   selector: 'app-sidenav',
-  imports: [MaterialModule, RouterOutlet, HeaderComponent, ProjectStatusComponent, GeographicalFilterComponent, TimePeriodComponent, DevelopementCategoryComponent],
+  imports: [
+    MaterialModule,
+    RouterOutlet,
+    HeaderComponent,
+    ProjectStatusComponent,
+    GeographicalFilterComponent,
+    TimePeriodComponent,
+    DevelopementCategoryComponent,
+    DashboardFilterComponent,
+  ],
   templateUrl: './sidenav.component.html',
-  styleUrl: './sidenav.component.scss'
+  styleUrl: './sidenav.component.scss',
 })
 export class SidenavComponent {
-  appList:any=[];
+  appList: any = [];
   opened = true;
   activeRoute: string | undefined;
   panelOpenState = false;
   timePeriod = 2023;
   comparisonTool = false;
 
-  constructor(private commonService: CommonService,
-    private sharedService: SharedService
-  ){
+  constructor(
+    private commonService: CommonService,
+    private sharedService: SharedService,
+  ) {}
 
-  }
-
-  ngOnInit(){
+  ngOnInit() {
     this.appList = this.commonService.getAppList();
   }
 
   getOpenedStat(event: any) {
     this.opened = event;
   }
-  getOpenSidenav(){
+  getOpenSidenav() {
     this.opened = !this.opened;
   }
 
@@ -54,5 +65,4 @@ export class SidenavComponent {
     //   comparisonTool: this.comparisonTool
     // });
   }
-
 }

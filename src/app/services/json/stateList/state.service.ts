@@ -10,7 +10,7 @@ export class StateService {
   getStateList(){
     return [
       {
-        code: 9,
+        code: 28,
         value: "Andra Pradesh"
       },
       {
@@ -18,7 +18,7 @@ export class StateService {
         value: "Bihar"
       },
       {
-        code: 28,
+        code: 9,
         value: "Uttar Pradesh"
       }
     ]

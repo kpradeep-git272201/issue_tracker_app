@@ -5,12 +5,12 @@
   </h5>
 
   <!-- Financial Year -->
-  <mat-form-field *ngIf="opened" appearance="outline">
+  <mat-form-field *ngIf="opened" appearance="outline" class="mt-2">
     <input type="text" matInput placeholder="Financial Year"
       [formControl]="financialYrCtrl"
       [matAutocomplete]="autoFinYr"
       >
-    <mat-autocomplete #autoFinYr="matAutocomplete" (optionSelected)="onFinancialYearSelected($event)">
+    <mat-autocomplete  #autoFinYr="matAutocomplete" (optionSelected)="onFinancialYearSelected($event)">
       <mat-option *ngFor="let finYr of filteredFinancialYr | async" [value]="finYr">
         {{ finYr }}
       </mat-option>
@@ -24,25 +24,52 @@
       [matAutocomplete]="autoState">
     <mat-autocomplete #autoState="matAutocomplete"  (optionSelected)="onStateSelected($event)" >
       <mat-option (click)="clearState()">All States</mat-option>
-      <mat-option *ngFor="let state of filteredStates | async" [value]="state.state_code">
-        {{ state.state_name_english }}
+      <mat-option *ngFor="let state of filteredStates | async" [value]="state.code">
+        {{ state.value }}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
 
-  <!-- District -->
-  <mat-form-field *ngIf="opened" appearance="outline">
-    <input type="text" matInput placeholder="District"
-      [formControl]="districtCtrl"
-      [matAutocomplete]="autoDistrict"
-    >
-    <mat-autocomplete #autoDistrict="matAutocomplete"   (optionSelected)="onDistrictSelected($event)">
-      <mat-option (click)="clearDistrict()">All Districts</mat-option>
-      <mat-option *ngFor="let dist of filteredDistricts | async" [value]="dist.districtCode">
-        {{ dist.districtNameEnglish }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+ <!-- District-->
+<mat-form-field *ngIf="selectedStateCode" appearance="outline">
+  <input type="text" matInput placeholder="District"
+    [formControl]="districtCtrl"
+    [matAutocomplete]="autoDistrict">
+  <mat-autocomplete #autoDistrict="matAutocomplete" [displayWith]="displayDistrictFn" (optionSelected)="onDistrictSelected($event)">
+    <mat-option (click)="clearDistrict()">All Districts</mat-option>
+    <mat-option *ngFor="let district of filteredDistricts | async" [value]="district">
+      {{ district.value }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+<!-- Block  -->
+<mat-form-field *ngIf="selectedDistrictCode" appearance="outline">
+  <input type="text" matInput placeholder="Block"
+    [formControl]="blockCtrl"
+    [matAutocomplete]="autoBlock">
+  <mat-autocomplete #autoBlock="matAutocomplete" [displayWith]="displayBlockFn" (optionSelected)="onBlockSelected($event)">
+    <mat-option (click)="clearBlock()">All Blocks</mat-option>
+    <mat-option *ngFor="let block of filteredBlocks | async" [value]="block">
+      {{ block.value }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+<!-- GP-->
+<mat-form-field *ngIf="selectedBlock" appearance="outline">
+  <input type="text" matInput placeholder="GP"
+         [formControl]="gpCtrl"
+         [matAutocomplete]="autoGp">
+  <mat-autocomplete #autoGp="matAutocomplete" (optionSelected)="onGpSelected($event)">
+    <mat-option *ngFor="let gp of filteredGps | async" [value]="gp.value">
+      {{ gp.value }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+
+
 
   <div *ngIf="opened" style="text-align: center;">
     <button mat-flat-button color="primary" (click)="applyFilter()" class="admin-login-btn">
@@ -51,4 +78,3 @@
     </button>
   </div>
 </section>
-<!-- d -->

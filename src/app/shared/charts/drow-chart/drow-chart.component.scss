@@ -1,0 +1,11 @@
+/* styles.css or component.scss */
+.chart-scroll-wrapper {
+    width: 100%;          
+    overflow-x: auto;   
+    padding-bottom: 1rem; 
+  }
+  
+  .chart-inner {
+    height: 400px;     
+  }
+  

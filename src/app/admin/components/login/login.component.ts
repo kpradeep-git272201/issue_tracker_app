@@ -2,8 +2,12 @@ import { Component, Inject } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+<<<<<<< HEAD
 import { ChangeDetectorRef } from '@angular/core';
 
+=======
+import { AuthService } from '../../../services/planning/auth.service';
+>>>>>>> 4932668e0c2d7f7d430c7e509dbda63041ffd21b
 
 @Component({
   selector: 'app-login',
@@ -18,6 +22,7 @@ export class LoginComponent {
   hide = true;
   captchaText: string = '';
   captchaInput: string = '';
+<<<<<<< HEAD
   
   invalidLoginCount:number = 0;
   constructor( private fb: FormBuilder,
@@ -45,13 +50,21 @@ export class LoginComponent {
         
       }
 
+=======
+  count:number = 0;
+  constructor( private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<LoginComponent>,
+    private authService: AuthService){
+  }
+>>>>>>> 4932668e0c2d7f7d430c7e509dbda63041ffd21b
 
   ngOnInit(){
     this.loginForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(5)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       captchaText: [''],
-      captcha: ['']
+      captchaInput: ['']
     });
   
     this.generateCaptcha();
@@ -97,12 +110,33 @@ export class LoginComponent {
 /* 
   onSubmit() {
     if (this.loginForm.valid) {
+<<<<<<< HEAD
       console.log('Login Data:', this.loginForm.value);
       this.invalidLoginCount++;
       this.updateCaptchaValidator(this.invalidLoginCount);
+=======
+      const loginData=this.loginForm.getRawValue();
+      this.count++;
+      if (this.count >= 5 && loginData.captchaInput !== loginData.captchaText) {
+      alert('Captcha does not match!');
+      this.generateCaptcha(); // regenerate if wrong
+      this.updateCaptchaValidator(this.count);
+      return;
+    }
+    const success = this.authService.login(loginData.username, loginData.password);
+    if (success) {
+      this.dialogRef.close();
+      // this.router.navigate(['/dashboard']); // protected route
+    } else {
+      this.updateCaptchaValidator(this.count);
+      this.generateCaptcha(); // optionally regenerate captcha
+    }
+      // this.dialogRef.close();
+>>>>>>> 4932668e0c2d7f7d430c7e509dbda63041ffd21b
     }
   } */
 
+<<<<<<< HEAD
   
   onSubmit(): void {
     if (this.loginForm.invalid) {
@@ -126,9 +160,13 @@ export class LoginComponent {
 
   updateCaptchaValidator(invalidLoginCount: number) {
     const captchaControl = this.loginForm.get('captcha');
+=======
+  updateCaptchaValidator(count: number) {
+    const captchaControl = this.loginForm.get('captchaInput');
+>>>>>>> 4932668e0c2d7f7d430c7e509dbda63041ffd21b
     if (!captchaControl) return;
   
-    if (invalidLoginCount >= 5) {
+    if (count >= 5) {
       captchaControl.setValidators([Validators.required]);
     } else {
       captchaControl.clearValidators();
@@ -137,6 +175,7 @@ export class LoginComponent {
     captchaControl.updateValueAndValidity();
   }
 
+<<<<<<< HEAD
 
   resetForm(): void {
     this.loginForm.reset();
@@ -153,4 +192,9 @@ export class LoginComponent {
   }
 
   
+=======
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
+>>>>>>> 4932668e0c2d7f7d430c7e509dbda63041ffd21b
 }

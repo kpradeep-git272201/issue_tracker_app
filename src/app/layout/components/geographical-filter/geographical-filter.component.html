@@ -1,29 +1,54 @@
 <section>
-    <h5>
-        <mat-icon svgIcon="Geographical" style="padding-right: 0.125rem; height: 1.375rem; width: 1.375rem; margin-bottom: -0.375rem;"></mat-icon>
-        <span *ngIf="opened" class="filter">GEOGRAPHICAL FILTERS</span>
-    </h5>
+  <h5>
+    <mat-icon svgIcon="Geographical" style="padding-right: 0.125rem; height: 1.375rem; width: 1.375rem; margin-bottom: -0.375rem;"></mat-icon>
+    <span *ngIf="opened" class="filter">GEOGRAPHICAL FILTERS</span>
+  </h5>
 
-    <select *ngIf="opened" [(ngModel)]="selectedFincialYr">
-        <option value="" disabled selected>Financial Year</option>
-        <option *ngFor="let finYr of financialYr" [value]="finYr">{{ finYr }}</option>
-      </select>
-      
+  <!-- Financial Year -->
+  <mat-form-field *ngIf="opened" appearance="outline">
+    <input type="text" matInput placeholder="Financial Year"
+      [formControl]="financialYrCtrl"
+      [matAutocomplete]="autoFinYr"
+      >
+    <mat-autocomplete #autoFinYr="matAutocomplete" (optionSelected)="onFinancialYearSelected($event)">
+      <mat-option *ngFor="let finYr of filteredFinancialYr | async" [value]="finYr">
+        {{ finYr }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
 
-      <select *ngIf="opened" [(ngModel)]="selectedStateCode" (change)="onStateChange(selectedStateCode)">
-        <option [ngValue]="null">All States</option>
-        <option *ngFor="let state of stateList" [ngValue]="state.state_code">{{ state.state_name_english }}</option>
-      </select>
-      
-      <select [(ngModel)]="selectedDistrictCode">
-        <option [ngValue]="null">All Districts</option>
-        <option *ngFor="let dist of districtList" [ngValue]="dist.districtCode">{{ dist.districtNameEnglish }}</option>
-      </select>
-      <div style="text-align: center;">
-        <a mat-flat-button (click)="applyFilter()" target="_blank" class="admin-login-btn">
-        <mat-icon>filter_list</mat-icon>
-        <span class="btn-text">Apply Filter</span>
-      </a>
-      </div>
+  <!-- State -->
+  <mat-form-field *ngIf="opened" appearance="outline" >
+    <input type="text" matInput placeholder="State"
+      [formControl]="stateCtrl"
+      [matAutocomplete]="autoState">
+    <mat-autocomplete #autoState="matAutocomplete"  (optionSelected)="onStateSelected($event)" >
+      <mat-option (click)="clearState()">All States</mat-option>
+      <mat-option *ngFor="let state of filteredStates | async" [value]="state.state_code">
+        {{ state.state_name_english }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
 
+  <!-- District -->
+  <mat-form-field *ngIf="opened" appearance="outline">
+    <input type="text" matInput placeholder="District"
+      [formControl]="districtCtrl"
+      [matAutocomplete]="autoDistrict"
+    >
+    <mat-autocomplete #autoDistrict="matAutocomplete"   (optionSelected)="onDistrictSelected($event)">
+      <mat-option (click)="clearDistrict()">All Districts</mat-option>
+      <mat-option *ngFor="let dist of filteredDistricts | async" [value]="dist.districtCode">
+        {{ dist.districtNameEnglish }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <div *ngIf="opened" style="text-align: center;">
+    <button mat-flat-button color="primary" (click)="applyFilter()" class="admin-login-btn">
+      <mat-icon>filter_list</mat-icon>
+      <span class="btn-text">Apply Filter</span>
+    </button>
+  </div>
 </section>
+<!-- d -->

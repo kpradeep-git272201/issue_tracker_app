@@ -320,7 +320,7 @@ export class CommonService {
         { districtCode: 189, districtNameEnglish: "Aurangabad" },
       ],
       9: [
-        { districtCode: 118, districtNameEnglish: "Agra" },
+        { districtCode: 109, districtNameEnglish: "Agra" },
         { districtCode: 119, districtNameEnglish: "Aligarh" },
         { districtCode: 121, districtNameEnglish: "Ambedkar Nagar" }
       ]

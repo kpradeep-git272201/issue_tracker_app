@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../../../admin/components/login/login.component';
+import { AuthService } from '../../../services/planning/auth.service';
 
 @Component({
   selector: 'app-main-header',
@@ -10,11 +11,19 @@ import { LoginComponent } from '../../../admin/components/login/login.component'
   styleUrl: './main-header.component.scss'
 })
 export class MainHeaderComponent {
+  isLoggedIn: boolean | undefined;
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog,
+    private authService: AuthService,
+  ) {
 
   }
 
+  ngOnInit(){
+    this.authService.isLoggedIn$.subscribe((status) => {
+      this.isLoggedIn = status;
+    });
+  }
   getLogin() {
     const dialogRef = this.dialog.open(LoginComponent, {
       disableClose: true,
@@ -40,5 +49,10 @@ export class MainHeaderComponent {
     }else if(action=='Settings'){
 
     }
+  }
+
+  logout(){
+    this.authService.logout();
+    this.isLoggedIn=this.authService.isAuthenticated();
   }
 }

@@ -110,6 +110,7 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
 
         // Slice styles with rounded corners
         series.slices.template.setAll({
+          // tooltipY: -10,
           stroke: am5.color(0xffffff),
           strokeWidth: 1,
           strokeOpacity: 1,
@@ -163,32 +164,41 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
           maxWidth: 160,
           tooltipText: '{category}',
         });
-
-        // Disable legend click toggling
-        legend.data.setAll(series.dataItems);
-      legend.itemContainers.each((itemContainer: any) => {
-        const dataItem = itemContainer.dataItem;
-
-        // Make legend clickable
-        itemContainer.set('clickable', true);
-
-        // Disable default toggle behavior
-        itemContainer.events.disableType('click'); // Prevent slice toggling
-
-        // Handle click manually
-        itemContainer.events.on('click', () => {
-          const category = dataItem?.dataContext?.category;
-          const value = dataItem?.dataContext?.value;
-          console.log('Legend item clicked:', { category, value });
+  
+        // Sort data items in ascending order based on value
+        const sortedDataItems = series.dataItems.slice().sort((a, b) => {
+          const aValue = a.get('value') ?? 0;
+          const bValue = b.get('value') ?? 0;
+          return bValue - aValue;
         });
-      });
-
-
+  
+        // Set sorted data items to legend
+        legend.data.setAll(sortedDataItems);
+  
+        // Disable legend click toggling
+        legend.itemContainers.each((itemContainer: any) => {
+          const dataItem = itemContainer.dataItem;
+  
+          // Make legend clickable
+          itemContainer.set('clickable', true);
+  
+          // Disable default toggle behavior
+          itemContainer.events.disableType('click'); // Prevent slice toggling
+  
+          // Handle click manually
+          itemContainer.events.on('click', () => {
+            const category = dataItem?.dataContext?.category;
+            const value = dataItem?.dataContext?.value;
+            console.log('Legend item clicked:', { category, value });
+          });
+        });
+  
         // Animate chart
         series.appear(1000, 100);
       });
     }
   }
+  
 
   createPieChart() {
     if (isPlatformBrowser(this.platformId) && this.chartDiv?.nativeElement) {
@@ -196,55 +206,49 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
         this.root = am5.Root.new(this.chartDiv.nativeElement);
         (this.root as any)._logo?.set('forceHidden', true);
         this.root.setThemes([am5themes_Animated.new(this.root)]);
-
-        // Main container with 2 children: chart and legend
+  
         const container = this.root.container.children.push(
           am5.Container.new(this.root, {
             layout: this.root.horizontalLayout,
             width: am5.percent(100),
             height: am5.percent(100),
-          }),
+          })
         );
-
-        // Pie chart container (50%)
+  
         const chart = container.children.push(
           am5percent.PieChart.new(this.root, {
             innerRadius: 0,
             width: am5.percent(50),
             layout: this.root.verticalLayout,
-          }),
+          })
         );
-
-        // Series config
+  
         const series = chart.series.push(
           am5percent.PieSeries.new(this.root, {
             valueField: 'value',
             categoryField: 'category',
-          }),
+          })
         );
-
+  
         series.labels.template.set('visible', false);
         series.ticks.template.set('visible', false);
-
-        // Calculate total value for percentage calculation
-
-        // Apply some basic slice styles
+  
         series.slices.template.setAll({
           stroke: am5.color(0xffffff),
           strokeWidth: 1,
           strokeOpacity: 1,
           cornerRadius: 4,
         });
-
-        // Set data
+  
         series.data.setAll(this.dataChart);
+  
         series.bullets.push((root, series, dataItem: any) => {
           const value = dataItem.dataContext.value;
-
+  
           if (value < 5) {
-            return undefined; // Skip small values
+            return undefined;
           }
-
+  
           return am5.Bullet.new(root, {
             sprite: am5.Label.new(root, {
               text: '{value}%',
@@ -259,7 +263,7 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
             locationY: 0.5,
           });
         });
-        // Legend container (50%)
+  
         const legend = container.children.push(
           am5.Legend.new(this.root, {
             centerY: am5.percent(50),
@@ -275,24 +279,29 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
             verticalScrollbar: am5.Scrollbar.new(this.root, {
               orientation: 'vertical',
             }),
-          }),
+          })
         );
-
-        // Ellipsis on legend labels and tooltip on hover
+  
         legend.labels.template.setAll({
           oversizedBehavior: 'truncate',
           maxWidth: 160,
           tooltipText: '{category}',
         });
-
-        // Add data to legend
-        legend.data.setAll(series.dataItems);
-
-        // Animate chart
+  
+        // Sort dataItems in descending order based on value
+        const sortedDataItems = series.dataItems.slice().sort((a, b) => {
+          const aValue = a.get('value') ?? 0;
+          const bValue = b.get('value') ?? 0;
+          return bValue - aValue;
+        });
+  
+        legend.data.setAll(sortedDataItems);
+  
         series.appear(1000, 100);
       });
     }
   }
+  
 
   createBarChart() {
     if (isPlatformBrowser(this.platformId) && this.chartDiv?.nativeElement) {
@@ -300,7 +309,7 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
         this.root = am5.Root.new(this.chartDiv.nativeElement);
         (this.root as any)._logo?.set('forceHidden', true);
         this.root.setThemes([am5themes_Animated.new(this.root)]);
-
+  
         // Create main container
         const container = this.root.container.children.push(
           am5.Container.new(this.root, {
@@ -309,62 +318,80 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
             height: am5.percent(100),
           }),
         );
-
-        // Chart container (50%)
+  
+        // Chart container (100%)
         const chart = container.children.push(
           am5xy.XYChart.new(this.root, {
-            panX: false,
+            panX: true,
             panY: false,
-            wheelX: 'none',
+            wheelX: 'panX',
             wheelY: 'none',
             layout: this.root.verticalLayout,
-            width: am5.percent(50),
+            width: am5.percent(500),
           }),
         );
+        
+        chart.set('scrollbarX', am5.Scrollbar.new(this.root, {
+          orientation: 'horizontal',
+          height: 10,
+        }));
+        
 
-        // Category Axis (Y)
-        const yAxis = chart.yAxes.push(
+        // Category Axis (X)
+        const xAxis = chart.xAxes.push(
           am5xy.CategoryAxis.new(this.root, {
             categoryField: 'category',
-            renderer: am5xy.AxisRendererY.new(this.root, {
-              minGridDistance: 10,
-              inversed: true,
+            renderer: am5xy.AxisRendererX.new(this.root, {
+              minGridDistance: 20,
               cellStartLocation: 0.1,
               cellEndLocation: 0.9,
             }),
           }),
         );
-
-        // Value Axis (X)
-        const xAxis = chart.xAxes.push(
+        xAxis.get('renderer').labels.template.setAll({
+          rotation: -45,         
+          centerY: am5.p50,
+          centerX: am5.p100,
+          paddingRight: 15,
+          oversizedBehavior: "wrap",
+          maxWidth: 100,
+        });
+        
+        // Value Axis (Y)
+        const yAxis = chart.yAxes.push(
           am5xy.ValueAxis.new(this.root, {
-            renderer: am5xy.AxisRendererX.new(this.root, {}),
+            renderer: am5xy.AxisRendererY.new(this.root, {}),
           }),
         );
-
+  
         // Series
         const series = chart.series.push(
           am5xy.ColumnSeries.new(this.root, {
             name: 'Value',
             xAxis: xAxis,
             yAxis: yAxis,
-            valueXField: 'value',
-            categoryYField: 'category',
+            valueYField: 'value',
+            categoryXField: 'category',
             tooltip: am5.Tooltip.new(this.root, {
               labelText: '{category}: {value}',
             }),
           }),
         );
-
+  
         series.columns.template.setAll({
-          height: am5.percent(90),
+          width: am5.percent(90),
           strokeOpacity: 0,
         });
-
+  
         // Set data
-        yAxis.data.setAll(this.dataChart);
+        xAxis.setAll({
+          start: 0,
+          end: 1,
+        });
+        
+        xAxis.data.setAll(this.dataChart,); 
         series.data.setAll(this.dataChart);
-
+  
         // Legend (50%)
         const legend = container.children.push(
           am5.Legend.new(this.root, {
@@ -381,19 +408,24 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
             }),
           }),
         );
-
+  
         legend.labels.template.setAll({
           oversizedBehavior: 'truncate',
           maxWidth: 160,
           tooltipText: '{category}',
         });
-
-        legend.data.setAll(series.dataItems);
-
+  
+        // Optional: wait until chart is ready before setting legend data
+        this.root.events.once('frameended', () => {
+          legend.data.setAll(series.dataItems);
+        });
+  
+        // Appear animation
         chart.appear(1000, 100);
       });
     }
   }
-
   createTreeChart() {}
 }
+
+// dsf

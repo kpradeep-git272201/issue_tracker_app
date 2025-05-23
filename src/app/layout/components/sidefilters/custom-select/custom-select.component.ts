@@ -14,10 +14,9 @@ export class CustomSelectComponent {
   @Input() filterBy: string = 'label';
   @Input() showClear: boolean = false;
   @Input() selected: any = null;
-
   @Output() selectedChange = new EventEmitter<any>();
   @Output() addItemEvent = new EventEmitter<any>();
-  
+
   filterText: string = '';
   dropdownOpen: boolean = false;
 
@@ -38,7 +37,8 @@ export class CustomSelectComponent {
   clearSelection() {
     this.selected = null;
     this.selectedChange.emit(null);
-     this.addItemEvent.emit(null);
+    this.addItemEvent.emit(null);
+    this.addItemEvent.emit(null);
     this.filterText = '';
   }
 }

@@ -8,7 +8,14 @@ export class FinyearService {
   constructor() { }
 
 
-  getFinYr(){
-    return ['2025-2026', '2024-2025', '2023-2024', '2022-2023'];
+  getFinYr() {
+    return [
+      { name: '2025-2026', code: '2025-2026' },
+      { name: '2024-2025', code: '2024-2025' },
+      { name: '2022-2023', code: '2022-2023' },
+      { name: '2021-2023', code: '2022-2022' },
+    ];
   }
+  
+
 }

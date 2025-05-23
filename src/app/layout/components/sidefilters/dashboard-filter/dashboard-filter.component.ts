@@ -104,7 +104,7 @@ export class DashboardFilterComponent {
     const matchedBlock = gpData.find(entry => entry.bpCode === event.code);
     this.gpList = matchedBlock
     ? [{ code: 0, value: 'ALL' }, ...matchedBlock.gpList]
-    : [];
+    : []; 
   }
 
   onGpSelected(event: any): void {

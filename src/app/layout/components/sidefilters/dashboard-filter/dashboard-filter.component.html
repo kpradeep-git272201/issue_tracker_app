@@ -1,1 +1,20 @@
-<p>dashboard-filter works!</p>
+
+  <mat-accordion *ngIf="opened" class="filter-accordion">
+    <mat-expansion-panel *ngFor="let group of filterGroups">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="panel-header">
+          <!-- <mat-icon svgIcon="Development" class="icon"></mat-icon> -->
+          {{ group.title }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+  
+      <div class="checkbox-group" [class.scrollable]="group.categories.length > 5">
+        <label *ngFor="let cat of group.categories" class="filter-checkbox">
+          <input type="checkbox" [(ngModel)]="cat.checked" />
+          {{ cat.label }}
+        </label>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  
+  

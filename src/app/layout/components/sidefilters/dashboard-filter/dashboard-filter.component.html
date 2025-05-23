@@ -1,16 +1,82 @@
 
-<section>
+
+<!-- Financial Year -->
+<div class="custom-margin-top">
+
   <app-custom-select
-    [options]="countries"
-    [(selected)]="selectedCountry"
+    [options]="financialYr"
+    [(selected)]="selectedFinancialYear"
     optionLabel="name"
     filterBy="name"
     [showClear]="true"
-    placeholder="Select a State"
+    placeholder="Select Financial Year"
   ></app-custom-select>
-</section>
 
-  <mat-accordion *ngIf="opened" class="filter-accordion">
+</div>
+
+  
+<!-- State -->
+<div class="custom-margin-top">
+  <app-custom-select
+    *ngIf="opened"
+    [options]="stateList"
+    [(selected)]="selectedState"
+    optionLabel="value"
+    filterBy="value"
+    [showClear]="true"
+    placeholder="Select State"
+    (addItemEvent)="onStateSelected($event)"
+  ></app-custom-select>
+</div>
+<!-- District -->
+<div class="custom-margin-top">
+  <app-custom-select
+    *ngIf="selectedState"
+    [options]="districtList"
+    [(selected)]="selectedDistrict"
+    optionLabel="value"
+    filterBy="value"
+    [showClear]="true"
+    placeholder="Select District"
+    (addItemEvent)="onDistrictSelected($event)"
+  ></app-custom-select>
+</div>
+<!-- Block -->
+<div class="custom-margin-top">
+  <app-custom-select
+    *ngIf="selectedDistrict"
+    [options]="blockList"
+    [(selected)]="selectedBlock"
+    optionLabel="value"
+    filterBy="value"
+    [showClear]="true"
+    placeholder="Select Block"
+    (addItemEvent)="onBlockSelected($event)"
+  ></app-custom-select>
+</div>
+<!-- GP -->
+<div class="custom-margin-top">
+  <app-custom-select
+    *ngIf="selectedBlock"
+    [options]="gpList"
+    [(selected)]="selectedGp"
+    optionLabel="value"
+    filterBy="value"
+    [showClear]="true"
+    placeholder="Select GP"
+    (addItemEvent)="onGpSelected($event)"
+  ></app-custom-select>
+</div>
+
+
+<div *ngIf="opened" class="text-center mt-3">
+  <button mat-flat-button color="primary" (click)="applyFilter()" class="admin-login-btn">
+    <mat-icon>filter_list</mat-icon>
+    <span class="btn-text">Apply Filter</span>
+  </button>
+</div>
+
+<mat-accordion *ngIf="opened" class="filter-accordion">
     <mat-expansion-panel *ngFor="let group of filterGroups">
       <mat-expansion-panel-header>
         <mat-panel-title class="panel-header">
@@ -27,4 +93,3 @@
       </div>
     </mat-expansion-panel>
   </mat-accordion>
-  

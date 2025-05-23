@@ -1,17 +1,14 @@
 import { Component } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
 import { CommonService } from '../../../services/planning/common.service';
-import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
-import { FooterComponent } from '../footer/footer.component';
 import { TimePeriodComponent } from '../time-period/time-period.component';
 
 import { SharedService } from '../../../services/filter/shared.service';
 import { ProjectStatusComponent } from '../sidefilters/project-status/project-status.component';
 
 import { DevelopementCategoryComponent } from '../sidefilters/developement-category/developement-category.component';
-import { GeographicalFilterComponent } from '../sidefilters/geographical-filter/geographical-filter.component';
 import { DashboardFilterComponent } from '../sidefilters/dashboard-filter/dashboard-filter.component';
 
 @Component({
@@ -21,11 +18,10 @@ import { DashboardFilterComponent } from '../sidefilters/dashboard-filter/dashbo
     RouterOutlet,
     HeaderComponent,
     ProjectStatusComponent,
-    GeographicalFilterComponent,
     TimePeriodComponent,
     DevelopementCategoryComponent,
-    DashboardFilterComponent,
-  ],
+    DashboardFilterComponent
+],
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.scss',
 })

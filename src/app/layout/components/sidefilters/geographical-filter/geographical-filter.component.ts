@@ -20,6 +20,7 @@ import { StateService } from '../../../../services/json/stateList/state.service'
 import { ZpListService } from '../../../../services/json/zp/zp-list.service'; 
 import { BpListService } from '../../../../services/json/bp/bp-list.service'; 
 import { GpListService } from '../../../../services/json/gp/gp-list.service'; 
+import { CustomSelectComponent } from '../custom-select/custom-select.component';
 
 @Component({
   selector: 'app-geographical-filter',
@@ -31,7 +32,8 @@ import { GpListService } from '../../../../services/json/gp/gp-list.service';
     MatInputModule,
     MatAutocompleteModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    CustomSelectComponent
   ],
   templateUrl: './geographical-filter.component.html',
   styleUrl: './geographical-filter.component.scss'
@@ -40,7 +42,7 @@ export class GeographicalFilterComponent implements OnInit {
   @Output() dataEmitter = new EventEmitter<any>();
   @Input() opened: boolean = false;
 
-  financialYr: string[] = [];
+  financialYr: any[] = [];
 
   stateList: any[] = [];
   districtList: any[] = [];
@@ -84,72 +86,74 @@ export class GeographicalFilterComponent implements OnInit {
   ngOnInit(): void {
     this.stateList = this.stateService.getStateList();
     this.financialYr = this.finYrService.getFinYr();
+    
     this.selectedFincialYr = this.financialYr[0];
     this.financialYrCtrl.setValue(this.selectedFincialYr);
 
-    this.filteredFinancialYr = this.financialYrCtrl.valueChanges.pipe(
-      startWith(this.selectedFincialYr),
-      map(value => this._filter(this.financialYr, value ?? ''))
-    );
+    // this.filteredFinancialYr = this.financialYrCtrl.valueChanges.pipe(
+    //   startWith(this.selectedFincialYr),
+    //   map(value => this._filter(this.financialYr, value ?? ''))
+    // );
 
-    this.filteredStates = this.stateCtrl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filterState(value ?? ''))
-    );
+    // this.filteredStates = this.stateCtrl.valueChanges.pipe(
+    //   startWith(''),
+    //   map(value => this._filterState(value ?? ''))
+    // );
 
-    this.filteredDistricts = combineLatest([
-      this.districtCtrl.valueChanges.pipe(startWith('')),
-      this.districtList$
-    ]).pipe(
-      map(([search, list]) => {
-        const filterValue = typeof search === 'string' ? search.toLowerCase() : '';
-        return list.filter(dist =>
-          dist.value.toLowerCase().includes(filterValue)
-        );
-      })
-    );
+    // this.filteredDistricts = combineLatest([
+    //   this.districtCtrl.valueChanges.pipe(startWith('')),
+    //   this.districtList$
+    // ]).pipe(
+    //   map(([search, list]) => {
+    //     const filterValue = typeof search === 'string' ? search.toLowerCase() : '';
+    //     return list.filter(dist =>
+    //       dist.value.toLowerCase().includes(filterValue)
+    //     );
+    //   })
+    // );
 
-    this.filteredBlocks = combineLatest([
-      this.blockCtrl.valueChanges.pipe(startWith('')),
-      this.blockList$
-    ]).pipe(
-      map(([search, list]) => {
-        const filterValue = typeof search === 'string' ? search.toLowerCase() : '';
-        return list.filter(block => block.value.toLowerCase().includes(filterValue));
-      })
-    );
+    // this.filteredBlocks = combineLatest([
+    //   this.blockCtrl.valueChanges.pipe(startWith('')),
+    //   this.blockList$
+    // ]).pipe(
+    //   map(([search, list]) => {
+    //     const filterValue = typeof search === 'string' ? search.toLowerCase() : '';
+    //     return list.filter(block => block.value.toLowerCase().includes(filterValue));
+    //   })
+    // );
 
 
-    this.filteredGps = combineLatest([
-      this.gpCtrl.valueChanges.pipe(startWith('')),
-      this.gpList$
-    ]).pipe(
-      map(([search, list]) => {
-        const filterValue = typeof search === 'string' ? search.toLowerCase() : '';
-        return list.filter(gp => gp.value.toLowerCase().includes(filterValue));
-      })
-    );
+    // this.filteredGps = combineLatest([
+    //   this.gpCtrl.valueChanges.pipe(startWith('')),
+    //   this.gpList$
+    // ]).pipe(
+    //   map(([search, list]) => {
+    //     const filterValue = typeof search === 'string' ? search.toLowerCase() : '';
+    //     return list.filter(gp => gp.value.toLowerCase().includes(filterValue));
+    //   })
+    // );
 
   }
 
 
-  private _filter(options: string[], value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return options.filter(option => option.toLowerCase().includes(filterValue));
-  }
+  // private _filter(options: string[], value: string): string[] {
+  //   const filterValue = value.toLowerCase();
+  //   return options.filter(option => option.toLowerCase().includes(filterValue));
+  // }
 
-  private _filterState(value: any): any[] {
-      const filterValue = value.toLowerCase();
-    return this.stateList.filter(state =>
-      state.value.toLowerCase().includes(filterValue)
-    );
-  }
+  // private _filterState(value: any): any[] {
+  //     const filterValue = value.toLowerCase();
+  //   return this.stateList.filter(state =>
+  //     state.value.toLowerCase().includes(filterValue)
+  //   );
+  // }
 
   onFinancialYearSelected(event: any): void {
     this.selectedFincialYr = event.option.value;
   }
 
   onStateSelected(event: any): void {
+    debugger
     const selectedCode = event.option.value;
     const selectedState = this.stateList.find(state => state.code === selectedCode);
     this.selectedStateCode = selectedCode;

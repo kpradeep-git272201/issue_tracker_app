@@ -4,8 +4,71 @@
     <span *ngIf="opened" class="filter">GEOGRAPHICAL FILTERS</span>
   </h5>
 
+
+<div class="mt-3">
+  <app-custom-select
+  [options]="financialYr"
+  [(selected)]="selectedFincialYr"
+  optionLabel="value"
+  [showClear]="true"
+  placeholder="Select Financial Year"
+></app-custom-select>
+</div>
+
+
+<div class="mt-3">
+  <app-custom-select
+  *ngIf="opened"
+  [options]="stateList"
+  [(selected)]="selectedStateCode"
+  optionLabel="value"
+  [showClear]="true"
+  placeholder="Select State"
+  (change)="onStateSelected($event)" 
+></app-custom-select>
+</div>
+
+<div class="mt-3">
+  <app-custom-select
+  *ngIf="selectedStateCode"
+  [options]="districtList"
+  [(selected)]="selectedDistrictCode"
+  optionLabel="value"
+  [showClear]="true"
+  placeholder="Select District"
+  (selectionChange)="onDistrictSelected($event)"
+></app-custom-select>
+
+</div>
+
+<div class="mt-3">
+  <app-custom-select
+  *ngIf="selectedDistrictCode"
+  [options]="blockList"
+  [(selected)]="selectedBlock"
+  optionLabel="value"
+  [showClear]="true"
+  placeholder="Select Block"
+  (selectionChange)="onBlockSelected($event)"
+></app-custom-select>
+
+</div>
+
+<div class="mt-3">
+  <app-custom-select
+  *ngIf="selectedBlock"
+  [options]="gpList"
+  [(selected)]="selectedGp"
+  optionLabel="value"
+  [showClear]="true"
+  placeholder="Select GP"
+  (selectionChange)="onGpSelected($event)"
+></app-custom-select>
+
+</div>
+
   <!-- Financial Year -->
-  <mat-form-field *ngIf="opened" appearance="outline" class="mt-2">
+  <!-- <mat-form-field *ngIf="opened" appearance="outline" class="mt-5">
     <input type="text" matInput placeholder="Financial Year"
       [formControl]="financialYrCtrl"
       [matAutocomplete]="autoFinYr"
@@ -15,10 +78,10 @@
         {{ finYr }}
       </mat-option>
     </mat-autocomplete>
-  </mat-form-field>
+  </mat-form-field> -->
 
   <!-- State -->
-  <mat-form-field *ngIf="opened" appearance="outline" >
+  <!-- <mat-form-field *ngIf="opened" appearance="outline" >
     <input type="text" matInput placeholder="State"
       [formControl]="stateCtrl"
       [matAutocomplete]="autoState">
@@ -28,10 +91,10 @@
         {{ state.value }}
       </mat-option>
     </mat-autocomplete>
-  </mat-form-field>
+  </mat-form-field> -->
 
  <!-- District-->
-<mat-form-field *ngIf="selectedStateCode" appearance="outline">
+<!-- <mat-form-field *ngIf="selectedStateCode" appearance="outline">
   <input type="text" matInput placeholder="District"
     [formControl]="districtCtrl"
     [matAutocomplete]="autoDistrict">
@@ -41,10 +104,10 @@
       {{ district.value }}
     </mat-option>
   </mat-autocomplete>
-</mat-form-field>
+</mat-form-field> -->
 
 <!-- Block  -->
-<mat-form-field *ngIf="selectedDistrictCode" appearance="outline">
+<!-- <mat-form-field *ngIf="selectedDistrictCode" appearance="outline">
   <input type="text" matInput placeholder="Block"
     [formControl]="blockCtrl"
     [matAutocomplete]="autoBlock">
@@ -54,10 +117,10 @@
       {{ block.value }}
     </mat-option>
   </mat-autocomplete>
-</mat-form-field>
+</mat-form-field> -->
 
 <!-- GP-->
-<mat-form-field *ngIf="selectedBlock" appearance="outline">
+<!-- <mat-form-field *ngIf="selectedBlock" appearance="outline">
   <input type="text" matInput placeholder="GP"
          [formControl]="gpCtrl"
          [matAutocomplete]="autoGp">
@@ -66,7 +129,7 @@
       {{ gp.value }}
     </mat-option>
   </mat-autocomplete>
-</mat-form-field>
+</mat-form-field> -->
 
 
 

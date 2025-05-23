@@ -72,4 +72,8 @@ export class DashboardFilterComponent {
 
   }
 
+
+  getEvent(event:any){
+    console.log(event);
+  }
 }

@@ -24,7 +24,7 @@ import { EventEmitter } from 'stream';
 })
 export class DashboardFilterComponent {
   @Input() opened: boolean = false;
-   @Output() dataEmitter = new EventEmitter<any>();
+  //  @Output() dataEmitter = new EventEmitter<any>();
   financialYr: any[] = [];
   stateList: any[] = [];
   districtList: any[] = [];
@@ -174,7 +174,7 @@ export class DashboardFilterComponent {
       gpCode: this?.selectedGp?.code ?? null
     };
   
-    this.dataEmitter.emit(selectedFilters);
+    // this.dataEmitter.emit(selectedFilters);
     this.sharedService.updateDataFilter(selectedFilters);
   }
   

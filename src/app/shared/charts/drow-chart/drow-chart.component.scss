@@ -1,11 +1,98 @@
 /* styles.css or component.scss */
-.chart-scroll-wrapper {
+/* .chart-scroll-wrapper {
     width: 100%;          
     overflow-x: auto;   
     padding-bottom: 1rem; 
   }
+   */
+ 
+  /* 
+  .chart-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 3rem; 
+    margin-bottom: 1rem; 
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+  @media (min-width: 1200px) and (max-width: 1500px) {
+    .chart-scroll-wrapper {
+      padding-bottom: 4rem;
+    }
+  }
+  
+  .amcharts-legend-div {
+    position: relative !important;
+    z-index: 10 !important;
+    background-color: white;
+    margin-bottom: 1rem;
+    margin-right: 2rem;
+  }
   
   .chart-inner {
-    height: 400px;     
+    width: 100%;
+    height: 400px; 
+    position: relative;
+  }
+  
+  mat-card-content {
+    margin-bottom: 3rem;
+  }
+  
+  .no-data-found {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #888;
+    font-size: 1.2rem;
+    pointer-events: none;
+    user-select: none;
+  }
+   */
+
+   .chart-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.5rem; 
+    margin-bottom: 0.5rem;  
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+  @media (min-width: 1200px) and (max-width: 1500px) {
+    .chart-scroll-wrapper {
+      padding-bottom: 2rem; 
+    }
+  }
+  
+  .amcharts-legend-div {
+    position: relative !important;
+    z-index: 10 !important;
+    background-color: white;
+    margin-bottom: 1rem;
+    margin-right: 2rem;
+  }
+  
+  .chart-inner {
+    width: 100%;
+    height: 400px;
+    position: relative;
+  }
+  
+  mat-card-content {
+    margin-bottom: 1rem; 
+  }
+  
+  .no-data-found {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #888;
+    font-size: 1.2rem;
+    pointer-events: none;
+    user-select: none;
   }
   

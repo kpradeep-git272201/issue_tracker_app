@@ -1,10 +1,11 @@
-<mat-grid-list [cols]="breakpoint" rowHeight="2:1" gutterSize="1rem" style="margin-right: 1.5rem; margin-top: 1.5rem;"
-    (window:resize)="onResize($event)">
-    <mat-grid-tile class="titles" *ngFor="let chart of chartData">
-        <div style="height: 100%; width: 100%;">
-            <app-drow-chart
-            [chartData]="chart"
-            ></app-drow-chart>
-        </div>
-    </mat-grid-tile>
-</mat-grid-list>
+
+   <mat-grid-list [cols]="breakpoint" rowHeight="2:1" gutterSize="1rem"
+   (window:resize)="onResize($event)" style="margin-right: 1.5rem; margin-top: 1.5rem;">
+   
+   <mat-grid-tile class="titles" *ngFor="let chart of chartData">
+     <div style="height: 100%; width: 100%;">
+       <app-drow-chart [chartData]="chart"></app-drow-chart>
+     </div>
+   </mat-grid-tile>
+ </mat-grid-list>
+ 

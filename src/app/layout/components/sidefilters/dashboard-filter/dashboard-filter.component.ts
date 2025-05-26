@@ -2,7 +2,7 @@
 import { Component, Input, Output } from '@angular/core';
 import { MaterialModule } from '../../../../material/material.module';
 import { CustomSelectComponent } from "../custom-select/custom-select.component";
-
+import { EventEmitter } from 'stream';
 
 import { FinyearService } from '../../../../services/json/financialYear/finyear.service';
 import { StateService } from '../../../../services/json/stateList/state.service';
@@ -10,7 +10,14 @@ import { ZpListService } from '../../../../services/json/zp/zp-list.service';
 import { BpListService } from '../../../../services/json/bp/bp-list.service';
 import { GpListService } from '../../../../services/json/gp/gp-list.service';
 import { SharedService } from '../../../../services/filter/shared.service';
-import { EventEmitter } from 'stream';
+import { SchemelistService } from '../../../../services/json/scheme/schemelist.service';
+import { ThemelistService } from '../../../../services/json/theme/themelist.service';
+
+interface Scheme {
+  code: number;
+  value: string;
+  checked?: boolean;
+}
 
 @Component({
   selector: 'app-dashboard-filter',
@@ -22,6 +29,7 @@ import { EventEmitter } from 'stream';
   templateUrl: './dashboard-filter.component.html',
   styleUrl: './dashboard-filter.component.scss'
 })
+
 export class DashboardFilterComponent {
   @Input() opened: boolean = false;
   //  @Output() dataEmitter = new EventEmitter<any>();
@@ -30,91 +38,54 @@ export class DashboardFilterComponent {
   districtList: any[] = [];
   blockList: any[] = [];
   gpList: any[] = [];
+  schemeList:any = [];
+  schemeComponentList : any = [];
+  themeList : any = [];
+
 
   selectedFinancialYear: any = null;
   selectedState: any = null;
   selectedDistrict: any = null;
   selectedBlock: any = null;
   selectedGp: any = null;
-
-  countries = [
-    { name: 'India', code: 'IN' },
-    { name: 'United States', code: 'US'},
-    { name: 'Germany', code: 'DE' },
-  
-  ];
-  filterGroups = [
-    {
-      title: 'Sector',
-      categories: [
-        { label: 'Road & Infrastructure', checked: true },
-        { label: 'Education', checked: true },
-        { label: 'Healthcare', checked: true },
-        { label: 'Water Supply', checked: true },
-        { label: 'Road & Infrastructure', checked: true },
-        { label: 'Bridges', checked: true },
-        { label: 'Sanitation', checked: true }
-      ]
-    },
-    {
-      title: 'Transport',
-      categories: [
-        { label: 'Road & Infrastructure', checked: true },
-        { label: 'Bridges', checked: true },
-        { label: 'Highways', checked: true }
-      ]
-    },
-    {
-      title: 'Urban Services',
-      categories: [
-        { label: 'Drainage', checked: true },
-        { label: 'Pavement', checked: true },
-        { label: 'Footpaths', checked: true },
-        { label: 'Drainage', checked: true },
-        { label: 'Pavement', checked: true },
-        { label: 'Footpaths', checked: true }
-      ]
-    },
-    {
-      title: 'Utilities',
-      categories: [
-        { label: 'Power Supply', checked: true },
-        { label: 'Street Lighting', checked: true },
-        { label: 'Electric Poles', checked: true },
-        { label: 'Street Lighting', checked: true },
-        { label: 'Electric Poles', checked: true }
-      ]
-    }
-  ];
-  selectedCountry: any = null;
+  selectedScheme: any = null;
+  selectedSchemeComponent: any = null;
+  selectedThemeList : any = null ;
 
   constructor(   private finYrService: FinyearService,
-
     private stateService: StateService,
     private zpListServive: ZpListService,
     private bpListService: BpListService,
     private gpListService: GpListService,
-    private sharedService : SharedService){ }
+    private sharedService : SharedService,
+    private schemeListService : SchemelistService,
+    private themelistService : ThemelistService
+  ){ }
 
-
-
-
- 
-
- 
-
-  ngOnInit(): void {
+    ngOnInit(): void {
+      // finyr
     this.financialYr = [
       { code: '0', name: 'ALL' },
       ...this.finYrService.getFinYr()
     ];
-  
+    this.selectedFinancialYear = this.finYrService.getFinYr()[0]; 
+
+    // stateList
     this.stateList = [
       { code: 0, value: 'ALL' },
       ...this.stateService.getStateList()
     ];
+    this.selectedState =this.stateList[0];
+    this.onStateSelected(this.selectedState);
+    this.getSchemeComponentsBySchemeCodes();
+    this.getThemeList();
   }
-
+  onFinYrSelected (event: any): void {  
+   if(event){
+    this.selectedFinancialYear = event
+   }
+   this.getThemeList()
+  }
   onStateSelected(event: any): void {  
     this.selectedState = event || null;
     this.selectedDistrict = null;
@@ -122,6 +93,7 @@ export class DashboardFilterComponent {
     this.selectedGp = null;
     this.blockList = [];
     this.gpList = [];
+    this.schemeList = [];
 
     if (!event) {
       this.districtList = [];
@@ -129,11 +101,13 @@ export class DashboardFilterComponent {
     }
 
     const zpData = this.zpListServive.getZpList();
-    
     const matchedState = zpData.find(entry => entry.stateCode === event.code);
     this.districtList = matchedState
   ? [{ code: 0, value: 'ALL' }, ...matchedState.zpList]
   : [];
+  
+   this.schemeList = this.getAllSchemes(event.code);
+   this.getSchemeComponentsBySchemeCodes()
   }
 
   onDistrictSelected(event: any): void {
@@ -181,13 +155,104 @@ export class DashboardFilterComponent {
       stateCode: this?.selectedState?.code ?? null,
       districtCode: this?.selectedDistrict?.code ?? null,
       blockCode: this?.selectedBlock?.code ?? null,
-      gpCode: this?.selectedGp?.code ?? null
+      gpCode: this?.selectedGp?.code ?? null,
+      schemes: [] as any[],
+      schemeComponents: [] as any[]
     };
-  
-    // this.dataEmitter.emit(selectedFilters);
+    this.schemeList.forEach((group: { filterData: any[]; }) => {
+      const selectedSchemesInGroup = group.filterData.filter(scheme => scheme.checked);
+      selectedFilters.schemes.push(...selectedSchemesInGroup);
+    });
+    if (this.schemeComponentList && this.schemeComponentList.length > 0) {
+      this.schemeComponentList.forEach((group: { filterData: any[] }) => {
+        const selectedComponents = group.filterData.filter(component => component.checked);
+        selectedFilters.schemeComponents.push(...selectedComponents);
+      });
+    }
+    console.log('Selected Filters:', selectedFilters);
     this.sharedService.updateDataFilter(selectedFilters);
+
   }
   
+  
+  getAllSchemes(stateCode: number): { filtervalue: string, filterData: Scheme[] }[] {
+    const schemeListObj = this.schemeListService.getSchemeList();
+    const schemeData = (schemeListObj?.filterData || []) as any[];
+    const filtervalue = schemeListObj?.filtervalue || 'All Schemes';
+    let result: { filtervalue: string, filterData: Scheme[] }[] = [];
+    if (!schemeData.length) {
+      return [];
+    }
+    if (stateCode === 0) {
+      const combinedSchemes: Scheme[] = schemeData
+        .flatMap(item => item.schemeList || [])
+        .map((scheme: any) => ({ ...scheme, checked: true }));
+  
+      if (combinedSchemes.length > 0) {
+        result = [{
+          filtervalue,
+          filterData: combinedSchemes
+        }];
+      }
+    } else {
+      const matched = schemeData.find(entry => entry.stateCode === stateCode);
+      if (matched && matched.schemeList && matched.schemeList.length > 0) {
+        const schemesWithChecked = (matched.schemeList as any[])
+          .map((scheme: any) => ({ ...scheme, checked: true }));
+  
+        result = [{
+          filtervalue,
+          filterData: schemesWithChecked
+        }];
+      }
+    }
+    return result;
+  }
 
+  getSchemeComponentsBySchemeCodes() {
+    const selectedSchemeCodes: any[] = [];
+    this.schemeList.forEach((group: { filterData: any[] }) => {
+      const selectedSchemes = group.filterData.filter(scheme => scheme.checked);
+      selectedSchemeCodes.push(...selectedSchemes.map(s => s.code));
+    });
+    const schemeComponentData = this.schemeListService.getSchemeComponentList();
+    const componentFilterData: any[] = [];
+    schemeComponentData.filterData.forEach(componentGroup => {
+      if (selectedSchemeCodes.includes(componentGroup.schemeCode)) {
+        componentGroup.schemeComponentList.forEach(comp => {
+          componentFilterData.push({
+            ...comp,
+            checked: true 
+          });
+        });
+      }
+    });
+    this.schemeComponentList = [
+      {
+        filtervalue: schemeComponentData.filtervalue,
+        filterData: componentFilterData
+      }
+    ];
+  }
 
+  getThemeList() {
+    const allTheme = this.themelistService.getThemeList();
+    const yearCode = this.selectedFinancialYear?.code;
+    const endYear = yearCode && yearCode !== '0' ? parseInt(yearCode.split('-')[1], 10) : null;
+    // If yearCode is '0' OR endYear >= 2023, show themes
+    if (yearCode === '0' || (endYear !== null && endYear >= 2023)) {
+      allTheme.filterData.forEach(theme => {
+        (theme as any).checked = true;
+      });
+      this.themeList = [{
+        filtervalue: allTheme.filterName,
+        filterData: allTheme.filterData
+      }];
+    } else {
+      this.themeList = [];
+    }
+  }
+  
+  
+  
 }

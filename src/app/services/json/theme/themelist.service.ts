@@ -8,7 +8,7 @@ export class ThemelistService {
 
   getThemeList() {
     return {
-      filterName: 'Theme',
+      filterName: 'Themes',
       filterData: [
         {
           code: 1,

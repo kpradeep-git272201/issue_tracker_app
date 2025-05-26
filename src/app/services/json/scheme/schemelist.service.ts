@@ -8,66 +8,66 @@ export class SchemelistService {
 
   getSchemeList() {
     return {
-      filterName: 'Scheme',
+      filtervalue: 'Scheme',
       filterData: [
         {
           stateCode: 9,
           schemeList: [
             {
-              id: 904,
-              name: 'State Finance Commission',
+              code: 904,
+              value: 'State Finance Commission',
             },
             {
-              id: 1764,
-              name: 'Mukhya Mantri Panchayat Protsahan Purashkar Yojna',
+              code: 1764,
+              value: 'Mukhya Mantri Panchayat Protsahan Purashkar Yojna',
             },
             {
-              id: 1771,
-              name: '5th State Finance Commission',
+              code: 1771,
+              value: '5th State Finance Commission',
             },
             {
-              id: 1056,
-              name: 'Sansad Nidhi',
+              code: 1056,
+              value: 'Sansad Nidhi',
             },
             {
-              id: 1055,
-              name: 'II State Finance Commission',
+              code: 1055,
+              value: 'II State Finance Commission',
             },
             {
-              id: 1536,
-              name: 'Snangrih Nirmaan',
+              code: 1536,
+              value: 'Snangrih Nirmaan',
             },
             {
-              id: 1057,
-              name: 'Vidhayak Nidhi',
+              code: 1057,
+              value: 'Vidhayak Nidhi',
             },
             {
-              id: 1054,
-              name: 'III State Finance Commision',
+              code: 1054,
+              value: 'III State Finance Commision',
             },
             {
-              id: 1501,
-              name: 'Antyeshti Sthalon Ka Vikas',
+              code: 1501,
+              value: 'Antyeshti Sthalon Ka Vikas',
             },
             {
-              id: 1655,
-              name: 'Garh Mela',
+              code: 1655,
+              value: 'Garh Mela',
             },
             {
-              id: 1511,
-              name: '4th State Finance Commission',
+              code: 1511,
+              value: '4th State Finance Commission',
             },
             {
-              id: 1500,
-              name: 'Uttar Pradesh New and Renewable Energy Development Agency',
+              code: 1500,
+              value: 'Uttar Pradesh New and Renewable Energy Development Agency',
             },
             {
-              id: 1558,
-              name: 'i-Sparsh Smart gram yojna',
+              code: 1558,
+              value: 'i-Sparsh Smart gram yojna',
             },
             {
-              id: 1541,
-              name: 'Bahuddeshiye Panchayat Bhawan',
+              code: 1541,
+              value: 'Bahuddeshiye Panchayat Bhawan',
             },
           ],
         },
@@ -75,16 +75,16 @@ export class SchemelistService {
           stateCode: 10,
           schemeList: [
             {
-              id: 1324,
-              name: 'Bihar Panchayat Sarkar Bhawan',
+              code: 1324,
+              value: 'Bihar Panchayat Sarkar Bhawan',
             },
             {
-              id: 1331,
-              name: '4th Finance Commission',
+              code: 1331,
+              value: '4th Finance Commission',
             },
             {
-              id: 1659,
-              name: 'Mukhya Mantri Nischay Yojna',
+              code: 1659,
+              value: 'Mukhya Mantri Nischay Yojna',
             },
           ],
         },
@@ -92,222 +92,164 @@ export class SchemelistService {
           stateCode: 28,
           schemeList: [
             {
-              id: 1221,
-              name: 'Jhanma Bhumi',
+              code: 1221,
+              value: 'Jhanma Bhumi',
             },
             {
-              id: 303,
-              name: 'Rural Roads Maintenance',
+              code: 303,
+              value: 'Rural Roads Maintenance',
             },
             {
-              id: 304,
-              name: 'Minimum Needs Program',
+              code: 304,
+              value: 'Minimum Needs Program',
             },
             {
-              id: 305,
-              name: 'Secondary School Buildings',
+              code: 305,
+              value: 'Secondary School Buildings',
             },
             {
-              id: 307,
-              name: 'Normal State Plan',
+              code: 307,
+              value: 'Normal State Plan',
             },
             {
-              id: 306,
-              name: 'Assembly Constituency Development Programme',
+              code: 306,
+              value: 'Assembly Constituency Development Programme',
             },
             {
-              id: 1222,
-              name: 'Neeru Merru',
+              code: 1222,
+              value: 'Neeru Merru',
             },
             {
-              id: 1223,
-              name: 'Prajala Vaddaku Palana',
+              code: 1223,
+              value: 'Prajala Vaddaku Palana',
             },
             {
-              id: 1224,
-              name: 'Rachna Banda',
+              code: 1224,
+              value: 'Rachna Banda',
             },
             {
-              id: 1225,
-              name: 'Shrama danam',
+              code: 1225,
+              value: 'Shrama danam',
             },
             {
-              id: 1226,
-              name: 'Unanimous elected GP',
+              code: 1226,
+              value: 'Unanimous elected GP',
             },
             {
-              id: 1227,
-              name: 'Woman and Child Welfare',
+              code: 1227,
+              value: 'Woman and Child Welfare',
             },
             {
-              id: 308,
-              name: 'State Finance Commission',
-            },
-          ],
-        },
-        {
-          schemeCode: 306,
-          schemeComponentList: [
-            { id: 311, name: 'Assembly Constituency Development Programme' },
-          ],
-        },
-        {
-          schemeCode: 304,
-          schemeComponentList: [{ id: 314, name: 'Minimum Needs Program' }],
-        },
-        {
-          schemeCode: 307,
-          schemeComponentList: [{ id: 315, name: 'Normal State Plan' }],
-        },
-        {
-          schemeCode: 303,
-          schemeComponentList: [{ id: 316, name: 'Rural Roads Maintenance' }],
-        },
-        {
-          schemeCode: 305,
-          schemeComponentList: [
-            { id: 317, name: 'Secondary School Buildings' },
-          ],
-        },
-        {
-          schemeCode: 308,
-          schemeComponentList: [{ id: 318, name: 'State Finance Commission' }],
-        },
-        {
-          schemeCode: 1221,
-          schemeComponentList: [{ id: 3068, name: 'Jhanma Bhumi' }],
-        },
-        {
-          schemeCode: 1224,
-          schemeComponentList: [{ id: 3071, name: 'Rachna Banda' }],
-        },
-        {
-          schemeCode: 1226,
-          schemeComponentList: [{ id: 3073, name: 'Unanimous elected GP' }],
-        },
-        {
-          schemeCode: 1225,
-          schemeComponentList: [{ id: 3072, name: 'Shrama danam' }],
-        },
-        {
-          schemeCode: 1222,
-          schemeComponentList: [{ id: 3069, name: 'Neeru Merru' }],
-        },
-        {
-          schemeCode: 1223,
-          schemeComponentList: [{ id: 3070, name: 'Prajala Vaddaku Palana' }],
-        },
-        {
-          schemeCode: 1227,
-          schemeComponentList: [
-            { id: 3074, name: 'Component for Woman and Child Welfare' },
-          ],
-        },
-      ],
+              code: 308,
+              value: 'State Finance Commission',
+            }
+          ]
+        }
+      ]
     };
   }
 
   getSchemeComponentList() {
     return {
-      filterName: 'Scheme Component',
+      filtervalue: 'Scheme Component',
       filterData: [
         {
           schemeCode: 1054,
           schemeComponentList: [
-            { id: 2093, name: 'Development' },
-            { id: 2094, name: 'Salary' },
-            { id: 2095, name: 'Training' },
-            { id: 2096, name: 'Pension' },
-            { id: 2092, name: 'III State Finance Commision' },
-            { id: 966, name: 'State Finance Commission' },
+            { code: 2093, value: 'Development' },
+            { code: 2094, value: 'Salary' },
+            { code: 2095, value: 'Training' },
+            { code: 2096, value: 'Pension' },
+            { code: 2092, value: 'III State Finance Commision' },
+            { code: 966, value: 'State Finance Commission' },
           ],
         },
         {
           schemeCode: 1541,
           schemeComponentList: [
-            { id: 3951, name: 'Anudaan Sankhya-83' },
-            { id: 3950, name: 'Anudaan Sankhya-14' },
+            { code: 3951, value: 'Anudaan Sankhya-83' },
+            { code: 3950, value: 'Anudaan Sankhya-14' },
           ],
         },
         {
           schemeCode: 1536,
           schemeComponentList: [
-            { id: 3931, name: 'Construction Of Bathroom(Ishnangrah Nirmaan)' },
+            { code: 3931, value: 'Construction Of Bathroom(Ishnangrah Nirmaan)' },
           ],
         },
         {
           schemeCode: 1055,
           schemeComponentList: [
-            { id: 2097, name: 'II State Finance Commission' },
-            { id: 2098, name: 'Development' },
-            { id: 2099, name: 'Training' },
-            { id: 2100, name: 'Salary' },
-            { id: 2101, name: 'Pension' },
+            { code: 2097, value: 'II State Finance Commission' },
+            { code: 2098, value: 'Development' },
+            { code: 2099, value: 'Training' },
+            { code: 2100, value: 'Salary' },
+            { code: 2101, value: 'Pension' },
           ],
         },
         {
           schemeCode: 1056,
-          schemeComponentList: [{ id: 2102, name: 'Sansad Nidhi' }],
+          schemeComponentList: [{ code: 2102, value: 'Sansad Nidhi' }],
         },
         {
           schemeCode: 1057,
-          schemeComponentList: [{ id: 2103, name: 'Vidhayak Nidhi' }],
+          schemeComponentList: [{ code: 2103, value: 'Vidhayak Nidhi' }],
         },
         {
           schemeCode: 1511,
           schemeComponentList: [
-            { id: 3859, name: 'Development' },
-            { id: 3860, name: 'Training' },
-            { id: 3861, name: 'Salary' },
-            { id: 3863, name: 'Pension' },
-            { id: 3855, name: '4th State Finance Commission' },
+            { code: 3859, value: 'Development' },
+            { code: 3860, value: 'Training' },
+            { code: 3861, value: 'Salary' },
+            { code: 3863, value: 'Pension' },
+            { code: 3855, value: '4th State Finance Commission' },
           ],
         },
         {
           schemeCode: 1500,
           schemeComponentList: [
             {
-              id: 3858,
-              name: 'Uttar Pradesh New and Renewable Energy Development Agency',
+              code: 3858,
+              value: 'Uttar Pradesh New and Renewable Energy Development Agency',
             },
           ],
         },
         {
           schemeCode: 1501,
           schemeComponentList: [
-            { id: 3857, name: 'Antyeshti Sthalon Ka Vikas' },
+            { code: 3857, value: 'Antyeshti Sthalon Ka Vikas' },
           ],
         },
         {
           schemeCode: 1655,
-          schemeComponentList: [{ id: 4129, name: 'Fair & Festival' }],
+          schemeComponentList: [{ code: 4129, value: 'Fair & Festival' }],
         },
         {
           schemeCode: 1558,
           schemeComponentList: [
-            { id: 3988, name: 'i-Sparsh Smart gram yojna' },
+            { code: 3988, value: 'i-Sparsh Smart gram yojna' },
           ],
         },
         {
           schemeCode: 1764,
           schemeComponentList: [
-            { id: 4200, name: 'Award Fund' },
-            { id: 4201, name: 'Development' },
-            { id: 4202, name: 'Maintenance' },
-            { id: 4203, name: 'Own Source of Revenue' },
-            { id: 4204, name: 'Administrative Expenses' },
+            { code: 4200, value: 'Award Fund' },
+            { code: 4201, value: 'Development' },
+            { code: 4202, value: 'Maintenance' },
+            { code: 4203, value: 'Own Source of Revenue' },
+            { code: 4204, value: 'Administrative Expenses' },
           ],
         },
         {
           schemeCode: 1771,
           schemeComponentList: [
-            { id: 4216, name: 'Development' },
-            { id: 4217, name: 'Training' },
-            { id: 4218, name: 'Salary' },
-            { id: 4219, name: 'Pension' },
-          ],
-        },
-      ],
+            { code: 4216, value: 'Development' },
+            { code: 4217, value: 'Training' },
+            { code: 4218, value: 'Salary' },
+            { code: 4219, value: 'Pension' },
+          ]
+        }
+      ]
     };
   }
 }

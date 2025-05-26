@@ -1,5 +1,5 @@
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { MaterialModule } from '../../../../material/material.module';
 import { CustomSelectComponent } from "../custom-select/custom-select.component";
 
@@ -10,6 +10,7 @@ import { ZpListService } from '../../../../services/json/zp/zp-list.service';
 import { BpListService } from '../../../../services/json/bp/bp-list.service';
 import { GpListService } from '../../../../services/json/gp/gp-list.service';
 import { SharedService } from '../../../../services/filter/shared.service';
+import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-dashboard-filter',
@@ -23,7 +24,8 @@ import { SharedService } from '../../../../services/filter/shared.service';
 })
 export class DashboardFilterComponent {
   @Input() opened: boolean = false;
- financialYr: any[] = [];
+  //  @Output() dataEmitter = new EventEmitter<any>();
+  financialYr: any[] = [];
   stateList: any[] = [];
   districtList: any[] = [];
   blockList: any[] = [];
@@ -35,6 +37,12 @@ export class DashboardFilterComponent {
   selectedBlock: any = null;
   selectedGp: any = null;
 
+  countries = [
+    { name: 'India', code: 'IN' },
+    { name: 'United States', code: 'US'},
+    { name: 'Germany', code: 'DE' },
+  
+  ];
   filterGroups = [
     {
       title: 'Sector',
@@ -79,14 +87,16 @@ export class DashboardFilterComponent {
     }
   ];
   selectedCountry: any = null;
- constructor(
-    private finYrService: FinyearService,
+
+  constructor(   private finYrService: FinyearService,
+
     private stateService: StateService,
     private zpListServive: ZpListService,
     private bpListService: BpListService,
     private gpListService: GpListService,
-    private sharedService : SharedService
-  ) {}
+    private sharedService : SharedService){ }
+
+
 
 
  

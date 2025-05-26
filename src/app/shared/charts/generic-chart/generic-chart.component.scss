@@ -1,4 +1,4 @@
-.titles{
+/* .titles{
     border: 1px solid #E5E7EB;
     background-color: #FFFFFF; 
     border-radius: 12px;
@@ -13,4 +13,29 @@
   @media (max-width: 768px) {
     padding: 10px;
   }
+} */
+
+.titles {
+  border: 1px solid #E5E7EB;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+}
+
+.main-card {
+  background-color: #FFFFFF;
+  margin-right: 1.5rem;
+  width: 100%;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .main-card {
+    padding: 10px;
+  }
+}
+
+mat-grid-list {
+  margin-right: 1.5rem;
+  margin-top: 1.5rem;
+  width: 100%;
 }

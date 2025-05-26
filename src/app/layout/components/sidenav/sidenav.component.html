@@ -59,10 +59,19 @@
 
           
 
-            <button *ngIf="opened" mat-button (click)="exportData()">
+           <button *ngIf="opened" mat-button (click)="exportExcel()">
                 <mat-icon svgIcon="export" class="nav-icon custom-icon-color"></mat-icon>
                 <span style="color: #FFFFFF;">Export Data</span>     
-            </button>
+            </button> 
+
+<!-- 
+            <button mat-stroked-button class="action-button" (click)="exportExcel()">
+                <mat-icon>download</mat-icon>
+                <span>Export</span>
+              </button> -->
+
+
+
         </div>
     </mat-sidenav>
     <mat-sidenav-content [ngClass]="opened ? 'main-content-opened' : 'main-content-closed'"

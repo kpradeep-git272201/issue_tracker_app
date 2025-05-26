@@ -2,31 +2,11 @@
     <h4 class="dashboard-text">Planning and Reporting Dashboard</h4>
     <app-widget-card></app-widget-card>
     <app-generic-chart></app-generic-chart>
-    <!-- <mat-grid-list [cols]="breakpoint" rowHeight="2:1" gutterSize="1rem"
-        style="margin-right: 1.5rem; margin-top: 1.5rem;" (window:resize)="onResize($event)">
-        <mat-grid-tile class="titles">
-            <div style="height: 100%; width: 100%;">
-                <app-donut-chart style="height: 100%; width: 100%; display: block;"></app-donut-chart>
-            </div>
-        </mat-grid-tile>
- 
-        <mat-grid-tile class="titles">
-            <div style="height: 100%; width: 100%;">
-                <app-pie-chart style="height: 100%; width: 100%; display: block;"></app-pie-chart>
-            </div>
-        </mat-grid-tile>
-        <mat-grid-tile class="titles">
-            <div style="height: 100%; width: 100%;">
-                <app-bar-chart style="height: 100%; width: 100%; display: block;"></app-bar-chart>
-            </div>
-        </mat-grid-tile>
-    </mat-grid-list> -->
-   <!-- dynamic table -->
+   
     <app-generic-table *ngIf="tableColumns"
         [data]="tableData"
         [columns]="tableColumns"
         [enableGlobalSearch]="true"
     ></app-generic-table>
 
-    <!-- <app-project-analytics style="margin-bottom: 1.5rem;"></app-project-analytics> -->
 </div>

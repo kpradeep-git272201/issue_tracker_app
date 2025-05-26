@@ -10,7 +10,7 @@ import { ProjectStatusComponent } from '../sidefilters/project-status/project-st
 
 import { DevelopementCategoryComponent } from '../sidefilters/developement-category/developement-category.component';
 import { DashboardFilterComponent } from '../sidefilters/dashboard-filter/dashboard-filter.component';
-
+import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-sidenav',
   imports: [
@@ -62,6 +62,14 @@ export class SidenavComponent {
     // });
   }
 
+  exportExcel() {
+    const fileName = "ExcelSheet.xlsx";
+    let data = document.getElementById("table-data");
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(data);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    XLSX.writeFile(wb, fileName);
+  }
 
   
 }

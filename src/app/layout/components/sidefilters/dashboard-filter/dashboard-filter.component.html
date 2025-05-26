@@ -9,6 +9,8 @@
     filterBy="name"
     [showClear]="true"
     placeholder="Select Financial Year"
+    (addItemEvent)="onFinYrSelected($event)"
+
   ></app-custom-select>
 
 </div>
@@ -68,28 +70,60 @@
 </div>
 
 
-<!-- <div *ngIf="opened" class="text-center mt-3">
-  <button mat-flat-button color="primary" (click)="applyFilter()" class="admin-login-btn">
-    <mat-icon>filter_list</mat-icon>
-    <span class="btn-text">Apply Filter</span>
-  </button>
-</div> -->
 
 
 <mat-accordion *ngIf="opened" class="filter-accordion">
-    <mat-expansion-panel *ngFor="let group of filterGroups">
-      <mat-expansion-panel-header>
-        <mat-panel-title class="panel-header">
-          <!-- <mat-icon svgIcon="Development" class="icon"></mat-icon> -->
-          {{ group.title }}
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-  
-      <div class="checkbox-group" [class.scrollable]="group.categories.length > 5">
-        <label *ngFor="let cat of group.categories" class="filter-checkbox">
-          <input type="checkbox" [(ngModel)]="cat.checked" />
-          {{ cat.label }}
-        </label>
-      </div>
-    </mat-expansion-panel>
-  </mat-accordion>
+  <!-- Schemes Accordion -->
+  <mat-expansion-panel *ngFor="let scheme of schemeList">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="panel-header">
+        {{ scheme.filtervalue }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="checkbox-group" [class.scrollable]="scheme.filterData.length > 5">
+      <label *ngFor="let data of scheme.filterData" class="filter-checkbox">
+        <input type="checkbox" [(ngModel)]="data.checked" (change)="getSchemeComponentsBySchemeCodes()" />
+        {{ data.value }}
+      </label>
+    </div>
+  </mat-expansion-panel>
+
+  <!-- Scheme Component Accordion -->
+  <mat-expansion-panel *ngIf="schemeComponentList?.length">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="panel-header">
+        {{ schemeComponentList[0].filtervalue }}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="checkbox-group" [class.scrollable]="schemeComponentList[0].filterData.length > 5">
+      <label *ngFor="let comp of schemeComponentList[0].filterData" class="filter-checkbox">
+        <input type="checkbox" [(ngModel)]="comp.checked" />
+        {{ comp.value }}
+      </label>
+    </div>
+  </mat-expansion-panel>
+
+  <!-- Theme Accordion -->
+<mat-expansion-panel *ngIf="themeList?.length">
+  <mat-expansion-panel-header>
+    <mat-panel-title class="panel-header">
+      {{ themeList[0].filtervalue }}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <div class="checkbox-group" [class.scrollable]="themeList[0].filterData.length > 5">
+    <label *ngFor="let theme of themeList[0].filterData" class="filter-checkbox">
+      <input type="checkbox" [(ngModel)]="theme.checked" />
+      {{ theme.value }}
+    </label>
+  </div>
+</mat-expansion-panel>
+
+</mat-accordion>
+
+
+
+
+<!-- <div *ngIf="opened" class="text-center mt-3">
+    <button class="btn btn-success" (click)="applyFilter()">filter</button>
+</div>  -->

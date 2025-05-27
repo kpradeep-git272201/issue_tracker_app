@@ -88,7 +88,6 @@ export class DashboardFilterComponent {
    this.getThemeList()
   }
   onStateSelected(event: any): void {  
-    debugger
     this.selectedState = event || null;
     this.selectedDistrict = null;
     this.selectedBlock = null;

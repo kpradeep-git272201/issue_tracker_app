@@ -135,9 +135,12 @@ export class GenericChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.isBrowser){
     this.chartData = this.commonService.getChartData();
     this.setGridBreakpoint(window.innerWidth);
     this.getGeographicalFilter();
+    }
+
   }
 
   getGeographicalFilter() {

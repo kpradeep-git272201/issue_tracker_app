@@ -6,6 +6,7 @@ import { SharedModule } from '../../../shared/shared.module';
 import { CommonService } from '../../../services/planning/common.service';
 import { SharedService } from '../../../services/filter/shared.service';
 
+
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -30,7 +31,8 @@ export class DashboardComponent {
 
   ngOnInit() {
     if (this.isBrowser) {
-      this.setGridBreakpoint(window.innerWidth);
+      console.warn(window)
+      this.setGridBreakpoint(window?.innerWidth);
     }
     this.getReportData();
     this.getGeographicalFilter();

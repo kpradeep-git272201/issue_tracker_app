@@ -1,4 +1,5 @@
 /* === GENERAL LAYOUT === */
+
 .table-wrapper {
   margin: 1.5rem 1.5rem 0 0;
 }
@@ -24,31 +25,6 @@
   width: 100%;
   overflow-x: auto;
 }
-/* 
-.data-table {
-  width: max-content; 
-  border-collapse: collapse;
-  font-family: 'Inter', sans-serif;
-  table-layout: auto;
-}
-
-.data-table th,
-.data-table td {
-  padding: 12px 24px; 
-  text-align: left;
-  font-size: 14px;
-  color: #1F2937;
-  // text-align: center;     
-  vertical-align: middle;
-  white-space: nowrap; 
-}
-
-.data-table thead {
-  background-color: #F9FAFB;
-  font-weight: 600;
-}
-
- */
 
  .data-table {
   width: 100%; 
@@ -83,6 +59,8 @@
   background-color: #fff;
   gap: 16px;
   flex-wrap: wrap;
+  border-radius: 12px;
+ 
 }
 
 .header-title {
@@ -195,8 +173,11 @@
   background-color: #ffffff;
   font-family: 'Inter', sans-serif;
   font-size: 14px;
-  margin-top: 20px;
+  margin-top: 10px;
+  border-radius: 12px;
 }
+
+
 
 .rows-dropdown-wrapper {
   display: flex;

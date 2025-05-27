@@ -116,8 +116,12 @@
   .tick-mark {
     position: absolute;
     right: 8px;
+    font-size: 1.2rem;
   }
-  
+  .selected-item span{
+    color: #3e3e3e !important;
+    font-weight: 400;
+  }
   .selected-box {
     position: relative;
     display: flex;

@@ -66,14 +66,14 @@ export class DashboardFilterComponent {
     ngOnInit(): void {
       // finyr
     this.financialYr = [
-      { code: '0', name: 'ALL' },
+      { code: '0', name: 'All Financial Year' },
       ...this.finYrService.getFinYr()
     ];
     this.selectedFinancialYear = this.finYrService.getFinYr()[0]; 
 
     // stateList
     this.stateList = [
-      { code: 0, value: 'ALL' },
+      { code: 0, value: 'All States' },
       ...this.stateService.getStateList()
     ];
     this.selectedState =this.stateList[0];
@@ -88,6 +88,7 @@ export class DashboardFilterComponent {
    this.getThemeList()
   }
   onStateSelected(event: any): void {  
+    debugger
     this.selectedState = event || null;
     this.selectedDistrict = null;
     this.selectedBlock = null;
@@ -104,7 +105,7 @@ export class DashboardFilterComponent {
     const zpData = this.zpListServive.getZpList();
     const matchedState = zpData.find(entry => entry.stateCode === event.code);
     this.districtList = matchedState
-  ? [{ code: 0, value: 'ALL' }, ...matchedState.zpList]
+  ? [{ code: 0, value: 'All Districts' }, ...matchedState.zpList]
   : [];
   
    this.schemeList = this.getAllSchemes(event.code);
@@ -125,7 +126,7 @@ export class DashboardFilterComponent {
     const bpData = this.bpListService.getBpList();
     const matchedDistrict = bpData.find(entry => entry.zpCode === event.code);
     this.blockList = matchedDistrict
-    ? [{ code: 0, value: 'ALL' }, ...matchedDistrict.bpList]
+    ? [{ code: 0, value: 'All Blocks' }, ...matchedDistrict.bpList]
     : [];
   }
 
@@ -141,7 +142,7 @@ export class DashboardFilterComponent {
     const gpData = this.gpListService.getGpList();
     const matchedBlock = gpData.find(entry => entry.bpCode === event.code);
     this.gpList = matchedBlock
-    ? [{ code: 0, value: 'ALL' }, ...matchedBlock.gpList]
+    ? [{ code: 0, value: 'All GPs' }, ...matchedBlock.gpList]
     : []; 
   }
 

@@ -105,6 +105,7 @@ import { MaterialModule } from '../../../material/material.module';
 import { CommonService } from '../../../services/planning/common.service';
 import { SharedService } from '../../../services/filter/shared.service';
 import { DrowChartComponent } from '../drow-chart/drow-chart.component';
+import { json } from 'stream/consumers';
 
 @Component({
   selector: 'app-generic-chart',
@@ -140,7 +141,9 @@ export class GenericChartComponent implements OnInit {
     this.setGridBreakpoint(window.innerWidth);
     this.getGeographicalFilter();
     }
-
+    this.sharedService.currentDataFilter.subscribe((data) => {
+      console.log(JSON.stringify(data))
+    });
   }
 
   getGeographicalFilter() {

@@ -55,7 +55,12 @@
       font-size: 0.89rem; 
       margin-bottom: 0.25rem;
       font-family: "Noto Sans";
-  
+      display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    width: 100%;
+    color: #3e3e3e !important;
+    margin-bottom: 0;
       ::ng-deep.mat-checkbox-inner-container {
         width: 16px;
         height: 16px;
@@ -64,7 +69,7 @@
   }
  
 ::ng-deep.mat-expansion-panel-body {
-   padding: 20px !important;
+  padding: 6px 13px !important;
 }
 
  ::ng-deep.mdc-label {

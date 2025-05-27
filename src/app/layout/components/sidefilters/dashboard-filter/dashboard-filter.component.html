@@ -33,7 +33,7 @@
 <!-- District -->
 <div class="custom-margin-top">
   <app-custom-select
-    *ngIf="selectedState"
+    *ngIf="selectedState && selectedState.code !== 0"
     [options]="districtList"
     [(selected)]="selectedDistrict"
     optionLabel="value"
@@ -123,8 +123,12 @@
 </mat-accordion>
 
 
+<mat-radio-group [(ngModel)]="selectedExpeditureType" aria-label="Select an option">
+  <mat-radio-button value="1">Expenditure</mat-radio-button>
+  <mat-radio-button value="2">Non-Expenditure</mat-radio-button>
+</mat-radio-group>
 
-
-<!-- <div *ngIf="opened" class="text-center mt-3">
+<!-- 
+<div *ngIf="opened" class="text-center mt-3">
     <button class="btn btn-success" (click)="applyFilter()">filter</button>
 </div>  -->

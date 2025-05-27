@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MaterialModule } from '../../../../material/material.module';
+import { ClickOutsideDirective } from '../../../../click-outside.directive';
 
 @Component({
   selector: 'app-custom-select',
-  imports: [MaterialModule],
+  imports: [MaterialModule,ClickOutsideDirective],
   templateUrl: './custom-select.component.html',
   styleUrl: './custom-select.component.scss'
 })

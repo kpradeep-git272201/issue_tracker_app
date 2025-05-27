@@ -51,6 +51,7 @@ export class DashboardFilterComponent {
   selectedScheme: any = null;
   selectedSchemeComponent: any = null;
   selectedThemeList : any = null ;
+  selectedExpeditureType: string = '1';
 
   constructor(   private finYrService: FinyearService,
     private stateService: StateService,
@@ -157,7 +158,8 @@ export class DashboardFilterComponent {
       blockCode: this?.selectedBlock?.code ?? null,
       gpCode: this?.selectedGp?.code ?? null,
       schemes: [] as any[],
-      schemeComponents: [] as any[]
+      schemeComponents: [] as any[],
+      expenditureType : this.selectedExpeditureType
     };
     this.schemeList.forEach((group: { filterData: any[]; }) => {
       const selectedSchemesInGroup = group.filterData.filter(scheme => scheme.checked);

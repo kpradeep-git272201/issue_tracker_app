@@ -67,9 +67,9 @@
    padding: 20px !important;
 }
 
-/* ::ng-deep.mat-expansion-panel-header.mat-expanded {
-    height: var(--mat-expansion-header-expanded-state-height, 0px);
-} */
+ ::ng-deep.mdc-label {
+   font-size: 14px;
+} 
 
 .custom-margin-top{
     margin-top: 1rem;

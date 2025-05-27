@@ -8,8 +8,8 @@
         <mat-icon [svgIcon]="card.icon" [ngClass]="card.iconBg" class="circle-icon"></mat-icon>
       </div>
       <div class="card-footer" [ngClass]="{ 'positive': card.trend === 'up', 'negative': card.trend === 'down' }">
-        <mat-icon>{{ card.trend === 'up' ? 'arrow_upward' : 'arrow_downward' }}</mat-icon>
-        <span>{{ card.change }}% vs last year</span>
+        <!-- <mat-icon>{{ card.trend === 'up' ? 'arrow_upward' : 'arrow_downward' }}</mat-icon> -->
+        <!-- <span>{{ card.change }}% vs last year</span> -->
       </div>
     </mat-card>
   </div>

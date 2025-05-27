@@ -17,9 +17,7 @@ import { DashboardFilterComponent } from '../sidefilters/dashboard-filter/dashbo
     MaterialModule,
     RouterOutlet,
     HeaderComponent,
-    ProjectStatusComponent,
     TimePeriodComponent,
-    DevelopementCategoryComponent,
     DashboardFilterComponent
 ],
   templateUrl: './sidenav.component.html',

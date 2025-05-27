@@ -102,7 +102,8 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
         series.labels.template.setAll({
           text: "{value.percent.formatNumber('0.0')}%", // Display percentage
           visible: true,
-          fontSize: 12,
+          fontSize: 14,
+          fontFamily: "Open Sans",
           fill: am5.color(0xffffff),
           centerX: am5.percent(50),
           centerY: am5.percent(50),
@@ -133,8 +134,9 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
               centerX: am5.percent(50),
               centerY: am5.percent(50),
               populateText: true,
-              fontSize: 12,
-              fontWeight: 'bold',
+              fontSize: 14,
+              // fontWeight: 'bold',
+              fontFamily: "Open Sans",
               fill: am5.color(0xffffff),
             }),
             locationX: 0.5,
@@ -206,7 +208,6 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
         this.root = am5.Root.new(this.chartDiv.nativeElement);
         (this.root as any)._logo?.set('forceHidden', true);
         this.root.setThemes([am5themes_Animated.new(this.root)]);
-  
         const container = this.root.container.children.push(
           am5.Container.new(this.root, {
             layout: this.root.horizontalLayout,
@@ -255,8 +256,9 @@ export class DrowChartComponent implements AfterViewInit, OnDestroy {
               centerX: am5.percent(50),
               centerY: am5.percent(50),
               populateText: true,
-              fontSize: 12,
-              fontWeight: 'bold',
+              fontSize: 14,
+              // fontWeight: 'bold',
+              fontFamily: "Open Sans",
               fill: am5.color(0xffffff),
             }),
             locationX: 0.5,

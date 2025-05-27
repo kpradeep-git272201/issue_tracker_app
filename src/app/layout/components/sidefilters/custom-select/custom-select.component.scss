@@ -93,6 +93,8 @@
   .clear-icon {
     right: 8px;
     cursor: pointer;
+    color: rgb(26, 27, 31);
+    font-size: 24px;
   }
   
   .search-input {
@@ -121,6 +123,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    height: 41px;
   }
   
   .clear {
@@ -129,7 +132,8 @@
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    color: #888;
+    // color: #888;
+    margin-right: 12px;
   }
   
 
@@ -138,4 +142,7 @@
   }
   .dropdown-item img{
     width: 15px !important;
+  }
+  .close{
+    font-size: 18px;
   }

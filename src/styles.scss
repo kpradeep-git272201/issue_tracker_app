@@ -13,7 +13,18 @@ body {
 *{
     box-sizing: border-box;
 }
-
+.font-open-sans{
+   font-family: 'Open Sans', sans-serif;
+}
+.font-14{
+  font-size: 0.875rem;
+}
+.font-16{
+  font-size: 1rem;
+}
+* {
+  font-family: 'Open Sans', sans-serif;
+}
 
 :root {
     --primary-color: #0D6EFD;

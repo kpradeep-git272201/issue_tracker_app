@@ -23,3 +23,20 @@ input[type='range'] {
     width: 100%;
 }
 
+.custom-tooltip {
+    position: absolute;
+    top: -30px; /* position above slider */
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    z-index: 10;
+    transition: left 0.1s ease;
+  }
+  
+  

@@ -1,127 +1,130 @@
-.login-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
 
-    .login-header {
-        font-size: 1.25rem;
-        font-weight: 600;
-        text-align: center;
-        margin-bottom: 1rem;
+
+     .login-container {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
-    }
-
-    mat-form-field,
-    .captcha-box,
-    .button-group {
-        margin-bottom: 16px;
+        flex-direction: column;
         width: 100%;
-    }
-
-    .captcha-box {
-        display: flex;
-        align-items: center;
-        margin-top: -4px;
-
-        .captcha-img {
+      
+        .login-header {
+          font-size: 1.25rem;
+          font-weight: 600;
+          text-align: center;
+          margin-bottom: 1rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
+        }
+      
+        mat-form-field,
+        .captcha-box,
+        .button-group {
+          margin-bottom: 16px;
+          width: 100%;
+        }
+      
+        .captcha-box {
+          display: flex;
+          align-items: center;
+          margin-top: -4px;
+      
+          .captcha-img {
             width: 100px;
             height: 40px;
             border: 1px solid #ccc;
             margin-right: 8px;
-        }
-
-        .captcha-input {
+          }
+      
+          .captcha-input {
             flex: 1;
-        }
-
-        .refresh {
+          }
+      
+          .refresh {
             margin-top: 19px;
             margin-left: 4px;
             margin-right: 4px;
             cursor: pointer;
+          }
         }
-    }
-
-    .button-group {
-        display: flex;
-        justify-content: center;
-        gap: 12px;
-    }
-
-    .forgot-password {
-        font-size: 0.875rem;
-        color: #666;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        justify-content: center;
-
-        a {
+      
+        .button-group {
+          display: flex;
+          justify-content: center;
+          gap: 12px;
+        }
+      
+        .forgot-password {
+          font-size: 0.875rem;
+          color: #666;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          justify-content: center;
+      
+          a {
             font-weight: bold;
             color: #007bff;
             cursor: pointer;
+          }
         }
-    }
-}
-
-::ng-deep .mat-dialog-container.login-popup {
-    border-radius: 12px !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    padding: 16px;
-}
-
-::ng-deep .mat-dialog-container {
-    border-radius: 4px !important;
-}
-
-::ng-deep .mat-mdc-form-field-has-icon-prefix .mat-mdc-text-field-wrapper {
-    height: 49px !important;
-    align-items: center !important;
-
-}
-
-::ng-deep .mat-mdc-text-field-wrapper {
-    width: 100%;
-    z-index: 0;
-    height: 50px !important;
-    align-items: center !important;
-}
-
-::ng-deep .mat-mdc-dialog-surface {
-    border-radius: 12px !important;
-}
-
-.close-button {
-    position: absolute;
-    top: 21px;
-    right: 39px;
-    z-index: 10;
-    cursor: pointer;
-
-    &:hover {
-        color: #f44336;
-    }
-}
-
-.login {
-    width: 140px;
-    background-color: #0d6efd !important;
-    height: 40px;
-    border-radius: 4px;
-}
-
-.reset {
-    width: 140px;
-    background-color: #d77d00 !important;
-    height: 40px;
-    border-radius: 4px;
-}
-
-:host {
-    display: block;
-    border-radius: 4px !important;
-    padding: 20px;
-}
+      }
+      
+      ::ng-deep .mat-dialog-container.login-popup {
+        border-radius: 12px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        padding: 16px;
+      }
+      
+      ::ng-deep .mat-dialog-container {
+        border-radius: 4px !important;
+      }
+      
+      ::ng-deep .mat-mdc-form-field-has-icon-prefix .mat-mdc-text-field-wrapper {
+        height: 49px !important;
+        align-items: center !important;
+       
+      }
+      
+      ::ng-deep .mat-mdc-text-field-wrapper {
+        width: 100%;
+        z-index: 0;
+        height: 50px !important;
+        align-items: center !important;
+      }
+      
+      ::ng-deep .mat-mdc-dialog-surface {
+        border-radius: 12px !important;
+      }
+      
+      .close-button {
+        position: absolute;
+        top: 21px;
+        right: 39px;
+        z-index: 10;
+        cursor: pointer;
+      
+        &:hover {
+          color: #f44336;
+        }
+      }
+      
+      .login {
+        width: 140px;
+        background-color: #0d6efd !important;
+        height: 40px;
+        border-radius: 4px;
+      }
+      
+      .reset {
+        width: 140px;
+        background-color: #d77d00 !important;
+        height: 40px;
+        border-radius: 4px;
+      }
+      
+      :host {
+        display: block;
+        border-radius: 4px !important;
+        padding: 20px;
+      }
+          

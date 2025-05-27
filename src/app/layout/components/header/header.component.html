@@ -1,29 +1,89 @@
-<mat-toolbar color="primary" class="sub-header">
-    <!-- <button (click)="openedSideNav()" mat-icon-button class="menu-button" aria-label="Menu">
-      <mat-icon>menu</mat-icon>
-      <span> {{opened}}</span>
-    </button> -->
-  
 
-    
+   <mat-toolbar color="primary" class="sub-header">
     <nav class="sub-nav">
-      <a class="sub-nav-link" (click)="onTabClick('Dashboard')" [ngClass]="{ 'active': activeTab === 'Dashboard' }">
-        <mat-icon class="icon-size" svgIcon="dashboard"></mat-icon>
-        <span class="menu-text">Dashboard</span>
-      </a>
-      <a class="sub-nav-link" (click)="onTabClick('Report')" [ngClass]="{ 'active': activeTab === 'Report' }">
+      <div
+        class="sub-nav-item"
+        (mouseenter)="onMouseEnterDashboard()"
+        (mouseleave)="onMouseLeaveDashboard()"
+      >
+        <a
+          class="sub-nav-link"
+          (click)="onTabClick('Dashboard')"
+          [ngClass]="{ 'active': activeTab === 'Dashboard' }"
+        >
+          <mat-icon class="icon-size" svgIcon="dashboard"></mat-icon>
+          <span class="menu-text-group">
+            <span class="menu-text">Dashboard</span>
+            <mat-icon class="dropdown-icon">
+              {{ showCategories ? 'expand_less' : 'expand_more' }}
+            </mat-icon>
+          </span>
+        </a>
+  
+        <div class="category-dropdown" *ngIf="showCategories">
+         <!--  <div
+            *ngFor="let category of categories"
+            class="category-item"
+            (click)="onCategorySelect(category.label)"
+          >
+            {{ category.label }}
+            <mat-icon
+              *ngIf="selectedCategory === category.label"
+              class="tick-icon"
+            >
+              check
+            </mat-icon>
+          </div> -->
+
+
+          <div
+  *ngFor="let category of categories"
+  class="category-item"
+  (click)="onCategorySelect(category.label)"
+  [ngClass]="{ 'selected-category': selectedCategory === category.label }"
+>
+  {{ category.label }}
+  <mat-icon
+    *ngIf="selectedCategory === category.label"
+    class="tick-icon"
+  >
+    check
+  </mat-icon>
+</div>
+
+        </div>
+
+      </div>
+  
+      <a
+        class="sub-nav-link"
+        (click)="onTabClick('Report')"
+        [ngClass]="{ 'active': activeTab === 'Report' }"
+      >
         <mat-icon class="icon-size" svgIcon="Report"></mat-icon>
         <span class="menu-text">Report</span>
       </a>
-      <a class="sub-nav-link" (click)="onTabClick('Projects')" [ngClass]="{ 'active': activeTab === 'Projects' }">
+      <a
+        class="sub-nav-link"
+        (click)="onTabClick('Projects')"
+        [ngClass]="{ 'active': activeTab === 'Projects' }"
+      >
         <mat-icon class="icon-size" svgIcon="Projects"></mat-icon>
         <span class="menu-text">Projects</span>
       </a>
-      <a class="sub-nav-link" (click)="onTabClick('Departments')" [ngClass]="{ 'active': activeTab === 'Departments' }">
+      <a
+        class="sub-nav-link"
+        (click)="onTabClick('Departments')"
+        [ngClass]="{ 'active': activeTab === 'Departments' }"
+      >
         <mat-icon class="icon-size" svgIcon="Departments"></mat-icon>
         <span class="menu-text">Departments</span>
       </a>
-      <a class="sub-nav-link" (click)="onTabClick('Administration')" [ngClass]="{ 'active': activeTab === 'Administration' }">
+      <a
+        class="sub-nav-link"
+        (click)="onTabClick('Administration')"
+        [ngClass]="{ 'active': activeTab === 'Administration' }"
+      >
         <mat-icon class="icon-size" svgIcon="Administration"></mat-icon>
         <span class="menu-text">Administration</span>
       </a>

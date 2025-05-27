@@ -1,8 +1,8 @@
-<h3 mat-dialog-title style="background-color: lightgray;">{{ data.title }}</h3>
+<h3 mat-dialog-title style="background-color: lightgray;"><span class="font-open-sans font-16">{{ data.title }}</span></h3>
 <mat-dialog-content>
   <mat-selection-list>
     <mat-list-option *ngFor="let col of columns" [selected]="selectedFields.includes(col.field)" (click)="onToggle(col.field)">
-      {{ col.header }}
+      <span class="font-open-sans font-14">{{ col.header }}</span>
     </mat-list-option>
   </mat-selection-list>
 </mat-dialog-content>

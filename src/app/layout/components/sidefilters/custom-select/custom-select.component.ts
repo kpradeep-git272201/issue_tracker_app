@@ -14,6 +14,7 @@ export class CustomSelectComponent {
   @Input() filterBy: string = 'label';
   @Input() showClear: boolean = false;
   @Input() selected: any = null;
+  @Input() selectedFinancialYear: any;
   @Output() selectedChange = new EventEmitter<any>();
   @Output() addItemEvent = new EventEmitter<any>();
 
@@ -27,6 +28,10 @@ export class CustomSelectComponent {
     );
   }
 
+  ngOnInit(){
+ 
+  
+  }
   selectOption(option: any) {
     this.selected = option;
     this.selectedChange.emit(option);

@@ -17,9 +17,7 @@ import * as XLSX from 'xlsx';
     MaterialModule,
     RouterOutlet,
     HeaderComponent,
-    ProjectStatusComponent,
     TimePeriodComponent,
-    DevelopementCategoryComponent,
     DashboardFilterComponent
 ],
   templateUrl: './sidenav.component.html',

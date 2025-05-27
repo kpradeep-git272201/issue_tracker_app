@@ -8,6 +8,7 @@
     optionLabel="name"
     filterBy="name"
     [showClear]="true"
+    [selectedFinancialYear]="selectedFinancialYear"
     placeholder="Select Financial Year"
     (addItemEvent)="onFinYrSelected($event)"
 
@@ -76,14 +77,14 @@
   <!-- Schemes Accordion -->
   <mat-expansion-panel *ngFor="let scheme of schemeList">
     <mat-expansion-panel-header>
-      <mat-panel-title class="panel-header">
-        {{ scheme.filtervalue }}
+      <mat-panel-title class="panel-header font-open-sans font-14">
+        <span class=" font-open-sans font-14">{{ scheme.filtervalue }}</span>
       </mat-panel-title>
     </mat-expansion-panel-header>
     <div class="checkbox-group" [class.scrollable]="scheme.filterData.length > 5">
       <label *ngFor="let data of scheme.filterData" class="filter-checkbox">
         <input type="checkbox" [(ngModel)]="data.checked" (change)="getSchemeComponentsBySchemeCodes()" />
-        {{ data.value }}
+       <span class=" font-open-sans font-14"> {{ data.value }} </span>
       </label>
     </div>
   </mat-expansion-panel>
@@ -91,14 +92,14 @@
   <!-- Scheme Component Accordion -->
   <mat-expansion-panel *ngIf="schemeComponentList?.length">
     <mat-expansion-panel-header>
-      <mat-panel-title class="panel-header">
-        {{ schemeComponentList[0].filtervalue }}
+      <mat-panel-title class="panel-header font-open-sans font-14">
+        <span class=" font-open-sans font-14">{{ schemeComponentList[0].filtervalue }}</span>
       </mat-panel-title>
     </mat-expansion-panel-header>
     <div class="checkbox-group" [class.scrollable]="schemeComponentList[0].filterData.length > 5">
       <label *ngFor="let comp of schemeComponentList[0].filterData" class="filter-checkbox">
         <input type="checkbox" [(ngModel)]="comp.checked" />
-        {{ comp.value }}
+        <span class=" font-open-sans font-14">{{ comp.value }}</span>
       </label>
     </div>
   </mat-expansion-panel>
@@ -107,14 +108,14 @@
 <mat-expansion-panel *ngIf="themeList?.length">
   <mat-expansion-panel-header>
     <mat-panel-title class="panel-header">
-      {{ themeList[0].filtervalue }}
+      <span class=" font-open-sans font-14">{{ themeList[0].filtervalue }}</span>
     </mat-panel-title>
   </mat-expansion-panel-header>
 
   <div class="checkbox-group" [class.scrollable]="themeList[0].filterData.length > 5">
     <label *ngFor="let theme of themeList[0].filterData" class="filter-checkbox">
       <input type="checkbox" [(ngModel)]="theme.checked" />
-      {{ theme.value }}
+      <span class=" font-open-sans font-14">{{ theme.value }}</span>
     </label>
   </div>
 </mat-expansion-panel>

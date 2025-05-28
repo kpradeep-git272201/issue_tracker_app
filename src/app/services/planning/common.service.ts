@@ -104,13 +104,11 @@ export class CommonService {
       this.pieData = stateData.pieData;
       this.barData = stateData.barData;
     } else {
-      console.warn('No data found for stateCode:', stateCode);
+
       this.donutData = [];
       this.pieData = [];
       this.barData = [];
     }
-  
-    console.log('Filtered data set for stateCode:', stateCode);
   }
   
 

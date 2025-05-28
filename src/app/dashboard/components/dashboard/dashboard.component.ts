@@ -31,7 +31,6 @@ export class DashboardComponent {
 
   ngOnInit() {
     if (this.isBrowser) {
-      console.warn(window)
       this.setGridBreakpoint(window?.innerWidth);
     }
     this.getReportData();

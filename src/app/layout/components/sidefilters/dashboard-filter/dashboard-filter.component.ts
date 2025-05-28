@@ -321,7 +321,6 @@ export class DashboardFilterComponent {
     } else {
       this.focusAreaList = [];
     }
-    // console.log(this.focusAreaList)
   }
   
   getMovableList(){

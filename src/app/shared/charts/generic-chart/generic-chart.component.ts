@@ -142,7 +142,7 @@ export class GenericChartComponent implements OnInit {
     this.getGeographicalFilter();
     }
     this.sharedService.currentDataFilter.subscribe((data) => {
-      console.log(JSON.stringify(data))
+      // console.log(JSON.stringify(data))
     });
   }
 

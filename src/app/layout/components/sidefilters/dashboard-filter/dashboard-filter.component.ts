@@ -12,7 +12,7 @@ import { GpListService } from '../../../../services/json/gp/gp-list.service';
 import { SharedService } from '../../../../services/filter/shared.service';
 import { SchemelistService } from '../../../../services/json/scheme/schemelist.service';
 import { ThemelistService } from '../../../../services/json/theme/themelist.service';
-
+import { FocusareaListService } from '../../../../services/json/focusarea/focusarea-list.service';
 interface Scheme {
   code: number;
   value: string;
@@ -41,7 +41,7 @@ export class DashboardFilterComponent {
   schemeList:any = [];
   schemeComponentList : any = [];
   themeList : any = [];
-
+  focusAreaList : any = [];
 
   selectedFinancialYear: any = null;
   selectedState: any = null;
@@ -52,6 +52,7 @@ export class DashboardFilterComponent {
   selectedSchemeComponent: any = null;
   selectedThemeList : any = null ;
   selectedExpeditureType: string = '1';
+  selectedFocusArea  : any = null;
 
   constructor(   private finYrService: FinyearService,
     private stateService: StateService,
@@ -60,7 +61,9 @@ export class DashboardFilterComponent {
     private gpListService: GpListService,
     private sharedService : SharedService,
     private schemeListService : SchemelistService,
-    private themelistService : ThemelistService
+    private themelistService : ThemelistService,
+    private focusAreaService : FocusareaListService
+
   ){ }
 
     ngOnInit(): void {
@@ -80,6 +83,7 @@ export class DashboardFilterComponent {
     this.onStateSelected(this.selectedState);
     this.getSchemeComponentsBySchemeCodes();
     this.getThemeList();
+    this.getFocusArea()
   }
   onFinYrSelected (event: any): void {  
    if(event){
@@ -159,7 +163,9 @@ export class DashboardFilterComponent {
       gpCode: this?.selectedGp?.code ?? null,
       schemes: [] as any[],
       schemeComponents: [] as any[],
-      expenditureType : this.selectedExpeditureType
+      themes: [] as any[],
+      focusAreas: [] as any[],
+      expenditureType : this.selectedExpeditureType,
     };
     this.schemeList.forEach((group: { filterData: any[]; }) => {
       const selectedSchemesInGroup = group.filterData.filter(scheme => scheme.checked);
@@ -171,6 +177,22 @@ export class DashboardFilterComponent {
         selectedFilters.schemeComponents.push(...selectedComponents);
       });
     }
+
+    if (this.themeList && this.themeList.length > 0) {
+      this.themeList.forEach((group: { filterData: any[] }) => {
+        const selectedThemes = group.filterData.filter(theme => theme.checked);
+        selectedFilters.themes.push(...selectedThemes);
+      });
+    }
+  
+    if (this.focusAreaList && this.focusAreaList.length > 0) {
+      this.focusAreaList.forEach((group: { filterData: any[] }) => {
+        const selectedFocusAreas = group.filterData.filter(area => area.checked);
+        selectedFilters.focusAreas.push(...selectedFocusAreas);
+      });
+    }
+
+
     console.log('Selected Filters:', selectedFilters);
     this.sharedService.updateDataFilter(selectedFilters);
 
@@ -255,6 +277,23 @@ export class DashboardFilterComponent {
     }
   }
   
+  getFocusArea() {
+    const allFocusArea = this.focusAreaService.getFocusAreaList();
+  
+    if (allFocusArea.filterData.length > 0) {
+      allFocusArea.filterData.forEach(area => {
+        (area as any).checked = true;
+      });
+  
+      this.focusAreaList = [{
+        filtervalue: allFocusArea.filterName,
+        filterData: allFocusArea.filterData
+      }];
+    } else {
+      this.themeList = [];
+    }
+    console.log(this.focusAreaList)
+  }
   
   
 }

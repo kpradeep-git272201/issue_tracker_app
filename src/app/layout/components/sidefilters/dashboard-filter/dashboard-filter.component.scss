@@ -90,3 +90,12 @@
   right: 30px;
   top: 10px;
 }
+
+.custom-position-top{
+  position: relative;
+  top: 1rem;
+}
+::ng-deep.mat-mdc-radio-group{
+ position: relative;
+ top: 1rem;
+}

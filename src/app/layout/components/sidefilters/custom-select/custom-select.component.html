@@ -1,5 +1,5 @@
 <div class="select-wrapper" (clickOutside)="dropdownOpen = false">
-    <div class="selected-box" (click)="dropdownOpen = !dropdownOpen">
+    <div class="selected-box"   [ngClass]="{ 'glowing-border': dropdownOpen }" (click)="dropdownOpen = !dropdownOpen" >
       <div *ngIf="selected; else placeholderTpl" class="selected-item">
         <img [src]="selected.flag" style="width: 18px;" />
         <span>{{ selected[optionLabel] }}</span>

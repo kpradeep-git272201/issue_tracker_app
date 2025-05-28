@@ -78,7 +78,7 @@
 
 
 
-<mat-accordion *ngIf="opened" class="filter-accordion custom-margin-top">
+<mat-accordion *ngIf="opened" class="filter-accordion custom-position-top">
   <!-- Schemes Accordion -->
   <mat-expansion-panel *ngFor="let scheme of schemeList">
     <mat-expansion-panel-header>
@@ -124,6 +124,24 @@
     </label>
   </div>
 </mat-expansion-panel>
+
+
+<!-- Focus Area Accordion -->
+<mat-expansion-panel *ngIf="focusAreaList?.length">
+  <mat-expansion-panel-header>
+    <mat-panel-title class="panel-header font-open-sans font-14">
+      <span class=" font-open-sans font-14">{{ focusAreaList[0].filtervalue }}</span>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <div class="checkbox-group" [class.scrollable]="focusAreaList[0].filterData.length > 5">
+    <label *ngFor="let focus of focusAreaList[0].filterData" class="filter-checkbox">
+      <input type="checkbox" [(ngModel)]="focus.checked" />
+      <span class=" font-open-sans font-14">{{ focus.value }}</span>
+    </label>
+  </div>
+</mat-expansion-panel>
+
 
 </mat-accordion>
 

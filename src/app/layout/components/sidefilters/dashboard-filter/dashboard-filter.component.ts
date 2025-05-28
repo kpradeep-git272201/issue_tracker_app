@@ -13,6 +13,10 @@ import { SharedService } from '../../../../services/filter/shared.service';
 import { SchemelistService } from '../../../../services/json/scheme/schemelist.service';
 import { ThemelistService } from '../../../../services/json/theme/themelist.service';
 import { FocusareaListService } from '../../../../services/json/focusarea/focusarea-list.service';
+import { MovableListService } from '../../../../services/json/movable/movable-list.service';
+import { ActivityListService } from '../../../../services/json/activity/activity-list.service';
+
+
 interface Scheme {
   code: number;
   value: string;
@@ -42,6 +46,8 @@ export class DashboardFilterComponent {
   schemeComponentList : any = [];
   themeList : any = [];
   focusAreaList : any = [];
+  movableList : any = [];
+  activityList : any = [];
 
   selectedFinancialYear: any = null;
   selectedState: any = null;
@@ -53,6 +59,8 @@ export class DashboardFilterComponent {
   selectedThemeList : any = null ;
   selectedExpeditureType: string = '1';
   selectedFocusArea  : any = null;
+  selectMovable : any = null;
+  selectedActivity :any = null;
 
   constructor(   private finYrService: FinyearService,
     private stateService: StateService,
@@ -62,8 +70,9 @@ export class DashboardFilterComponent {
     private sharedService : SharedService,
     private schemeListService : SchemelistService,
     private themelistService : ThemelistService,
-    private focusAreaService : FocusareaListService
-
+    private focusAreaService : FocusareaListService,
+    private movableService : MovableListService,
+    private activityService : ActivityListService
   ){ }
 
     ngOnInit(): void {
@@ -83,7 +92,10 @@ export class DashboardFilterComponent {
     this.onStateSelected(this.selectedState);
     this.getSchemeComponentsBySchemeCodes();
     this.getThemeList();
-    this.getFocusArea()
+    this.getFocusArea();
+    this.getActivity() 
+    this.getMovableList();
+    
   }
   onFinYrSelected (event: any): void {  
    if(event){
@@ -165,38 +177,55 @@ export class DashboardFilterComponent {
       schemeComponents: [] as any[],
       themes: [] as any[],
       focusAreas: [] as any[],
-      expenditureType : this.selectedExpeditureType,
+      movables: [] as any[],
+      activities: [] as any[],
+      expenditureType: this.selectedExpeditureType,
     };
-    this.schemeList.forEach((group: { filterData: any[]; }) => {
+  
+    this.schemeList.forEach((group: { filterData: any[] }) => {
       const selectedSchemesInGroup = group.filterData.filter(scheme => scheme.checked);
       selectedFilters.schemes.push(...selectedSchemesInGroup);
     });
-    if (this.schemeComponentList && this.schemeComponentList.length > 0) {
+  
+    if (this.schemeComponentList?.length > 0) {
       this.schemeComponentList.forEach((group: { filterData: any[] }) => {
         const selectedComponents = group.filterData.filter(component => component.checked);
         selectedFilters.schemeComponents.push(...selectedComponents);
       });
     }
-
-    if (this.themeList && this.themeList.length > 0) {
+  
+    if (this.themeList?.length > 0) {
       this.themeList.forEach((group: { filterData: any[] }) => {
         const selectedThemes = group.filterData.filter(theme => theme.checked);
         selectedFilters.themes.push(...selectedThemes);
       });
     }
   
-    if (this.focusAreaList && this.focusAreaList.length > 0) {
+    if (this.focusAreaList?.length > 0) {
       this.focusAreaList.forEach((group: { filterData: any[] }) => {
         const selectedFocusAreas = group.filterData.filter(area => area.checked);
         selectedFilters.focusAreas.push(...selectedFocusAreas);
       });
     }
-
-
+  
+    if (this.movableList?.length > 0) {
+      this.movableList.forEach((group: { filterData: any[] }) => {
+        const selectedMovables = group.filterData.filter(movable => movable.checked);
+        selectedFilters.movables.push(...selectedMovables);
+      });
+    }
+  
+    if (this.activityList?.length > 0) {
+      this.activityList.forEach((group: { filterData: any[] }) => {
+        const selectedActivities = group.filterData.filter(activity => activity.checked);
+        selectedFilters.activities.push(...selectedActivities);
+      });
+    }
+  
     console.log('Selected Filters:', selectedFilters);
     this.sharedService.updateDataFilter(selectedFilters);
-
   }
+  
   
   
   getAllSchemes(stateCode: number): { filtervalue: string, filterData: Scheme[] }[] {
@@ -290,10 +319,44 @@ export class DashboardFilterComponent {
         filterData: allFocusArea.filterData
       }];
     } else {
-      this.themeList = [];
+      this.focusAreaList = [];
     }
-    console.log(this.focusAreaList)
+    // console.log(this.focusAreaList)
   }
   
+  getMovableList(){
+    const allMovable = this.movableService.getMovableAndImmovable();
+
+    if(allMovable.filterData.length > 0){
+      // allMovable.filterData.forEach(movable =>{
+      //   (movable as any).checked = true;
+      // })
+      this.selectMovable = allMovable.filterData[0];
+      this.movableList = [{
+        filtervalue: allMovable.filterName,
+        filterData: allMovable.filterData
+      }]
+    }else{
+      this.movableList = []
+    }
+  }
+
+  getActivity() {
+    const allActivity= this.activityService.getActivityList()
   
+    if (allActivity.filterData.length > 0) {
+      allActivity.filterData.forEach(activity => {
+        (activity as any).checked = true;
+      });
+  
+      this.activityList = [{
+        filtervalue: allActivity.filterName,
+        filterData: allActivity.filterData
+      }];
+    } else {
+      this.activityList = [];
+    }
+  }
+
+
 }

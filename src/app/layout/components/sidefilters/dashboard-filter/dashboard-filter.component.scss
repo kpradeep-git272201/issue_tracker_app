@@ -99,3 +99,10 @@
  position: relative;
  top: 1rem;
 }
+
+.moveableRadio{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  gap: 5px;
+}

@@ -36,7 +36,7 @@
   ></app-custom-select>
 </div>
 <!-- District -->
-<div class="custom-margin-top">
+<div class="custom-margin-top"  *ngIf="selectedState && selectedState.code !== 0">
   <app-custom-select
     *ngIf="selectedState && selectedState.code !== 0"
     [options]="districtList"
@@ -49,7 +49,7 @@
   ></app-custom-select>
 </div>
 <!-- Block -->
-<div class="custom-margin-top">
+<div class="custom-margin-top" *ngIf="selectedDistrict">
   <app-custom-select
     *ngIf="selectedDistrict"
     [options]="blockList"
@@ -62,7 +62,7 @@
   ></app-custom-select>
 </div>
 <!-- GP -->
-<div class="custom-margin-top">
+<div *ngIf="selectedBlock" class="custom-margin-top">
   <app-custom-select
     *ngIf="selectedBlock"
     [options]="gpList"
@@ -138,6 +138,43 @@
     <label *ngFor="let focus of focusAreaList[0].filterData" class="filter-checkbox">
       <input type="checkbox" [(ngModel)]="focus.checked" />
       <span class=" font-open-sans font-14">{{ focus.value }}</span>
+    </label>
+  </div>
+</mat-expansion-panel>
+
+<!-- Activity Accordion -->
+<mat-expansion-panel *ngIf="activityList?.length">
+  <mat-expansion-panel-header>
+    <mat-panel-title class="panel-header font-open-sans font-14">
+      <span class="font-open-sans font-14">{{ activityList[0].filtervalue }}</span>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <div class="checkbox-group" [class.scrollable]="activityList[0].filterData.length > 5">
+    <label *ngFor="let activity of activityList[0].filterData" class="filter-checkbox">
+      <input type="checkbox" [(ngModel)]="activity.checked" />
+      <span class="font-open-sans font-14">{{ activity.value }}</span>
+    </label>
+  </div>
+</mat-expansion-panel>
+
+<!-- Movable Accordion -->
+<mat-expansion-panel *ngIf="movableList?.length">
+  <mat-expansion-panel-header>
+    <mat-panel-title class="panel-header font-open-sans font-14">
+      <span class="font-open-sans font-14">{{ movableList[0].filtervalue }}</span>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <div class="radio-group moveableRadio" [class.scrollable]="movableList[0].filterData.length > 0">
+    <label *ngFor="let item of movableList[0].filterData" class="filter-radio filter-checkbox">
+      <input
+        type="radio"
+        name="movableOption"
+        [(ngModel)]="selectMovable"
+        [value]="item"
+      />
+      <span class="font-open-sans font-14">{{ item.value }}</span>
     </label>
   </div>
 </mat-expansion-panel>

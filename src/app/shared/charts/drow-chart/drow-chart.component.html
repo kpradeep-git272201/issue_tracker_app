@@ -5,7 +5,7 @@
         </div>
 
         <button mat-icon-button matTooltip="Change Chart Type" matTooltipPosition="left" matTooltipShowDelay="500"
-            [matMenuTriggerFor]="menu" style="position: absolute; top: 0; right: 0; z-index: 10;">
+            [matMenuTriggerFor]="menu" *ngIf="chartData.data.length > 0"  style="position: absolute; top: 0; right: 0; z-index: 10;">
             <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="before">
@@ -20,9 +20,9 @@
     </mat-card-header>
     <mat-card-content style="object-fit: cover; width:100%; height:100%; position: relative;">
         <div #chartdiv style="object-fit:cover;width:100%;height:100%;padding:0px;border-radius: 1rem;"></div>
-        <div *ngIf="!chartData?.data || chartData.data.length === 0"
-             class="no-data-found">
-            Data not found
+        <div *ngIf="!chartData?.data || chartData.data.length === 0" class="no-data-found">
+             <span class="no-data-span">NO DATA</span>
+             <img src="/assets/images/noDataFound.png" alt="No Data Found" />
         </div>
     </mat-card-content>
     

@@ -1114,15 +1114,15 @@ export class CommonService {
         "chartId": "ThemeWiseActivitiesDistribution",
         "chartType": "Theme Wise Activities Distribution",
         "data": [
-          { "category": "Theme 1 - Poverty Free and Enhanced Livelihoods Village", "value": 17.8 },
-          { "category": "Theme 2 - Healthy Village", "value": 7.9 },
-          { "category": "Theme 3 - Child Friendly Village", "value": 4.3 },
-          { "category": "Theme 4 - Water Sufficient Village", "value": 14.3 },
-          { "category": "Theme 5 - Clean and Green Village", "value": 17.1 },
-          { "category": "Theme 6 - Self-sufficient Infrastructure in Village", "value": 26.7 },
-          { "category": "Theme 7 - Socially Just and Socially Secured Village", "value": 5.2 },
-          { "category": "Theme 8 - Village with Good Governance", "value": 2.5 },
-          { "category": "Theme 9 - Women Friendly Village", "value": 3.2 }
+          // { "category": "Theme 1 - Poverty Free and Enhanced Livelihoods Village", "value": 17.8 },
+          // { "category": "Theme 2 - Healthy Village", "value": 7.9 },
+          // { "category": "Theme 3 - Child Friendly Village", "value": 4.3 },
+          // { "category": "Theme 4 - Water Sufficient Village", "value": 14.3 },
+          // { "category": "Theme 5 - Clean and Green Village", "value": 17.1 },
+          // { "category": "Theme 6 - Self-sufficient Infrastructure in Village", "value": 26.7 },
+          // { "category": "Theme 7 - Socially Just and Socially Secured Village", "value": 5.2 },
+          // { "category": "Theme 8 - Village with Good Governance", "value": 2.5 },
+          // { "category": "Theme 9 - Women Friendly Village", "value": 3.2 }
         ]
       },
       {

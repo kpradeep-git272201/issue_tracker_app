@@ -5,12 +5,13 @@ import { DashboardComponent } from "../../../dashboard/components/dashboard/dash
 
 import { SubHeaderComponent } from "../sub-header/sub-header.component";
 import { HeaderComponent } from '../header/header.component';
+import { TopHeaderComponent } from '../../../top-header/top-header.component';
 
 
 
 @Component({
   selector: 'app-main',
-  imports: [HeaderComponent, SubHeaderComponent, SidenavComponent],
+  imports: [HeaderComponent, SubHeaderComponent, SidenavComponent,TopHeaderComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })

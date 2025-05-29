@@ -154,8 +154,6 @@ export class GenericChartComponent implements OnInit {
 
   getChartFilter(filterData: any) {
     const chartData = this.commonService.getChartData();
-    debugger
-
     if (filterData) {
       const filteredData = chartData.filter((item: any) => {
         const matchesYear = filterData.financialYear ? item.financialYear == filterData.financialYear : true;

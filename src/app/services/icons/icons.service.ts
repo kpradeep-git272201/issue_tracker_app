@@ -39,7 +39,13 @@ export class IconsService {
       'View',
       'dashboard',
       'Currency',
-      'HeaderIcon'
+      'HeaderIcon',
+      'InidanFlag',
+      'OpenInNew',
+      'Fushia',
+      'Language',
+      'LoginUser',
+      'Devider'
     ];
   }
 }

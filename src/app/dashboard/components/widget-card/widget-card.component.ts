@@ -12,7 +12,7 @@ import { InrFormatPipe } from "../../../pipes/currency/inr-format.pipe";
 export class WidgetCardComponent {
   cards = [
     {
-      title: 'Total Requests',
+      title: 'Budgetary Allocation (In Cr)',
       value: '12,450.75',
       amountType: 'Cr',
       change: 8.2,
@@ -21,7 +21,7 @@ export class WidgetCardComponent {
       iconBg: 'blue-bg'
     },
     {
-      title: 'Utilized Funds',
+      title: 'Fund Allocation (In Cr)',
       value: '8,982.40',
       amountType: 'Cr',
       change: 18.2,
@@ -30,7 +30,7 @@ export class WidgetCardComponent {
       iconBg: 'green-bg'
     },
     {
-      title: 'Remaining Funds',
+      title: 'Expenditure Incurred (In Cr)',
       value: '12,450.75',
       amountType: 'Cr',
       change: -3.2,
@@ -38,15 +38,15 @@ export class WidgetCardComponent {
       icon: 'Remaining',
       iconBg: 'yellow-bg'
     },
-    {
+   /*  {
       title: 'Completed Projects',
       value: '1,258',
-      amountType: 'Dr', // Not an amount, so no Cr/Dr
+      amountType: 'Dr', 
       change: 8.2,
       trend: 'up',
       icon: 'CompletedProjects',
       iconBg: 'purple-bg'
-    }
+    } */
   ];
   
 

@@ -106,3 +106,16 @@
   flex-direction: column;
   gap: 5px;
 }
+
+.custom-toggle-icon {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  .custom-toggle-icon.rotated {
+    transform: rotate(180deg);
+  }
+  ::ng-deep mat-expansion-panel-header mat-panel-description,
+::ng-deep mat-expansion-panel-header .mat-expansion-indicator {
+  display: none !important;
+}

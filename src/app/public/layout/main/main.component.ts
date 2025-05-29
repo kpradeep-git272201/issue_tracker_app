@@ -15,11 +15,10 @@ import { HeaderComponent } from '../header/header.component';
   styleUrl: './main.component.scss'
 })
 export class MainComponent {
- dashboardId: any;
- constructor(private route: ActivatedRoute) {}
+ 
+ constructor() {}
 
  ngOnInit(): void {
-    this.dashboardId = this.route.snapshot.paramMap.get('id');
-    console.log('ID:', this.dashboardId);
+    
   }
 }

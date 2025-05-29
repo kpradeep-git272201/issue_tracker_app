@@ -7,18 +7,10 @@ import { SidenavComponent } from "../../../layout/components/sidenav/sidenav.com
 
 @Component({
   selector: 'app-home',
-  imports: [DashboardComponent],
+  imports: [],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-dashboardId: any;
- constructor(private route: ActivatedRoute) {}
 
- ngOnInit(): void {
-   this.route.paramMap.subscribe(params => {
-      this.dashboardId = params.get('id');
-      console.log('Updated ID:', this.dashboardId);
-    });
-  }
 }

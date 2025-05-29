@@ -1,31 +1,52 @@
 <div class="top-header">
-    <div class="indian-flag">
-        <a href="">
-            <mat-icon  svgIcon="InidanFlag"></mat-icon>
-            <span>Government of India <mat-icon class="OpenInNew"  svgIcon="OpenInNew"></mat-icon> </span>  
-        </a>
+  <div class="indian-flag">
+    <a href="">
+      <mat-icon svgIcon="InidanFlag"></mat-icon>
+      <span
+        >Government of India
+        <mat-icon class="OpenInNew" svgIcon="OpenInNew"></mat-icon>
+      </span>
+    </a>
+  </div>
+  <div class="top-other-content">
+    <div class="skip-to-main">
+      <a href="">Skip to Main Content</a>
     </div>
-    <div class="top-other-content">
-        <div class="skip-to-main">
-            <a href="">Skip to Main Content</a>
-        </div>
-        <div class="fushia-icon">
-            <a href="">
-                <mat-icon class="Fushia"  svgIcon="Fushia"></mat-icon>
-            </a>
-            <mat-icon class="Devider"  svgIcon="Devider"></mat-icon>
-        </div>
-
-        <div class="language-icon">
-            <a href="">
-                <mat-icon class="Language"  svgIcon="Language"></mat-icon>
-            </a>
-            <mat-icon class="Devider"  svgIcon="Devider"></mat-icon>
-        </div>
-
-        <button class="top-logout">
-            <mat-icon class="LoginUser"  svgIcon="LoginUser"></mat-icon>
-            Logout
-        </button>
+    <div class="fushia-icon">
+      <a href="">
+        <mat-icon class="Fushia" svgIcon="Fushia"></mat-icon>
+      </a>
+      <mat-icon class="Devider" svgIcon="Devider"></mat-icon>
     </div>
+
+    <div class="language-icon">
+      <a href="">
+        <mat-icon class="Language" svgIcon="Language"></mat-icon>
+      </a>
+      <mat-icon class="Devider" svgIcon="Devider"></mat-icon>
+    </div>
+
+    <button
+      *ngIf="isLoggedIn"
+      class="top-logout"
+      [matMenuTriggerFor]="beforeMenu"
+      mat-icon-button
+      aria-label="Settings"
+      (click)="getDialog('Settings')"
+    >
+      <mat-icon class="LoginUser" svgIcon="LoginUser"></mat-icon>
+      <span>Logout</span>
+    </button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+      <button mat-menu-item><mat-icon>person</mat-icon> Profile</button>
+      <button (click)="logout()" mat-menu-item>
+        <mat-icon>logout</mat-icon>
+        Logout
+      </button>
+    </mat-menu>
+    <button *ngIf="!isLoggedIn" class="top-logout">
+      <mat-icon class="LoginUser" svgIcon="LoginUser"></mat-icon>
+      <span>Logout</span>
+    </button>
+  </div>
 </div>

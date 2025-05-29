@@ -13,10 +13,11 @@
   box-sizing: border-box;
   border-width: 0.5px 0px 0.5px 0px;
   border-style: solid;
-  background-color: #f9fafb;
+//   background-color: #f9fafb;
   border-color: var(--sub-header-border);
   flex-wrap: wrap;
   padding-left: 40px;
+  background: linear-gradient(180deg, #F49A0B -14.67%, #EB5D0C 100%);
 
   .example-spacer {
     flex: 1 1 auto;
@@ -30,7 +31,7 @@
     margin-top: 0.313rem;
     padding-left: 0.313rem;
     transition: transform 0.2s ease-in-out;
-
+    color: #FFFFFF;
     @media (max-width: 48rem) {
       font-size: 0.85rem;
     }
@@ -154,9 +155,9 @@
   }
    */
 
-.sub-nav-link:hover {
-  background-color: #f0f0f0;
-}
+// .sub-nav-link:hover {
+//   background-color: #f0f0f0;
+// }
 
 .sub-nav-link:hover .menu-text {
   transform: scale(1.1);

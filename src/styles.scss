@@ -1,72 +1,97 @@
 /* You can add global styles to this file, and also import other style files */
 // @import "tailwindcss";
 
-html, body { height: 100%; }
-body { 
-    margin: 0; 
-    font-family: "Poppins", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-    overflow-x: hidden;
-    // background-color: #F4F4F4;
+html,
+body {
+  height: 100%;
 }
-*{
-    box-sizing: border-box;
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  overflow-x: hidden;
+  // background-color: #F4F4F4;
 }
-.font-open-sans{
-   font-family: 'Open Sans', sans-serif;
+* {
+  box-sizing: border-box;
 }
-.font-14{
+.font-open-sans {
+  font-family: "Open Sans", sans-serif;
+}
+.font-14 {
   font-size: 0.875rem;
 }
-.font-16{
+.font-16 {
   font-size: 1rem;
 }
 * {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 :root {
-    --primary-color: #0D6EFD;
-    --secondary-color: #9d0054;
-    --primary-font-color: #ffffff;
-    --over-layer-color: rgba(190, 186, 186, 0.8);
-    --rem-to-px: 10px;
-    --overdue-bg-color: #FF5151;
-    --incomplete-bg-color:#ff9800;
-    --upcoming-bg-color: #D5B60A;
-    --incomplete-badge-bg-color: #F57C00;
-    --overdue-badge-bg-color: #E53935;
-    --upcoming-badge-bg-color: #a6860a;
-    --overdue-badge-txt-color: #000000; 
-    --incomplete-badge-txt-color: #000000; 
-    --upcoming-badge-txt-color: #000000;
-    --my-theme-bg: #2c3e50;
-    --sub-header-bg: #D6D6D6;
-    --sub-header-border: #D6D6D6;
-    --main-header-bg: #FFFFFF;
-
+  --primary-color: #0d6efd;
+  --secondary-color: #9d0054;
+  --primary-font-color: #ffffff;
+  --over-layer-color: rgba(190, 186, 186, 0.8);
+  --rem-to-px: 10px;
+  --overdue-bg-color: #ff5151;
+  --incomplete-bg-color: #ff9800;
+  --upcoming-bg-color: #d5b60a;
+  --incomplete-badge-bg-color: #f57c00;
+  --overdue-badge-bg-color: #e53935;
+  --upcoming-badge-bg-color: #a6860a;
+  --overdue-badge-txt-color: #000000;
+  --incomplete-badge-txt-color: #000000;
+  --upcoming-badge-txt-color: #000000;
+  --my-theme-bg: #2c3e50;
+  --sub-header-bg: #d6d6d6;
+  --sub-header-border: #d6d6d6;
+  --main-header-bg: #ffffff;
 }
 
-
-  ::ng-deep .custom-login-dialog.mat-dialog-container {
-    border-radius: 4px !important;
-  }
+::ng-deep .custom-login-dialog.mat-dialog-container {
+  border-radius: 4px !important;
+}
 
 ::ng-deep .mat-mdc-dialog-surface {
-  border-radius: 12px !important; 
+  border-radius: 12px !important;
 }
-.font-16{
+.font-16 {
   font-size: 1rem;
 }
-.no-data-found{
-  position: absolute; 
+.no-data-found {
+  position: absolute;
   top: 0;
-   left: 0; width: 100%;
-   height: 100%;
-   display: flex; 
-   align-items: center; 
-   justify-content: center;
-   background-color: rgba(255,255,255,0.8);
-   color: gray; font-weight: 500;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: gray;
+  font-weight: 500;
+}
+
+.title {
+  font-family: Inter;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  color: #2c2c2c;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.main-card {
+  margin-right: 24px;
+  height: 624px;
+  min-width: 250px;
+  border-radius: 12px;
+  gap: 16px;
+  padding: 24px;
+  background: #ffffff;
+  box-shadow: 0px 4px 10px 0px #0000001a;
 }

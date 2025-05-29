@@ -60,7 +60,7 @@ export class SubHeaderComponent {
   onCategorySelect(category:any): void {
     this.selectedCategory = category.code;
     if(this.selectedCategory){ // Integrated dashboard
-   this.router.navigate(['/public/dashboard', category.code]);
+      this.router.navigate(['/public/dashboard', category.code]);
     }
   }
 

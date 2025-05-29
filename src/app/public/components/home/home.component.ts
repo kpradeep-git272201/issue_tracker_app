@@ -16,7 +16,9 @@ dashboardId: any;
  constructor(private route: ActivatedRoute) {}
 
  ngOnInit(): void {
-    this.dashboardId = this.route.snapshot.paramMap.get('id');
-    console.log('ID:', this.dashboardId);
+   this.route.paramMap.subscribe(params => {
+      this.dashboardId = params.get('id');
+      console.log('Updated ID:', this.dashboardId);
+    });
   }
 }

@@ -5,10 +5,11 @@ import { IconsService } from './services/icons/icons.service';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FooterComponent } from './layout/components/footer/footer.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [SidenavComponent, MainHeaderComponent],
+  imports: [RouterOutlet], //SidenavComponent, MainHeaderComponent, 
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

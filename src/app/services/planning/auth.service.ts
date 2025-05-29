@@ -9,14 +9,12 @@ export class AuthService {
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   public isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
-
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-      if (this.isBrowser() && localStorage.getItem('isLoggedIn') === 'true') {
+    if (this.isBrowser() && localStorage.getItem('isLoggedIn') === 'true') {
       this.isLoggedInSubject.next(true);
     }
   }
-  
-  
+
   isBrowser(): boolean {
     return isPlatformBrowser(this.platformId);
   }
@@ -25,14 +23,14 @@ export class AuthService {
     if (this.isBrowser() && username === 'Demo123' && password === 'Demo@123') {
       localStorage.setItem('isLoggedIn', 'true');
       localStorage.setItem('username', username);
-        this.isLoggedInSubject.next(true);
+      this.isLoggedInSubject.next(true);
       return true;
     }
     return false;
   }
 
   logout(): void {
- if (this.isBrowser()) {
+    if (this.isBrowser()) {
       localStorage.removeItem('isLoggedIn');
       localStorage.removeItem('username');
       this.isLoggedInSubject.next(false);
@@ -40,7 +38,7 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
- if (this.isBrowser()) {
+    if (this.isBrowser()) {
       return localStorage.getItem('isLoggedIn') === 'true';
     }
     return false;

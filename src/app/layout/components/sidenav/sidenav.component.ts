@@ -16,7 +16,7 @@ import * as XLSX from 'xlsx';
   imports: [
     MaterialModule,
     RouterOutlet,
-    HeaderComponent,
+    // HeaderComponent,
     TimePeriodComponent,
     DashboardFilterComponent
 ],
@@ -49,15 +49,7 @@ export class SidenavComponent {
 
   /** *************************************** */
   exportData() {
-    // console.log('Exporting with filters:', {
-    //   selectedState: this.selectedState,
-    //   selectedDistrict: this.selectedDistrict,
-    //   selectedPanchayat: this.selectedPanchayat,
-    //   categories: this.categories,
-    //   status: this.status,
-    //   timePeriod: this.timePeriod,
-    //   comparisonTool: this.comparisonTool
-    // });
+
   }
 
   exportExcel() {

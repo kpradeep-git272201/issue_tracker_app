@@ -1,4 +1,4 @@
-<app-header (openedStatus)="getOpenedStat($event)"></app-header>
+<!-- <app-header (openedStatus)="getOpenedStat($event)"></app-header> -->
 <mat-sidenav-container>
     <mat-sidenav [(opened)]="opened" mode="side" 
     [class.sidenav-opened]="opened"
@@ -12,64 +12,20 @@
                     <mat-icon svgIcon="Filter" style="padding-right: 0.125rem; margin-bottom: -1px;"></mat-icon>
                     <span *ngIf="opened" class="filter">FILTERS</span>
                   </h4>
-              
-                   <!-- <button *ngIf="opened" mat-flat-button color="primary" class="admin-login-btn"
-                          style="padding: 2px 6px; font-size: 0.75rem; height: 40px; width: 100px; min-width: unset;" >
-                    <span class="btn-text" style="font-size: 0.75rem;">Apply</span>
-                  </button>  -->
-
-
-                  <!-- Show only when 'opened' is true -->
-<!-- <div *ngIf="opened" style="text-align: right;">
-    <button mat-flat-button color="primary" class="admin-login-btn"
-            (click)="applyFilter()"
-            style="padding: 2px 6px; font-size: 0.75rem; height: 35px; width: 110px; min-width: unset;">
-      <mat-icon style="font-size: 16px;">filter_list</mat-icon>
-      <span class="btn-text" style="font-size: 0.75rem;">Apply</span>
-    </button>
-  </div> -->
-  
                 </div>
               </div>
-
-        
-            <!-- <h4 (click)="getOpenSidenav()" style="margin-top: 0rem; cursor: pointer;" class="filter-underline">
-                <mat-icon svgIcon="Filter" style="padding-right: 0.125rem; margin-bottom: -1px;"></mat-icon>
-                <span *ngIf="opened" class="filter">FILTERS</span>
-            </h4> -->
-
-            <!-- <app-geographical-filter [opened]="opened"></app-geographical-filter> -->
-
             <section>
                 <app-dashboard-filter [opened]="opened"></app-dashboard-filter>
             </section>
-
-            <!-- <section>
-             <app-developement-category [opened]="opened"></app-developement-category>
-            </section> -->
-
-            <!-- <section>
-               <app-project-status [opened]="opened"></app-project-status>
-            </section> -->
 
             <section>
                 <app-time-period [opened]="opened"></app-time-period>
             </section>
 
-          
-
            <button *ngIf="opened" mat-button (click)="exportExcel()">
                 <mat-icon svgIcon="export" class="nav-icon custom-icon-color"></mat-icon>
                 <span style="color: #FFFFFF;">Export Data</span>     
             </button> 
-
-<!-- 
-            <button mat-stroked-button class="action-button" (click)="exportExcel()">
-                <mat-icon>download</mat-icon>
-                <span>Export</span>
-              </button> -->
-
-
 
         </div>
     </mat-sidenav>

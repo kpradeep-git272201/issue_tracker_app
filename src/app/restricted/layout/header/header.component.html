@@ -1,32 +1,28 @@
-<mat-toolbar class="main-header">
-    <div class="toolbar-left">
-      <img class="emblem" src="/icons/emblemofindian.svg" alt="Emblem of India" />
-      <img class="container" src="/icons/HeaderIcon.svg" alt="Container" />
+<div class="egram-header">
+    <div class="logo left">
+     
+      <img src="icons/egramIcon.svg" alt="Right Logo" />
     </div>
   
-    <span class="spacer"></span>
-  
-    <div class="toolbar-actions">
-      <button mat-icon-button aria-label="Notification" (click)="getDialog('Notification')">
-        <mat-icon svgIcon="Notification" class="nav-icon"></mat-icon>
-      </button>
-  
-      <button mat-icon-button aria-label="Settings" (click)="getDialog('Settings')">
-        <mat-icon svgIcon="Settings" class="nav-icon"></mat-icon>
-      </button>
-      <button *ngIf="isLoggedIn" [matMenuTriggerFor]="beforeMenu" mat-icon-button aria-label="Settings" (click)="getDialog('Settings')">
-        <mat-icon>person_outline</mat-icon>
-      </button>
-      <mat-menu #beforeMenu="matMenu" xPosition="before">
-        <button mat-menu-item>	<mat-icon>person</mat-icon>
-          Profile</button>
-        <button (click)="logout()" mat-menu-item>
-          <mat-icon>logout</mat-icon>
-          Logout</button>
-      </mat-menu>
-      <a *ngIf="!isLoggedIn" mat-flat-button (click)="getLogin()" target="_blank" class="admin-login-btn" style="cursor: pointer;">
-        <mat-icon>person_outline</mat-icon>
-        <span class="btn-text">Admin Login</span>
-      </a>
+    <div class="content-center">
+      
+      <div class="info-box">
+        <div class="info-grid">
+          <div><strong>State:</strong> Uttar Pradesh</div>
+          <div><strong>ZP:</strong> Aligarh</div>
+          <div><strong>BP:</strong> Dhanipur</div>
+          <div><strong>GP:</strong> Ikari(43650)</div>
+          <div><strong>Name:</strong> PUSHPENDRA CHAUDHARY</div>
+          <div><strong>Designation:</strong> GPA</div>
+          <div><strong>Email:</strong> Nikhil1989.2011.com</div>
+          <div><strong>Mobile:</strong> 8595825423</div>
+        </div>
+      </div>
+      
+      
     </div>
-  </mat-toolbar>
+  
+    <div class="logo right">
+      <img src="icons/Govlogo 2.svg" alt="Left Logo" />
+    </div>
+  </div>

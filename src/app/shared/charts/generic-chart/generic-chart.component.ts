@@ -154,6 +154,7 @@ export class GenericChartComponent implements OnInit {
 
   getChartFilter(filterData: any) {
     const chartData = this.commonService.getChartData();
+    debugger
 
     if (filterData) {
       const filteredData = chartData.filter((item: any) => {

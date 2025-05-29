@@ -39,3 +39,6 @@ mat-grid-list {
   margin-top: 1.5rem;
   /* width: 100%; */
 }
+.full-width-tile {
+  width: calc(99% - 0.5rem) !important;
+}

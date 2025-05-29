@@ -1,1 +1,55 @@
-<p>menu works!</p>
+<!-- <app-header (openedStatus)="getOpenedStat($event)"></app-header> -->
+<mat-sidenav-container>
+  <mat-sidenav
+    [(opened)]="opened"
+    mode="side"
+    [class.sidenav-opened]="opened"
+    [class.sidenav-closed]="!opened"
+    [style.width]="opened ? '19.313rem' : '4rem'"
+  >
+    <div class="filter-panel">
+      <div
+        class="filter1"
+        style="
+          border-bottom: 1px solid #ccc;
+          padding-bottom: 0.5rem;
+          margin-bottom: 1rem;
+        "
+      >
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          "
+        >
+          <h4
+            (click)="getOpenSidenav()"
+            style="margin: 0; cursor: pointer"
+            class="filter-underline"
+          >
+            <mat-icon
+              svgIcon="Filter"
+              style="padding-right: 0.125rem; margin-bottom: -1px"
+            ></mat-icon>
+            <span *ngIf="opened" class="filter">FILTERS</span>
+          </h4>
+        </div>
+      </div>
+      <section>
+        <!-- <app-dashboard-filter [opened]="opened"></app-dashboard-filter> -->
+      </section>
+
+      <section>
+        <!-- <app-time-period [opened]="opened"></app-time-period> -->
+      </section>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content
+    [ngClass]="opened ? 'main-content-opened' : 'main-content-closed'"
+    [style.margin-left]="opened ? '19.313rem' : '4rem'"
+    [style.padding-left]="opened ? '24px' : '24px'"
+  >
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

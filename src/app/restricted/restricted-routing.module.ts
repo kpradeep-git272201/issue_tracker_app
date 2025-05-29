@@ -6,10 +6,11 @@ import { MainComponent } from './layout/main/main.component';
 const routes: Routes = [
   {
     path: '',
-    component: MainComponent, 
+    component: MainComponent, // layout with sidenav + router-outlet
     children: [
       { path: '', component: DashboardComponent },
       // { path: 'profile', component: ProfileComponent },
+      // more restricted pages
     ]
   }
 ];

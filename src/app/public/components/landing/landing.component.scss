@@ -9,13 +9,11 @@
 .custom-card {
   width: 200px;
   height: 100px;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #333;
   font-weight: bold;
   text-align: center;
   transition: transform 0.3s ease;
@@ -40,30 +38,64 @@
 
 /* Color classes */
 .yellow {
-  background: linear-gradient(94.69deg, #FEF2C7 0%, #FFDB5B 49.92%);
+  background: linear-gradient(94.69deg, #fef2c7 0%, #ffdb5b 49.92%);
+  border: 1px solid #FBE07D;
+  box-shadow: 0px 4px 10px 0px #0000001a;
+  h3 {
+    color: #934210;
+  }
+  p {
+    color: #ae6305;
+  }
 }
 
 .blue {
-background: linear-gradient(94.69deg, #DAE9FF 0.06%, #AFCFFF 49.98%);
-
+  background: linear-gradient(94.69deg, #dae9ff 0.06%, #afcfff 49.98%);
+  border: 1px solid #AECFFF;
+  box-shadow: 0px 4px 10px 0px #0000001a;
+  h3 {
+    color: #3a58b6;
+  }
+  p {
+    color: #4479ee;
+  }
 }
 
 .green {
- background: linear-gradient(94.69deg, #DCFCE6 0.13%, #9EF3B9 50.05%);
+  background: linear-gradient(94.69deg, #dcfce6 0.13%, #9ef3b9 50.05%);
+  border: 1px solid #70FF9D;
+  box-shadow: 0px 4px 10px 0px #0000001a;
 
-  color: #1b5e20;
+  h3 {
+    color: #31784b;
+  }
+  p {
+    color: #18a34a;
+  }
 }
 
 .purple {
-background: linear-gradient(94.66deg, #F1E5FE -0.13%, #DDBCFF 50.11%);
+  background: linear-gradient(94.66deg, #f1e5fe -0.13%, #ddbcff 50.11%);
+  border: 1px solid #EBD6FF;
+  box-shadow: 0px 4px 10px 0px #0000001a;
 
-  color: #4a148c;
+  h3 {
+    color: #8351ae;
+  }
+  p {
+    color: #a453ed;
+  }
 }
 
 .orange {
-background: linear-gradient(94.66deg, #FFEDD5 -0.06%, #FFCB86 50.18%);
-border: 1px solid #FFC77D;
-box-shadow: 0px 4px 10px 0px #0000001A;
+  background: linear-gradient(94.66deg, #ffedd5 -0.06%, #ffcb86 50.18%);
+  border: 1px solid #FFC77D;
+  box-shadow: 0px 4px 10px 0px #0000001a;
 
-  color: #e65100;
+  h3 {
+    color: #b93e12;
+  }
+  p {
+    color: #ed692b;
+  }
 }

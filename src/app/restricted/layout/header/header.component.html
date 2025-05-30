@@ -7,7 +7,7 @@
     <div class="content-center">
       
       <div class="info-box">
-        <div class="info-grid">
+        <div class="info-grid" *ngIf="loggedUser">
           <div><strong>State:</strong> {{loggedUser.state}}</div>
           <div><strong>ZP:</strong> <span style="color: #444444;"> {{loggedUser.zp}}</span> </div>
           <div><strong>BP:</strong> <span style="color: #444444;"> {{loggedUser.bp}}</span> </div>

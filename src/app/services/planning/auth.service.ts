@@ -8,20 +8,38 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   public isLoggedIn$ = this.isLoggedInSubject.asObservable();
-  userJson = {
-    userName: 'ikari',
-    password: 'Admin@123',
-    data: {
-      state: 'Uttar Pradesh',
-      zp: 'Aligarh',
-      bp: 'Dhanipur',
-      gp: 'Ikari(43650)',
-      name: 'PUSHPENDRA CHAUDHARY',
-      designation: 'GPA',
-      email: 'Nikhil1989.2011.com',
-      mobile: '8595825423',
+  userJson: any = [
+    {
+      userName: 'ikari',
+      password: 'Admin@123',
+      data: {
+        state: 'Uttar Pradesh',
+        zp: 'Aligarh',
+        bp: 'Dhanipur',
+        gp: 'Ikari(43650)',
+        name: 'PUSHPENDRA CHAUDHARY',
+        designation: 'GPA',
+        email: 'Nikhil1989.2011.com',
+        mobile: '8595825423',
+        role: 'VADM',
+      },
     },
-  };
+    {
+      userName: 'ankhiya',
+      password: 'Admin@123',
+      data: {
+        state: 'Uttar Pradesh',
+        zp: 'Aligarh',
+        bp: 'Dhanipur',
+        gp: 'Ikari(43650)',
+        name: 'ANKHIYA',
+        designation: 'GPA',
+        email: 'Nikhil1989.2011.com',
+        mobile: '8595825423',
+        role: 'CHECKER',
+      },
+    },
+  ];
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     if (this.isBrowser() && localStorage.getItem('isLoggedIn') === 'true') {
       this.isLoggedInSubject.next(true);
@@ -33,11 +51,22 @@ export class AuthService {
   }
   login(username: string, password: string): boolean {
     // Temporary static login check (replace with API in future)
-    if (this.isBrowser() && username === this.userJson.userName.toLocaleLowerCase() && password === this.userJson.password) {
-      localStorage.setItem('isLoggedIn', 'true');
-      localStorage.setItem('userJson', JSON.stringify(this.userJson));
-
-      this.isLoggedInSubject.next(true);
+    let isLogged = false;
+    this.userJson.forEach((elememt: any) => {
+      if (!isLogged) {
+        if (
+          this.isBrowser() &&
+          elememt.userName == username &&
+          elememt.password == password
+        ) {
+          localStorage.setItem('isLoggedIn', 'true');
+          localStorage.setItem('userJson', JSON.stringify(elememt));
+          this.isLoggedInSubject.next(true);
+          isLogged = true;
+        }
+      }
+    });
+    if (isLogged) {
       return true;
     }
     return false;

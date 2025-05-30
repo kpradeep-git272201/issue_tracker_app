@@ -1,12 +1,18 @@
 <mat-toolbar color="primary" class="sub-header">
   <nav class="sub-nav">
      <a class="sub-nav-link" (click)="onTabClick('Report')" [ngClass]="{ 'active': activeTab === 'Report' }">
-      <mat-icon class="icon-size" svgIcon="Report"></mat-icon>
+      <mat-icon class="icon-size" svgIcon="house-fill 1"></mat-icon>
       <span class="menu-text" (click)="getPublicHome()">Home</span>
     </a>
+
+    <a class="sub-nav-link" (click)="onTabClick('Report')" [ngClass]="{ 'active': activeTab === 'Report' }">
+      <mat-icon class="icon-size" svgIcon="house-fill 1"></mat-icon>
+      <span class="menu-text">Report</span>
+    </a>
+
     <div class="sub-nav-item" (mouseenter)="onMouseEnterDashboard()" (mouseleave)="onMouseLeaveDashboard()">
       <a class="sub-nav-link" (click)="onTabClick('Dashboard')" [ngClass]="{ 'active': activeTab === 'Dashboard' }">
-        <mat-icon class="icon-size" svgIcon="dashboard"></mat-icon>
+        <mat-icon class="icon-size" svgIcon="house-fill 1"></mat-icon>
         <span class="menu-text-group">
           <span class="menu-text">Dashboard</span>
           <mat-icon class="dropdown-icon">
@@ -23,22 +29,14 @@
       </div>
     </div>
 
-    <a class="sub-nav-link" (click)="onTabClick('Report')" [ngClass]="{ 'active': activeTab === 'Report' }">
-      <mat-icon class="icon-size" svgIcon="Report"></mat-icon>
-      <span class="menu-text">Report</span>
-    </a>
     <a class="sub-nav-link" (click)="onTabClick('Projects')" [ngClass]="{ 'active': activeTab === 'Projects' }">
-      <mat-icon class="icon-size" svgIcon="Projects"></mat-icon>
-      <span class="menu-text">Projects</span>
+      <mat-icon class="icon-size" svgIcon="house-fill 1"></mat-icon>
+      <span class="menu-text">Documents</span>
     </a>
     <a class="sub-nav-link" (click)="onTabClick('Departments')" [ngClass]="{ 'active': activeTab === 'Departments' }">
-      <mat-icon class="icon-size" svgIcon="Departments"></mat-icon>
-      <span class="menu-text">Departments</span>
+      <mat-icon class="icon-size" svgIcon="house-fill 1"></mat-icon>
+      <span class="menu-text">FAQs</span>
     </a>
-    <a class="sub-nav-link" (click)="onTabClick('Administration')"
-      [ngClass]="{ 'active': activeTab === 'Administration' }">
-      <mat-icon class="icon-size" svgIcon="Administration"></mat-icon>
-      <span class="menu-text">Administration</span>
-    </a>
+   
   </nav>
 </mat-toolbar>

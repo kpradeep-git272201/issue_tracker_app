@@ -45,6 +45,7 @@ export class IconsService {
       'Fushia',
       'Language',
       'LoginUser',
+      'house-fill 1',
       'Devider'
     ];
   }

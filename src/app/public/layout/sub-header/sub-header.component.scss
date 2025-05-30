@@ -45,7 +45,8 @@
 
   .dropdown-icon {
     font-size: 1.1rem;
-    line-height: 1;
+    line-height: 1.6;
+    color: white;
   }
 
   .sub-nav {
@@ -161,6 +162,7 @@
 
 .sub-nav-link:hover .menu-text {
   transform: scale(1.1);
+  text-decoration: underline;
 }
 
 .sub-header .dropdown-icon {
@@ -173,4 +175,5 @@
   background-color: #e0f7fa;
   font-weight: bold;
   /* border-left: 4px solid #0288d1;  */
+  
 }

@@ -46,7 +46,11 @@ export class IconsService {
       'Language',
       'LoginUser',
       'house-fill 1',
-      'Devider'
+      'Devider',
+      'SidebarIcon',
+      'AddIcon',
+      'Visibility'
+
     ];
   }
 }

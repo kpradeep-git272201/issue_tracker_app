@@ -65,6 +65,6 @@ export class SubHeaderComponent {
   }
 
   getPublicHome(){
-    this.router.navigate(["public/home"])
+    this.router.navigate(["/"])
   }
 }

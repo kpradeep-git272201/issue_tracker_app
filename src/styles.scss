@@ -95,3 +95,17 @@ body {
   background: #ffffff;
   box-shadow: 0px 4px 10px 0px #0000001a;
 }
+
+
+.vill-img {
+  background-image: url("/assets/images/village.svg");
+  background-size: cover;     /* Optional: scales the image */
+  background-repeat: no-repeat; /* Optional: prevents tiling */
+  background-position: center; /* Optional: centers the image */
+  width: 100%;               /* Add width and height */
+  height: 200px;
+  
+}
+.text-white{
+  color: #FFFFFF;
+}

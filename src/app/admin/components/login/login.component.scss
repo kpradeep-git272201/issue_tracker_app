@@ -123,12 +123,82 @@
       }
       
       :host {
-        display: block;
-        border-radius: 4px !important;
-        padding: 20px;
-        background: linear-gradient(23.26deg, #F49A0B 0%, #EB5D0C 41.86%);
-        box-shadow: 0px 12px 50px 0px #0000001A;
-        backdrop-filter: blur(10.600000381469727px)
+         display: block;
+        // border-radius: 4px !important;
+        // padding: 20px;
+        // background: linear-gradient(23.26deg, #F49A0B 0%, #EB5D0C 41.86%);
+        // background-image: url('/assets/images/dashboard-comp-bg.svg');
+        // box-shadow: 0px 12px 50px 0px #0000001A;
+        // backdrop-filter: blur(10.600000381469727px)
 
+          background-image: url('/assets/images/pop-up login.svg');
+          background-position: center;
+          object-fit: contain;
+          background-size: auto;
       }
           
+      .emblemLogin{
+        width: 44.699px;
+        height: 76px;
+        aspect-ratio: 44.70/76.00;
+      }
+      .mat-mdc-dialog-content {
+        display: block;
+        flex-grow: 1;
+        box-sizing: border-box;
+        margin: 0;
+        overflow: auto;
+        max-height: 100vh;
+    }
+    .emblem-logo-container{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .loginParaTop{
+      color: #FFF;
+      font-family: "Open Sans";
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      margin-bottom: 0px;
+    }
+    .loginParaBase{
+      color: #FFF;
+      text-align: center;
+      font-family: "Open Sans";
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+    .loginIntoText{
+      color: #FFF;
+      text-align: center;
+      font-family: "Open Sans";
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      margin-bottom: 1rem;
+    }
+    ::ng-deep .mdc-notched-outline--no-label{
+      border-radius: 8px;
+        border: 1px solid #F1F3F6;
+    }
+
+    // ::ng-deep input {
+    //   background-color: #ffffff !important; 
+    //   color: #000000 !important; 
+    // }
+    
+    ::ng-deep input::placeholder {
+      color: #ffffff !important; 
+      opacity: 1 !important;
+    }
+    
+    ::ng-deep .cdk-overlay-backdrop-showing{
+      backdrop-filter: blur(5px);
+    }

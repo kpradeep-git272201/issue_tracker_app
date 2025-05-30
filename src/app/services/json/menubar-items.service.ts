@@ -107,8 +107,170 @@ export class MenubarItemsService {
           }
         ]
       },
+      {
+        title: 'Bank Account Management',
+        icon: 'SidebarIcon',
+        options: [
+          {
+            label: 'Add',
+            icon: 'AddIcon',
+            route: '/'
+          },
+          {
+            label: 'View',
+            icon: 'Visibility',
+            route: '/'
+          }
+        ]
+      },
+      {
+        title: 'Master Data Management',
+        icon: 'SidebarIcon',
+        options: [
+          {
+            label: 'Add',
+            icon: 'AddIcon',
+            route: '/'
+          },
+          {
+            label: 'View',
+            icon: 'Visibility',
+            route: '/'
+          }
+        ]
+      },
 
+      {
+        title: 'Vendors Management',
+        icon: 'SidebarIcon',
+        options: [
+          {
+            label: 'Add',
+            icon: 'AddIcon',
+            route: '/'
+          },
+          {
+            label: 'View',
+            icon: 'Visibility',
+            route: '/'
+          }
+        ]
+      },
 
+      {
+        title: 'Voucher/E-Payment Management',
+        icon: 'SidebarIcon',
+        options: [
+          {
+            label: 'Add',
+            icon: 'AddIcon',
+            route: '/'
+          },
+          {
+            label: 'View',
+            icon: 'Visibility',
+            route: '/'
+          }
+        ]
+      },
+      {
+        title: 'Accounting Management',
+        icon: 'SidebarIcon',
+        options: [
+          {
+            label: 'Add',
+            icon: 'AddIcon',
+            route: '/'
+          },
+          {
+            label: 'View',
+            icon: 'Visibility',
+            route: '/'
+          }
+        ]
+      },
+      {
+        title: 'Assets Register',
+        icon: 'SidebarIcon',
+        options: [
+          {
+            label: 'Add',
+            icon: 'AddIcon',
+            route: '/'
+          },
+          {
+            label: 'View',
+            icon: 'Visibility',
+            route: '/'
+          }
+        ]
+      },
+      {
+        title: 'mActionSoft',
+        icon: 'SidebarIcon',
+        options: [
+          {
+            label: 'Add',
+            icon: 'AddIcon',
+            route: '/'
+          },
+          {
+            label: 'View',
+            icon: 'Visibility',
+            route: '/'
+          }
+        ]
+      },
+      {
+        title: 'Panchayat Window',
+        icon: 'SidebarIcon',
+        options: [
+          {
+            label: 'Add',
+            icon: 'AddIcon',
+            route: '/'
+          },
+          {
+            label: 'View',
+            icon: 'Visibility',
+            route: '/'
+          }
+        ]
+      },
+
+      {
+        title: 'Weather Forecast',
+        icon: 'SidebarIcon',
+        options: [
+          {
+            label: 'Add',
+            icon: 'AddIcon',
+            route: '/'
+          },
+          {
+            label: 'View',
+            icon: 'Visibility',
+            route: '/'
+          }
+        ]
+      },
+
+      {
+        title: 'Internet Connection',
+        icon: 'SidebarIcon',
+        options: [
+          {
+            label: 'Add',
+            icon: 'AddIcon',
+            route: '/'
+          },
+          {
+            label: 'View',
+            icon: 'Visibility',
+            route: '/'
+          }
+        ]
+      },
     ];
   }
 

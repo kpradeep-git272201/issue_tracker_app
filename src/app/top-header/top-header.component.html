@@ -26,14 +26,7 @@
       <mat-icon class="Devider" svgIcon="Devider"></mat-icon>
     </div>
 
-    <button
-      *ngIf="isLoggedIn"
-      class="top-logout"
-      [matMenuTriggerFor]="beforeMenu"
-      mat-icon-button
-      aria-label="Settings"
-      (click)="getDialog('Settings')"
-    >
+    <button *ngIf="isLoggedIn" class="top-logout" [matMenuTriggerFor]="beforeMenu" mat-icon-button aria-label="Settings" (click)="getDialog('Settings')">
       <mat-icon class="LoginUser" svgIcon="LoginUser"></mat-icon>
       <span>Logout</span>
     </button>
@@ -46,7 +39,7 @@
     </mat-menu>
     <button *ngIf="!isLoggedIn" class="top-logout">
       <mat-icon class="LoginUser" svgIcon="LoginUser"></mat-icon>
-      <span>Logout</span>
+      <span>Login</span>
     </button>
   </div>
 </div>

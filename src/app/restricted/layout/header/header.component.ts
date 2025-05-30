@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 isLoggedIn: boolean | undefined;
+  loggedUser: any;
 
   constructor(private dialog: MatDialog,
     private authService: AuthService,
@@ -25,6 +26,11 @@ isLoggedIn: boolean | undefined;
     this.authService.isLoggedIn$.subscribe((status) => {
       this.isLoggedIn = status;
     });
+
+    const userString = localStorage.getItem('userJson');
+    if(userString){
+      this.loggedUser=JSON.parse(userString);
+    }
   }
   getLogin() {
     const dialogRef = this.dialog.open(LoginComponent, {

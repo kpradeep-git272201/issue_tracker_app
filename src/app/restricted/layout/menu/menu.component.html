@@ -39,6 +39,27 @@
       </div>
       <section>
         
+        <mat-accordion>
+          <mat-expansion-panel *ngFor="let panel of menubarList" hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon class="icon-color" [svgIcon]="panel.icon" style="margin-right: 7px;"></mat-icon>
+                {{ panel.title }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="profile-options">
+              <button 
+                mat-button 
+                *ngFor="let option of panel.options"
+                [routerLink]="option.route"
+              >
+                <mat-icon class="icon-color add-view-icon" [svgIcon]="option.icon"></mat-icon>
+                {{ option.label }}
+              </button>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+        
       </section>
 
 
@@ -52,3 +73,6 @@
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+
+

@@ -45,7 +45,10 @@ export class IconsService {
       'Fushia',
       'Language',
       'LoginUser',
-      'Devider'
+      'Devider',
+      'SidebarIcon',
+      'AddIcon',
+      'Visibility'
     ];
   }
 }

@@ -49,7 +49,8 @@ export class IconsService {
       'Devider',
       'SidebarIcon',
       'AddIcon',
-      'Visibility'
+      'Visibility',
+      'emblemLogin'
 
     ];
   }

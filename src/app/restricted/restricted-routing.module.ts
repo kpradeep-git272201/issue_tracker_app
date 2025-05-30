@@ -9,8 +9,6 @@ const routes: Routes = [
     component: MainComponent, // layout with sidenav + router-outlet
     children: [
       { path: '', component: DashboardComponent },
-      // { path: 'profile', component: ProfileComponent },
-      // more restricted pages
     ]
   }
 ];

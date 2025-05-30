@@ -37,7 +37,7 @@
         Logout
       </button>
     </mat-menu>
-    <button *ngIf="!isLoggedIn" class="top-logout">
+    <button *ngIf="!isLoggedIn" class="top-logout" (click)="getLogin()">
       <mat-icon class="LoginUser" svgIcon="LoginUser"></mat-icon>
       <span>Login</span>
     </button>

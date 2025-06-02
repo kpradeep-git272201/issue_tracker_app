@@ -225,7 +225,7 @@ button {
     padding: 3px 6px;
     line-height: normal;
     height: 44px;
-    margin-top: 10px;
+    margin-top: 5px !important;
   }
   ::ng-deep .mdc-button{
     background: white !important;
@@ -253,3 +253,34 @@ button {
     margin-left: 0 !important;
 }
 
+::ng-deep .mat-expansion-panel-header-title {
+    height: 34px;
+    transition: color 0.3s ease;
+  }
+  
+  ::ng-deep .mat-expansion-panel {
+    border-radius: 10px !important;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  ::ng-deep .mat-expansion-panel:not(.mat-expanded) 
+    .mat-expansion-panel-header:not([aria-disabled="true"]):hover {
+    background: linear-gradient(180deg, #F49A0B -14.67%, #EB5D0C 100%) !important;
+    transition: background 0.3s ease;
+  }
+  
+  ::ng-deep .mat-expansion-panel:not(.mat-expanded) 
+    .mat-expansion-panel-header:not([aria-disabled="true"]):hover 
+    .mat-expansion-panel-header-title {
+    color: white !important;
+  }
+  
+  ::ng-deep .mdc-button {
+    height: 34px !important;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  ::ng-deep .mdc-button:hover {
+    background: #FFEFDF !important;
+  }
+  

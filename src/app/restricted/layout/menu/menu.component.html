@@ -42,14 +42,18 @@
           <mat-expansion-panel *ngFor="let menu of menubarList">
             <mat-expansion-panel-header *ngIf="menu.subMenus && menu.subMenus.length > 0">
               <mat-panel-title>
-                {{ menu?.name }}
+                <mat-icon 
+                class="icon-color"
+                  svgIcon="SidebarIcon"
+                  style="padding-right: 0.125rem; margin-bottom: -1px"
+                ></mat-icon>   {{ menu?.name }}
               </mat-panel-title>
             </mat-expansion-panel-header>
         
             <ng-container *ngIf="menu.subMenus && menu.subMenus.length > 0">
               <mat-accordion multi>
-                <mat-expansion-panel *ngFor="let submenu of menu.subMenus">
-                  <mat-expansion-panel-header *ngIf="submenu.subMenus && submenu.subMenus.length > 0">
+                <mat-expansion-panel  *ngFor="let submenu of menu.subMenus">
+                  <mat-expansion-panel-header class="sub-menu" *ngIf="submenu.subMenus && submenu.subMenus.length > 0">
                     <mat-panel-title>
                       {{ submenu?.name }}
                     </mat-panel-title>
@@ -58,7 +62,7 @@
                   <ng-container *ngIf="submenu.subMenus && submenu.subMenus.length > 0">
                     <div *ngFor="let subsubmenu of submenu.subMenus" style="margin-left: 16px; padding: 4px 0;">
                       <button mat-button [routerLink]="subsubmenu.url">
-                        {{ subsubmenu?.name }}
+                         {{ subsubmenu?.name }}
                       </button>
                     </div>
                   </ng-container>

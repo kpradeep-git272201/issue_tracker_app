@@ -85,11 +85,6 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    const data={
-        "username":"PR-ANKIA-V-ADM",
-        "password":"0e7517141fb53f21ee439b355b5a1d0a"
-    }
-    this.getLogin(data);
     if (this.loginForm.valid) {
       const loginData = this.loginForm.getRawValue();
       this.count++;
@@ -148,12 +143,5 @@ export class LoginComponent {
     this.cdRef.detectChanges();
   }
 
-
-  getLogin(requestBody:any){
-
-    this.apiService.login(requestBody).subscribe((resp)=>{
-
-    })
-  }
 
 }

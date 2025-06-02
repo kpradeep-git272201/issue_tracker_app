@@ -245,3 +245,11 @@ button {
 ::ng-deep .mat-expansion-panel-header-title, .mat-expansion-panel-header-description{
         margin-right: 0px !important;
 }
+
+button {
+    font-weight: 600;
+}
+::ng-deep .mat-expansion-panel-body div {
+    margin-left: 0 !important;
+}
+

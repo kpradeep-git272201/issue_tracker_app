@@ -50,5 +50,12 @@ export class ApiService {
     );
   }
 
+
+    getDataFromEgram(): Observable<any> {
+       const url = `${AppConfig.BASE_API}hello`;
+      return this.http.get(url, {
+         responseType: 'text' as 'json'
+      });
+    }
   
 }

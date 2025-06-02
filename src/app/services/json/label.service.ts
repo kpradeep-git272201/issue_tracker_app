@@ -28109,7 +28109,7 @@ export class LabelService {
   "Ques.Pria1014": "Opening Balance under CSS, State Schemes, CFC, SFC (if any)(in Rs)"
 }
 
-  getMessageJson(){
+  getLabelJson(){
     return this.labels;
   }
 

@@ -5,6 +5,7 @@ import { SharedService } from '../../../services/filter/shared.service';
 import { RouterOutlet } from '@angular/router';
 import { MenubarItemsService } from '../../../services/json/menubar-items.service';
 import { RouterModule } from '@angular/router'; 
+import { LabelService } from '../../../services/json/label.service';
 
 @Component({
   selector: 'app-menu',
@@ -20,15 +21,18 @@ export class MenuComponent {
   timePeriod = 2023;
   comparisonTool = false;
   menubarList :any = [];
+  labels: any={};
 
   constructor(
     private commonService: CommonService,
     private sharedService: SharedService,
     private menubarItemsService: MenubarItemsService,
+    private labelService: LabelService
   ) {}
 
   ngOnInit() {
     this.appList = this.commonService.getAppList();
+    this.labels=this.labelService.getLabelJson();
     this.getMenubarList();
   }
 

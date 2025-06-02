@@ -85,6 +85,7 @@ export class LoginComponent {
   }
 
   onSubmit() {
+    this.getLogin();
     if (this.loginForm.valid) {
       const loginData = this.loginForm.getRawValue();
       this.count++;
@@ -144,4 +145,16 @@ export class LoginComponent {
   }
 
 
+ getLogin(){
+  this.apiService.getDataFromEgram().subscribe((resp)=>{
+    console.log(resp);
+  })
+// //requestBody:any
+//     this.apiService.login({
+//     "username":"PR-ANKIA-V-ADM",
+//     "password":"0e7517141fb53f21ee439b355b5a1d0a"
+// }).subscribe((resp)=>{
+//   console.log(resp);
+//     })
+  }
 }

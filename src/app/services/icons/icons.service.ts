@@ -50,8 +50,11 @@ export class IconsService {
       'SidebarIcon',
       'AddIcon',
       'Visibility',
-      'emblemLogin'
-
+      'emblemLogin',
+      'pachayatCouncil',
+      'planingAndReporting',
+      'Accounting',
+      'Audit'
     ];
   }
 }

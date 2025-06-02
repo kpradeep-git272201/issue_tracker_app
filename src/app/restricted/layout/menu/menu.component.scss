@@ -284,3 +284,28 @@ button {
     background: #FFEFDF !important;
   }
   
+
+  ::ng-deep .mat-drawer-inner-container {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+  
+  /* Scrollbar styling for Webkit browsers (Chrome, Edge, Safari) */
+  ::ng-deep .mat-drawer-inner-container::-webkit-scrollbar {
+    width: 4px; /* Change this value for width */
+  }
+  
+  ::ng-deep .mat-drawer-inner-container::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+  
+  ::ng-deep .mat-drawer-inner-container::-webkit-scrollbar-thumb {
+    background: #e7905d;
+    border-radius: 4px;
+  }
+  
+  ::ng-deep .mat-drawer-inner-container::-webkit-scrollbar-thumb:hover {
+    background: #EB5D0C;
+  }
+  

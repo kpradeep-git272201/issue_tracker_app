@@ -38,25 +38,45 @@
         </div>
       </div>
       <section>
-        
-        <mat-accordion>
-          <mat-expansion-panel *ngFor="let panel of menubarList" hideToggle>
-            <mat-expansion-panel-header>
+        <mat-accordion multi>
+          <mat-expansion-panel *ngFor="let menu of menubarList">
+            <mat-expansion-panel-header *ngIf="menu.subMenus && menu.subMenus.length > 0">
               <mat-panel-title>
-                <mat-icon class="icon-color" [svgIcon]="panel.icon" style="margin-right: 7px;"></mat-icon>
-                {{ panel.title }}
+                {{ menu?.name }}
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <div class="profile-options">
-              <button 
-                mat-button 
-                *ngFor="let option of panel.options"
-                [routerLink]="option.route"
-              >
-                <mat-icon class="icon-color add-view-icon" [svgIcon]="option.icon"></mat-icon>
-                {{ option.label }}
+        
+            <ng-container *ngIf="menu.subMenus && menu.subMenus.length > 0">
+              <mat-accordion multi>
+                <mat-expansion-panel *ngFor="let submenu of menu.subMenus">
+                  <mat-expansion-panel-header *ngIf="submenu.subMenus && submenu.subMenus.length > 0">
+                    <mat-panel-title>
+                      {{ submenu?.name }}
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+        
+                  <ng-container *ngIf="submenu.subMenus && submenu.subMenus.length > 0">
+                    <div *ngFor="let subsubmenu of submenu.subMenus" style="margin-left: 16px; padding: 4px 0;">
+                      <button mat-button [routerLink]="subsubmenu.url">
+                        {{ subsubmenu?.name }}
+                      </button>
+                    </div>
+                  </ng-container>
+        
+                  <ng-container *ngIf="!submenu.subMenus || submenu.subMenus.length === 0">
+                    <button mat-button [routerLink]="submenu.url" style="margin-left: 16px;">
+                      {{ submenu?.name }}
+                    </button>
+                  </ng-container>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </ng-container>
+        
+            <ng-container *ngIf="!menu.subMenus || menu.subMenus.length === 0">
+              <button mat-button [routerLink]="menu.url">
+                {{ menu?.name }}
               </button>
-            </div>
+            </ng-container>
           </mat-expansion-panel>
         </mat-accordion>
         

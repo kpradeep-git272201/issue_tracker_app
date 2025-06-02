@@ -1,0 +1,159 @@
+.keyRoll-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  
+.card-container{
+    padding: 20px 40px;
+}
+.comp-heading{
+    color: #313131;
+    font-family: "Open Sans";
+    font-size: 36px;
+    font-weight: 700;
+    line-height: normal;
+}
+.comp-para{
+    color: #313131;
+    font-family: "Open Sans";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 2rem;
+}
+.first-key-card{
+    border-radius: 10px;
+    border: 1px solid #FFCFEB;
+    background: #FDF1F8;
+}
+.second-key-card{
+    border-radius: 10px;
+    border: 1px solid #B0EEC6;
+    background: #EFFDF4;
+}
+.third-key-card{
+    border-radius: 10px;
+    border: 1px solid #D5E9FF;
+    background: #EEF6FF;
+}
+.forth-key-card{
+    border-radius: 10px;
+    border: 1px solid #FFEC8A;
+    background: #FEFBEB;
+}
+
+.top-key-header{
+    color: #111827;
+    text-align: center;
+    font-family: "Open Sans";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+}
+.firstKey-main-content{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.firstKey-main-content h6 , .second-small-card h6{
+    color: #48494A;
+    text-align: center;
+    font-family: "Open Sans";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 1rem;
+} 
+.firstKey-main-content p , .second-small-card p{
+    color: #606060;
+    text-align: center;
+    font-family: "Open Sans";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.progress-text{
+    text-align: center;
+    font-weight: 500;
+}
+.progress-bar {
+    width: 90%;
+    height: 10px;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    margin: 0 auto;
+    background-color: #e1e1e1;
+    overflow: hidden;
+    margin-top: 0.6rem;
+  }
+  
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, #d82a8d, #db3875);
+    border-radius: 8px 0 0 8px;
+    transition: width 0.5s ease-in-out;
+    
+  }
+
+  .progress-fill2{
+    height: 100%;
+    background: #22A651;
+    border-radius: 8px 0 0 8px;
+    transition: width 0.5s ease-in-out;
+    
+  }
+
+  .progress-fill3{
+    height: 100%;
+    background: #F59E0B;
+    border-radius: 8px 0 0 8px;
+    transition: width 0.5s ease-in-out;
+    
+  }
+
+
+  .small-card-cotainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+
+
+  .accouting-para {
+    display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 20px;
+  }
+  
+  .accouting-para p {
+    margin: 0;
+  }
+  
+  .accouting-para p:nth-child(odd) {
+    text-align: left;
+  }
+  
+  .accouting-para p:nth-child(even) {
+    text-align: right;
+  }
+  
+
+  .accouting-para p{
+    color: #606060;
+font-family: "Open Sans";
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+  }
+  .forthcard-para p{
+    margin-bottom: 0;
+  }

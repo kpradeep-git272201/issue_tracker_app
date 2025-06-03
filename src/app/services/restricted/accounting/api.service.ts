@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, ObservableInput, of, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { AppConfig } from '../../config/app.config';
+import { AppConfig } from '../../../config/app.config';
+
 
 
 
@@ -14,8 +15,7 @@ export class ApiService {
   handleError!: (err: any, caught: Observable<any>) => ObservableInput<any>;
   loggedIn: boolean | undefined;
   constructor(
-    private http: HttpClient,
-    private router: Router,
+    private http: HttpClient
   ) {}
 
   public request(
@@ -34,22 +34,20 @@ export class ApiService {
   }
 
 
-  login(userData: any) {
-    console.log('data' + JSON.stringify(userData));
-    const url = `${AppConfig.BASE_API}${AppConfig.endpointPath.login}`;
-    const headers = new HttpHeaders().set('content-type', 'application/json').set('Accept', 'application/json');
-    return this.request('POST', url, { body: userData, headers: headers, reportProgress: false, observe: 'response' }).pipe(
+    getMenus(){
+    const token = localStorage.getItem('token');
+    const url = `${AppConfig.BASE_API}${AppConfig.endpointPath.menus}`;
+    const headers = new HttpHeaders().set('content-type', 'application/json').set('Accept', 'application/json').set('Authorization', `Bearer ${token}`);
+    return this.request('GET', url, { headers: headers, reportProgress: false, observe: 'response' }).pipe(
       map(resp => {
-        this.loggedIn = true;
         return resp;
       }),
       catchError(error => {
-        this.loggedIn = false;
-        return of(false);
+        alert(error);
+        return of(error);
       })
     );
   }
-
 
     getDataFromEgram(): Observable<any> {
        const url = `${AppConfig.BASE_API}hello`;

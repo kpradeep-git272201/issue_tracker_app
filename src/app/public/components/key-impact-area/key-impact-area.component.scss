@@ -26,21 +26,32 @@
     border-radius: 10px;
     border: 1px solid #FFCFEB;
     background: #FDF1F8;
+    transition: transform 0.3s ease;
 }
 .second-key-card{
     border-radius: 10px;
     border: 1px solid #B0EEC6;
     background: #EFFDF4;
+    transition: transform 0.3s ease;
 }
 .third-key-card{
     border-radius: 10px;
     border: 1px solid #D5E9FF;
     background: #EEF6FF;
+    transition: transform 0.3s ease;
 }
 .forth-key-card{
     border-radius: 10px;
     border: 1px solid #FFEC8A;
     background: #FEFBEB;
+    transition: transform 0.3s ease;
+}
+
+.first-key-card:hover,
+.second-key-card:hover,
+.third-key-card:hover,
+.forth-key-card:hover {
+  transform: scale(1.05);
 }
 
 .top-key-header{
@@ -53,6 +64,7 @@
     display: flex;
     justify-content: center;
     gap: 7px;
+    margin-top: 1rem;
 }
 .firstKey-main-content{
     display: flex;

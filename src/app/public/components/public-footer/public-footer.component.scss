@@ -1,0 +1,123 @@
+
+footer {
+    display: flex;
+    padding: 1.25rem 0.625rem;
+    align-items: center;
+    background: #333;
+    flex-direction: row;
+  }
+  
+  .footer-lists-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .footer-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    border-radius: 85px;
+    border: 1px solid #FFF;
+    padding: 4px 4rem;
+  }
+  
+  .footer-list a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    position: relative;
+  }
+  
+  .footer-list a:not(:last-child)::after {
+    content: "|";
+    color: gray;
+    margin-left: 10px;
+  }
+  
+  .footer-list a:hover {
+    text-decoration: none;
+    color: #17A34A;
+  }
+  
+  .footer-para {
+    color: #fff;
+    text-align: center;
+    padding: 0 10%;
+    font-size: 14px;
+    margin-top: 1rem;
+  }
+  
+
+  @media (max-width: 768px) {
+    .footer-list {
+      gap: 0.5rem;
+    }
+  
+    .footer-list a:not(:last-child)::after {
+      margin-left: 5px;
+    }
+  
+    .footer-logo {
+      margin-top: 1rem;
+    }
+  
+    .footer-para {
+      padding: 0 5%;
+      font-size: 13px;
+    }
+  }
+  
+  
+  @media (max-width: 768px) {
+    footer {
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+  
+    .footer-list {
+      padding: 6px 2rem;
+      gap: 0.5rem;
+      flex-direction: row;
+      border: none;
+    }
+  
+    .footer-list a:not(:last-child)::after {
+      margin-left: 5px;
+    }
+  
+    .footer-logo {
+      margin-top: 1rem;
+    }
+  
+    .footer-para {
+      padding: 0 5%;
+      font-size: 13px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .footer-list {
+      padding: 6px 1rem;
+      flex-direction: column;
+      align-items: center;
+      border: none;
+    }
+  
+    .footer-list a:not(:last-child)::after {
+      display: none;
+    }
+  
+    .footer-list a {
+      font-size: 13px;
+    }
+  
+    .footer-para {
+      font-size: 12px;
+    }
+  }

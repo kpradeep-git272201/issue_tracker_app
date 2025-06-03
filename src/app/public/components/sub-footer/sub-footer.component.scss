@@ -1,0 +1,73 @@
+
+
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  /* Main logo carousel */
+  .logo-carousel {
+    display: flex;
+    animation: scrollLeft 30s linear infinite;
+  }
+  
+  /* Each logo item */
+  .logo-item {
+    flex: 0 0 auto;
+    width: 16.66%; 
+    transition: transform 0.3s ease; /* smooth transition */
+
+  }
+  
+  .logo-item {
+    cursor: pointer;
+    border-radius: 0.625rem;
+    border: 1px solid #EEE;
+    background: #FFF;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.10);
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-item:hover{
+    transform: scale(1.02);
+    border : 1px solid rgb(44, 156, 184)
+  }
+  .logo-item img {
+    max-height: 80px;
+  }
+  
+
+  
+  /* Scroll Animation */
+    @keyframes scrollLeft {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  } 
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .logo-item img {
+      max-height: 60px;
+    }
+    .logo-text {
+      font-size: 12px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .logo-item img {
+      max-height: 50px;
+    }
+    .logo-text {
+      font-size: 11px;
+    }
+  }
+

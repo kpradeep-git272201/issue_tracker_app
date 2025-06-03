@@ -7,10 +7,11 @@ import { KeyImpactAreaComponent } from "../key-impact-area/key-impact-area.compo
 import { ReportsComponent } from "../reports/reports.component";
 import { SupportingDocumentComponent } from "../supporting-document/supporting-document.component";
 import { PublicFooterComponent } from "../public-footer/public-footer.component";
+import { SubFooterComponent } from '../sub-footer/sub-footer.component';
 
 @Component({
   selector: 'app-landing',
-  imports: [MaterialModule, TopHeaderComponent, HeaderComponent, SubHeaderComponent, KeyImpactAreaComponent, ReportsComponent, SupportingDocumentComponent, PublicFooterComponent],
+  imports: [MaterialModule, TopHeaderComponent, HeaderComponent, SubHeaderComponent, KeyImpactAreaComponent, ReportsComponent, SupportingDocumentComponent, PublicFooterComponent,SubFooterComponent],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })

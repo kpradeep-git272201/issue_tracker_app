@@ -127,83 +127,31 @@
     color: #ffffff;
   }
 }
-.vill-img {
-  position: relative;
-  background-image: url("/assets/images/village.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  /*  height: 250px; */
-  height: 500px;
 
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 20px;
-  color: white;
+ .vill-img {
+  position: relative;
+  width: 100%;
+  height: 500px; 
   overflow: hidden;
 }
 
-.vill-img::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(16, 16, 16, 0.77) 50%,
-    rgba(24, 24, 24, 0.7) 74.04%,
-    rgba(44, 44, 44, 0.54) 100%
-  );
-  z-index: 0;
+.carousel {
+  display: flex;
+  width: 200%;
+  height: 100%;
+  animation: slide 8s infinite;
 }
 
-.vill-content {
-  position: relative;
-  z-index: 1;
-  /*  max-width: 600px; */
-  padding-left: 35px;
-  width: 50%;
+.carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.title {
-  color: #fff;
-  font-family: "Open Sans";
-  font-size: 48px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  text-transform: lowercase;
-}
-
-.subtitle {
-  color: #fff;
-  font-family: "Open Sans";
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  text-transform: lowercase;
-
-  white-space: nowrap;
-
-  text-overflow: ellipsis;
-}
-
-.description {
-  color: #fff;
-  font-family: "Open Sans";
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-}
-
-.explore-button {
-  background-color: white;
-  color: #ff6600 !important;
-  padding: 5px 12px;
-  border-radius: 6px;
-  font-weight: bold;
-  font-size: 13px;
+@keyframes slide {
+  0% { transform: translateX(0); }
+  45% { transform: translateX(0); }
+  50% { transform: translateX(-50%); }
+  95% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
 }

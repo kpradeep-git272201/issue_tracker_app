@@ -29,7 +29,7 @@ interface Scheme {
   imports: [
     MaterialModule,
     CustomSelectComponent
-],
+  ],
   templateUrl: './dashboard-filter.component.html',
   styleUrl: './dashboard-filter.component.scss'
 })
@@ -42,12 +42,12 @@ export class DashboardFilterComponent {
   districtList: any[] = [];
   blockList: any[] = [];
   gpList: any[] = [];
-  schemeList:any = [];
-  schemeComponentList : any = [];
-  themeList : any = [];
-  focusAreaList : any = [];
-  movableList : any = [];
-  activityList : any = [];
+  schemeList: any = [];
+  schemeComponentList: any = [];
+  themeList: any = [];
+  focusAreaList: any = [];
+  movableList: any = [];
+  activityList: any = [];
 
   selectedFinancialYear: any = null;
   selectedState: any = null;
@@ -56,54 +56,56 @@ export class DashboardFilterComponent {
   selectedGp: any = null;
   selectedScheme: any = null;
   selectedSchemeComponent: any = null;
-  selectedThemeList : any = null ;
+  selectedThemeList: any = null;
   selectedExpeditureType: string = '1';
-  selectedFocusArea  : any = null;
-  selectMovable : any = null;
-  selectedActivity :any = null;
+  selectedFocusArea: any = null;
+  selectMovable: any = null;
+  selectedActivity: any = null;
 
-  constructor(   private finYrService: FinyearService,
+  constructor(private finYrService: FinyearService,
     private stateService: StateService,
     private zpListServive: ZpListService,
     private bpListService: BpListService,
     private gpListService: GpListService,
-    private sharedService : SharedService,
-    private schemeListService : SchemelistService,
-    private themelistService : ThemelistService,
-    private focusAreaService : FocusareaListService,
-    private movableService : MovableListService,
-    private activityService : ActivityListService
-  ){ }
+    private sharedService: SharedService,
+    private schemeListService: SchemelistService,
+    private themelistService: ThemelistService,
+    private focusAreaService: FocusareaListService,
+    private movableService: MovableListService,
+    private activityService: ActivityListService
+  ) { }
 
-    ngOnInit(): void {
-      // finyr
+  ngOnInit(): void {
+    // finyr
     this.financialYr = [
       { code: '0', name: 'All Financial Year' },
       ...this.finYrService.getFinYr()
     ];
-    this.selectedFinancialYear = this.finYrService.getFinYr()[0]; 
+    this.selectedFinancialYear = this.finYrService.getFinYr()[0];
 
     // stateList
+    const allStates = { code: 0, value: 'All States' };
+    const otherStates = this.stateService.getStateList();
     this.stateList = [
-      { code: 0, value: 'All States' },
-      ...this.stateService.getStateList()
+      allStates,
+      ...otherStates.sort((a, b) => a.value.localeCompare(b.value))
     ];
-    this.selectedState =this.stateList[0];
+    this.selectedState = this.stateList[0];
     this.onStateSelected(this.selectedState);
     this.getSchemeComponentsBySchemeCodes();
     this.getThemeList();
     this.getFocusArea();
-    this.getActivity() 
+    this.getActivity()
     this.getMovableList();
-    
+
   }
-  onFinYrSelected (event: any): void {  
-   if(event){
-    this.selectedFinancialYear = event
-   }
-   this.getThemeList()
+  onFinYrSelected(event: any): void {
+    if (event) {
+      this.selectedFinancialYear = event
+    }
+    this.getThemeList()
   }
-  onStateSelected(event: any): void {  
+  onStateSelected(event: any): void {
     this.selectedState = event || null;
     this.selectedDistrict = null;
     this.selectedBlock = null;
@@ -119,12 +121,17 @@ export class DashboardFilterComponent {
 
     const zpData = this.zpListServive.getZpList();
     const matchedState = zpData.find(entry => entry.stateCode === event.code);
+
     this.districtList = matchedState
-  ? [{ code: 0, value: 'All Districts' }, ...matchedState.zpList]
-  : [];
-  
-   this.schemeList = this.getAllSchemes(event.code);
-   this.getSchemeComponentsBySchemeCodes()
+      ? [
+        { code: 0, value: 'All Districts' },
+        ...matchedState.zpList.sort((a, b) => a.value.localeCompare(b.value))
+      ]
+      : [];
+
+
+    this.schemeList = this.getAllSchemes(event.code);
+    this.getSchemeComponentsBySchemeCodes()
   }
 
   onDistrictSelected(event: any): void {
@@ -138,11 +145,17 @@ export class DashboardFilterComponent {
       return;
     }
 
-    const bpData = this.bpListService.getBpList();
-    const matchedDistrict = bpData.find(entry => entry.zpCode === event.code);
-    this.blockList = matchedDistrict
-    ? [{ code: 0, value: 'All Blocks' }, ...matchedDistrict.bpList]
-    : [];
+      const bpData = this.bpListService.getBpList();
+      const matchedDistrict = bpData.find(entry => entry.zpCode === event.code);
+      this.blockList = matchedDistrict
+        ? [
+            { code: 0, value: 'All Blocks' },
+            ...matchedDistrict.bpList.sort((a, b) => a.value.localeCompare(b.value))
+          ]
+        : [];
+
+
+
   }
 
   onBlockSelected(event: any): void {
@@ -157,8 +170,9 @@ export class DashboardFilterComponent {
     const gpData = this.gpListService.getGpList();
     const matchedBlock = gpData.find(entry => entry.bpCode === event.code);
     this.gpList = matchedBlock
-    ? [{ code: 0, value: 'All GPs' }, ...matchedBlock.gpList]
-    : []; 
+      ? [{ code: 0, value: 'All GPs' }, ...matchedBlock.gpList]
+      : [];
+      
   }
 
   onGpSelected(event: any): void {
@@ -182,53 +196,53 @@ export class DashboardFilterComponent {
       activities: [] as any[],
       expenditureType: this.selectedExpeditureType,
     };
-  
+
     this.schemeList.forEach((group: { filterData: any[] }) => {
       const selectedSchemesInGroup = group.filterData.filter(scheme => scheme.checked);
       selectedFilters.schemes.push(...selectedSchemesInGroup);
     });
-  
+
     if (this.schemeComponentList?.length > 0) {
       this.schemeComponentList.forEach((group: { filterData: any[] }) => {
         const selectedComponents = group.filterData.filter(component => component.checked);
         selectedFilters.schemeComponents.push(...selectedComponents);
       });
     }
-  
+
     if (this.themeList?.length > 0) {
       this.themeList.forEach((group: { filterData: any[] }) => {
         const selectedThemes = group.filterData.filter(theme => theme.checked);
         selectedFilters.themes.push(...selectedThemes);
       });
     }
-  
+
     if (this.focusAreaList?.length > 0) {
       this.focusAreaList.forEach((group: { filterData: any[] }) => {
         const selectedFocusAreas = group.filterData.filter(area => area.checked);
         selectedFilters.focusAreas.push(...selectedFocusAreas);
       });
     }
-  
+
     if (this.movableList?.length > 0) {
       this.movableList.forEach((group: { filterData: any[] }) => {
         const selectedMovables = group.filterData.filter(movable => movable.checked);
         selectedFilters.movables.push(...selectedMovables);
       });
     }
-  
+
     if (this.activityList?.length > 0) {
       this.activityList.forEach((group: { filterData: any[] }) => {
         const selectedActivities = group.filterData.filter(activity => activity.checked);
         selectedFilters.activities.push(...selectedActivities);
       });
     }
-  
+
     console.log('Selected Filters:', selectedFilters);
     this.sharedService.updateDataFilter(selectedFilters);
   }
-  
-  
-  
+
+
+
   getAllSchemes(stateCode: number): { filtervalue: string, filterData: Scheme[] }[] {
     const schemeListObj = this.schemeListService.getSchemeList();
     const schemeData = (schemeListObj?.filterData || []) as any[];
@@ -241,7 +255,7 @@ export class DashboardFilterComponent {
       const combinedSchemes: Scheme[] = schemeData
         .flatMap(item => item.schemeList || [])
         .map((scheme: any) => ({ ...scheme, checked: true }));
-  
+
       if (combinedSchemes.length > 0) {
         result = [{
           filtervalue,
@@ -253,7 +267,7 @@ export class DashboardFilterComponent {
       if (matched && matched.schemeList && matched.schemeList.length > 0) {
         const schemesWithChecked = (matched.schemeList as any[])
           .map((scheme: any) => ({ ...scheme, checked: true }));
-  
+
         result = [{
           filtervalue,
           filterData: schemesWithChecked
@@ -276,7 +290,7 @@ export class DashboardFilterComponent {
         componentGroup.schemeComponentList.forEach(comp => {
           componentFilterData.push({
             ...comp,
-            checked: true 
+            checked: true
           });
         });
       }
@@ -306,15 +320,15 @@ export class DashboardFilterComponent {
       this.themeList = [];
     }
   }
-  
+
   getFocusArea() {
     const allFocusArea = this.focusAreaService.getFocusAreaList();
-  
+
     if (allFocusArea.filterData.length > 0) {
       allFocusArea.filterData.forEach(area => {
         (area as any).checked = true;
       });
-  
+
       this.focusAreaList = [{
         filtervalue: allFocusArea.filterName,
         filterData: allFocusArea.filterData
@@ -324,11 +338,11 @@ export class DashboardFilterComponent {
     }
     // console.log(this.focusAreaList)
   }
-  
-  getMovableList(){
+
+  getMovableList() {
     const allMovable = this.movableService.getMovableAndImmovable();
 
-    if(allMovable.filterData.length > 0){
+    if (allMovable.filterData.length > 0) {
       // allMovable.filterData.forEach(movable =>{
       //   (movable as any).checked = true;
       // })
@@ -337,19 +351,19 @@ export class DashboardFilterComponent {
         filtervalue: allMovable.filterName,
         filterData: allMovable.filterData
       }]
-    }else{
+    } else {
       this.movableList = []
     }
   }
 
   getActivity() {
-    const allActivity= this.activityService.getActivityList()
-  
+    const allActivity = this.activityService.getActivityList()
+
     if (allActivity.filterData.length > 0) {
       allActivity.filterData.forEach(activity => {
         (activity as any).checked = true;
       });
-  
+
       this.activityList = [{
         filtervalue: allActivity.filterName,
         filterData: allActivity.filterData

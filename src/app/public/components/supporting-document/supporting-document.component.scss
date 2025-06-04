@@ -11,7 +11,6 @@
     flex-wrap: wrap;
     margin-left: 30px;
     margin-right: 30px;
-    /* height: 100px; */
 
 }
 
@@ -56,7 +55,6 @@
 }
 
 .card-wrapper {
-    /*  margin: 1.5rem 1.5rem 0 0; */
     padding-bottom: 20px;
     background: #F9FAFB;
 }
@@ -212,7 +210,7 @@
     border-radius: 8px;
     font-size: 0.875rem;
     background-color: #f5f5f5;
-    color: #333;
+    color: #333!important;
     display: flex;
     align-items: center;
     gap: 4px;
@@ -225,7 +223,7 @@
     border-radius: 8px;
     font-size: 0.875rem;
     background-color: #f5f5f5;
-    color: #333;
+    color: #333!important;
     display: flex;
     align-items: center;
     gap: 4px;
@@ -321,7 +319,6 @@
 
 mat-card {
     background-color: #FFFFFF;
-    /*   box-shadow: 0px 4px 10px 0px #0000001A; */
     border-radius: 0.750rem;
     border: 1px solid var(--border-primary, #E1E7EC);
     margin-left: 50px;
@@ -376,27 +373,8 @@ mat-card {
     color: white !important;
 }
 
-/* .preview-btn mat-icon {
-    color: black !important;
-} */
 
-/* .preview-btn {
-    color: black;
-    text-align: center;
-    font-family: "Open Sans";
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin-top: 15px;
-    border: none;
-    border-radius: 10px;
-    background: #F3F4F6;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
-}
- */
-
- .preview-btn {
+.preview-btn {
     border-radius: 10px;
     background: #F3F4F6;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
@@ -404,8 +382,8 @@ mat-card {
     border: none;
     font-weight: 700;
     line-height: normal;
-    color: black;
-    
+    color: black!important;
+
 
 }
 
@@ -607,4 +585,11 @@ mat-card {
     .search-field {
         width: 100%;
     }
+}
+
+.action-button.active-all span,
+.action-button.active-pfms span,
+.action-button.active-sops span,
+.action-button.active-manual span {
+  color: #fff !important;
 }

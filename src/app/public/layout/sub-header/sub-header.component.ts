@@ -20,9 +20,9 @@ export class SubHeaderComponent {
 
   categories = [
     { value: 'Planning and Reporting Dashboard', code: 1 },
-    { value: 'Profile Dashboard' , code: 2},
-    { value: 'LGD Dashboard' , code: 3},
-     { value: 'Audit Online Dashboard' , code: 4}
+    // { value: 'Profile Dashboard' , code: 2},
+    // { value: 'LGD Dashboard' , code: 3},
+    //  { value: 'Audit Online Dashboard' , code: 4}
   ];
 
   constructor(private router: Router){

@@ -106,7 +106,7 @@ export class LoginComponent {
           if (resp?.status == 200) {
             localStorage.setItem('loggedUser', JSON.stringify(resp.body));
             // localStorage.setItem('token', resp.headers.get('authorization'));
-            localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQUi1BTktJQS1WLUFETSIsInJvbGUiOiJWQSIsImVudGl0eUNvZGUiOjEzNDI1MywieWVhciI6IjIwMjQtMjAyNSIsImRpc3RyaWN0IjozNTUsInN0YXRlQ29kZSI6MjMsImVudGl0eVR5cGVJZCI6MSwidXNlcklkIjo0NjIyODEsInN1YkRpc3RyaWN0Ijo0MTQwLCJpYXQiOjE3NDkwMTQ4NTgsImV4cCI6MTc0OTEwMTI1OH0.dE10UhdgzMjbWzN-PjPL-peieykkvFlcnZycnCQrl1w');
+            localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQUi1BTktJQS1WLUFETSIsInJvbGUiOiJWQSIsImVudGl0eUNvZGUiOjEzNDI1MywieWVhciI6IjIwMjQtMjAyNSIsImRpc3RyaWN0IjozNTUsInN0YXRlQ29kZSI6MjMsImVudGl0eVR5cGVJZCI6MSwidXNlcklkIjo0NjIyODEsInN1YkRpc3RyaWN0Ijo0MTQwLCJpYXQiOjE3NDkwMjU4NjAsImV4cCI6MTc0OTExMjI2MH0.GIAQ-OrwQhO5XjT1vli7Kc2NCQjOL83sRVU-m1ytgNs');
             console.log('User authenticated'); 
             this.dialogRef.close();
             this.router.navigate(['/restricted']);

@@ -80,8 +80,9 @@ export class AuthService {
 
   logout(): void {
     if (this.isBrowser()) {
-      localStorage.removeItem('username');
-      this.isLoggedInSubject.next(false);
+      localStorage.removeItem('loggedUser');
+      localStorage.removeItem('token');
+      // this.isLoggedInSubject.next(false);
     }
   }
 

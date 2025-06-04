@@ -4,7 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from '../../../services/planning/auth.service';
 import { Router } from '@angular/router';
-import { ApiService } from '../../../services/restricted/accounting/api.service';
+import { AccountingService } from '../../../services/restricted/accounting/accounting.service';
+import { Md5 } from 'ts-md5';
+
 
 @Component({
   selector: 'app-login',
@@ -25,7 +27,7 @@ export class LoginComponent {
     private cdRef: ChangeDetectorRef,
     private authService: AuthService,
     private router: Router,
-    private apiService: ApiService,
+
   ) {}
 
   ngOnInit() {
@@ -93,15 +95,19 @@ export class LoginComponent {
         this.updateCaptchaValidator(this.count);
         return;
       }
+      const password=loginData.password
+      const md5HashedPassword = Md5.hashStr(password);
       const requestBody = {
-        username: loginData.username,
-        password: loginData.password,
+        username: loginData.username?.toUpperCase(),
+        password: md5HashedPassword,
       };
       this.authService.getLogin(requestBody).subscribe(
         (resp) => {
           if (resp?.status == 200) {
-            localStorage.setItem('token', resp.body.Data.token);
-            console.log('User authenticated');
+            localStorage.setItem('loggedUser', JSON.stringify(resp.body));
+            // localStorage.setItem('token', resp.headers.get('authorization'));
+            localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQUi1BTktJQS1WLUFETSIsInJvbGUiOiJWQSIsImVudGl0eUNvZGUiOjEzNDI1MywieWVhciI6IjIwMjQtMjAyNSIsImRpc3RyaWN0IjozNTUsInN0YXRlQ29kZSI6MjMsImVudGl0eVR5cGVJZCI6MSwidXNlcklkIjo0NjIyODEsInN1YkRpc3RyaWN0Ijo0MTQwLCJpYXQiOjE3NDkwMTQ4NTgsImV4cCI6MTc0OTEwMTI1OH0.dE10UhdgzMjbWzN-PjPL-peieykkvFlcnZycnCQrl1w');
+            console.log('User authenticated'); 
             this.dialogRef.close();
             this.router.navigate(['/restricted']);
           } else {
@@ -166,7 +172,10 @@ export class LoginComponent {
     };
     this.authService.getLogin(requestBody).subscribe((resp) => {
       if (resp?.status == 200) {
-        localStorage.setItem('token', resp.body.Data.token);
+        
+        localStorage.setItem('loggedUser', resp.body);
+          localStorage.setItem('token', resp.headers.get('authorization'));
+        // localStorage.setItem('token', resp.body.Data.token);
         console.log('User authenticated');
         this.dialogRef.close();
         this.router.navigate(['/restricted']); // protected route

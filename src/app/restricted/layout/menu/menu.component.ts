@@ -6,6 +6,7 @@ import { RouterOutlet } from '@angular/router';
 import { MenubarItemsService } from '../../../services/json/menubar-items.service';
 import { RouterModule } from '@angular/router'; 
 import { LabelService } from '../../../services/json/label.service';
+import { AccountingService } from '../../../services/restricted/accounting/accounting.service';
 
 @Component({
   selector: 'app-menu',
@@ -27,7 +28,8 @@ export class MenuComponent {
     private commonService: CommonService,
     private sharedService: SharedService,
     private menubarItemsService: MenubarItemsService,
-    private labelService: LabelService
+    private labelService: LabelService,
+      private accountingService: AccountingService,
   ) {}
 
   ngOnInit() {
@@ -53,5 +55,19 @@ export class MenuComponent {
     if(menuBar.length >0){
       this.menubarList = menuBar
     }
+
+    this.accountingService.getMenus().subscribe(
+        (resp) => {
+          if (resp?.status == 200) { 
+
+          } else {  
+
+          }
+        },
+        (error) => {
+          // Handle error from backend
+          console.log('Login error', error);  
+        }
+      )
   }
 }

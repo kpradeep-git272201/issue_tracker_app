@@ -8,14 +8,14 @@
       
       <div class="info-box">
         <div class="info-grid" *ngIf="loggedUser">
-          <div><strong>State:</strong> {{loggedUser.state}}</div>
-          <div><strong>ZP:</strong> <span style="color: #444444;"> {{loggedUser.zp}}</span> </div>
-          <div><strong>BP:</strong> <span style="color: #444444;"> {{loggedUser.bp}}</span> </div>
-          <div><strong>GP:</strong> <span style="color: #444444;"> {{loggedUser.gp}}</span> </div>
+          <div><strong>State:</strong> {{loggedUser?.stateCode}}</div>
+          <div><strong>ZP:</strong> <span style="color: #444444;"> {{loggedUser.grandParentLocalBodyName}}</span> </div>
+          <div><strong>BP:</strong> <span style="color: #444444;"> {{loggedUser.parentLocalBodyName}}</span> </div>
+          <div><strong>GP:</strong> <span style="color: #444444;"> {{loggedUser.localBodyName}}</span> </div>
           <div><strong>Name:</strong> <span style="color: #444444;"> {{loggedUser.name}}</span> </div>
           <div><strong>Designation:</strong><span style="color: #444444;"> {{loggedUser.designation}}</span></div>
           <div><strong>Email:</strong> <span style="color: #444444;"> {{loggedUser.email}}</span> </div>
-          <div><strong>Mobile:</strong> <span style="color: #444444;"> {{loggedUser.mobile}}</span> </div>
+          <div><strong>Mobile:</strong> <span style="color: #444444;"> {{loggedUser.telephone}}</span> </div>
         </div>
       </div>
 

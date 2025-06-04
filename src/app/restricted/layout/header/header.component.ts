@@ -29,9 +29,9 @@ export class HeaderComponent {
     });
 
     if (isPlatformBrowser(this.platformId)) {
-      const userString = localStorage.getItem('userJson');
+      const userString = localStorage.getItem('loggedUser');
       if (userString) {
-        this.loggedUser = JSON.parse(userString).data;
+        this.loggedUser = JSON.parse(userString);
       }
     }
   }

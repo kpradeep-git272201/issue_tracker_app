@@ -145,8 +145,8 @@
 
 .carousel {
   display: flex;
-  width: 100vw;
-  animation: slide 6s infinite ease-in-out;
+  width: 300vw;
+  animation: slide 7s infinite ease-in-out;
 }
 
 .carousel img {
@@ -157,70 +157,26 @@
 
 @keyframes slide {
   0% {
-    transform: translateX(0);
+    transform: translateX(0vw);
   }
 
-  45% {
-    transform: translateX(0);
+  30% {
+    transform: translateX(0vw);
   }
 
-  50% {
+  40% {
     transform: translateX(-100vw);
   }
 
-  95% {
+  70% {
     transform: translateX(-100vw);
+  }
+
+  80% {
+    transform: translateX(-200vw);
   }
 
   100% {
-    transform: translateX(0);
+    transform: translateX(-200vw);
   }
-} 
- 
-/////////////////////
-
-
-/* 
-.vill-img {
-  position: relative;
-  width: 100%;
-  height: 70vh;
-  overflow: hidden;
 }
-
-.carousel {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.carousel img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100%;
-  object-fit: contain;
-  opacity: 0;
-  animation: fade-cycle 12s infinite;
-}
-
-.carousel img:nth-child(1) {
-  animation-delay: 0s;
-}
-
-.carousel img:nth-child(2) {
-  animation-delay: 4s;
-}
-
-.carousel img:nth-child(3) {
-  animation-delay: 8s;
-}
-
-@keyframes fade-cycle {
-  0%   { opacity: 1; }
-  33.33% { opacity: 1; }
-  33.34% { opacity: 0; }
-  100% { opacity: 0; }
-}
-  */

@@ -5,14 +5,21 @@
     padding: 16px;
     border: 1px solid #ddd;
     border-radius: 12px;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     background-color: #fff;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
     flex-wrap: wrap;
     margin-left: 30px;
     margin-right: 30px;
-
+    transition: all 0.3s ease;
 }
+
+.document-card:hover {
+    transform: scale(1.002);
+    cursor: pointer;
+    background-color: #F9FAFB;
+}
+
 
 .doc-icon {
     flex-shrink: 0;
@@ -60,7 +67,7 @@
 }
 
 .header-name {
-    font-family: Inter, sans-serif;
+    font-family: "Open Sans";
     font-weight: 600;
     font-size: 20px;
     color: #000;
@@ -210,7 +217,7 @@
     border-radius: 8px;
     font-size: 0.875rem;
     background-color: #f5f5f5;
-    color: #333!important;
+    color: #333 !important;
     display: flex;
     align-items: center;
     gap: 4px;
@@ -223,7 +230,7 @@
     border-radius: 8px;
     font-size: 0.875rem;
     background-color: #f5f5f5;
-    color: #333!important;
+    color: #333 !important;
     display: flex;
     align-items: center;
     gap: 4px;
@@ -243,7 +250,7 @@
     align-items: center;
     padding: 0.750rem 1rem;
     background-color: #ffffff;
-    font-family: 'Inter', sans-serif;
+    font-family: "Open Sans";
     font-size: 0.875rem;
     margin-top: 20px;
     border-radius: 0.750rem;
@@ -361,7 +368,7 @@ mat-card {
 }
 
 .download-btn {
-    background-color: #F49A0B !important;
+    background: linear-gradient(180deg, #F49A0B -14.67%, #EB5D0C 100%) !important;
     color: white !important;
     border-radius: 10px;
     border: 1px solid #F3F4F6;
@@ -382,28 +389,29 @@ mat-card {
     border: none;
     font-weight: 700;
     line-height: normal;
-    color: black!important;
+    color: black !important;
 
 
 }
 
 .active-all {
-    background-color: rgb(139, 25, 25);
+    /*  background-color: rgb(139, 25, 25); */
+    background: linear-gradient(111deg, #BB2326 34.29%, #551011 100.1%);
     color: #fff;
 }
 
 .active-pfms {
-    background-color: #459749;
+    background: linear-gradient(112deg, #7FBC41 28.32%, #4A761E 100.1%);
     color: #fff;
 }
 
 .active-sops {
-    background-color: rgb(84, 188, 219);
+    background: linear-gradient(114deg, #2E9FD4 46.85%, #18536E 96.65%);
     color: #fff;
 }
 
 .active-manual {
-    background-color: #8444ac;
+    background: linear-gradient(111deg, #7B67AD 43.22%, #322A47 99.9%);
     color: #fff;
 }
 
@@ -591,5 +599,5 @@ mat-card {
 .action-button.active-pfms span,
 .action-button.active-sops span,
 .action-button.active-manual span {
-  color: #fff !important;
+    color: #fff !important;
 }

@@ -1,10 +1,12 @@
 <!-- Apply Button -->
-<button *ngIf="opened" mat-flat-button color="primary" (click)="applyFilter()" class="admin-login-btn apply-filter-button">
-    <span class="btn-text" style="font-size: 0.75rem;">Apply</span>
+<button *ngIf="opened" mat-flat-button color="outline" (click)="applyFilter()" class=" apply-filter-button">
+  <mat-icon>filter_list</mat-icon>
+   <span class="btn-text" style="font-size: 0.75rem;">Apply</span>
   </button>
   
-  <!-- Financial Year -->
-  <div class="custom-margin-top">
+  <div style="position: relative; bottom: 2rem;">
+    <!-- Financial Year -->
+  <div class="">
     <app-custom-select
       [options]="financialYr"
       [(selected)]="selectedFinancialYear"
@@ -179,4 +181,5 @@
     <mat-radio-button value="1">Expenditure</mat-radio-button>
     <mat-radio-button value="2">Non-Expenditure</mat-radio-button>
   </mat-radio-group>
+  </div>
   

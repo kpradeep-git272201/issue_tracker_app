@@ -167,12 +167,13 @@ export class DashboardFilterComponent {
 
 
   applyFilter(): void {
+    debugger
     const selectedFilters = {
-      financialYear: this?.selectedFinancialYear?.code ?? null,
-      stateCode: this?.selectedState?.code ?? null,
-      districtCode: this?.selectedDistrict?.code ?? null,
-      blockCode: this?.selectedBlock?.code ?? null,
-      gpCode: this?.selectedGp?.code ?? null,
+      financialYear: this?.selectedFinancialYear?.code ?? 0,
+      stateCode: this?.selectedState?.code ?? 0,
+      districtCode: this?.selectedDistrict?.code ?? 0,
+      blockCode: this?.selectedBlock?.code ?? 0,
+      gpCode: this?.selectedGp?.code ?? 0,
       schemes: [] as any[],
       schemeComponents: [] as any[],
       themes: [] as any[],
@@ -321,6 +322,7 @@ export class DashboardFilterComponent {
     } else {
       this.focusAreaList = [];
     }
+    // console.log(this.focusAreaList)
   }
   
   getMovableList(){

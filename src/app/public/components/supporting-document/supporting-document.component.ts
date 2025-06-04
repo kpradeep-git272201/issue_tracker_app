@@ -34,7 +34,7 @@ export class SupportingDocumentComponent {
 
   globalFilter = '';
   currentPage = 1;
-  pageSize = 10;
+  pageSize = 5;
 
   sortField = signal<string | null>(null);
   sortAsc = signal<boolean>(true);

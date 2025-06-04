@@ -43,7 +43,7 @@
             <mat-expansion-panel-header *ngIf="menu.subMenus && menu.subMenus.length > 0">
               <mat-panel-title>
                 <mat-icon 
-                class="icon-color"
+                  class="icon-color"
                   svgIcon="SidebarIcon"
                   style="padding-right: 0.125rem; margin-bottom: -1px"
                 ></mat-icon>   {{ labels[menu?.name] || menu?.name}}
@@ -55,7 +55,7 @@
                 <mat-expansion-panel  *ngFor="let submenu of menu.subMenus">
                   <mat-expansion-panel-header class="sub-menu" *ngIf="submenu.subMenus && submenu.subMenus.length > 0">
                     <mat-panel-title>
-                      {{ labels[ submenu?.name ] || submenu?.name }} 
+                      {{ labels[ submenu?.url ] || submenu?.name }} 
                     </mat-panel-title>
                   </mat-expansion-panel-header>
         

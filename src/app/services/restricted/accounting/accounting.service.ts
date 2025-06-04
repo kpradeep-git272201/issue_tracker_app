@@ -28,27 +28,27 @@ export class AccountingService {
       .pipe(catchError(this.handleError));
   }
 
-  getMenus() {
-    const token = localStorage.getItem('token');
-    const url = `${AppConfig.BASE_API}${AppConfig.endpointPath.menus}`;
-    const headers = new HttpHeaders()
-      .set('content-type', 'application/json')
-      .set('Accept', 'application/json')
-      .set('Authorization', `Bearer ${token}`);
-    return this.request('GET', url, {
-      headers: headers,
-      reportProgress: false,
-      observe: 'response',
-    }).pipe(
-      map((resp) => {
-        return resp;
-      }),
-      catchError((error) => {
-        alert(error);
-        return of(error);
-      }),
-    );
-  }
+  // getMenus() {
+  //   const token = localStorage.getItem('token');
+  //   const url = `${AppConfig.BASE_API}${AppConfig.endpointPath.menus}`;
+  //   const headers = new HttpHeaders()
+  //     .set('content-type', 'application/json')
+  //     .set('Accept', 'application/json')
+  //     .set('Authorization', `Bearer ${token}`);
+  //   return this.request('GET', url, {
+  //     headers: headers,
+  //     reportProgress: false,
+  //     observe: 'response',
+  //   }).pipe(
+  //     map((resp) => {
+  //       return resp;
+  //     }),
+  //     catchError((error) => {
+  //       alert(error);
+  //       return of(error);
+  //     }),
+  //   );
+  // }
 
   getDataFromEgram(): Observable<any> {
     const url = `${AppConfig.BASE_API}hello`;

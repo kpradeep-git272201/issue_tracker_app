@@ -56,18 +56,18 @@ export class MenuComponent {
       this.menubarList = menuBar
     }
 
-    this.accountingService.getMenus().subscribe(
-        (resp) => {
-          if (resp?.status == 200) { 
+    // this.accountingService.getMenus().subscribe(
+    //     (resp) => {
+    //       if (resp?.status == 200) { 
 
-          } else {  
+    //       } else {  
 
-          }
-        },
-        (error) => {
-          // Handle error from backend
-          console.log('Login error', error);  
-        }
-      )
+    //       }
+    //     },
+    //     (error) => {
+    //       // Handle error from backend
+    //       console.log('Login error', error);  
+    //     }
+    //   )
   }
 }

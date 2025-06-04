@@ -254,8 +254,9 @@ export class DashboardFilterComponent {
     if (stateCode === 0) {
       const combinedSchemes: Scheme[] = schemeData
         .flatMap(item => item.schemeList || [])
-        .map((scheme: any) => ({ ...scheme, checked: true }));
-
+        .map((scheme: any) => ({ ...scheme, checked: true }))
+        .sort((a, b) => a.value.localeCompare(b.value)); 
+  
       if (combinedSchemes.length > 0) {
         result = [{
           filtervalue,
@@ -266,8 +267,9 @@ export class DashboardFilterComponent {
       const matched = schemeData.find(entry => entry.stateCode === stateCode);
       if (matched && matched.schemeList && matched.schemeList.length > 0) {
         const schemesWithChecked = (matched.schemeList as any[])
-          .map((scheme: any) => ({ ...scheme, checked: true }));
-
+          .map((scheme: any) => ({ ...scheme, checked: true }))
+          .sort((a, b) => a.value.localeCompare(b.value)); 
+  
         result = [{
           filtervalue,
           filterData: schemesWithChecked
@@ -276,6 +278,7 @@ export class DashboardFilterComponent {
     }
     return result;
   }
+  
 
   getSchemeComponentsBySchemeCodes() {
     const selectedSchemeCodes: any[] = [];
@@ -283,8 +286,10 @@ export class DashboardFilterComponent {
       const selectedSchemes = group.filterData.filter(scheme => scheme.checked);
       selectedSchemeCodes.push(...selectedSchemes.map(s => s.code));
     });
+  
     const schemeComponentData = this.schemeListService.getSchemeComponentList();
     const componentFilterData: any[] = [];
+  
     schemeComponentData.filterData.forEach(componentGroup => {
       if (selectedSchemeCodes.includes(componentGroup.schemeCode)) {
         componentGroup.schemeComponentList.forEach(comp => {
@@ -295,6 +300,7 @@ export class DashboardFilterComponent {
         });
       }
     });
+    componentFilterData.sort((a, b) => a.value.localeCompare(b.value));
     this.schemeComponentList = [
       {
         filtervalue: schemeComponentData.filtervalue,
@@ -302,6 +308,7 @@ export class DashboardFilterComponent {
       }
     ];
   }
+  
 
   getThemeList() {
     const allTheme = this.themelistService.getThemeList();
@@ -323,21 +330,24 @@ export class DashboardFilterComponent {
 
   getFocusArea() {
     const allFocusArea = this.focusAreaService.getFocusAreaList();
-
+  
     if (allFocusArea.filterData.length > 0) {
       allFocusArea.filterData.forEach(area => {
         (area as any).checked = true;
       });
-
+      const sortedFocusAreas = allFocusArea.filterData.sort((a, b) =>
+        a.value.localeCompare(b.value)
+      );
+  
       this.focusAreaList = [{
         filtervalue: allFocusArea.filterName,
-        filterData: allFocusArea.filterData
+        filterData: sortedFocusAreas
       }];
     } else {
       this.focusAreaList = [];
     }
-    // console.log(this.focusAreaList)
   }
+  
 
   getMovableList() {
     const allMovable = this.movableService.getMovableAndImmovable();
@@ -357,21 +367,23 @@ export class DashboardFilterComponent {
   }
 
   getActivity() {
-    const allActivity = this.activityService.getActivityList()
-
+    const allActivity = this.activityService.getActivityList();
     if (allActivity.filterData.length > 0) {
       allActivity.filterData.forEach(activity => {
         (activity as any).checked = true;
       });
-
+      const sortedActivities = allActivity.filterData.sort((a, b) =>
+        a.value.localeCompare(b.value)
+      );
+  
       this.activityList = [{
         filtervalue: allActivity.filterName,
-        filterData: allActivity.filterData
+        filterData: sortedActivities
       }];
     } else {
       this.activityList = [];
     }
   }
-
+  
 
 }

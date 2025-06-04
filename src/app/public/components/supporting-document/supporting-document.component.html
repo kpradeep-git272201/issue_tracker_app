@@ -8,8 +8,6 @@
     <mat-card>
         <div class="header-container1">
             <div class="header-actions1">
-
-
                 <button mat-stroked-button class="action-button" [ngClass]="{'active-all': activeFilter === 'all'}"
                     (click)="filterDocuments('all')">
                     <span>All Documents</span>
@@ -30,7 +28,6 @@
                     <span>User Manual</span>
                 </button>
 
-
             </div>
         </div>
 
@@ -41,13 +38,6 @@
                     <input matInput placeholder="Search" type="text" [(ngModel)]="globalFilter"
                         (input)="applyGlobalFilter()" />
                 </mat-form-field>
-
-                <!--   <button mat-stroked-button class="action-button1">
-
-                    <span>All Categories</span>
-                    <mat-icon>expand_more</mat-icon>
-                </button> -->
-
                 <button mat-stroked-button class="action-button1">
 
                     <span>Latest First</span>
@@ -55,10 +45,6 @@
                 </button>
             </div>
         </div>
-
-
-
-        <!-- <div *ngFor="let doc of filteredDocuments" class="document-card"> -->
 
         <div *ngFor="let doc of pagedData()" class="document-card">
 
@@ -77,12 +63,11 @@
                 </div>
             </div>
 
-
-            <button mat-stroked-button  class="preview-btn">
+            <button mat-stroked-button class="preview-btn">
                 <mat-icon>visibility</mat-icon>
                 Preview
             </button>
-            <button mat-flat-button  class="download-btn">
+            <button mat-flat-button class="download-btn">
                 <mat-icon>download</mat-icon>
                 Download
             </button>

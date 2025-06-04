@@ -4,7 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from '../../../services/planning/auth.service';
 import { Router } from '@angular/router';
-import { ApiService } from '../../../services/restricted/api.service';
+import { AccountingService } from '../../../services/restricted/accounting/accounting.service';
+import { Md5 } from 'ts-md5';
+
 
 @Component({
   selector: 'app-login',
@@ -25,7 +27,7 @@ export class LoginComponent {
     private cdRef: ChangeDetectorRef,
     private authService: AuthService,
     private router: Router,
-    private apiService: ApiService
+
   ) {}
 
   ngOnInit() {
@@ -85,29 +87,48 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    this.getLogin();
     if (this.loginForm.valid) {
       const loginData = this.loginForm.getRawValue();
-      this.count++;
-      if (this.count >= 5 && loginData.captchaInput !== loginData.captchaText) {
-        alert('Captcha does not match!');
+      // Check captcha only if count >= 3
+      if (this.count >= 3 && loginData.captchaInput !== loginData.captchaText) {
         this.generateCaptcha(); // regenerate if wrong
         this.updateCaptchaValidator(this.count);
         return;
       }
-      const success = this.authService.login(
-        loginData.username,
-        loginData.password,
+      const password=loginData.password
+      const md5HashedPassword = Md5.hashStr(password);
+      const requestBody = {
+        username: loginData.username?.toUpperCase(),
+        password: md5HashedPassword,
+      };
+      this.authService.getLogin(requestBody).subscribe(
+        (resp) => {
+          if (resp?.status == 200) {
+            localStorage.setItem('loggedUser', JSON.stringify(resp.body));
+            // localStorage.setItem('token', resp.headers.get('authorization'));
+            localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQUi1BTktJQS1WLUFETSIsInJvbGUiOiJWQSIsImVudGl0eUNvZGUiOjEzNDI1MywieWVhciI6IjIwMjQtMjAyNSIsImRpc3RyaWN0IjozNTUsInN0YXRlQ29kZSI6MjMsImVudGl0eVR5cGVJZCI6MSwidXNlcklkIjo0NjIyODEsInN1YkRpc3RyaWN0Ijo0MTQwLCJpYXQiOjE3NDkwMTQ4NTgsImV4cCI6MTc0OTEwMTI1OH0.dE10UhdgzMjbWzN-PjPL-peieykkvFlcnZycnCQrl1w');
+            console.log('User authenticated'); 
+            this.dialogRef.close();
+            this.router.navigate(['/restricted']);
+          } else {
+            console.log('Authentication failed');
+            this.count++;
+            this.updateCaptchaValidator(this.count);
+            if (this.count >= 3) {
+              this.generateCaptcha(); // regenerate captcha after failed attempt
+            }
+          }
+        },
+        (error) => {
+          // Handle error from backend
+          console.log('Login error', error);
+          this.count++;
+          this.updateCaptchaValidator(this.count);
+          if (this.count >= 3) {
+            this.generateCaptcha();
+          }
+        },
       );
-      if (success) {
-        this.dialogRef.close();
-        this.router.navigate(['/restricted']); // protected route
-      } else {
-        this.count++;
-        this.updateCaptchaValidator(this.count);
-        this.generateCaptcha(); // optionally regenerate captcha
-      }
-      // this.dialogRef.close();
     }
   }
 
@@ -144,17 +165,23 @@ export class LoginComponent {
     this.cdRef.detectChanges();
   }
 
-
- getLogin(){
-  this.apiService.getDataFromEgram().subscribe((resp)=>{
-    console.log(resp);
-  })
-// //requestBody:any
-//     this.apiService.login({
-//     "username":"PR-ANKIA-V-ADM",
-//     "password":"0e7517141fb53f21ee439b355b5a1d0a"
-// }).subscribe((resp)=>{
-//   console.log(resp);
-//     })
+  getLogin() {
+    const requestBody = {
+      username: 'PR-ANKIA-V-ADM',
+      password: '0e7517141fb53f21ee439b355b5a1d0a',
+    };
+    this.authService.getLogin(requestBody).subscribe((resp) => {
+      if (resp?.status == 200) {
+        
+        localStorage.setItem('loggedUser', resp.body);
+          localStorage.setItem('token', resp.headers.get('authorization'));
+        // localStorage.setItem('token', resp.body.Data.token);
+        console.log('User authenticated');
+        this.dialogRef.close();
+        this.router.navigate(['/restricted']); // protected route
+      } else {
+        console.log('Authentication failed');
+      }
+    });
   }
 }

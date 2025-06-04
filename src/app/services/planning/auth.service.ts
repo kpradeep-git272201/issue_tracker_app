@@ -1,6 +1,10 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, ObservableInput, of, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
+import { AppConfig } from '../../config/app.config';
 
 @Injectable({
   providedIn: 'root',
@@ -40,7 +44,9 @@ export class AuthService {
       },
     },
   ];
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  loggedIn: boolean | undefined;
+  constructor(@Inject(PLATFORM_ID) private platformId: Object,
+  private http: HttpClient) {
     if (this.isBrowser() && localStorage.getItem('isLoggedIn') === 'true') {
       this.isLoggedInSubject.next(true);
     }
@@ -49,8 +55,8 @@ export class AuthService {
   isBrowser(): boolean {
     return isPlatformBrowser(this.platformId);
   }
+
   login(username: string, password: string): boolean {
-    // Temporary static login check (replace with API in future)
     let isLogged = false;
     this.userJson.forEach((elememt: any) => {
       if (!isLogged) {
@@ -74,7 +80,6 @@ export class AuthService {
 
   logout(): void {
     if (this.isBrowser()) {
-      localStorage.removeItem('isLoggedIn');
       localStorage.removeItem('username');
       this.isLoggedInSubject.next(false);
     }
@@ -82,8 +87,47 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     if (this.isBrowser()) {
-      return localStorage.getItem('isLoggedIn') === 'true';
+         const token = localStorage.getItem('token');
+      return (token) ? true : false;
     }
     return false;
+  }
+
+
+  /********************* **************************** REST API's Integration **************************** */
+  handleError!: (err: any, caught: Observable<any>) => ObservableInput<any>;
+
+
+
+  public request(
+    method: string,
+    url: string,
+    options: {
+      body?: any;
+      headers?: any;
+      observe?: any;
+      reportProgress?: boolean;
+    },
+  ): Observable<any> {
+    return this.http
+      .request(method, url, options)
+      .pipe(catchError(this.handleError));
+  }
+
+
+  getLogin(userData: any) {
+    console.log('data' + JSON.stringify(userData));
+    const url = `${AppConfig.BASE_API}${AppConfig.endpointPath.login}`;
+    const headers = new HttpHeaders().set('content-type', 'application/json').set('Accept', 'application/json');
+    return this.request('POST', url, { body: userData, headers: headers, reportProgress: false, observe: 'response' }).pipe(
+      map(resp => {
+        this.loggedIn = true;
+        return resp;
+      }),
+      catchError(error => {
+        this.loggedIn = false;
+        return of(false);
+      })
+    );
   }
 }

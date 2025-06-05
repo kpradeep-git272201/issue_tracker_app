@@ -1,20 +1,20 @@
 <mat-card class="form-card">
   <mat-card-title>Map Bank Branch</mat-card-title>
-  <mat-divider></mat-divider>
+  <!-- <mat-divider></mat-divider> -->
 
   <form [formGroup]="form">
     <div class="form-row">
       <mat-form-field appearance="outline" class="form-field">
         <mat-label>Select Bank Name</mat-label>
-        <mat-select formControlName="bankName" required>
-          <mat-option *ngFor="let bank of banks" [value]="bank">{{ bank }}</mat-option>
+        <mat-select formControlName="bankName" required (selectionChange)="onBankSelect($event)">
+          <mat-option *ngFor="let bank of bankList" [value]="bank">{{ bank.bankName }}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="form-field">
         <mat-label>Select District Panchayat</mat-label>
-        <mat-select formControlName="districtPanchayat" required>
-          <mat-option *ngFor="let dp of districtPanchayats" [value]="dp">{{ dp }}</mat-option>
+        <mat-select formControlName="districtPanchayat" required  (selectionChange)="onDistrictSelect($event)">
+          <mat-option *ngFor="let dp of districtPanchayats" [value]="dp">{{ dp.entityName }}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -25,4 +25,5 @@
       <button mat-raised-button color="warn" (click)="onClose()">❌ Close</button>
     </div>
   </form>
+
 </mat-card>

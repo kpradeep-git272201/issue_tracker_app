@@ -14,6 +14,9 @@ body {
   // background-color: #F4F4F4;
 }
 * {
+  font-family: 'Open Sans', sans-serif;
+}
+* {
   box-sizing: border-box;
 }
 .font-open-sans {
@@ -25,9 +28,7 @@ body {
 .font-16 {
   font-size: 1rem;
 }
-* {
-  font-family: "Open Sans", sans-serif;
-}
+
 
 :root {
   --primary-color: #0d6efd;

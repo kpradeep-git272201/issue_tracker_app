@@ -1,1 +1,42 @@
-<p>sub-header works!</p>
+<mat-toolbar color="primary" class="sub-header">
+  <nav class="sub-nav">
+     <a class="sub-nav-link" (click)="onTabClick('Report')" [ngClass]="{ 'active': activeTab === 'Report' }">
+      <mat-icon class="icon-size" svgIcon="house-fill 1"></mat-icon>
+      <span class="menu-text">Home</span>
+    </a>
+
+    <a class="sub-nav-link" (click)="onTabClick('Report')" [ngClass]="{ 'active': activeTab === 'Report' }">
+      <mat-icon class="icon-size" svgIcon="house-fill 1"></mat-icon>
+      <span class="menu-text">Report</span>
+    </a>
+
+    <div class="sub-nav-item" (mouseenter)="onMouseEnterDashboard()" (mouseleave)="onMouseLeaveDashboard()">
+      <a class="sub-nav-link" (click)="onTabClick('Dashboard')" [ngClass]="{ 'active': activeTab === 'Dashboard' }">
+        <mat-icon class="icon-size" svgIcon="house-fill 1"></mat-icon>
+        <span class="menu-text-group">
+          <span class="menu-text">Dashboard</span>
+          <mat-icon class="dropdown-icon">
+            {{ showCategories ? 'expand_less' : 'expand_more' }}
+          </mat-icon>
+        </span>
+      </a>
+
+      <!-- <div class="category-dropdown" *ngIf="showCategories">
+        <div *ngFor="let category of categories" class="category-item" (click)="onCategorySelect(category)"
+          [ngClass]="{ 'selected-category': selectedCategory === category.code }">
+          {{ category.value }}
+        </div>
+      </div> -->
+    </div>
+
+    <a class="sub-nav-link" (click)="onTabClick('Projects')" [ngClass]="{ 'active': activeTab === 'Projects' }">
+      <mat-icon class="icon-size" svgIcon="house-fill 1"></mat-icon>
+      <span class="menu-text">Documents</span>
+    </a>
+    <a class="sub-nav-link" (click)="onTabClick('Departments')" [ngClass]="{ 'active': activeTab === 'Departments' }">
+      <mat-icon class="icon-size" svgIcon="house-fill 1"></mat-icon>
+      <span class="menu-text">FAQs</span>
+    </a>
+   
+  </nav>
+</mat-toolbar>

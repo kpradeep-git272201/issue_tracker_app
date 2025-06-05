@@ -56,4 +56,50 @@ export class AccountingService {
       responseType: 'text' as 'json',
     });
   }
+
+  getBankList() {
+    return [
+      {
+        bankCode: 1,
+        bankName: 'Murshidabad District Central Co-Op Bank Ltd',
+        bankType: 'O',
+      },
+      {
+        bankCode: 2,
+        bankName: 'AXIS Banck',
+        bankType: 'O',
+      },
+    ];
+  }
+
+  getPanchyatByBankList() {
+    return [
+      {
+        bankCode: 1,
+        data: [
+          {
+            entityCode: 345,
+            entityName: 'Balangir1',
+          },
+          {
+            entityCode: 346,
+            entityName: 'Bhadrak2',
+          },
+        ],
+      },
+      {
+        bankCode: 2,
+        data: [
+          {
+            entityCode: 348,
+            entityName: 'Balangir3',
+          },
+          {
+            entityCode: 349,
+            entityName: 'Bhadrak4',
+          },
+        ],
+      },
+    ];
+  }
 }

@@ -3,7 +3,7 @@
     <mat-sidenav [(opened)]="opened" mode="side" 
     [class.sidenav-opened]="opened"
     [class.sidenav-closed]="!opened"
-    [style.width]="opened ? '19.313rem' : '4rem'">
+    [style.width]="opened ? '21.250rem' : '4rem'">
         <div class="filter-panel">
           
             <div class="filter1" style="border-bottom: 1px solid #ccc; padding-bottom: 0.5rem; margin-bottom: 1rem;">
@@ -30,7 +30,7 @@
         </div>
     </mat-sidenav>
     <mat-sidenav-content [ngClass]="opened ? 'main-content-opened' : 'main-content-closed'"
-    [style.margin-left]="opened ? '19.313rem' : '4rem'"
+    [style.margin-left]="opened ? '21.250rem' : '4rem'"
     [style.padding-left]="opened ? '24px' : '24px'">
         <router-outlet></router-outlet>
     </mat-sidenav-content>

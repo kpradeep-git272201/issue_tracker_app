@@ -173,7 +173,7 @@ button {
     visibility: visible !important;
     display: block !important;
     transition: transform 0.3s ease;
-    width: 19.313rem;
+    width: 21.250rem;
   }
   
   .sidenav-closed {
@@ -189,7 +189,7 @@ button {
  
     @media (max-width: 768px) {
         overflow-x: hidden;
-        margin-left: 19.313rem;
+        margin-left: 21.250rem;
         transition: margin-left 0.3s ease;
     }
  

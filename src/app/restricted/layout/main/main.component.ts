@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 
-import { SubHeaderComponent } from "../../../public/layout/sub-header/sub-header.component";
-import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { MenuComponent } from "../menu/menu.component";
 import { TopHeaderComponent } from "../../../top-header/top-header.component";
+import { SubHeaderComponent } from '../sub-header/sub-header.component';
 
 @Component({
   selector: 'app-main',

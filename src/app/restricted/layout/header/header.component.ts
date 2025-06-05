@@ -5,6 +5,7 @@ import { AuthService } from '../../../services/planning/auth.service';
 import { LoginComponent } from '../../../admin/components/login/login.component';
 import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import { LabelService } from '../../../services/json/label.service';
 
 @Component({
   selector: 'app-header',
@@ -15,11 +16,13 @@ import { isPlatformBrowser } from '@angular/common';
 export class HeaderComponent {
   isLoggedIn: boolean | undefined;
   loggedUser: any;
+  stateMap: any;
 
   constructor(
     private dialog: MatDialog,
     private authService: AuthService,
     private router: Router,
+    private labelService: LabelService,
     @Inject(PLATFORM_ID) private platformId: Object,
   ) {}
 
@@ -27,14 +30,14 @@ export class HeaderComponent {
     this.authService.isLoggedIn$.subscribe((status) => {
       this.isLoggedIn = status;
     });
-
+    this.stateMap = this.labelService.getStateMap();
     if (isPlatformBrowser(this.platformId)) {
       const userString = localStorage.getItem('loggedUser');
       if (userString) {
         this.loggedUser = JSON.parse(userString);
       }
     }
-  }
+  } 
   getLogin() {
     const dialogRef = this.dialog.open(LoginComponent, {
       disableClose: true,

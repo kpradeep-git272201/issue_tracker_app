@@ -14,6 +14,7 @@ export class MapBankBranchComponent {
   form: FormGroup;
   bankList: any = [];
   districtPanchayats: any = [];
+  AvailableBranchListMapp: any=[];
 
   constructor(
     private fb: FormBuilder,
@@ -25,7 +26,7 @@ export class MapBankBranchComponent {
     });
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getBankList();
   }
   onSave() {
@@ -44,19 +45,26 @@ export class MapBankBranchComponent {
     this.bankList = this.accountingService.getBankList();
   }
 
-  getPanchyatByBankList(bankCode:any) {
-    this.districtPanchayats=this.accountingService.getPanchyatByBankList().filter((item)=>{
-      return item.bankCode==bankCode;
-  })
-  this.districtPanchayats=this.districtPanchayats[0]?.data;
+  getPanchyatByBankList(bankCode: any) {
+    this.districtPanchayats = this.accountingService
+      .getPanchyatByBankList()
+      .filter((item) => {
+        return item.bankCode == bankCode;
+      });
+    this.districtPanchayats = this.districtPanchayats[0]?.data;
   }
 
-  onBankSelect(event:any){
+  onBankSelect(event: any) {
     this.getPanchyatByBankList(event.value.bankCode);
   }
 
-  onDistrictSelect(event:any){
-
+  onDistrictSelect(event: any) {
+    const zpCode = event.value?.entityCode;
+      this.AvailableBranchListMapp = this.accountingService
+      .getBranchByZpCode()
+      .filter((item) => {
+        return item.zpCode == zpCode;
+      });
+    this.AvailableBranchListMapp = this.AvailableBranchListMapp[0]?.branches;
   }
-
 }

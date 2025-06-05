@@ -82,7 +82,7 @@ export class AuthService {
     if (this.isBrowser()) {
       localStorage.removeItem('loggedUser');
       localStorage.removeItem('token');
-      // this.isLoggedInSubject.next(false);
+      this.isLoggedInSubject.next(false);
     }
   }
 

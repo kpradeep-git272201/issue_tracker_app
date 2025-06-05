@@ -21,10 +21,11 @@ isLoggedIn: boolean | undefined;
   }
 
   ngOnInit(){
-    // this.authService.isLoggedIn$.subscribe((status) => {
-    //   this.isLoggedIn = status;
-    // });
+    /** this.authService.isLoggedIn$.subscribe((status) => {
+      this.isLoggedIn = status;
+    }); */
     this.isLoggedIn=this.authService.isAuthenticated();
+    
   }
   getLogin() {
     const dialogRef = this.dialog.open(LoginComponent, {

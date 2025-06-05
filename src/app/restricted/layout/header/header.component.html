@@ -8,7 +8,7 @@
       
       <div class="info-box">
         <div class="info-grid" *ngIf="loggedUser">
-          <div><strong>State:</strong> {{loggedUser?.stateCode}}</div>
+          <div><strong>State:</strong> <span style="color: #444444;"> {{ stateMap[loggedUser?.stateCode] || loggedUser?.stateCode }}</span> </div>
           <div><strong>ZP:</strong> <span style="color: #444444;"> {{loggedUser.grandParentLocalBodyName}}</span> </div>
           <div><strong>BP:</strong> <span style="color: #444444;"> {{loggedUser.parentLocalBodyName}}</span> </div>
           <div><strong>GP:</strong> <span style="color: #444444;"> {{loggedUser.localBodyName}}</span> </div>

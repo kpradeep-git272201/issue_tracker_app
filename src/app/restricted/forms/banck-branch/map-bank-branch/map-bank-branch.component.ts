@@ -16,6 +16,10 @@ export class MapBankBranchComponent {
   districtPanchayats: any = [];
   AvailableBranchListMapp: any=[];
 
+
+  rightBranchList: any[] = [];
+  selectedIds = new Set<number>();
+  
   constructor(
     private fb: FormBuilder,
     private accountingService: AccountingService,
@@ -32,6 +36,8 @@ export class MapBankBranchComponent {
   onSave() {
     if (this.form.valid) {
       console.log('Form Data:', this.form.value);
+      console.log( this.rightBranchList);
+      
     }
   }
 
@@ -67,4 +73,25 @@ export class MapBankBranchComponent {
       });
     this.AvailableBranchListMapp = this.AvailableBranchListMapp[0]?.branches;
   }
+
+
+  moveRight() {
+    const toMove = this.AvailableBranchListMapp.filter((b: { branchId: number; }) => this.selectedIds.has(b.branchId));
+    this.rightBranchList.push(...toMove);
+    this.AvailableBranchListMapp = this.AvailableBranchListMapp.filter((b: { branchId: number; }) => !this.selectedIds.has(b.branchId));
+    toMove.forEach((b: { branchId: number; }) => this.selectedIds.delete(b.branchId));
+  }
+
+  moveLeft() {
+    const toMove = this.rightBranchList.filter(b => this.selectedIds.has(b.branchId));
+    this.AvailableBranchListMapp.push(...toMove);
+    this.rightBranchList = this.rightBranchList.filter(b => !this.selectedIds.has(b.branchId));
+    toMove.forEach(b => this.selectedIds.delete(b.branchId));
+  }
+
+  toggleSelection(branchId: number) {
+    this.selectedIds.has(branchId) ? this.selectedIds.delete(branchId) : this.selectedIds.add(branchId);
+  }
+
+  
 }

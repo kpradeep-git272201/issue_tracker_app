@@ -41,3 +41,65 @@
 .open-sans {
   font-family: 'Open Sans';
 }
+
+.toggle-data-box{
+  display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.toggle-data{
+  flex: 1; 
+  border: 1px solid #706767;
+   padding: 10px; 
+   overflow-y: auto;
+  height: 18rem;
+  border-radius: 6px;
+}
+
+.toggle-data-button{
+  display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    gap: 5px;
+    width: 4rem;
+    height: 4rem;
+    align-items: center;
+}
+
+.toggle-btn {
+  border: none;
+  background: #009688;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.toggle-btn:hover {
+  background-color: #00796b;
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 150, 136, 0.4);
+}
+
+.text-check{
+  display: flex;
+    gap: 10px;
+}
+.text-check span{
+  font-size: 15px;
+  font-weight: 400;
+  font-family: "Open Sans";
+  margin-block: 5px;
+}
+.font-bold{
+  font-weight: 500;
+  margin-block: 4px;
+}
+
+.btn{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

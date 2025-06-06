@@ -1,0 +1,125 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f1f5f9;
+}
+
+.header {
+    color: #2C2C2C;
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    margin-top: 20px;
+    max-width: 1300px;
+    padding-left: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.content-box {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 40px;
+    display: flex;
+    width: 100%;
+    max-width: 1300px;
+    gap: 40px;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.text-section {
+    max-width: 50%;
+}
+
+.text-section h1 {
+    color: #000;
+    font-family: "Open Sans", sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.text-section h2 {
+    color: #000;
+    font-family: "Open Sans", sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+.text-section p {
+    color: #4B4B4B;
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.64px;
+    margin-bottom: 100px;
+}
+
+
+
+.home-btn {
+    color: white;
+    border: none;
+
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    border-radius: 5px;
+    background: var(--RRR, linear-gradient(180deg, #F49A0B -14.67%, #EB5D0C 100%));
+}
+
+.home-btn:hover {
+    background-color: #e47200;
+}
+
+.image-section img {
+    max-width: 450px;
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .content-box {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .text-section,
+    .image-section {
+        max-width: 100%;
+    }
+
+    .image-section {
+        display: flex;
+        justify-content: center;
+    }
+
+    .header {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .content-box {
+        padding: 20px;
+    }
+}

@@ -1,19 +1,16 @@
 <!-- Apply Button -->
-<button
-  *ngIf="opened"
-  mat-flat-button
-  color="outline"
-  (click)="applyFilter()"
-  class="apply-filter-button"
->
+<!-- <button *ngIf="opened" mat-flat-button color="outline" (click)="applyFilter()" class=" apply-filter-button">
   <mat-icon>filter_list</mat-icon>
-  <span class="btn-text" style="font-size: 0.75rem">Apply</span>
-</button>
-
-<div style="position: relative; bottom: 2rem">
-  <!-- Financial Year -->
-
-  <div *ngIf="opened" class="">
+   <span class="btn-text" style="font-size: 0.75rem;">Apply</span>
+  </button> -->
+  <button class="button-87 apply-filter-button"  role="button" (click)="applyFilter()" > 
+    <mat-icon>
+    filter_list</mat-icon> <span>Apply</span>
+  </button>
+  
+  <div style="position: relative; bottom: 2rem;">
+    <!-- Financial Year -->
+  <div class="">
     <app-custom-select
       [options]="financialYr"
       [(selected)]="selectedFinancialYear"

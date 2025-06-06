@@ -33,24 +33,36 @@
         placeholder="Search..."
         class="search-input"
       />
-      <mat-icon class="clear-icon" *ngIf="filterText" (click)="filterText = ''"
+      <mat-icon
+        class="clear-icon clear-search"
+        *ngIf="filterText"
+        (click)="filterText = ''"
         >close</mat-icon
       >
     </div>
 
-    <div
-      *ngFor="let option of filteredOptions"
-      class="dropdown-item"
-      (click)="selectOption(option)"
-    >
-      <img [src]="option.flag" style="width: 18px" />
-      <span>{{ option[optionLabel] }}</span>
-      <!-- Tick mark for selected option -->
-      <mat-icon
-        *ngIf="selected?.code && option?.code == selected?.code"
-        class="tick-mark"
-        >check</mat-icon
+    <ng-container *ngIf="filteredOptions.length > 0; else noFilteredDataTpl">
+      <div
+        *ngFor="let option of filteredOptions"
+        class="dropdown-item"
+        (click)="selectOption(option)"
       >
-    </div>
+        <img [src]="option.flag" style="width: 18px" />
+        <span>{{ option[optionLabel] }}</span>
+        <mat-icon
+          *ngIf="selected?.code && option?.code == selected?.code"
+          class="tick-mark"
+          >check</mat-icon
+        >
+      </div>
+    </ng-container>
+
+    <ng-template #noDataTpl>
+      <div class="no-data">No data available</div>
+    </ng-template>
+
+    <ng-template #noFilteredDataTpl>
+      <div class="no-data">No data found</div>
+    </ng-template>
   </div>
 </div>

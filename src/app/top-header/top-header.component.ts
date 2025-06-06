@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, Inject, inject, PLATFORM_ID } from '@angular/core';
 import { MaterialModule } from '../material/material.module';
 import { LoginComponent } from '../admin/components/login/login.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../services/planning/auth.service';
 import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { isPlatformBrowser } from '@angular/common';
 @Component({
   selector: 'app-top-header',
   imports: [MaterialModule, TranslateModule],
@@ -19,6 +20,7 @@ export class TopHeaderComponent {
     private dialog: MatDialog,
     private authService: AuthService,
     private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) {}
 
   ngOnInit() {
@@ -26,6 +28,14 @@ export class TopHeaderComponent {
       this.isLoggedIn = status;
     }); */
     this.isLoggedIn = this.authService.isAuthenticated();
+    if(this.isBrowser()){
+      const savedLang = localStorage.getItem('appLang') || 'en';
+      this.translate.use(savedLang);
+    }
+
+  }
+   isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId);
   }
   getLogin() {
     const dialogRef = this.dialog.open(LoginComponent, {

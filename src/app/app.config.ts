@@ -3,8 +3,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { bootstrapApplication } from '@angular/platform-browser';
-import { provideHttpClient, HttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, HttpClient } from '@angular/common/http';
 
 
 
@@ -13,7 +12,7 @@ import { provideHttpClient, HttpClient, withFetch } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './i18n/', '.json');
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 export const appConfig: ApplicationConfig = {
   providers: [

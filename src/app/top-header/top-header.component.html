@@ -48,7 +48,8 @@
 <!-- Language Submenu -->
 <mat-menu #languageMenu="matMenu">
   <button mat-menu-item (click)="switchLanguage('en')" ><mat-icon style="color: #ed700b;">sort_by_alpha</mat-icon>English</button>
-  <button mat-menu-item (click)="switchLanguage('hi')"><mat-icon style="color: #ed700b;">sort_by_alpha</mat-icon> हिन्दी</button>
+  <button mat-menu-item (click)="switchLanguage('hi')"><mat-icon style="color: #ed700b;">sort_by_alpha</mat-icon>Hindi (हिन्दी)</button>
+    <button mat-menu-item (click)="switchLanguage('gu')"><mat-icon style="color: #ed700b;">sort_by_alpha</mat-icon>Gujrati (ગુજરાતી)</button>
 </mat-menu>
 
 
@@ -69,12 +70,12 @@
       <button mat-menu-item><mat-icon>person</mat-icon> Profile</button>
       <button (click)="logout()" mat-menu-item>
         <mat-icon>logout</mat-icon>
-        Logout
+        <span>{{ translate.instant('logout') | translate }}</span>
       </button>
     </mat-menu>
     <button *ngIf="!isLoggedIn" class="top-logout" (click)="getLogin()">
       <mat-icon class="LoginUser" svgIcon="LoginUser"></mat-icon>
-      <span>{{ 'Login' | translate }}</span>
+      <span>{{ translate.instant('login') | translate }}</span>
     </button>
   </div> 
 </div>

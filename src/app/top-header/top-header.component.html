@@ -25,14 +25,32 @@
       </a>
       <mat-icon class="Devider" svgIcon="Devider"></mat-icon>
     </div>
+<div class="language-icon">
+  <button class="settingIcon"  mat-icon-button [matMenuTriggerFor]="mainMenu">
+    <mat-icon style="color:#f7f7f7;">settings</mat-icon>
+  </button>
+  <mat-icon class="Devider" svgIcon="Devider"></mat-icon>
+</div>
 
-    
-    <div class="language-icon">
-        <a href="">
-          <mat-icon style="color:#f7f7f7">settings</mat-icon>
-        </a>
-        <mat-icon class="Devider" svgIcon="Devider"></mat-icon>
-      </div>
+<mat-menu #mainMenu="matMenu">
+  <button mat-menu-item
+          [matMenuTriggerFor]="languageMenu"
+          #languageTrigger="matMenuTrigger"
+          (mouseenter)="languageTrigger.openMenu()">
+          <mat-icon style="color: #ed700b;">language</mat-icon>  Language
+  </button>
+
+  <button mat-menu-item>
+    <mat-icon style="color: #ed700b;"> format_color_fill</mat-icon>  Themes
+  </button>
+</mat-menu>
+
+<!-- Language Submenu -->
+<mat-menu #languageMenu="matMenu">
+  <button mat-menu-item><mat-icon style="color: #ed700b;">sort_by_alpha</mat-icon> English</button>
+  <button mat-menu-item><mat-icon style="color: #ed700b;">sort_by_alpha</mat-icon> Hindi</button>
+</mat-menu>
+
 
       
     <div class="language-icon">

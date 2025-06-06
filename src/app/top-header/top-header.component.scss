@@ -55,3 +55,32 @@
     background: var(--orga-main, linear-gradient(180deg, #F49A0B -14.67%, #EB5D0C 100%));
     font-size: 14px;
 }
+
+.language-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  ::ng-deep .mat-mdc-menu-content{
+    background: white;
+    border-radius: 12px;
+  }
+
+
+
+  ::ng-deep .cdk-overlay-pane .mat-menu-panel {
+    transform-origin: top left !important;
+  }
+  
+  ::ng-deep .mat-menu-panel.mat-menu-before {
+    margin-top: -36px !important; /* Adjust this to match button height */
+  }
+  
+  ::ng-deep .language-submenu {
+    margin-top: -36px !important;
+  }
+  
+  .settingIcon{
+    padding: 0;
+  }

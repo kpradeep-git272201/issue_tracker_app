@@ -216,6 +216,9 @@ button {
     border-radius: 11px !important;
   }
 
+  .sub-menus{
+    border-left: 0 !important;
+  }
   ::ng-deep  .mat-expansion-panel-header-title{
     color: #252525 !important;
     font-family: "Open Sans";
@@ -309,3 +312,17 @@ button {
     background: #EB5D0C;
   }
   
+
+
+
+
+  .active-menu,
+.active-submenu,
+.active-subsubmenu {
+    font-weight: bold;
+    border-right: 5px solid var(--orga-main, #F49A0B);
+    background: #FFEFDF !important;
+}
+
+  
+

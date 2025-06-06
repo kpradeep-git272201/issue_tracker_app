@@ -33,14 +33,14 @@
     <label class="font-bold">Available Branch List for Mapping</label>
     <div class="toggle-data-box">
       <div class="toggle-data">
-        <div class="text-check" *ngFor="let b of AvailableBranchListMapp">
+        <label class="text-check" *ngFor="let b of AvailableBranchListMapp">
           <input
             type="checkbox"
             [checked]="selectedIds.has(b.branchId)"
             (change)="toggleSelection(b.branchId)"
           />
          <span> {{ b.branchName }}</span>
-        </div>
+        </label>
       </div>
       <div class="toggle-data-button">
         <button (click)="moveRight()" class="toggle-btn">
@@ -51,14 +51,14 @@
         </button>
       </div>
       <div class="toggle-data">
-        <div class="text-check" *ngFor="let b of rightBranchList">
+        <label class="text-check" *ngFor="let b of rightBranchList">
           <input
             type="checkbox"
             [checked]="selectedIds.has(b.branchId)"
             (change)="toggleSelection(b.branchId)"
           />
          <span> {{ b.branchName }}</span>
-        </div>
+        </label>
       </div>
     
     </div>

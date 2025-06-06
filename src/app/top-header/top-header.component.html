@@ -37,11 +37,14 @@
           [matMenuTriggerFor]="languageMenu"
           #languageTrigger="matMenuTrigger"
           (mouseenter)="languageTrigger.openMenu()">
-          <mat-icon style="color: #ed700b;">language</mat-icon>  Language
+          <mat-icon style="color: #ed700b;">language</mat-icon>Language
   </button>
 
-  <button mat-menu-item>
-    <mat-icon style="color: #ed700b;"> format_color_fill</mat-icon>  Themes
+  <button mat-menu-item
+      [matMenuTriggerFor]="themeMenu"
+      #languageTrigger1="matMenuTrigger"
+      (mouseenter)="languageTrigger1.openMenu()">
+    <mat-icon style="color: #ed700b;"> format_color_fill</mat-icon>Themes
   </button>
 </mat-menu>
 
@@ -49,10 +52,18 @@
 <mat-menu #languageMenu="matMenu">
   <button mat-menu-item (click)="switchLanguage('en')" ><mat-icon style="color: #ed700b;">sort_by_alpha</mat-icon>English</button>
   <button mat-menu-item (click)="switchLanguage('hi')"><mat-icon style="color: #ed700b;">sort_by_alpha</mat-icon>Hindi (हिन्दी)</button>
-    <button mat-menu-item (click)="switchLanguage('gu')"><mat-icon style="color: #ed700b;">sort_by_alpha</mat-icon>Gujrati (ગુજરાતી)</button>
+  <button mat-menu-item (click)="switchLanguage('gu')"><mat-icon style="color: #ed700b;">sort_by_alpha</mat-icon>Gujrati (ગુજરાતી)</button>
 </mat-menu>
 
 
+<mat-menu #themeMenu="matMenu">
+  <button mat-menu-item (click)="changeTheme('en')"><div class="circle theme1"></div><span>Theme-1</span></button>
+  <button mat-menu-item (click)="changeTheme('hi')"><div class="circle theme2"></div><span>Theme-2</span></button>
+  <button mat-menu-item (click)="changeTheme('gu')"><div class="circle theme3"></div><span>Theme-3</span></button>
+  <button mat-menu-item (click)="changeTheme('en')"><div class="circle theme4"></div><span>Theme-4</span></button>
+  <button mat-menu-item (click)="changeTheme('hi')"><div class="circle theme5"></div><span>Theme-5</span></button>
+  <!-- <button mat-menu-item (click)="changeTheme('gu')"><div class="circle theme6"></div><span>Theme-6</span></button> -->
+</mat-menu>
       
     <div class="language-icon">
         <a href="">

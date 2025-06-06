@@ -72,4 +72,8 @@ export class TopHeaderComponent {
     this.translate.use(lang);
     localStorage.setItem('appLang', lang);
   }
+
+  changeTheme(themeCode:any){
+
+  }
 }

@@ -49,7 +49,7 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
-
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [],
   exports: [
@@ -99,7 +99,8 @@ import {
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    HttpClientModule
+    HttpClientModule,
+    TranslateModule,
   ],
   imports: [
     CommonModule,
@@ -148,6 +149,7 @@ import {
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    TranslateModule
   ],
   providers: [provideHttpClient(withInterceptorsFromDi())],
 })

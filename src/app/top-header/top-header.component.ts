@@ -8,7 +8,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { isPlatformBrowser } from '@angular/common';
 @Component({
   selector: 'app-top-header',
-  imports: [MaterialModule, TranslateModule],
+  imports: [MaterialModule],
   templateUrl: './top-header.component.html',
   styleUrl: './top-header.component.scss',
 })
@@ -32,7 +32,7 @@ export class TopHeaderComponent {
       const savedLang = localStorage.getItem('appLang') || 'en';
       this.translate.use(savedLang);
     }
-
+      
   }
    isBrowser(): boolean {
     return isPlatformBrowser(this.platformId);

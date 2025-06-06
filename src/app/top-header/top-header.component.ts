@@ -57,4 +57,9 @@ export class TopHeaderComponent {
       this.router.navigate(['/']);
     }
   }
+
+   switchLanguage(lang: string) {
+    this.translate.use(lang);
+    localStorage.setItem('appLang', lang);
+  }
 }

@@ -47,8 +47,8 @@
 
 <!-- Language Submenu -->
 <mat-menu #languageMenu="matMenu">
-  <button mat-menu-item><mat-icon style="color: #ed700b;">sort_by_alpha</mat-icon> English</button>
-  <button mat-menu-item><mat-icon style="color: #ed700b;">sort_by_alpha</mat-icon> Hindi</button>
+  <button mat-menu-item (click)="switchLanguage('en')" ><mat-icon style="color: #ed700b;">sort_by_alpha</mat-icon>English</button>
+  <button mat-menu-item (click)="switchLanguage('hi')"><mat-icon style="color: #ed700b;">sort_by_alpha</mat-icon> हिन्दी</button>
 </mat-menu>
 
 

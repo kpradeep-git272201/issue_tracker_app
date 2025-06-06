@@ -10,26 +10,12 @@
     <div class="filter-panel">
       <div
         class="filter1"
-        style="
-          border-bottom: 1px solid #ccc;
-          padding-bottom: 0.5rem;
-          margin-bottom: 1rem;
-        "
+        style="border-bottom: 1px solid #ccc; padding-bottom: 0.5rem; margin-bottom: 1rem;"
       >
-        <div
-          style="
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-          "
-        >
-          <h4
-            (click)="getOpenSidenav()"
-            style="margin: 0; cursor: pointer"
-            class="filter-underline"
-          >
-            <mat-icon 
-            class="icon-color"
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <h4 (click)="getOpenSidenav()" style="margin: 0; cursor: pointer" class="filter-underline">
+            <mat-icon
+              class="icon-color"
               svgIcon="Filter"
               style="padding-right: 0.125rem; margin-bottom: -1px"
             ></mat-icon>
@@ -37,66 +23,89 @@
           </h4>
         </div>
       </div>
+
       <section>
         <mat-accordion multi>
           <mat-expansion-panel *ngFor="let menu of menubarList">
-            <mat-expansion-panel-header *ngIf="menu.subMenus && menu.subMenus.length > 0">
+            <mat-expansion-panel-header *ngIf="menu.subMenus?.length > 0">
               <mat-panel-title>
-                <mat-icon 
+                <mat-icon
                   class="icon-color"
                   svgIcon="SidebarIcon"
                   style="padding-right: 0.125rem; margin-bottom: -1px"
-                ></mat-icon>   {{ labels[menu?.name] || menu?.name}}
+                ></mat-icon>
+                {{ labels[menu?.name] || menu?.name }}
               </mat-panel-title>
             </mat-expansion-panel-header>
-        
-            <ng-container *ngIf="menu.subMenus && menu.subMenus.length > 0">
+
+            <!-- If menu has subMenus -->
+            <ng-container *ngIf="menu.subMenus?.length > 0">
               <mat-accordion multi>
-                <mat-expansion-panel  *ngFor="let submenu of menu.subMenus">
-                  <mat-expansion-panel-header class="sub-menu" *ngIf="submenu.subMenus && submenu.subMenus.length > 0">
+                <mat-expansion-panel class="sub-menus" *ngFor="let submenu of menu.subMenus">
+                  <mat-expansion-panel-header
+                    class="sub-menu"
+                    *ngIf="submenu.subMenus?.length > 0"
+                  >
                     <mat-panel-title>
-                      {{ labels[ submenu?.url ] || submenu?.name }} 
+                      {{ labels[submenu?.url] || submenu?.name }}
                     </mat-panel-title>
                   </mat-expansion-panel-header>
-        
-                  <ng-container *ngIf="submenu.subMenus && submenu.subMenus.length > 0">
+
+                  <!-- Sub-sub-menu -->
+                  <ng-container *ngIf="submenu.subMenus?.length > 0">
                     <div *ngFor="let subsubmenu of submenu.subMenus" style="margin-left: 16px; padding: 4px 0;">
-                      <button mat-button [routerLink]="subsubmenu.url">
-                         {{ labels[ subsubmenu?.name ] || subsubmenu?.name }} 
+                      <button
+                        mat-button
+                        [routerLink]="subsubmenu.url"
+                        routerLinkActive="active-subsubmenu"
+                        #rlaSubSub="routerLinkActive"
+                        [ngClass]="{ 'active-subsubmenu': rlaSubSub.isActive }"
+                      >
+                        {{ labels[subsubmenu?.name] || subsubmenu?.name }}
                       </button>
                     </div>
                   </ng-container>
-        
+
+                  <!-- Sub-menu without sub-sub-menus -->
                   <ng-container *ngIf="!submenu.subMenus || submenu.subMenus.length === 0">
-                    <button mat-button [routerLink]="submenu.url" style="margin-left: 16px;">
-                      {{ labels[ submenu?.name ] || submenu?.name }} 
+                    <button
+                      mat-button
+                      [routerLink]="submenu.url"
+                      routerLinkActive="active-submenu"
+                      #rlaSub="routerLinkActive"
+                      [ngClass]="{ 'active-submenu': rlaSub.isActive }"
+                      style="margin-left: 16px;"
+                    >
+                      {{ labels[submenu?.name] || submenu?.name }}
                     </button>
                   </ng-container>
                 </mat-expansion-panel>
               </mat-accordion>
             </ng-container>
-        
+
+            <!-- If menu has no subMenus -->
             <ng-container *ngIf="!menu.subMenus || menu.subMenus.length === 0">
-              <button mat-button [routerLink]="menu.url">
-                {{ labels[ menu?.name ] || menu?.name }} 
+              <button
+                mat-button
+                [routerLink]="menu.url"
+                routerLinkActive="active-menu"
+                #rlaMenu="routerLinkActive"
+                [ngClass]="{ 'active-menu': rlaMenu.isActive }"
+              >
+                {{ labels[menu?.name] || menu?.name }}
               </button>
             </ng-container>
           </mat-expansion-panel>
         </mat-accordion>
-        
       </section>
-
-
     </div>
   </mat-sidenav>
+
   <mat-sidenav-content
     [ngClass]="opened ? 'main-content-opened' : 'main-content-closed'"
     [style.margin-left]="opened ? '21.250rem' : '4rem'"
-    [style.padding-left]="opened ? '24px' : '24px'"
+    [style.padding-left]="'24px'"
   >
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-
-

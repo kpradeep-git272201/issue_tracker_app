@@ -76,22 +76,36 @@ export class MapBankBranchComponent {
 
 
   moveRight() {
-    const toMove = this.AvailableBranchListMapp.filter((b: { branchId: number; }) => this.selectedIds.has(b.branchId));
-    this.rightBranchList.push(...toMove);
-    this.AvailableBranchListMapp = this.AvailableBranchListMapp.filter((b: { branchId: number; }) => !this.selectedIds.has(b.branchId));
-    toMove.forEach((b: { branchId: number; }) => this.selectedIds.delete(b.branchId));
+    const toMove = this.AvailableBranchListMapp.filter(
+      (b: { branchId: number }) => this.selectedIds.has(b.branchId)
+    );
+  
+    this.rightBranchList = this.sortByBranchName([...this.rightBranchList, ...toMove]);
+    this.AvailableBranchListMapp = this.sortByBranchName(
+      this.AvailableBranchListMapp.filter(
+        (b: { branchId: number }) => !this.selectedIds.has(b.branchId)
+      )
+    );
+  
+    toMove.forEach((b: { branchId: number }) => this.selectedIds.delete(b.branchId));
   }
-
+  
   moveLeft() {
-    const toMove = this.rightBranchList.filter(b => this.selectedIds.has(b.branchId));
-    this.AvailableBranchListMapp.push(...toMove);
-    this.rightBranchList = this.rightBranchList.filter(b => !this.selectedIds.has(b.branchId));
+    const toMove = this.rightBranchList.filter(
+      b => this.selectedIds.has(b.branchId)
+    );
+    this.AvailableBranchListMapp = this.sortByBranchName([...this.AvailableBranchListMapp, ...toMove]);
+    this.rightBranchList = this.sortByBranchName(
+      this.rightBranchList.filter(b => !this.selectedIds.has(b.branchId))
+    );
     toMove.forEach(b => this.selectedIds.delete(b.branchId));
   }
-
+  
+  sortByBranchName(list: any[]) {
+    return list.sort((a, b) => a.branchName.localeCompare(b.branchName));
+  }
+  
   toggleSelection(branchId: number) {
     this.selectedIds.has(branchId) ? this.selectedIds.delete(branchId) : this.selectedIds.add(branchId);
   }
-
-  
 }

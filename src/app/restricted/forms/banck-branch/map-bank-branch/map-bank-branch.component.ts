@@ -14,9 +14,8 @@ export class MapBankBranchComponent {
   form: FormGroup;
   bankList: any = [];
   districtPanchayats: any = [];
+
   AvailableBranchListMapp: any=[];
-
-
   rightBranchList: any[] = [];
   selectedIds = new Set<number>();
   
@@ -43,6 +42,9 @@ export class MapBankBranchComponent {
 
   onClear() {
     this.form.reset();
+    this.AvailableBranchListMapp = [];
+    this.rightBranchList = [];
+    this.selectedIds.clear();
   }
 
   onClose() {}

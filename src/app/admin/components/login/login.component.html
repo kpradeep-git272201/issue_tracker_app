@@ -1,6 +1,6 @@
 <mat-dialog-content class="login-container">
   <div class="login-header">
-    <span>{{data.title}}</span>
+    <p class="text-center"> {{data.title}}</p>
     <mat-icon class="close-button" (click)="closeDialog()">close</mat-icon>
   </div>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">

@@ -199,3 +199,34 @@
   color: #ff6600;
   font-weight: 700;
 }
+
+.egs-logo-hindi{
+  color: #222;
+  font-family: "Open Sans";
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.egs-logo-eng{
+  color: #222;
+  font-family: "Open Sans";
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.simplified-gradient{
+  background: linear-gradient(90deg, #695894 0%, #CA4315 27.4%, #247CA5 50%, #64972F 77.4%, #9C1D20 100%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+font-family: "Open Sans";
+font-size: 14px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+text-transform: capitalize;
+
+}

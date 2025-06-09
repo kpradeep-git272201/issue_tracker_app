@@ -61,24 +61,17 @@
  }
 
 
- .image-section {
-     flex: 1 1 50%;
-     min-width: 300px;
-     text-align: right;
- }
 
  .image-section img {
-     max-width: 100%;
-     width: 100%;
-     max-height: 350px;
-     object-fit: contain;
-
+     object-fit: cover;
+     width: 500px;
+     height: 500px;
 
  }
 
  .oops-title {
      font-family: "Open Sans", sans-serif;
-     font-size: 36px;
+     font-size: 4rem;
      font-weight: 700;
      color: #000;
      margin: 0 0 10px 0;
@@ -86,19 +79,20 @@
 
  .not-found {
      font-family: "Open Sans", sans-serif;
-     font-size: 24px;
+     font-size: 2.5rem;
      font-weight: 400;
      color: #000;
      margin: 0 0 20px 0;
  }
 
  .dashboard-comp-para {
-     color: #444;
-     font-family: "Open Sans", sans-serif;
-     font-size: 14px;
-     font-weight: 600;
-     line-height: 18px;
-     margin-bottom: 20px;
+    color: #4B4B4B;
+    font-family: "Open Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.64px;
  }
 
 

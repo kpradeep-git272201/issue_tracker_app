@@ -54,7 +54,8 @@ export class IconsService {
       'pachayatCouncil',
       'planingAndReporting',
       'Accounting',
-      'Audit'
+      'Audit',
+      'Funnel'
     ];
   }
 }

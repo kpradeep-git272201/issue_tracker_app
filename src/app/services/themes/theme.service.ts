@@ -1,12 +1,24 @@
-import { isPlatformBrowser } from '@angular/common';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { inject, Inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 
+export type ThemeMode = 'dark' | 'light'; 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
+  private readonly document = inject(DOCUMENT);
+  private readonly currentTheme = signal<ThemeMode>('light');
   private themeKey = 'app-theme';
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    if (this.isBrowser()) {
+      const storedTheme = localStorage.getItem('theme');
+      if (storedTheme) {
+        this.setTheme(storedTheme);
+      } else {
+        this.setTheme('light-theme');
+      }
+    }
+  }
 
   isBrowser(): boolean {
     return isPlatformBrowser(this.platformId);
@@ -53,5 +65,19 @@ export class ThemeService {
   clearTheme() {
     localStorage.removeItem(this.themeKey);
     this.setTheme('orange-theme');
+  }
+
+  setThemeMode(themeMode: ThemeMode){
+    this.currentTheme.set(themeMode);
+    if(themeMode == 'dark'){
+      this.document.documentElement.classList.add('dark-mode');
+    }else{
+      this.document.documentElement.classList.remove('dark-mode');
+    }
+  }
+
+    toggleTheme() {
+    const newTheme = this.currentTheme() == 'light' ? 'dark' : 'light';
+    this.setThemeMode(newTheme);
   }
 }

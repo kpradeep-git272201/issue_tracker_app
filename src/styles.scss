@@ -1,11 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 // @import "tailwindcss";
 
-html,
-body {
+@use '@angular/material' as mat;
+ 
+html, body {
   height: 100%;
-}
-body {
   margin: 0;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
@@ -15,9 +14,7 @@ body {
 }
 * {
   font-family: 'Open Sans', sans-serif;
-}
-* {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 .font-open-sans {
   font-family: "Open Sans", sans-serif;
@@ -29,6 +26,19 @@ body {
   font-size: 1rem;
 }
 
+html{
+  color-scheme: light;
+  @include mat.theme((
+    color : mat.$violet-palette
+  ));
+}
+
+html.dark-mode{
+  color-scheme: dark;
+  @include mat.theme((
+    color : mat.$azure-palette
+  ));
+}
 
 :root {
   --primary-color: #0d6efd;

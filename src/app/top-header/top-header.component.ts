@@ -1,4 +1,4 @@
-import { Component, Inject, inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, inject, PLATFORM_ID, signal } from '@angular/core';
 import { MaterialModule } from '../material/material.module';
 import { LoginComponent } from '../admin/components/login/login.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -6,7 +6,8 @@ import { AuthService } from '../services/planning/auth.service';
 import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { isPlatformBrowser } from '@angular/common';
-import { ThemeService } from '../services/themes/theme.service';
+import { ThemeMode, ThemeService } from '../services/themes/theme.service';
+import { single } from 'rxjs';
 @Component({
   selector: 'app-top-header',
   imports: [MaterialModule],
@@ -17,7 +18,8 @@ export class TopHeaderComponent {
   isLoggedIn: boolean | undefined;
   translate: TranslateService = inject(TranslateService);
   selectedTheme: string = 'orange-theme';
-
+  themeMode:any;
+ 
   constructor(
     private dialog: MatDialog,
     private authService: AuthService,
@@ -86,4 +88,10 @@ export class TopHeaderComponent {
      this.selectedTheme = theme;
     this.themeService.setTheme(theme);
   }
+
+  setThemeMode(){
+    this.themeService.toggleTheme();
+  }
+
+ 
 }

@@ -1,15 +1,17 @@
 .egram-header {
-  padding: 1.25rem 1.5rem;
+  padding: 1.25rem 1rem;
   gap: 0.5rem;
   background-color: var(--main-header-bg);
   display: flex;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  height: 113px;
 }
 
 .logo img {
   height: 80px;
+  margin-top: -3px;
 }
 
 .content-center {
@@ -64,4 +66,41 @@
 .info-grid strong {
   color: var(--primary-color);
   font-weight: 700;
+}
+
+.egs-logo-hindi {
+  color: #222;
+  font-family: "Open Sans";
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.egs-logo-eng {
+  color: #222;
+  font-family: "Open Sans";
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.simplified-gradient {
+  background: linear-gradient(
+    90deg,
+    #695894 0%,
+    #ca4315 27.4%,
+    #247ca5 50%,
+    #64972f 77.4%,
+    #9c1d20 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: capitalize;
 }

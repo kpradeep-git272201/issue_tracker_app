@@ -1,11 +1,18 @@
 <div class="egram-header">
     <div class="logo left">
      
-      <img src="icons/egramIcon.svg" alt="Right Logo" />
+      <!-- <img src="icons/egramIcon.svg" alt="Right Logo" /> -->
+      <div class="logo-container d-flex gap-3">
+        <img src="/assets/images/egsLogo.png" alt="No Data Found">
+        <div class="text-logo d-flex flex-column">
+          <span class="egs-logo-hindi">ईग्रामस्वराज</span>
+          <span class="egs-logo-eng">eGramSwaraj</span>
+          <span class="simplified-gradient">Simplified Work Based Accounting Application for Panchayati Raj</span>
+        </div>
+      </div>
     </div>
   
     <div class="content-center">
-      
       <div class="info-box">
         <div class="info-grid" *ngIf="loggedUser">
           <div><strong>State:</strong> <span style="color: #444444;"> {{ stateMap[loggedUser?.stateCode] || loggedUser?.stateCode }}</span> </div>
@@ -18,7 +25,6 @@
           <div><strong>Mobile:</strong> <span style="color: #444444;"> {{loggedUser.telephone}}</span> </div>
         </div>
       </div>
-
     </div>
   
     <div class="logo right">

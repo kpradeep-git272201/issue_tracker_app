@@ -1,6 +1,6 @@
 <mat-dialog-content class="login-container">
   <div class="login-header">
-    <p class="text-center"> {{data.title}}</p>
+    <p class="text-center"> <mat-icon matPrefix style="margin-bottom: -3px;">lock</mat-icon> {{data.title}}</p>
     <mat-icon class="close-button" (click)="closeDialog()">close</mat-icon>
   </div>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -23,7 +23,7 @@
 <div>
   <label class="field-heading">Password</label>
   <mat-form-field appearance="outline" class="full-width">
-    <mat-icon matPrefix>lock</mat-icon>
+    <mat-icon matPrefix>vpn_key</mat-icon>
     <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password" required />
     <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
       <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>

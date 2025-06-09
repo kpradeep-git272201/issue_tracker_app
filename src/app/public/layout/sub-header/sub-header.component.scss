@@ -13,12 +13,12 @@
   box-sizing: border-box;
   border-width: 0.5px 0px 0.5px 0px;
   border-style: solid;
-//   background-color: #f9fafb;
+  // background-color: #f9fafb;
   border-color: var(--sub-header-border);
   flex-wrap: wrap;
   padding-left: 40px;
-  background: linear-gradient(180deg, #F49A0B -14.67%, #EB5D0C 100%);
-
+  // background: linear-gradient(180deg, #F49A0B -14.67%, #EB5D0C 100%);
+  background: var(--background-color);
   .example-spacer {
     flex: 1 1 auto;
   }

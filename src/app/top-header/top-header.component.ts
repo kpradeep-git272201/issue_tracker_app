@@ -6,6 +6,7 @@ import { AuthService } from '../services/planning/auth.service';
 import { Router } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { isPlatformBrowser } from '@angular/common';
+import { ThemeService } from '../services/themes/theme.service';
 @Component({
   selector: 'app-top-header',
   imports: [MaterialModule],
@@ -15,12 +16,14 @@ import { isPlatformBrowser } from '@angular/common';
 export class TopHeaderComponent {
   isLoggedIn: boolean | undefined;
   translate: TranslateService = inject(TranslateService);
+  selectedTheme: string = 'orange-theme';
 
   constructor(
     private dialog: MatDialog,
     private authService: AuthService,
     private router: Router,
     @Inject(PLATFORM_ID) private platformId: Object,
+    private themeService: ThemeService,
   ) {}
 
   ngOnInit() {
@@ -28,13 +31,18 @@ export class TopHeaderComponent {
       this.isLoggedIn = status;
     }); */
     this.isLoggedIn = this.authService.isAuthenticated();
-    if(this.isBrowser()){
+
+    if (this.isBrowser()) {
+      const themeName = localStorage.getItem('app-theme');
+      if (themeName) {
+        this.selectedTheme = themeName;
+      }
+
       const savedLang = localStorage.getItem('appLang') || 'en';
       this.translate.use(savedLang);
     }
-      
   }
-   isBrowser(): boolean {
+  isBrowser(): boolean {
     return isPlatformBrowser(this.platformId);
   }
   getLogin() {
@@ -62,18 +70,20 @@ export class TopHeaderComponent {
 
   logout() {
     this.authService.logout();
+    this.themeService.clearTheme();
     this.isLoggedIn = this.authService.isAuthenticated();
     if (!this.isLoggedIn) {
       this.router.navigate(['/']);
     }
   }
 
-   switchLanguage(lang: string) {
+  switchLanguage(lang: string) {
     this.translate.use(lang);
     localStorage.setItem('appLang', lang);
   }
 
-  changeTheme(themeCode:any){
-
+  changeTheme(theme: string) {
+     this.selectedTheme = theme;
+    this.themeService.setTheme(theme);
   }
 }

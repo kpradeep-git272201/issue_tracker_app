@@ -57,7 +57,9 @@
   );
   font-size: 14px;
 }
-
+.top-logout {
+  background: var(--background-color);
+}
 .language-icon {
   position: relative;
   display: inline-flex;
@@ -86,25 +88,25 @@
 }
 
 .circle {
-  height: 1rem;
-  width: 1rem;
+  height: 1.5rem;
+  width: 1.5rem;
   border-radius: 50%;
 }
-.theme1 {
+.green-theme {
   background: linear-gradient(90deg, #7fbc41 0%, #4a761e 100%);
 }
 
-.theme2 {
-  background: linear-gradient(180deg, #2e9fd4 0%, #18536e 100%);
+.orange-theme {
+  background: linear-gradient(180deg, #f49a0b -14.67%, #eb5d0c 100%);
 }
-.theme3 {
-  background: linear-gradient(180deg, #7b67ad 0%, #322a47 100%);
-}
-.theme4 {
+.red-theme {
   background: linear-gradient(270deg, #bb2326 0%, #551011 100%);
 }
-.theme5 {
-  background: linear-gradient(180deg, #dd9b00 0%, #f8bb2c 100%);
+.purple-theme {
+  background: linear-gradient(180deg, #7b67ad 0%, #322a47 100%);
+}
+.teal-theme {
+  background: linear-gradient(180deg, #2e9fd4 0%, #18536e 100%);
 }
 .theme6 {
   background-color: orange;
@@ -112,4 +114,25 @@
 ::ng-deep .mat-mdc-menu-item-text {
   display: flex;
   gap: 10px;
+}
+
+.lang-icon {
+  color: var(--icon-color) !important;
+}
+
+.user-icon {
+  border-radius: 50%;
+  border: 1px solid white;
+  background-color: white;
+  height: 22px;
+  width: 22px;
+}
+
+.text-color{
+  color: var(--text-color);
+}
+
+.active-theme {
+  text-decoration: underline;
+  font-weight: 600;
 }

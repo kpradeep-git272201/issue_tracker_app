@@ -9,6 +9,7 @@ import { RouterOutlet } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { MaterialModule } from './material/material.module';
 import { TranslateService } from './services/language/translate.service';
+import { ThemeService } from './services/themes/theme.service';
 
 
 @Component({
@@ -27,7 +28,9 @@ export class AppComponent implements AfterViewInit{
     private sanitizer: DomSanitizer,
     private translateService: TranslateService,
     @Inject(PLATFORM_ID) private platformId: Object,
+    private themeService: ThemeService
   ) {
+      this.themeService.loadTheme();
     this.iconService.getIconName().forEach((icon) => {
       this.iconRegistry.addSvgIcon(
         icon,

@@ -1,6 +1,5 @@
  body {
      margin: 0;
-     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
      background-color: #f1f5f9;
  }
 
@@ -109,7 +108,7 @@
      font-size: 14px;
      cursor: pointer;
      border-radius: 5px;
-     background: linear-gradient(180deg, #F49A0B -14.67%, #EB5D0C 100%);
+     background: var(--background-color);
      transition: background 0.3s ease;
      margin-top: 80px;
  }

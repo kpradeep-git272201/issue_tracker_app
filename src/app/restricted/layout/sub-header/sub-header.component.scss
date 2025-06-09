@@ -17,8 +17,8 @@
   border-color: var(--sub-header-border);
   flex-wrap: wrap;
   padding-left: 40px;
-  background: linear-gradient(180deg, #f49a0b -14.67%, #eb5d0c 100%);
-
+  //   background: linear-gradient(180deg, #f49a0b -14.67%, #eb5d0c 100%);
+  background: var(--background-color);
   .example-spacer {
     flex: 1 1 auto;
   }
@@ -149,8 +149,6 @@
 .category-item:hover {
   background-color: #f0f0f0;
 }
-
-
 
 .sub-nav-link:hover .menu-text {
   transform: scale(1.1);

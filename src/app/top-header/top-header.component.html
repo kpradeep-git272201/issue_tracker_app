@@ -13,80 +13,149 @@
       <a href="">Skip to Main Content</a>
     </div>
     <div class="fushia-icon">
-      <a href="">
+      <button
+        class="settingIcon"
+        mat-icon-button
+        [matMenuTriggerFor]="mainMenu1"
+      >
         <mat-icon class="Fushia" svgIcon="Fushia"></mat-icon>
-      </a>
+      </button>
+
       <mat-icon class="Devider" svgIcon="Devider"></mat-icon>
     </div>
+
+    <div class="language-icon">
+      <button
+        class="settingIcon"
+        mat-icon-button
+        [matMenuTriggerFor]="mainMenu"
+      >
+        <mat-icon class="Language" svgIcon="Language"></mat-icon>
+      </button>
+
+      <mat-icon class="Devider" svgIcon="Devider"></mat-icon>
+    </div>
+    <!-- <div class="language-icon">
+      <button
+        class="settingIcon"
+        mat-icon-button
+        [matMenuTriggerFor]="mainMenu"
+      >
+        <mat-icon style="color: #f7f7f7">settings</mat-icon>
+      </button>
+      <mat-icon class="Devider" svgIcon="Devider"></mat-icon>
+    </div> -->
+   
+    <mat-menu #mainMenu1="matMenu">
+      <button
+        mat-menu-item
+        [matMenuTriggerFor]="themeMenu"
+        #languageTrigger1="matMenuTrigger"
+        (mouseenter)="languageTrigger1.openMenu()"
+      >
+        <mat-icon class="lang-icon"> format_color_fill</mat-icon>Color Themes
+      </button>
+    </mat-menu>
+    <mat-menu #mainMenu="matMenu">
+      <button
+        mat-menu-item
+        [matMenuTriggerFor]="languageMenu"
+        #languageTrigger="matMenuTrigger"
+        (mouseenter)="languageTrigger.openMenu()"
+      >
+        <mat-icon class="lang-icon">language</mat-icon>Language
+      </button>
+    </mat-menu>
+    <!-- Language Submenu -->
+    <mat-menu #languageMenu="matMenu">
+      <button mat-menu-item (click)="switchLanguage('en')">
+        <mat-icon class="lang-icon">sort_by_alpha</mat-icon>English
+      </button>
+      <button mat-menu-item (click)="switchLanguage('hi')">
+        <mat-icon class="lang-icon">sort_by_alpha</mat-icon>Hindi (हिन्दी)
+      </button>
+      <button mat-menu-item (click)="switchLanguage('gu')">
+        <mat-icon class="lang-icon">sort_by_alpha</mat-icon>Gujrati (ગુજરાતી)
+      </button>
+    </mat-menu>
+
+    <mat-menu #themeMenu="matMenu">
+      <button mat-menu-item (click)="changeTheme('green-theme')">
+        <div class="circle green-theme"></div>
+        <span [ngClass]="{ 'active-theme': selectedTheme === 'green-theme' }"
+          >Green Theme</span
+        >
+      </button>
+
+      <button mat-menu-item (click)="changeTheme('orange-theme')">
+        <div class="circle orange-theme"></div>
+        <span [ngClass]="{ 'active-theme': selectedTheme === 'orange-theme' }"
+          >Orange Theme</span
+        >
+      </button>
+
+      <button mat-menu-item (click)="changeTheme('red-theme')">
+        <div class="circle red-theme"></div>
+        <span [ngClass]="{ 'active-theme': selectedTheme === 'red-theme' }"
+          >Red Theme</span
+        >
+      </button>
+
+      <button mat-menu-item (click)="changeTheme('purple-theme')">
+        <div class="circle purple-theme"></div>
+        <span [ngClass]="{ 'active-theme': selectedTheme === 'purple-theme' }"
+          >Purple Theme</span
+        >
+      </button>
+
+      <button mat-menu-item (click)="changeTheme('teal-theme')">
+        <div class="circle teal-theme"></div>
+        <span [ngClass]="{ 'active-theme': selectedTheme === 'teal-theme' }"
+          >Teal Theme</span
+        >
+      </button>
+    </mat-menu>
 
     <div class="language-icon">
       <a href="">
-        <mat-icon class="Language" svgIcon="Language"></mat-icon>
+        <mat-icon style="color: #f7f7f7">notifications</mat-icon>
       </a>
       <mat-icon class="Devider" svgIcon="Devider"></mat-icon>
     </div>
-<div class="language-icon">
-  <button class="settingIcon"  mat-icon-button [matMenuTriggerFor]="mainMenu">
-    <mat-icon style="color:#f7f7f7;">settings</mat-icon>
-  </button>
-  <mat-icon class="Devider" svgIcon="Devider"></mat-icon>
-</div>
 
-<mat-menu #mainMenu="matMenu">
-  <button mat-menu-item
-          [matMenuTriggerFor]="languageMenu"
-          #languageTrigger="matMenuTrigger"
-          (mouseenter)="languageTrigger.openMenu()">
-          <mat-icon style="color: #ed700b;">language</mat-icon>Language
-  </button>
-
-  <button mat-menu-item
-      [matMenuTriggerFor]="themeMenu"
-      #languageTrigger1="matMenuTrigger"
-      (mouseenter)="languageTrigger1.openMenu()">
-    <mat-icon style="color: #ed700b;"> format_color_fill</mat-icon>Themes
-  </button>
-</mat-menu>
-
-<!-- Language Submenu -->
-<mat-menu #languageMenu="matMenu">
-  <button mat-menu-item (click)="switchLanguage('en')" ><mat-icon style="color: #ed700b;">sort_by_alpha</mat-icon>English</button>
-  <button mat-menu-item (click)="switchLanguage('hi')"><mat-icon style="color: #ed700b;">sort_by_alpha</mat-icon>Hindi (हिन्दी)</button>
-  <button mat-menu-item (click)="switchLanguage('gu')"><mat-icon style="color: #ed700b;">sort_by_alpha</mat-icon>Gujrati (ગુજરાતી)</button>
-</mat-menu>
-
-
-<mat-menu #themeMenu="matMenu">
-  <button mat-menu-item (click)="changeTheme('en')"><div class="circle theme1"></div><span>Theme-1</span></button>
-  <button mat-menu-item (click)="changeTheme('hi')"><div class="circle theme2"></div><span>Theme-2</span></button>
-  <button mat-menu-item (click)="changeTheme('gu')"><div class="circle theme3"></div><span>Theme-3</span></button>
-  <button mat-menu-item (click)="changeTheme('en')"><div class="circle theme4"></div><span>Theme-4</span></button>
-  <button mat-menu-item (click)="changeTheme('hi')"><div class="circle theme5"></div><span>Theme-5</span></button>
-  <!-- <button mat-menu-item (click)="changeTheme('gu')"><div class="circle theme6"></div><span>Theme-6</span></button> -->
-</mat-menu>
-      
-    <div class="language-icon">
-        <a href="">
-          <mat-icon style="color:#f7f7f7">notifications</mat-icon>
-        </a>
-        <mat-icon class="Devider" svgIcon="Devider"></mat-icon>
-    </div>
-
-
-    <button *ngIf="isLoggedIn" class="top-logout" [matMenuTriggerFor]="beforeMenu" mat-icon-button aria-label="Settings" (click)="getDialog('Settings')">
-      <mat-icon class="LoginUser" svgIcon="LoginUser"></mat-icon>
-      <span>Logout</span>
+    <button
+      *ngIf="isLoggedIn"
+      class="top-logout"
+      [matMenuTriggerFor]="beforeMenu"
+      mat-icon-button
+      aria-label="Settings"
+      (click)="getDialog('Settings')"
+    >
+      <!-- <mat-icon class="LoginUser" svgIcon="LoginUser"></mat-icon> -->
+      <span class="user-icon"
+        ><mat-icon style="font-size: 20px; margin-left: -2px" class="lang-icon"
+          >person</mat-icon
+        ></span
+      >
+      <span class="text-color">Logout</span>
     </button>
     <mat-menu #beforeMenu="matMenu" xPosition="before">
       <button mat-menu-item><mat-icon>person</mat-icon> Profile</button>
       <button (click)="logout()" mat-menu-item>
         <mat-icon>logout</mat-icon>
-        <span>{{ translate.instant('logout') | translate }}</span>
+        <span>{{ translate.instant("logout") | translate }}</span>
       </button>
     </mat-menu>
     <button *ngIf="!isLoggedIn" class="top-logout" (click)="getLogin()">
-      <mat-icon class="LoginUser" svgIcon="LoginUser"></mat-icon>
-      <span>{{ translate.instant('login') | translate }}</span>
+      <!-- <mat-icon class="LoginUser" svgIcon="LoginUser"></mat-icon> -->
+      <span class="user-icon"
+        ><mat-icon style="font-size: 20px; margin-left: -2px" class="lang-icon"
+          >person</mat-icon
+        ></span
+      >
+      <span class="text-color">{{
+        translate.instant("login") | translate
+      }}</span>
     </button>
-  </div> 
+  </div>
 </div>

@@ -2,13 +2,9 @@ import { Component } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
 import { CommonService } from '../../../services/planning/common.service';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from '../header/header.component';
-import { TimePeriodComponent } from '../time-period/time-period.component';
 
 import { SharedService } from '../../../services/filter/shared.service';
-import { ProjectStatusComponent } from '../sidefilters/project-status/project-status.component';
 
-import { DevelopementCategoryComponent } from '../sidefilters/developement-category/developement-category.component';
 import { DashboardFilterComponent } from '../sidefilters/dashboard-filter/dashboard-filter.component';
 import * as XLSX from 'xlsx';
 @Component({
@@ -16,8 +12,6 @@ import * as XLSX from 'xlsx';
   imports: [
     MaterialModule,
     RouterOutlet,
-    // HeaderComponent,
-    TimePeriodComponent,
     DashboardFilterComponent
 ],
   templateUrl: './sidenav.component.html',

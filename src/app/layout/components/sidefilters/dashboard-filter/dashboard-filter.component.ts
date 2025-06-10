@@ -237,7 +237,7 @@ export class DashboardFilterComponent {
       });
     }
 
-    console.log('Selected Filters:', selectedFilters);
+    console.log('Selected Filters:', JSON.stringify(selectedFilters));
     this.sharedService.updateDataFilter(selectedFilters);
   }
 

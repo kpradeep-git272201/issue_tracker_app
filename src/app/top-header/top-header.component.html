@@ -15,6 +15,7 @@
     <!-- <button (click)="setThemeMode()">Toggle Theme</button> -->
     <div class="fushia-icon">
       <button
+         matTooltip="{{ translate.instant('accessibility') | translate }}"
         class="settingIcon"
         mat-icon-button
         [matMenuTriggerFor]="mainMenu1"
@@ -27,6 +28,7 @@
 
     <div class="language-icon">
       <button
+        matTooltip="{{ translate.instant('changeLanguage') | translate }}"
         class="settingIcon"
         mat-icon-button
         [matMenuTriggerFor]="mainMenu"
@@ -34,6 +36,13 @@
         <mat-icon class="Language" svgIcon="Language"></mat-icon>
       </button>
 
+      <mat-icon class="Devider" svgIcon="Devider"></mat-icon>
+    </div>
+    
+    <div class="language-icon" *ngIf="isLoggedIn">
+      <a href="">
+        <mat-icon style="color: #f7f7f7">notifications</mat-icon>
+      </a>
       <mat-icon class="Devider" svgIcon="Devider"></mat-icon>
     </div>
     <!-- <div class="language-icon">
@@ -57,7 +66,7 @@
         <mat-icon class="lang-icon"> format_color_fill</mat-icon>Color Themes
       </button>
     </mat-menu>
-    <mat-menu #mainMenu="matMenu">
+    <!-- <mat-menu #mainMenu="matMenu">
       <button
         mat-menu-item
         [matMenuTriggerFor]="languageMenu"
@@ -66,17 +75,20 @@
       >
         <mat-icon class="lang-icon">language</mat-icon>Language
       </button>
-    </mat-menu>
+    </mat-menu> -->
     <!-- Language Submenu -->
-    <mat-menu #languageMenu="matMenu">
+    <mat-menu #mainMenu="matMenu">
       <button mat-menu-item (click)="switchLanguage('en')">
-        <mat-icon class="lang-icon">sort_by_alpha</mat-icon>English
+        <mat-icon class="lang-icon">sort_by_alpha</mat-icon>
+        <span [ngClass]="{ 'active-theme': appLanguage === 'en' }">English</span>
       </button>
       <button mat-menu-item (click)="switchLanguage('hi')">
-        <mat-icon class="lang-icon">sort_by_alpha</mat-icon>Hindi (हिन्दी)
+        <mat-icon class="lang-icon">sort_by_alpha</mat-icon>
+        <span [ngClass]="{ 'active-theme': appLanguage === 'hi' }">Hindi (हिन्दी)</span>
       </button>
       <button mat-menu-item (click)="switchLanguage('gu')">
-        <mat-icon class="lang-icon">sort_by_alpha</mat-icon>Gujrati (ગુજરાતી)
+        <mat-icon class="lang-icon">sort_by_alpha</mat-icon>
+        <span [ngClass]="{ 'active-theme': appLanguage === 'gu' }">Gujrati (ગુજરાતી)</span>
       </button>
     </mat-menu>
 
@@ -117,12 +129,7 @@
       </button>
     </mat-menu>
 
-    <div class="language-icon">
-      <a href="">
-        <mat-icon style="color: #f7f7f7">notifications</mat-icon>
-      </a>
-      <mat-icon class="Devider" svgIcon="Devider"></mat-icon>
-    </div>
+  
 
     <button
       *ngIf="isLoggedIn"
@@ -138,7 +145,7 @@
           >person</mat-icon
         ></span
       >
-      <span class="text-color">Logout</span>
+      <span>{{ translate.instant("logout") | translate }}</span>
     </button>
     <mat-menu #beforeMenu="matMenu" xPosition="before">
       <button mat-menu-item><mat-icon>person</mat-icon> Profile</button>

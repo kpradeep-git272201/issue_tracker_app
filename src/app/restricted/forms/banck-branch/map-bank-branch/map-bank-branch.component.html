@@ -30,16 +30,54 @@
         </mat-select>
       </mat-form-field>
     </div>
+  </form>
     <label class="font-bold">Available Branch List for Mapping</label>
     <div class="toggle-data-box">
       <div class="toggle-data">
+        <section
+         *ngIf="AvailableBranchListMappClone.length>0"
+          class="example-section"
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          "
+        >
+          <!-- All Branches Checkbox -->
+          <mat-checkbox
+            class="example-margin"
+            [checked]="AllCheckedAvailableBnch"
+            (change)="selecteAllAvalBnch($event)"
+            color="primary"
+          >
+            All Branches
+          </mat-checkbox>
+
+          <!-- Search Box -->
+          <!-- <input
+            type="text"
+            placeholder="Search Branch"
+            [(ngModel)]="searchTextAvailBnch"
+            class="branch-search"
+          /> -->
+          <mat-form-field appearance="outline" class="search-field">
+            <mat-icon matPrefix>search</mat-icon>
+            <input
+              matInput
+              placeholder="Search Branch"
+              type="text"
+              [(ngModel)]="searchTextAvailBnch"
+              (input)="getFilterAvailBnch()"
+            />
+          </mat-form-field>
+        </section>
         <label class="text-check" *ngFor="let b of AvailableBranchListMapp">
-          <input
-            type="checkbox"
+          <mat-checkbox
+            class="example-margin"
             [checked]="selectedIds.has(b.branchId)"
-            (change)="toggleSelection(b.branchId)"
-          />
-         <span> {{ b.branchName }}</span>
+            (change)="toggleSelection(b.branchId, 'availableBranch')"
+          ></mat-checkbox>
+          <span> {{ b.branchName }}</span>
         </label>
       </div>
       <div class="toggle-data-button">
@@ -51,33 +89,53 @@
         </button>
       </div>
       <div class="toggle-data">
+        <section *ngIf="rightBranchListClone.length>0"
+          class="example-section"
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          "
+        >
+          <mat-checkbox
+            class="example-margin"
+            [checked]="AllCheckedMapBnch"
+            (change)="selecteAllMapBnch($event)"
+            >All Map Branches</mat-checkbox
+          >
+          <mat-form-field appearance="outline" class="search-field">
+            <mat-icon matPrefix>search</mat-icon>
+            <input
+              matInput
+              placeholder="Search Branch"
+              type="text"
+              [(ngModel)]="searchTextMapBnch"
+              (input)="getFilterMapBnch()"
+            />
+          </mat-form-field>
+        </section>
         <label class="text-check" *ngFor="let b of rightBranchList">
-          <input
-            type="checkbox"
+          <mat-checkbox
+            class="example-margin"
             [checked]="selectedIds.has(b.branchId)"
-            (change)="toggleSelection(b.branchId)"
-          />
-         <span> {{ b.branchName }}</span>
+            (change)="toggleSelection(b.branchId, 'mapBranch')"
+          ></mat-checkbox>
+          <span> {{ b.branchName }}</span>
         </label>
       </div>
-    
     </div>
-    
-    
 
     <div class="form-actions">
-      
       <button class="btn btn-warning" (click)="onClear()">
-        <mat-icon >clear</mat-icon>&nbsp;Clear
+        <mat-icon>clear</mat-icon>&nbsp;Clear
       </button>
-      
-      <button  (click)="onClose()" class="btn btn-danger">
+
+      <button (click)="onClose()" class="btn btn-danger">
         <mat-icon>close</mat-icon>&nbsp;Close
       </button>
       <button class="btn btn-success" (click)="onSave()">
         <mat-icon>save</mat-icon>&nbsp;Save
       </button>
     </div>
-    
-  </form>
+
 </mat-card>

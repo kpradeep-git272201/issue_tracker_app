@@ -1,4 +1,6 @@
 {
   "login": "લૉગિન",
-    "logout":"લોગઆઉટ"
+  "logout":"લોગઆઉટ",
+  "changeLanguage":"ભાષા બદલો",
+  "accessibility": "સુલભતા"
 }

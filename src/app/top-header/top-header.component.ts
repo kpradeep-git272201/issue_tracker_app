@@ -1,13 +1,14 @@
-import { Component, Inject, inject, PLATFORM_ID, signal } from '@angular/core';
+import { Component, Inject, inject, PLATFORM_ID } from '@angular/core';
 import { MaterialModule } from '../material/material.module';
 import { LoginComponent } from '../admin/components/login/login.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../services/planning/auth.service';
 import { Router } from '@angular/router';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 import { isPlatformBrowser } from '@angular/common';
-import { ThemeMode, ThemeService } from '../services/themes/theme.service';
-import { single } from 'rxjs';
+import { ThemeService } from '../services/themes/theme.service';
+
+
 @Component({
   selector: 'app-top-header',
   imports: [MaterialModule],
@@ -19,6 +20,7 @@ export class TopHeaderComponent {
   translate: TranslateService = inject(TranslateService);
   selectedTheme: string = 'orange-theme';
   themeMode:any;
+  appLanguage: string="en";
  
   constructor(
     private dialog: MatDialog,
@@ -39,8 +41,8 @@ export class TopHeaderComponent {
       if (themeName) {
         this.selectedTheme = themeName;
       }
-
       const savedLang = localStorage.getItem('appLang') || 'en';
+      this.appLanguage=savedLang;
       this.translate.use(savedLang);
     }
   }
@@ -81,6 +83,7 @@ export class TopHeaderComponent {
 
   switchLanguage(lang: string) {
     this.translate.use(lang);
+    this.appLanguage=lang;
     localStorage.setItem('appLang', lang);
   }
 

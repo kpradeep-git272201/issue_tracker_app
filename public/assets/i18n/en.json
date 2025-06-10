@@ -1,4 +1,6 @@
 {
   "login": "Login",
-  "logout":"Logout"
+  "logout":"Logout",
+  "changeLanguage":"Change Language",
+   "accessibility": "Accessibility"
 }

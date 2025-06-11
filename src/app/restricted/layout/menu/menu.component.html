@@ -48,7 +48,7 @@
                     *ngIf="submenu.subMenus?.length > 0"
                   >
                     <mat-panel-title>
-                      {{ labels[submenu?.url] || submenu?.name }}
+                      {{ labels[submenu?.name] || submenu?.name }} 
                     </mat-panel-title>
                   </mat-expansion-panel-header>
 
@@ -57,7 +57,7 @@
                     <div *ngFor="let subsubmenu of submenu.subMenus" style="margin-left: 16px; padding: 4px 0;">
                       <button
                         mat-button
-                        [routerLink]="subsubmenu.url"
+                        [routerLink]="subsubmenu?.url"
                         routerLinkActive="active-subsubmenu"
                         #rlaSubSub="routerLinkActive"
                         [ngClass]="{ 'active-subsubmenu': rlaSubSub.isActive }"

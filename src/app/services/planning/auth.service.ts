@@ -12,6 +12,8 @@ import { AppConfig } from '../../config/app.config';
 export class AuthService {
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   public isLoggedIn$ = this.isLoggedInSubject.asObservable();
+
+  
   userJson: any = [
     {
       userName: 'ikari',

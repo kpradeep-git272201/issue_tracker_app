@@ -5,8 +5,8 @@ import { SharedService } from '../../../services/filter/shared.service';
 import { RouterOutlet } from '@angular/router';
 import { MenubarItemsService } from '../../../services/json/menubar-items.service';
 import { RouterModule } from '@angular/router';
-import { LabelService } from '../../../services/json/label.service';
 import { AccountingService } from '../../../services/restricted/accounting/accounting.service';
+import { LabelService } from '../../../services/json/labels/label.service';
 
 @Component({
   selector: 'app-menu',

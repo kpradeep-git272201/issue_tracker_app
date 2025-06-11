@@ -53,13 +53,6 @@
             All Branches
           </mat-checkbox>
 
-          <!-- Search Box -->
-          <!-- <input
-            type="text"
-            placeholder="Search Branch"
-            [(ngModel)]="searchTextAvailBnch"
-            class="branch-search"
-          /> -->
           <mat-form-field appearance="outline" class="search-field">
             <mat-icon matPrefix>search</mat-icon>
             <input
@@ -74,8 +67,8 @@
         <label class="text-check" *ngFor="let b of AvailableBranchListMapp">
           <mat-checkbox
             class="example-margin"
-            [checked]="selectedIds.has(b.branchId)"
-            (change)="toggleSelection(b.branchId, 'availableBranch')"
+            [checked]="selectedIds.has(b.branchCode)"
+            (change)="toggleSelection(b.branchCode, 'availableBranch')"
           ></mat-checkbox>
           <span> {{ b.branchName }}</span>
         </label>
@@ -117,8 +110,8 @@
         <label class="text-check" *ngFor="let b of rightBranchList">
           <mat-checkbox
             class="example-margin"
-            [checked]="selectedIds.has(b.branchId)"
-            (change)="toggleSelection(b.branchId, 'mapBranch')"
+            [checked]="selectedIds.has(b.branchCode)"
+            (change)="toggleSelection(b.branchCode, 'mapBranch')"
           ></mat-checkbox>
           <span> {{ b.branchName }}</span>
         </label>

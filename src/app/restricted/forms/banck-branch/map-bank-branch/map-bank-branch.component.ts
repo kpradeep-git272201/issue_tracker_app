@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { MaterialModule } from '../../../../material/material.module';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AccountingService } from '../../../../services/restricted/accounting/accounting.service';
+import { LocalService } from '../../../../services/localStorage/local.service';
+import { isPlatformBrowser } from '@angular/common';
+import { subscribe } from 'diagnostics_channel';
 
 @Component({
   selector: 'app-map-bank-branch',
@@ -17,15 +20,25 @@ export class MapBankBranchComponent {
   AvailableBranchListMapp: any = [];
   rightBranchList: any[] = [];
   selectedIds = new Set<number>();
+
+  selectedForMapIds = new Set<number>();
+  selectedForUnMapIds = new Set<number>();
+
   AllCheckedAvailableBnch: boolean = false;
   AllCheckedMapBnch: boolean = false;
   searchTextAvailBnch: any = '';
   searchTextMapBnch: any = '';
-  AvailableBranchListMappClone: any=[];
-  rightBranchListClone: any=[];
+  AvailableBranchListMappClone: any = [];
+  rightBranchListClone: any = [];
+  userData: any;
+  stateCode: any;
+  bankCode: any;
+  zpCode: any;
   constructor(
     private fb: FormBuilder,
     private accountingService: AccountingService,
+    private localService: LocalService,
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) {
     this.form = this.fb.group({
       bankName: [''],
@@ -34,12 +47,40 @@ export class MapBankBranchComponent {
   }
 
   ngOnInit() {
-    this.getBankList();
+    if (this.isBrowser()) {
+      this.userData = this.localService.getUserData();
+      this.stateCode = this.userData.stateCode;
+      this.getBankList();
+    }
+  }
+
+  isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId);
   }
   onSave() {
     if (this.form.valid) {
       console.log('Form Data:', this.form.value);
       console.log(this.rightBranchList);
+
+      this.accountingService.selectedForMapIds$.subscribe(
+        (selectedForMapIds) => {
+          this.accountingService.selectedForUnMapIds$.subscribe(
+            (selectedForUnMapIds) => {
+              console.log('selectedForMapIds', selectedForMapIds);
+              console.log('selectedForUnMapIds', selectedForUnMapIds);
+              const data = {
+                mappedBranch: selectedForMapIds,
+                unMappedBranch: [],
+              };
+              this.accountingService
+                .saveBranchMappingUnMapping(data)
+                .subscribe((resp: any) => {
+                  console.log(resp);
+                });
+            },
+          );
+        },
+      );
     }
   }
 
@@ -47,44 +88,109 @@ export class MapBankBranchComponent {
     this.form.reset();
     this.AvailableBranchListMapp = [];
     this.rightBranchList = [];
+    this.AvailableBranchListMappClone = [];
+    this.rightBranchListClone = [];
+    this.AllCheckedAvailableBnch = false;
+    this.AllCheckedMapBnch = false;
     this.selectedIds.clear();
   }
 
   onClose() {}
 
   getBankList() {
-    this.bankList = this.accountingService.getBankList();
+    this.accountingService.getBankListByStateCode(this.stateCode).subscribe(
+      (resp: any) => {
+        if (resp?.status == 200) {
+          this.bankList = resp.body;
+        } else {
+        }
+      },
+      (error: any) => {
+        console.log('Login error', error);
+      },
+    );
   }
 
   getPanchyatByBankList(bankCode: any) {
-    this.districtPanchayats = this.accountingService
-      .getPanchyatByBankList()
-      .filter((item) => {
-        return item.bankCode == bankCode;
-      });
-    this.districtPanchayats = this.districtPanchayats[0]?.data;
+    this.bankCode = bankCode;
+    this.accountingService
+      .getDistricPanchByBank(this.stateCode, bankCode)
+      .subscribe(
+        (resp: any) => {
+          if (resp?.status == 200) {
+            this.districtPanchayats = resp.body;
+          } else {
+          }
+        },
+        (error: any) => {
+          console.log('Login error', error);
+        },
+      );
   }
 
   onBankSelect(event: any) {
+    this.resetVaribale();
     this.getPanchyatByBankList(event.value.bankCode);
   }
 
   onDistrictSelect(event: any) {
     const zpCode = event.value?.entityCode;
-    this.AvailableBranchListMapp = this.accountingService
-      .getBranchByZpCode()
-      .filter((item) => {
-        return item.zpCode == zpCode;
-      });
-    this.AvailableBranchListMapp = this.AvailableBranchListMapp[0]?.branches;
-    this.AvailableBranchListMappClone = JSON.parse(
-      JSON.stringify(this.AvailableBranchListMapp),
-    );
+    this.zpCode = zpCode;
+    this.getUnMappedBranch(zpCode);
+    this.getMappedBranch(zpCode);
+  }
+
+  getUnMappedBranch(zpCode: any) {
+    this.AvailableBranchListMapp = [];
+    this.AvailableBranchListMappClone = [];
+    this.accountingService
+      .getUnMappedBranch(this.stateCode, this.bankCode, zpCode)
+      .subscribe(
+        (resp: any) => {
+          if (resp?.status == 200) {
+            this.AvailableBranchListMapp = resp.body;
+            this.AvailableBranchListMappClone = JSON.parse(
+              JSON.stringify(resp.body),
+            );
+          } else {
+          }
+        },
+        (error: any) => {
+          console.log('Login error', error);
+        },
+      );
+  }
+
+  getMappedBranch(zpCode: any) {
+    this.rightBranchList = [];
+    this.rightBranchListClone = [];
+    this.accountingService
+      .getMappedBranch(this.stateCode, this.bankCode, zpCode)
+      .subscribe(
+        (resp: any) => {
+          if (resp?.status == 200) {
+            this.rightBranchList = resp.body;
+            this.rightBranchListClone = JSON.parse(JSON.stringify(resp.body));
+          } else {
+          }
+        },
+        (error: any) => {
+          console.log('Login error', error);
+        },
+      );
   }
 
   moveRight() {
+    this.accountingService.SetSelectedForMapIds(
+      Array.from(this.selectedForMapIds),
+    );
+    this.accountingService.setSelectedForUnMapIds(
+      Array.from(this.selectedForUnMapIds),
+    );
+    this.AllCheckedAvailableBnch = false;
+    this.AllCheckedMapBnch = false;
     const toMove = this.AvailableBranchListMapp.filter(
-      (b: { branchId: number }) => this.selectedIds.has(b.branchId),
+      (b: { branchCode: number }) => this.selectedIds.has(b.branchCode),
     );
 
     this.rightBranchList = this.sortByBranchName([
@@ -93,12 +199,12 @@ export class MapBankBranchComponent {
     ]);
     this.AvailableBranchListMapp = this.sortByBranchName(
       this.AvailableBranchListMapp.filter(
-        (b: { branchId: number }) => !this.selectedIds.has(b.branchId),
+        (b: { branchCode: number }) => !this.selectedIds.has(b.branchCode),
       ),
     );
 
-    toMove.forEach((b: { branchId: number }) =>
-      this.selectedIds.delete(b.branchId),
+    toMove.forEach((b: { branchCode: number }) =>
+      this.selectedIds.delete(b.branchCode),
     );
     this.rightBranchListClone = JSON.parse(
       JSON.stringify(this.rightBranchList),
@@ -106,33 +212,53 @@ export class MapBankBranchComponent {
   }
 
   moveLeft() {
+    this.accountingService.SetSelectedForMapIds(
+      Array.from(this.selectedForMapIds),
+    );
+    this.accountingService.setSelectedForUnMapIds(
+      Array.from(this.selectedForUnMapIds),
+    );
+    this.AllCheckedAvailableBnch = false;
+    this.AllCheckedMapBnch = false;
     const toMove = this.rightBranchList.filter((b) =>
-      this.selectedIds.has(b.branchId),
+      this.selectedIds.has(b.branchCode),
     );
     this.AvailableBranchListMapp = this.sortByBranchName([
       ...this.AvailableBranchListMapp,
       ...toMove,
     ]);
     this.rightBranchList = this.sortByBranchName(
-      this.rightBranchList.filter((b) => !this.selectedIds.has(b.branchId)),
+      this.rightBranchList.filter((b) => !this.selectedIds.has(b.branchCode)),
     );
-    toMove.forEach((b) => this.selectedIds.delete(b.branchId));
+    toMove.forEach((b) => this.selectedIds.delete(b.branchCode));
   }
 
   sortByBranchName(list: any[]) {
     return list.sort((a, b) => a.branchName.localeCompare(b.branchName));
   }
 
-  toggleSelection(branchId: number, action: string) {
-    this.selectedIds.has(branchId)
-      ? this.selectedIds.delete(branchId)
-      : this.selectedIds.add(branchId);
+  toggleSelection(branchCode: number, action: string) {
+    this.selectedIds.has(branchCode)
+      ? this.selectedIds.delete(branchCode)
+      : this.selectedIds.add(branchCode);
 
     if (action == 'availableBranch') {
+      if (this.selectedForMapIds.has(branchCode)) {
+        this.selectedForMapIds.delete(branchCode);
+      } else {
+        this.selectedForMapIds.add(branchCode);
+        this.selectedForUnMapIds.delete(branchCode);
+      }
       const branchListSize = this.AvailableBranchListMapp.length;
       this.AllCheckedAvailableBnch =
         this.selectedIds.size == branchListSize ? true : false;
     } else {
+      if (this.selectedForUnMapIds.has(branchCode)) {
+        this.selectedForUnMapIds.delete(branchCode);
+      } else {
+        this.selectedForUnMapIds.add(branchCode);
+        this.selectedForMapIds.delete(branchCode);
+      }
       const branchListSize = this.rightBranchList.length;
       this.AllCheckedMapBnch =
         this.selectedIds.size == branchListSize ? true : false;
@@ -141,17 +267,19 @@ export class MapBankBranchComponent {
 
   selecteAllAvalBnch(event: any) {
     this.selectedIds.clear();
+    this.AllCheckedMapBnch = false;
     if (event.checked)
       this.AvailableBranchListMapp.forEach((element: any) => {
-        this.selectedIds.add(element.branchId);
+        this.selectedIds.add(element.branchCode);
       });
   }
 
   selecteAllMapBnch(event: any) {
     this.selectedIds.clear();
+    this.AllCheckedAvailableBnch = false;
     if (event.checked)
       this.rightBranchList.forEach((element: any) => {
-        this.selectedIds.add(element.branchId);
+        this.selectedIds.add(element.branchCode);
       });
   }
 
@@ -169,5 +297,18 @@ export class MapBankBranchComponent {
     this.rightBranchList = this.rightBranchListClone.filter((branch: any) => {
       return branch.branchName.toLowerCase().includes(searchText);
     });
+  }
+
+  resetVaribale() {
+    this.rightBranchList = [];
+    this.rightBranchListClone = [];
+    this.AvailableBranchListMapp = [];
+    this.AvailableBranchListMappClone = [];
+    this.selectedIds.clear();
+    this.selectedForMapIds.clear();
+    this.selectedForUnMapIds.clear();
+    this.AllCheckedAvailableBnch = false;
+    this.AllCheckedMapBnch = false;
+    this.zpCode="";
   }
 }

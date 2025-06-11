@@ -6,5 +6,11 @@ export const AppConfig = {
   endpointPath: {
     login: 'auth/login',
     menus: 'auth/menus',
+    bankList: "master/bank/bankList",
+    districtListOfBankBranch: "master/bank/districtListOfBankBranch",
+    unMappedBranch: "master/bank/unMappedBranch",
+    mappedBranch:"master/bank/mappedBranch",
+    saveBranchMappingUnMapping: "master/bank/saveBranchMappingUnMapping" 
+
   },
 };

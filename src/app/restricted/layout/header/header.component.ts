@@ -5,7 +5,7 @@ import { AuthService } from '../../../services/planning/auth.service';
 import { LoginComponent } from '../../../admin/components/login/login.component';
 import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
-import { LabelService } from '../../../services/json/label.service';
+import { LabelService } from '../../../services/json/labels/label.service';
 
 @Component({
   selector: 'app-header',

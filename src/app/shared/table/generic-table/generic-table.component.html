@@ -33,7 +33,7 @@
       <div class="table-container">
         <table class="data-table" id="table-data">
           <thead>
-            <tr style="background-color: #F9FAFB;">
+            <tr>
               <th class="font-16">#</th>
               <ng-container *ngFor="let col of columns">
                 <th *ngIf="displayedColumns().includes(col.field)" (click)="sortBy(col.field)" class="font-16">

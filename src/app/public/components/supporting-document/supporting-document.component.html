@@ -28,11 +28,7 @@
                     <span>User Manual</span>
                 </button>
 
-            </div>
-        </div>
 
-        <div class="header-container">
-            <div class="header-actions">
                 <mat-form-field appearance="outline" class="search-field">
                     <mat-icon matPrefix>search</mat-icon>
                     <input matInput placeholder="Search" type="text" [(ngModel)]="globalFilter"
@@ -43,8 +39,16 @@
                     <span>Latest First</span>
                     <mat-icon>expand_more</mat-icon>
                 </button>
+
+
             </div>
         </div>
+
+        <!-- <div class="header-container">
+            <div class="header-actions">
+               
+            </div>
+        </div> -->
 
         <div *ngFor="let doc of pagedData()" class="document-card">
 

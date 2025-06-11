@@ -1,22 +1,38 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { MaterialModule } from '../../../material/material.module';
 import { TranslateService } from '../../../services/language/translate.service';
-import { isPlatformBrowser } from '@angular/common';
+import { KeyImpactAreasService } from '../../../services/json/keyImpactArea/key-impact-areas.service';
 
 @Component({
   selector: 'app-key-impact-area',
+  standalone: true, 
   imports: [MaterialModule],
   templateUrl: './key-impact-area.component.html',
-  styleUrl: './key-impact-area.component.scss'
+  styleUrls: ['./key-impact-area.component.scss'] 
 })
-export class KeyImpactAreaComponent {
-constructor(
+export class KeyImpactAreaComponent implements OnInit {
+  objectKeys = Object.keys;
+  keyImpactArea: any[] = [];
+
+  constructor(
     private translateService: TranslateService,
     @Inject(PLATFORM_ID) private platformId: Object,
+    private keyImpactAreaService: KeyImpactAreasService 
   ) {}
+
+  ngOnInit() { // FIXED
+    this.getKeyImpactArea();
+  }
+
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
-      // this.translateService.loadBhashiniScript();
     }
+  }
+
+  getKeyImpactArea() {
+    this.keyImpactArea = this.keyImpactAreaService.getKeyImpactArea()
+    console.log(this.keyImpactArea);
+    
   }
 }

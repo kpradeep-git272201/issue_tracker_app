@@ -1,6 +1,14 @@
 import { Routes } from '@angular/router';
 import { LandingComponent } from './public/components/landing/landing.component';
 
+
+export function getPrerenderParams() {
+  return [
+    { id: '1' },
+    { id: '2' },
+    { id: '3' }
+  ];
+}
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: LandingComponent },

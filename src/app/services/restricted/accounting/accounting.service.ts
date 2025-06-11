@@ -45,8 +45,10 @@ export class AccountingService {
     options: {
       body?: any;
       headers?: any;
+      responseType?: any;
       observe?: any;
       reportProgress?: boolean;
+
     },
   ): Observable<any> {
     return this.http
@@ -159,8 +161,8 @@ export class AccountingService {
     console.log('data' + JSON.stringify(data));
     const url = `${AppConfig.BASE_API}${AppConfig.endpointPath.saveBranchMappingUnMapping}`;
     console.log(url);
-    const headers = new HttpHeaders().set('content-type', 'application/json').set('Accept', 'application/json');
-    return this.request('POST', url, { body: data, headers: headers, reportProgress: false, observe: 'response' }).pipe(
+    const headers = new HttpHeaders().set('content-type', 'application/json').set('Authorization', `${this.token}`);
+    return this.request('POST', url, { body: data, headers: headers, responseType: 'text' as 'json' , reportProgress: false, observe: 'response' }).pipe(
       map(resp => {
         this.loggedIn = true;
         return resp;

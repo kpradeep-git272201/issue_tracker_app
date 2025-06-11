@@ -7,12 +7,17 @@ const routes: Routes = [
   {
     path: '',
     component: MainComponent,
+
     children: [
-      { path: '', redirectTo: 'dashboard/1', pathMatch: 'full' },
-      { path: 'dashboard/:id', component: PubDashboardComponent }
+      { path: '', redirectTo: 'dashboard/:id', pathMatch: 'full' },
+      { 
+        path: 'dashboard/:id', 
+        component: PubDashboardComponent 
+      }
     ]
   }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

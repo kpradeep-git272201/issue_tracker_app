@@ -68,7 +68,7 @@
           <mat-checkbox
             class="example-margin"
             [checked]="selectedIds.has(b.branchCode)"
-            (change)="toggleSelection(b.branchCode, 'availableBranch')"
+            (change)="toggleSelection(b, b.branchCode, 'availableBranch')"
           ></mat-checkbox>
           <span> {{ b.branchName }}</span>
         </label>
@@ -111,7 +111,7 @@
           <mat-checkbox
             class="example-margin"
             [checked]="selectedIds.has(b.branchCode)"
-            (change)="toggleSelection(b.branchCode, 'mapBranch')"
+            (change)="toggleSelection(b, b.branchCode, 'mapBranch')"
           ></mat-checkbox>
           <span> {{ b.branchName }}</span>
         </label>

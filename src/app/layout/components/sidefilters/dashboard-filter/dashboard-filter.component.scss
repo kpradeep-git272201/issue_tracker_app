@@ -161,3 +161,8 @@
   font-size: 1%;
     vertical-align: middle;
 }
+
+// ::ng-deep.mat-mdc-radio-button .mdc-radio__native-control:enabled:checked+.mdc-radio__background>.mdc-radio__outer-circle, .mat-mdc-radio-button .mdc-radio__native-control:enabled:checked+.mdc-radio__background>.mdc-radio__inner-circle {
+//   border-color: var(--primary-color, var(--primary-color)) !important;
+// }
+

@@ -34,6 +34,8 @@ export class MapBankBranchComponent {
   stateCode: any;
   bankCode: any;
   zpCode: any;
+  mappedBranch: any;
+  unMappedBranch: any;
   constructor(
     private fb: FormBuilder,
     private accountingService: AccountingService,
@@ -48,6 +50,14 @@ export class MapBankBranchComponent {
 
   ngOnInit() {
     if (this.isBrowser()) {
+      this.accountingService.selectedForMapIds$.subscribe(
+        (selectedForMapIds) => {
+          this.mappedBranch=selectedForMapIds;
+        });
+      this.accountingService.selectedForUnMapIds$.subscribe(
+        (selectedForUnMapIds) => {
+          this.unMappedBranch=selectedForUnMapIds;
+        });
       this.userData = this.localService.getUserData();
       this.stateCode = this.userData.stateCode;
       this.getBankList();
@@ -61,27 +71,22 @@ export class MapBankBranchComponent {
     if (this.form.valid) {
       console.log('Form Data:', this.form.value);
       console.log(this.rightBranchList);
-
-      this.accountingService.selectedForMapIds$.subscribe(
-        (selectedForMapIds) => {
-          this.accountingService.selectedForUnMapIds$.subscribe(
-            (selectedForUnMapIds) => {
-              console.log('selectedForMapIds', selectedForMapIds);
-              console.log('selectedForUnMapIds', selectedForUnMapIds);
-              const data = {
-                mappedBranch: selectedForMapIds,
-                unMappedBranch: [],
-              };
-              this.accountingService
-                .saveBranchMappingUnMapping(data)
-                .subscribe((resp: any) => {
-                  console.log(resp);
-                });
-            },
-          );
-        },
-      );
     }
+
+    console.log('selectedForMapIds', this.mappedBranch);
+    console.log('selectedForUnMapIds', this.unMappedBranch);
+    const data = {
+      mappedBranch: this.mappedBranch,
+      unMappedBranch: this.unMappedBranch,
+    };
+    this.accountingService
+      .saveBranchMappingUnMapping(data)
+      .subscribe((resp: any) => {
+        if(resp?.status==200){
+          alert(resp.body);
+        }
+        console.log(resp);
+      });
   }
 
   onClear() {
@@ -134,6 +139,7 @@ export class MapBankBranchComponent {
   }
 
   onDistrictSelect(event: any) {
+    this.resetVaribale();
     const zpCode = event.value?.entityCode;
     this.zpCode = zpCode;
     this.getUnMappedBranch(zpCode);
@@ -169,6 +175,9 @@ export class MapBankBranchComponent {
       .subscribe(
         (resp: any) => {
           if (resp?.status == 200) {
+            resp.body.forEach((branch: any) => {
+              branch.isMapped = true;
+            });
             this.rightBranchList = resp.body;
             this.rightBranchListClone = JSON.parse(JSON.stringify(resp.body));
           } else {
@@ -237,7 +246,7 @@ export class MapBankBranchComponent {
     return list.sort((a, b) => a.branchName.localeCompare(b.branchName));
   }
 
-  toggleSelection(branchCode: number, action: string) {
+  toggleSelection(branch: any, branchCode: number, action: string) {
     this.selectedIds.has(branchCode)
       ? this.selectedIds.delete(branchCode)
       : this.selectedIds.add(branchCode);
@@ -256,7 +265,7 @@ export class MapBankBranchComponent {
       if (this.selectedForUnMapIds.has(branchCode)) {
         this.selectedForUnMapIds.delete(branchCode);
       } else {
-        this.selectedForUnMapIds.add(branchCode);
+        if (branch?.isMapped) this.selectedForUnMapIds.add(branchCode);
         this.selectedForMapIds.delete(branchCode);
       }
       const branchListSize = this.rightBranchList.length;
@@ -309,6 +318,6 @@ export class MapBankBranchComponent {
     this.selectedForUnMapIds.clear();
     this.AllCheckedAvailableBnch = false;
     this.AllCheckedMapBnch = false;
-    this.zpCode="";
+    this.zpCode = '';
   }
 }

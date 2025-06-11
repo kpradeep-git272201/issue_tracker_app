@@ -2,8 +2,8 @@ import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import * as XLSX from 'xlsx';
-import * as FileSaver from 'file-saver';
+// import * as XLSX from 'xlsx';
+// import * as FileSaver from 'file-saver';
 import { MaterialModule } from '../../../material/material.module';
 
 @Component({
@@ -127,11 +127,11 @@ export class ProjectAnalyticsComponent implements AfterViewInit {
     this.dataSource.filter = filterValue;
   }
 
-  export() {
-    const worksheet = XLSX.utils.json_to_sheet(this.PROJECT_DATA);
-    const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
-    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-    const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
-    FileSaver.saveAs(blob, 'ProjectData.xlsx');
-  }
+  // export() {
+  //   const worksheet = XLSX.utils.json_to_sheet(this.PROJECT_DATA);
+  //   const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
+  //   const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+  //   const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
+  //   FileSaver.saveAs(blob, 'ProjectData.xlsx');
+  // }
 }

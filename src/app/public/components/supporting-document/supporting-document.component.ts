@@ -47,7 +47,6 @@ export class SupportingDocumentComponent {
     this.visibleColumnFields.set(
       this.columns.filter(col => col.visible !== false).map(col => col.field)
     );
-
     this.filteredDocuments = [...this.documents];
   }
 

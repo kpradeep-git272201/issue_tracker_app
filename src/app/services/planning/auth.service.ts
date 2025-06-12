@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Inject, Injectable, OnInit, PLATFORM_ID } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, ObservableInput, of, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -9,7 +9,7 @@ import { AppConfig } from '../../config/app.config';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class AuthService implements OnInit{
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   public isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
@@ -49,7 +49,11 @@ export class AuthService {
   loggedIn: boolean | undefined;
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
   private http: HttpClient) {
-    if (this.isBrowser() && localStorage.getItem('isLoggedIn') === 'true') {
+    
+  }
+  ngOnInit() {
+    if (this.isBrowser()) {
+      if(localStorage.getItem('isLoggedIn') === 'true')
       this.isLoggedInSubject.next(true);
     }
   }

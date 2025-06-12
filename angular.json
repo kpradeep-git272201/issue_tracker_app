@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "integrated_dashboard": {
+    "egs_dashboard_frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,12 +17,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/integrated_dashboard",
+            "outputPath": "dist/egs_dashboard_frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -35,12 +33,7 @@
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss"
             ],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -61,7 +54,16 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "ssr": true
+            },
+            "ssr": {
+              "outputPath": "dist/egs_dashboard_frontend/server",
+              "outputMode": "server",
+              "server": "src/main.server.ts",
+              "ssr": {
+                "entry": "src/server.ts"
+              }
             }
           },
           "defaultConfiguration": "production"
@@ -73,10 +75,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "integrated_dashboard:build:production"
+              "buildTarget": "egs_dashboard_frontend:build:production"
             },
             "development": {
-              "buildTarget": "integrated_dashboard:build:development"
+              "buildTarget": "egs_dashboard_frontend:build:development"
             }
           },
           "defaultConfiguration": "development"

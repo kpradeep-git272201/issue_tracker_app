@@ -40,7 +40,7 @@ export class IconsService {
       'dashboard',
       'Currency',
       'HeaderIcon',
-      'InidanFlag',
+      'IndianFlag',
       'OpenInNew',
       'Fushia',
       'Language',

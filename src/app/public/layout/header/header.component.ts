@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../../../services/planning/auth.service';
 import { LoginComponent } from '../../../admin/components/login/login.component';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -10,19 +11,24 @@ import { LoginComponent } from '../../../admin/components/login/login.component'
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 isLoggedIn: boolean | undefined;
 
   constructor(private dialog: MatDialog,
     private authService: AuthService,
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) {
 
   }
-
+  isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId);
+  }
   ngOnInit(){
-    this.authService.isLoggedIn$.subscribe((status) => {
-      this.isLoggedIn = status;
-    });
+    if(this.isBrowser()){
+      this.authService.isLoggedIn$.subscribe((status) => {
+        this.isLoggedIn = status;
+      });
+    }
   }
   getLogin() {
     const dialogRef = this.dialog.open(LoginComponent, {

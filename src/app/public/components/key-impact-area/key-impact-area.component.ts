@@ -21,18 +21,20 @@ export class KeyImpactAreaComponent implements OnInit {
     private keyImpactAreaService: KeyImpactAreasService 
   ) {}
 
-  ngOnInit() { // FIXED
-    this.getKeyImpactArea();
+  ngOnInit() { 
+    if(this.isBrowser()){
+      this.getKeyImpactArea();
+    }
   }
 
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
     }
   }
-
+  isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId);
+  }
   getKeyImpactArea() {
-    this.keyImpactArea = this.keyImpactAreaService.getKeyImpactArea()
-    console.log(this.keyImpactArea);
-    
+    this.keyImpactArea = this.keyImpactAreaService.getKeyImpactArea();
   }
 }

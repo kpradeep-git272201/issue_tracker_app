@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject, Inject, PLATFORM_ID } from '@angular/core';
+import { AfterViewInit, Component, inject, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { SidenavComponent } from './layout/components/sidenav/sidenav.component';
 import { MainHeaderComponent } from './layout/components/main-header/main-header.component';
 import { IconsService } from './services/icons/icons.service';
@@ -18,7 +18,7 @@ import { ThemeService } from './services/themes/theme.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements AfterViewInit{
+export class AppComponent implements OnInit, AfterViewInit{
   title = 'integrated_dashboard';
   opened: any = true;
   translate: TranslateService = inject(TranslateService);

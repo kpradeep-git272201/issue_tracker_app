@@ -9,10 +9,10 @@ const routes: Routes = [
     component: MainComponent,
 
     children: [
-      { path: '', redirectTo: 'dashboard/:id', pathMatch: 'full' },
+      { path: '', redirectTo: 'dashboard/:dashboardId', pathMatch: 'full' },
       { 
-        path: 'dashboard/:id', 
-        component: PubDashboardComponent 
+        path: 'dashboard/:dashboardId', 
+        component: PubDashboardComponent ,
       }
     ]
   }

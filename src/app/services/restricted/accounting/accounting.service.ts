@@ -1,4 +1,4 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Inject, Injectable, OnInit, PLATFORM_ID } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, ObservableInput, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import { isPlatformBrowser } from '@angular/common';
 @Injectable({
   providedIn: 'root',
 })
-export class AccountingService {
+export class AccountingService implements OnInit{
 
   private selectedForMapIds = new BehaviorSubject<any>(false);
   public selectedForMapIds$ = this.selectedForMapIds.asObservable();
@@ -26,6 +26,9 @@ export class AccountingService {
     if (this.isBrowser()) {
       this.token = localStorage.getItem('token');
     }
+  }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
   }
 
   SetSelectedForMapIds(selectedForMapIds:any){

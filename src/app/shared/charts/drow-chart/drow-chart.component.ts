@@ -8,6 +8,7 @@ import {
   OnDestroy,
   ElementRef,
   ViewChild,
+  OnInit,
 } from '@angular/core';
 import * as am5 from '@amcharts/amcharts5';
 import * as am5percent from '@amcharts/amcharts5/percent';
@@ -23,7 +24,7 @@ import { MaterialModule } from '../../../material/material.module';
   templateUrl: './drow-chart.component.html',
   styleUrls: ['./drow-chart.component.scss'],
 })
-export class DrowChartComponent implements AfterViewInit, OnDestroy {
+export class DrowChartComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() chartData: any;
   chartType: string = 'donut';
   dataChart: any = [];

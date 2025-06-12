@@ -12,7 +12,17 @@ import { SubFooterComponent } from '../sub-footer/sub-footer.component';
 
 @Component({
   selector: 'app-landing',
-  imports: [MaterialModule, TopHeaderComponent, HeaderComponent, SubHeaderComponent, KeyImpactAreaComponent, ReportsComponent, SupportingDocumentComponent, PublicFooterComponent,SubFooterComponent],
+  imports: [
+    MaterialModule, 
+    TopHeaderComponent, 
+    HeaderComponent, 
+    SubHeaderComponent, 
+    KeyImpactAreaComponent, 
+    ReportsComponent, 
+    SupportingDocumentComponent, 
+    PublicFooterComponent,
+    SubFooterComponent
+  ],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })

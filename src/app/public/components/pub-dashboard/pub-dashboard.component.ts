@@ -14,7 +14,7 @@ dashboardId: any;
 
  ngOnInit(): void {
    this.route.paramMap.subscribe(params => {
-      this.dashboardId = params.get('id');
+      this.dashboardId = params.get('dashboardId');
     });
   }
 }

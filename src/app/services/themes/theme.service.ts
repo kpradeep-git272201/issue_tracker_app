@@ -1,11 +1,11 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { inject, Inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
+import { inject, Inject, Injectable, OnInit, PLATFORM_ID, signal } from '@angular/core';
 
 export type ThemeMode = 'dark' | 'light'; 
 @Injectable({
   providedIn: 'root',
 })
-export class ThemeService {
+export class ThemeService implements OnInit{
   private readonly document = inject(DOCUMENT);
   private readonly currentTheme = signal<ThemeMode>('light');
   private themeKey = 'app-theme';
@@ -18,6 +18,9 @@ export class ThemeService {
         this.setTheme('light-theme');
       }
     }
+  }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
   }
 
   isBrowser(): boolean {

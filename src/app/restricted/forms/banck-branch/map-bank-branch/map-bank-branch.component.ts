@@ -1,4 +1,4 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { MaterialModule } from '../../../../material/material.module';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AccountingService } from '../../../../services/restricted/accounting/accounting.service';
@@ -12,7 +12,7 @@ import { subscribe } from 'diagnostics_channel';
   templateUrl: './map-bank-branch.component.html',
   styleUrl: './map-bank-branch.component.scss',
 })
-export class MapBankBranchComponent {
+export class MapBankBranchComponent implements OnInit {
   form: FormGroup;
   bankList: any = [];
   districtPanchayats: any = [];

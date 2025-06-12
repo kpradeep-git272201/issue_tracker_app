@@ -3,6 +3,7 @@ import {
   Component,
   Inject,
   Input,
+  OnInit,
   PLATFORM_ID,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
@@ -19,7 +20,7 @@ import { SharedService } from '../../../services/filter/shared.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   @Input() dashboardId: any
   breakpoint: number = 3;
   isBrowser: boolean = false;

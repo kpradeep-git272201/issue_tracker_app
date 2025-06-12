@@ -1,4 +1,4 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../../../services/planning/auth.service';
@@ -13,7 +13,7 @@ import { LabelService } from '../../../services/json/labels/label.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
   isLoggedIn: boolean | undefined;
   loggedUser: any;
   stateMap: any;

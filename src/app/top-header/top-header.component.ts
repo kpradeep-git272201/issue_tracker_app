@@ -1,4 +1,4 @@
-import { Component, Inject, inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { MaterialModule } from '../material/material.module';
 import { LoginComponent } from '../admin/components/login/login.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -15,7 +15,7 @@ import { ThemeService } from '../services/themes/theme.service';
   templateUrl: './top-header.component.html',
   styleUrl: './top-header.component.scss',
 })
-export class TopHeaderComponent {
+export class TopHeaderComponent implements OnInit{
   isLoggedIn: boolean | undefined;
   translate: TranslateService = inject(TranslateService);
   selectedTheme: string = 'orange-theme';
@@ -34,9 +34,9 @@ export class TopHeaderComponent {
     /** this.authService.isLoggedIn$.subscribe((status) => {
       this.isLoggedIn = status;
     }); */
-    this.isLoggedIn = this.authService.isAuthenticated();
 
     if (this.isBrowser()) {
+      this.isLoggedIn = this.authService.isAuthenticated();
       const themeName = localStorage.getItem('app-theme');
       if (themeName) {
         this.selectedTheme = themeName;

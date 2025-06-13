@@ -62,4 +62,8 @@ export class MenuComponent {
       },
     );
   }
+
+  getMenu(menu:any){
+    console.log(JSON.stringify(menu));
+  }
 }

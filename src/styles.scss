@@ -265,3 +265,18 @@ p,h2,h1,h3,h4,h5,h6,span,.card-title,th,td{
   }
 }
 
+
+::ng-deep .mat-mdc-snack-bar-container.success.panelClass {
+  background-color: #4caf50;
+  color: white;
+}
+
+::ng-deep .mat-mdc-snack-bar-container.error.panelClass {
+  background-color: #f44336;
+  color: white;
+}
+
+::ng-deep .mat-mdc-snack-bar-container.info.panelClass {
+  background-color: #2196f3;
+  color: white;
+}

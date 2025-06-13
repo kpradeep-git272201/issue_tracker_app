@@ -4,6 +4,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MainComponent } from './layout/main/main.component';
 import { MapBankBranchComponent } from './forms/banck-branch/map-bank-branch/map-bank-branch.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AddBenificaryComponent } from './forms/vendors/add-benificary/add-benificary.component';
+import { ModifyBenificaryComponent } from './forms/vendors/modify-benificary/modify-benificary.component';
+import { AddBankAccountComponent } from './forms/bank/add-bank-account/add-bank-account.component';
+import { ManageBankAccountComponent } from './forms/bank/manage-bank-account/manage-bank-account.component';
 
 const routes: Routes = [
   {
@@ -12,6 +16,10 @@ const routes: Routes = [
     children: [
       { path: '', component: DashboardComponent },
       { path: 'mapBankBranch', component: MapBankBranchComponent },
+      { path: 'addBankAccount', component: AddBankAccountComponent },
+      { path: 'getAddBenificary', component: AddBenificaryComponent },
+      { path: 'manageBankAccount', component: ManageBankAccountComponent },
+      { path: 'getModifyBenificary', component: ModifyBenificaryComponent },
       { path: '**', component: PageNotFoundComponent }
     ]
   }

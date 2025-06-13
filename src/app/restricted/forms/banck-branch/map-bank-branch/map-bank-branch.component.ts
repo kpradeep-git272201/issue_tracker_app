@@ -5,6 +5,7 @@ import { AccountingService } from '../../../../services/restricted/accounting/ac
 import { LocalService } from '../../../../services/localStorage/local.service';
 import { isPlatformBrowser } from '@angular/common';
 import { subscribe } from 'diagnostics_channel';
+import { TostService } from '../../../../shared/message/tost.service';
 
 @Component({
   selector: 'app-map-bank-branch',
@@ -41,6 +42,7 @@ export class MapBankBranchComponent implements OnInit {
     private accountingService: AccountingService,
     private localService: LocalService,
     @Inject(PLATFORM_ID) private platformId: Object,
+    private tostService: TostService
   ) {
     this.form = this.fb.group({
       bankName: [''],
@@ -83,13 +85,15 @@ export class MapBankBranchComponent implements OnInit {
       .saveBranchMappingUnMapping(data)
       .subscribe((resp: any) => {
         if(resp?.status==200){
-          alert(resp.body);
+        this.showMessage(resp.body, 'success');
+        }else{
+          this.showMessage(resp.body, 'error');
         }
-        console.log(resp);
       });
   }
 
   onClear() {
+ 
     this.form.reset();
     this.AvailableBranchListMapp = [];
     this.rightBranchList = [];
@@ -319,5 +323,10 @@ export class MapBankBranchComponent implements OnInit {
     this.AllCheckedAvailableBnch = false;
     this.AllCheckedMapBnch = false;
     this.zpCode = '';
+  }
+
+
+  showMessage(message:any, type:string){
+    this.tostService.showMessage(message, 3000, type);
   }
 }

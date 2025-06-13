@@ -60,6 +60,7 @@
                         [routerLink]="subsubmenu?.url"
                         routerLinkActive="active-subsubmenu"
                         #rlaSubSub="routerLinkActive"
+                        (click)="getMenu(subsubmenu)"
                         [ngClass]="{ 'active-subsubmenu': rlaSubSub.isActive }"
                       >
                         {{ labels[subsubmenu?.name] || subsubmenu?.name }}

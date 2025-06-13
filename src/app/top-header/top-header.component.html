@@ -9,6 +9,7 @@
     </a>
   </div>
   <div class="top-other-content">
+    <!-- <span>version: v0.0.1</span> -->
     <!-- <div class="skip-to-main">
       <a href="">Skip to Main Content</a>
     </div> -->
@@ -56,7 +57,7 @@
       <mat-icon class="Devider" svgIcon="Devider"></mat-icon>
     </div> -->
    
-    <mat-menu #mainMenu1="matMenu">
+    <!-- <mat-menu #mainMenu1="matMenu">
       <button
         mat-menu-item
         [matMenuTriggerFor]="themeMenu"
@@ -65,7 +66,7 @@
       >
         <mat-icon class="lang-icon"> format_color_fill</mat-icon>Color Themes
       </button>
-    </mat-menu>
+    </mat-menu> -->
     <!-- <mat-menu #mainMenu="matMenu">
       <button
         mat-menu-item
@@ -92,7 +93,7 @@
       </button>
     </mat-menu>
 
-    <mat-menu #themeMenu="matMenu">
+    <mat-menu #mainMenu1="matMenu">
       <button mat-menu-item (click)="changeTheme('green-theme')">
         <div class="circle green-theme"></div>
         <span [ngClass]="{ 'active-theme': selectedTheme === 'green-theme' }"

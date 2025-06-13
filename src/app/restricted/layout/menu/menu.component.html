@@ -29,11 +29,11 @@
           <mat-expansion-panel *ngFor="let menu of menubarList">
             <mat-expansion-panel-header *ngIf="menu.subMenus?.length > 0">
               <mat-panel-title>
-                <mat-icon
+                <!-- <mat-icon
                   class="icon-color"
                   svgIcon="SidebarIcon"
                   style="padding-right: 0.125rem; margin-bottom: -1px"
-                ></mat-icon>
+                ></mat-icon> -->
                 {{ labels[menu?.name] || menu?.name }}
               </mat-panel-title>
               

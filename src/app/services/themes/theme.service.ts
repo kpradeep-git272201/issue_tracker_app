@@ -37,7 +37,7 @@ export class ThemeService implements OnInit{
   loadTheme(themeName?: string) {
     if (this.isBrowser()) {
       const theme =
-        themeName || localStorage.getItem(this.themeKey) || 'orange-theme';
+        themeName || localStorage.getItem(this.themeKey) || 'teal-theme';
       const head = document.getElementsByTagName('head')[0];
       const existingLink = document.getElementById(
         'client-theme',
@@ -51,7 +51,7 @@ export class ThemeService implements OnInit{
         'teal-theme': 'assets/themes/teal-theme/teal-theme.css',
       };
 
-      const themeHref = themeMap[theme] || themeMap['orange-theme'];
+      const themeHref = themeMap[theme] || themeMap['teal-theme'];
 
       if (existingLink) {
         existingLink.href = themeHref;

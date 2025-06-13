@@ -20,6 +20,7 @@ export class LoginComponent {
   captchaText: string = '';
   captchaInput: string = '';
   count: number = 0;
+  isInvalidUser:string="";
   constructor(
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -90,7 +91,8 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const loginData = this.loginForm.getRawValue();
       // Check captcha only if count >= 3
-      if (this.count >= 3 && loginData.captchaInput !== loginData.captchaText) {
+      if (this.count >= 3 && loginData.captcha !== loginData.captchaText) {
+        this.isInvalidUser="Invalid captcha.";
         this.generateCaptcha(); // regenerate if wrong
         this.updateCaptchaValidator(this.count);
         return;
@@ -104,6 +106,7 @@ export class LoginComponent {
       this.authService.getLogin(requestBody).subscribe(
         (resp) => {
           if (resp?.status == 200) {
+            this.isInvalidUser="";
             localStorage.setItem('loggedUser', JSON.stringify(resp.body));
             const token = resp.headers.get('Authorization');
             localStorage.setItem('token', token);
@@ -111,7 +114,7 @@ export class LoginComponent {
             this.dialogRef.close();
             this.router.navigate(['/restricted']);
           } else {
-            console.log('Authentication failed');
+            this.isInvalidUser="Incorrect username or password.";
             this.count++;
             this.updateCaptchaValidator(this.count);
             if (this.count >= 3) {
@@ -121,12 +124,12 @@ export class LoginComponent {
         },
         (error) => {
           // Handle error from backend
-          console.log('Login error', error);
+          this.isInvalidUser="Incorrect username or password.";
           this.count++;
-          this.updateCaptchaValidator(this.count);
-          if (this.count >= 3) {
-            this.generateCaptcha();
-          }
+          // this.updateCaptchaValidator(this.count);
+          // if (this.count >= 3) {
+          //   this.generateCaptcha();
+          // }
         },
       );
     }
@@ -136,7 +139,7 @@ export class LoginComponent {
     const captchaControl = this.loginForm.get('captcha');
     if (!captchaControl) return;
 
-    if (count >= 5) {
+    if (count >= 3) {
       captchaControl.setValidators([Validators.required]);
     } else {
       captchaControl.clearValidators();

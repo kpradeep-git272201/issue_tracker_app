@@ -56,7 +56,8 @@ export class IconsService {
       'Accounting',
       'Audit',
       'Funnel',
-      'egsLogo'
+      'egsLogo',
+      'dashboard-comp-bg'
     ];
   }
 }

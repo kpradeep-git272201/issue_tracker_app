@@ -67,7 +67,7 @@ export class ThemeService implements OnInit{
 
   clearTheme() {
     localStorage.removeItem(this.themeKey);
-    this.setTheme('orange-theme');
+    this.setTheme('teal-theme');
   }
 
   setThemeMode(themeMode: ThemeMode){

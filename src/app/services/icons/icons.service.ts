@@ -55,7 +55,8 @@ export class IconsService {
       'planingAndReporting',
       'Accounting',
       'Audit',
-      'Funnel'
+      'Funnel',
+      'egsLogo'
     ];
   }
 }

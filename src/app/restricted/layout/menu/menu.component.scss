@@ -315,7 +315,9 @@ button {
   
 
 
-
+::ng-deep .mdc-button{
+  text-align: left;
+}
 
   .active-menu,
 .active-submenu,

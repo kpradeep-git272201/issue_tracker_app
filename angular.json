@@ -54,8 +54,7 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true,
-              "ssr": true
+              "sourceMap": true
             },
             "ssr": {
               "outputPath": "dist/egs_dashboard_frontend/server",

@@ -30,3 +30,4 @@ import { TranslateService } from '@ngx-translate/core';
 export class LandingComponent {
   translate: TranslateService = inject(TranslateService);
 }
+///

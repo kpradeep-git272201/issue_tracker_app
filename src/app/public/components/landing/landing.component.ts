@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
 import { TopHeaderComponent } from "../../../top-header/top-header.component";
 import { HeaderComponent } from "../../layout/header/header.component";
@@ -8,6 +8,7 @@ import { ReportsComponent } from "../reports/reports.component";
 import { SupportingDocumentComponent } from "../supporting-document/supporting-document.component";
 import { PublicFooterComponent } from "../public-footer/public-footer.component";
 import { SubFooterComponent } from '../sub-footer/sub-footer.component';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -27,5 +28,5 @@ import { SubFooterComponent } from '../sub-footer/sub-footer.component';
   styleUrl: './landing.component.scss'
 })
 export class LandingComponent {
-
+  translate: TranslateService = inject(TranslateService);
 }

@@ -28,7 +28,7 @@ export class AuthGuard implements CanActivate {
     if (isPlatformBrowser(this.platformId) && this.authService.isAuthenticated()) {
       return true;
     } else {
-      // Redirect to home or login
+      // Redirect to demo-m or login
       return false; //this.router.parseUrl('/');
     }
   }

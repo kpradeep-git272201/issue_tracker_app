@@ -10,8 +10,8 @@ export function getPrerenderParams() {
   ];
 }
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: LandingComponent },
+  { path: '', redirectTo: 'demo-m', pathMatch: 'full' },
+  { path: 'demo-m', component: LandingComponent },
   {
     path: 'public',
     loadChildren: () =>

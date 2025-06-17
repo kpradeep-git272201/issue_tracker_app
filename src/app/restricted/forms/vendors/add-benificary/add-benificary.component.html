@@ -1,104 +1,104 @@
+<div class="form-container">
 
 
-   <div class="form-container">
-    
-    <h2 class="form-title">Add Agency Details</h2>
-  
-    <form [formGroup]="agencyForm">
-      <div class="form-row">
-        <label class="form-label">Agency Name <span class="required">*</span></label>
-        <mat-form-field appearance="outline" class="form-input">
-          <mat-label>Agency Name</mat-label>
-          <input matInput formControlName="agencyName" required>
-          <mat-error *ngIf="agencyForm.controls['agencyName'].invalid">Required</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form-row">
-        <label class="form-label">Mobile No. <span class="required">*</span></label>
-        <mat-form-field appearance="outline" class="form-input">
-          <mat-label>Mobile No.</mat-label>
-          <input matInput formControlName="mobile" required>
-          <mat-error *ngIf="agencyForm.controls['mobile'].invalid">Required</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form-row">
-        <label class="form-label">E-mail Address</label>
-        <mat-form-field appearance="outline" class="form-input">
-          <mat-label>E-mail Address</mat-label>
-          <input matInput formControlName="email" type="email">
-        </mat-form-field>
-      </div>
-  
-      <div class="form-row">
-        <label class="form-label">Permanent Account Number</label>
-        <mat-form-field appearance="outline" class="form-input">
-          <mat-label>PAN</mat-label>
-          <input matInput formControlName="pan">
-          <mat-error *ngIf="!panValid">PAN number should contain first 5 alphabets, 4 numbers and 1 alphabet</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form-row">
-        <label class="form-label">Tax Deduction and Collection Account Number (TAN)</label>
-        <mat-form-field appearance="outline" class="form-input">
-          <mat-label>TAN</mat-label>
-          <input matInput formControlName="tan">
-          <mat-error *ngIf="!tanValid">TAN number should contain first 4 alphabets, 5 numbers and 1 alphabet</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form-row">
-        <label class="form-label">Tax Invoice Number (TIN)</label>
-        <mat-form-field appearance="outline" class="form-input">
-          <mat-label>TIN</mat-label>
-          <input matInput formControlName="tin">
-        </mat-form-field>
-      </div>
-  
-      <div class="form-row">
-        <label class="form-label">GST Number</label>
-        <mat-form-field appearance="outline" class="form-input">
-          <mat-label>GST Number</mat-label>
-          <input matInput formControlName="gst">
-          <mat-error *ngIf="!gstValid">Invalid GST Number</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <!-- <div class="button-group">
-        <button mat-raised-button color="primary" (click)="save()">✔ Save</button>
-        <button mat-raised-button color="accent" (click)="clear()">↺ Clear</button>
-        <button mat-raised-button color="warn" (click)="close()">✖ Close</button>
-      </div> -->
+    <form [formGroup]="agencyForm" class="form-fields">
+        <div class="form-inner">
+       <!--      <mat-card-title class="open-sans form-title" style ="margin-bottom: 50px;">
+                Add Agency Details 
+            </mat-card-title> -->
 
-    <!--   
-      <div class="button-group">
-        <button mat-raised-button class="btn btn-success" (click)="save()">
-          <mat-icon>save</mat-icon> Save
-        </button>
-        <button class="btn btn-warning" (click)="clear()">
-          <mat-icon>clear</mat-icon> Clear
-        </button>
-        <button mat-raised-button class="btn btn-danger" (click)="close()">
-          <mat-icon>close</mat-icon> Close
-        </button>
-      </div> -->
-      <div class="form-actions">
-        <button class="btn btn-warning" (click)="clear()">
-          <mat-icon>clear</mat-icon>&nbsp;Clear
-        </button>
-  
-        <button (click)="close()" class="btn btn-danger">
-          <mat-icon>close</mat-icon>&nbsp;Close
-        </button>
-        <button class="btn btn-success" (click)="save()">
-          <mat-icon>save</mat-icon>&nbsp;Save
-        </button>
-      </div>
-  
-      
+            <h2 class="open-sans form-title heading-margin">
+                Add Agency Details
+              </h2>
+              
 
+
+            <div class="form-row">
+                <mat-form-field appearance="outline" class="half-width">
+                    <mat-label>Agency Name</mat-label>
+                    <input matInput formControlName="agencyName" required>
+                    <mat-error *ngIf="agencyForm.get('agencyName')?.hasError('required')">
+                        Agency Name is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="half-width">
+                    <mat-label>Mobile No.</mat-label>
+                    <input matInput formControlName="mobile" required maxlength="10" inputmode="numeric"
+                        pattern="[0-9]*" (keydown)="digitsOnly($event)">
+                    <mat-error *ngIf="agencyForm.get('mobile')?.hasError('required')">
+                        Mobile No. is required
+                    </mat-error>
+                    <mat-error *ngIf="agencyForm.get('mobile')?.hasError('pattern')">
+                        Enter a valid 10-digit mobile number
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            
+
+            <div class="form-row">
+                <mat-form-field appearance="outline" class="half-width">
+                    <mat-label>E-mail Address</mat-label>
+                    <input matInput formControlName="email" type="email">
+                    <mat-error *ngIf="agencyForm.get('email')?.hasError('email')">
+                        Enter a valid email address
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="half-width">
+                    <mat-label>PAN (Permanent Account Number)</mat-label>
+                    <input matInput formControlName="pan">
+                    <mat-hint align="start" style="color: red;">
+                        PAN should contain 5 letters, 4 digits, and 1 letter (e.g., ABCDE1234F)
+                    </mat-hint>
+                    <mat-error *ngIf="agencyForm.get('pan')?.hasError('invalidPan')">
+                        Invalid PAN Number
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="form-row">
+                <mat-form-field appearance="outline" class="half-width">
+                    <mat-label>TAN (Tax Deduction and Collection Account Number)</mat-label>
+                    <input matInput formControlName="tan">
+                    <mat-hint align="start" style="color: red;">
+                        TAN should contain 4 letters, 5 digits, and 1 letter (e.g., ABCD12345E)
+                    </mat-hint>
+                    <mat-error *ngIf="agencyForm.get('tan')?.hasError('invalidTan')">
+                        Invalid TAN Number
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="half-width">
+                    <mat-label>Tax Invoice Number (TIN)</mat-label>
+                    <input matInput formControlName="tin">
+                </mat-form-field>
+            </div>
+
+
+            <div class="form-row align-center">
+                <mat-form-field appearance="outline" class="half-width">
+                    <mat-label>GST Number</mat-label>
+                    <input matInput formControlName="gst">
+                </mat-form-field>
+
+                <div class="form-actions half-width">
+                    <button type="button" class="btn btn-warning" (click)="clear()">
+                        <mat-icon>clear</mat-icon>&nbsp;Clear
+                    </button>
+
+                    <button type="button" (click)="close()" class="btn btn-danger">
+                        <mat-icon>close</mat-icon>&nbsp;Close
+                    </button>
+
+                    <button type="button" class="btn btn-success" (click)="save()">
+                        <mat-icon>save</mat-icon>&nbsp;Save
+                    </button>
+                </div>
+            </div>
+
+
+
+        </div>
     </form>
-  </div>
-  
+</div>

@@ -1,31 +1,7 @@
-.page-btn,
-.nav-btn {
-  width: 32px;
-  height: 32px;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #111827;
-  background-color: transparent;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.page-btn:hover,
-.nav-btn:hover {
-  background-color: #F3F4F6;
-}
-
-.page-btn.active {
-  background-color: #FF4500;
-  color: white;
-}
-
-.pagination-controls {
-  display: flex;
-  align-items: center;
-  gap: 4px;
+.header-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
 }

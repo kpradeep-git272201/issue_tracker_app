@@ -20,11 +20,20 @@
   border-collapse: collapse;
   font-family: 'Inter', sans-serif;
   table-layout: auto; 
+  border: 1px solid lightgray;
 }
-
+.header th{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-left: 1px solid lightgrey
+}
+.header{
+    border-bottom: 1px solid lightgray;
+}
 .data-table th,
 .data-table td {
-  padding: 0.750rem 24px;
+//   padding: 0.750rem 24px;
+padding-left: 10px;
   text-align: left;
   font-size: 0.875rem;
   color: #1F2937;
@@ -333,3 +342,14 @@ mat-card {
   height: 10px; 
 }
 
+.odd{
+    background-color: #FFFFFF;
+}
+.even{
+    background-color: #f3f3f3;
+}
+
+.tableBody td{
+    padding-top: 3px;
+    padding-bottom: 3px;
+}

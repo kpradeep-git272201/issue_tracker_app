@@ -1,91 +1,50 @@
 import { Component, computed } from '@angular/core';
 import { MaterialModule } from '../../../../material/material.module';
-import { ManageComponent } from "../../../components/manage/manage.component";
+import { ManageComponent } from '../../../components/manage/manage.component';
+import { AccountingService } from '../../../../services/restricted/accounting/accounting.service';
 
 @Component({
   selector: 'app-modify-benificary',
   imports: [MaterialModule, ManageComponent],
   templateUrl: './modify-benificary.component.html',
-  styleUrl: './modify-benificary.component.scss'
+  styleUrl: './modify-benificary.component.scss',
 })
 export class ModifyBenificaryComponent {
-   globalFilter = '';
+  globalFilter = '';
   currentPage = 1;
   pageSize = 10;
 
-  columns=[
-    {attrId: "agencyDetails", attrName: "Label.AgencyDetails"}
-  ]
-  data = [
-    { agencyDetails: 'AXIS Bank' },
-    { agencyDetails: 'AXIS Bank' },
-    { agencyDetails: 'AXIS Bank' },
-    { agencyDetails: 'PUNJAB NATIONAL BANK' },
-    { agencyDetails: 'Allahabad Bank' },
-    { agencyDetails: 'BANK OF INDIA'},
-    { agencyDetails: 'BANK OF INDIA' },
-    { agencyDetails: 'BANK OF INDIA'},
-    { agencyDetails: 'BANK OF INDIA' },
-    { agencyDetails: 'BANK OF INDIA' }
-  ];
+  columns = [{ attrId: 'agencyDesc', attrName: 'Label.AgencyDetails' }];
+  data: any = [];
 
-  filteredData = [...this.data];
+  constructor(private accountingService: AccountingService) {}
 
-  applyGlobalFilter() {
-    const filter = this.globalFilter.trim().toLowerCase();
-    this.filteredData = this.data.filter(item =>
-      Object.values(item).some(val =>
-        String(val).toLowerCase().includes(filter)
-      )
-    );
-    this.currentPage = 1;
+  ngOnInit() {
+    this.getVendorBeneficiaryManage();
   }
 
-  filteredRows() {
-    return this.filteredData;
+  getVendorBeneficiaryManage() {
+    this.accountingService.getVendorBeneficiaryManage().subscribe((resp) => {
+      if (resp?.status == 200) {
+        this.data = [];
+        this.createColumnName(resp.body);
+        resp.body.forEach((elememt: any) => {
+          this.data.push({
+            agencyDesc: elememt.agencyDesc,
+          });
+        });
+      }
+    });
   }
 
-  pagedData() {
-    const start = (this.currentPage - 1) * this.pageSize;
-    const end = start + this.pageSize;
-    return this.filteredRows().slice(start, end);
-  }
-
-  get totalPages() {
-    return Math.ceil(this.filteredRows().length / this.pageSize);
-  }
-
-  get pageNumbers(): number[] {
-    const total = this.totalPages;
-    const current = this.currentPage;
-    const range: number[] = [];
-    const maxVisible = 5;
-    let start = Math.max(1, current - Math.floor(maxVisible / 2));
-    let end = start + maxVisible - 1;
-
-    if (end > total) {
-      end = total;
-      start = Math.max(1, end - maxVisible + 1);
+  createColumnName(data: any) {
+    if (data.length >= 1) {
+      const object = data[0];
+      const columns = [];
+      for (let key in object) {
+        columns.push({ attrId: key, attrName: 'Label.' + key });
+      }
+      this.columns = columns;
     }
-
-    for (let i = start; i <= end; i++) range.push(i);
-    return range;
-  }
-
-  prevPage() {
-    if (this.currentPage > 1) this.currentPage--;
-  }
-
-  nextPage() {
-    if (this.currentPage < this.totalPages) this.currentPage++;
-  }
-
-  goToPage(page: number) {
-    if (page >= 1 && page <= this.totalPages) this.currentPage = page;
-  }
-
-  onPageSizeChange(newSize: number) {
-    this.pageSize = newSize;
-    this.currentPage = 1;
   }
 }

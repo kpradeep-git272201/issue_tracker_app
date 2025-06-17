@@ -5,45 +5,42 @@
   padding-bottom: 20px;
 }
 
-
-
-
-
 .table-container {
   width: 100%;
   overflow-x: auto;
 }
 
-
- .data-table {
-  width: 100%; 
+.data-table {
+  width: 100%;
   border-collapse: collapse;
-  font-family: 'Inter', sans-serif;
-  table-layout: auto; 
+  font-family: "Inter", sans-serif;
+  table-layout: auto;
   border: 1px solid lightgray;
 }
-.header th{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-left: 1px solid lightgrey
+.header th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-left: 1px solid lightgrey;
 }
-.header{
-    border-bottom: 1px solid lightgray;
+.header {
+  border-bottom: 1px solid lightgray;
 }
 .data-table th,
 .data-table td {
-//   padding: 0.750rem 24px;
-padding-left: 10px;
+  //   padding: 0.750rem 24px;
+  padding-left: 10px;
+  padding-right: 10px;
   text-align: left;
   font-size: 0.875rem;
-  color: #1F2937;
+  color: #1f2937;
   vertical-align: middle;
   white-space: nowrap;
-  word-wrap: break-word; 
+  word-wrap: break-word;
+  border-left: 1px solid lightgrey;
 }
 
 .data-table thead {
-  background-color: #F9FAFB;
+  background-color: #f9fafb;
   font-weight: 600;
 }
 
@@ -57,7 +54,7 @@ padding-left: 10px;
   background-color: #fff;
   gap: 1rem;
   flex-wrap: wrap;
-  border-radius: 0.750rem;
+  border-radius: 0.75rem;
 }
 
 .header-title {
@@ -70,10 +67,9 @@ padding-left: 10px;
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 0.750rem;
+  gap: 0.75rem;
   flex-wrap: nowrap;
 }
-
 
 /* === SEARCH FIELD (Aligned to Filter Button Height) === */
 
@@ -131,7 +127,6 @@ padding-left: 10px;
   }
 }
 
-
 /* === FILTER & EXPORT BUTTONS === */
 
 .action-button {
@@ -146,23 +141,19 @@ padding-left: 10px;
   white-space: nowrap;
 }
 
-
 /* === PAGINATION === */
 
 .custom-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.750rem 1rem;
+  padding: 0.75rem 1rem;
   background-color: #ffffff;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.875rem;
   margin-top: 20px;
-  border-radius: 0.750rem;
-
+  border-radius: 0.75rem;
 }
-
-
 
 .rows-dropdown-wrapper {
   display: flex;
@@ -205,23 +196,22 @@ padding-left: 10px;
 
 .page-btn:hover,
 .nav-btn:hover {
-  background-color: #F3F4F6;
+  background-color: #f3f4f6;
 }
 
 .page-btn.active {
-  background-color: #FF4500;
+  background-color: #ff4500;
   color: white;
 }
 
 /* === CARD STYLING === */
 
 mat-card {
-  background-color: #FFFFFF;
-  box-shadow: 0px 4px 10px 0px #0000001A;
-  border-radius: 0.750rem;
-  border: 1px solid var(--border-primary, #E1E7EC);
+  background-color: #ffffff;
+  box-shadow: 0px 4px 10px 0px #0000001a;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-primary, #e1e7ec);
 }
-
 
 /* === ANGULAR MATERIAL HEIGHT FIXES (if needed) === */
 
@@ -231,13 +221,12 @@ mat-card {
   align-items: center !important;
 }
 
-
 /* === RESPONSIVE BREAKPOINTS === */
 
 @media (max-width: 480px) {
   .data-table th,
   .data-table td {
-    font-size: 0.750rem;
+    font-size: 0.75rem;
   }
 
   .pagination-controls {
@@ -251,7 +240,7 @@ mat-card {
     gap: 0.5rem;
 
     span {
-      font-size: 0.750rem;
+      font-size: 0.75rem;
     }
   }
 }
@@ -317,14 +306,14 @@ mat-card {
 .export-button {
   display: flex;
   align-items: center;
-  gap: 4px; 
+  gap: 4px;
   padding: 4px 8px;
   font-size: 18px;
 }
 
 .export-icon {
   font-size: 24px;
-  margin-right: 2px; 
+  margin-right: 2px;
 }
 .no-data-cell {
   padding: 0;
@@ -339,17 +328,17 @@ mat-card {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 10px; 
+  height: 10px;
 }
 
-.odd{
-    background-color: #FFFFFF;
+.odd {
+  background-color: #ffffff;
 }
-.even{
-    background-color: #f3f3f3;
+.even {
+  background-color: #f3f3f3;
 }
 
-.tableBody td{
-    padding-top: 3px;
-    padding-bottom: 3px;
+.tableBody td {
+  padding-top: 3px;
+  padding-bottom: 3px;
 }

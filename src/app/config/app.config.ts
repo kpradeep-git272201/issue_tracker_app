@@ -10,7 +10,8 @@ export const AppConfig = {
     districtListOfBankBranch: "master/bank/districtListOfBankBranch",
     unMappedBranch: "master/bank/unMappedBranch",
     mappedBranch:"master/bank/mappedBranch",
-    saveBranchMappingUnMapping: "master/bank/saveBranchMappingUnMapping" 
+    saveBranchMappingUnMapping: "master/bank/saveBranchMappingUnMapping",
+    agency: "master/agency"
 
   },
 };

@@ -177,6 +177,27 @@ export class AccountingService implements OnInit{
     );
   }
 
+  getVendorBeneficiaryManage(){
+      const url = `${AppConfig.BASE_API}${AppConfig.endpointPath.agency}`;
+    console.log(url);
+    const headers = new HttpHeaders()
+      .set('content-type', 'application/json')
+      .set('Authorization', `${this.token}`);
+    return this.request('GET', url, {
+      headers: headers,
+      reportProgress: false,
+      observe: 'response',
+    }).pipe(
+      map((resp) => {
+        return resp;
+      }),
+      catchError((error) => {
+        return of(error);
+      }),
+    );
+  }
+
+  /** ************************************************* Mock JSON ************************************** */
   getBankList() {
     return [
       {

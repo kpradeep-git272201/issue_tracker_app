@@ -6,6 +6,8 @@ import { LocalService } from '../../../../services/localStorage/local.service';
 import { isPlatformBrowser } from '@angular/common';
 import { subscribe } from 'diagnostics_channel';
 import { TostService } from '../../../../shared/message/tost.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarComponent } from '../../../../shared/message/snackbar/snackbar.component';
 
 @Component({
   selector: 'app-map-bank-branch',
@@ -42,7 +44,8 @@ export class MapBankBranchComponent implements OnInit {
     private accountingService: AccountingService,
     private localService: LocalService,
     @Inject(PLATFORM_ID) private platformId: Object,
-    private tostService: TostService
+    private tostService: TostService,
+    private snackBar: MatSnackBar
   ) {
     this.form = this.fb.group({
       bankName: [''],
@@ -104,7 +107,21 @@ export class MapBankBranchComponent implements OnInit {
     this.selectedIds.clear();
   }
 
-  onClose() {}
+  onClose() {
+  this.snackBar.openFromComponent(SnackbarComponent, {
+    data: {
+      onContinue: () => {
+        // Optional: Do something when "Continue" is clicked
+        console.log('Continue clicked!');
+      }
+    },
+    duration: undefined, // Keeps it open until manually closed
+    horizontalPosition: 'center',
+    verticalPosition: 'bottom',
+    panelClass: ['no-auto-dismiss'] // Custom class (optional)
+  });
+}
+
 
   getBankList() {
     this.accountingService.getBankListByStateCode(this.stateCode).subscribe(

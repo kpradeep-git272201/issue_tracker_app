@@ -199,7 +199,7 @@ export class AccountingService implements OnInit{
 
   /** ************************************************* Mock JSON ************************************** */
 
-  masterAgency(data:any){
+  createMasterAgency(data:any){
     console.log('data' + JSON.stringify(data));
     const url = `${AppConfig.BASE_API}${AppConfig.endpointPath.masterAgency}`;
     console.log(url);

@@ -16,20 +16,20 @@
             <div class="form-row">
                 <mat-form-field appearance="outline" class="half-width">
                     <mat-label>Agency Name</mat-label>
-                    <input matInput formControlName="agencyName" required>
-                    <mat-error *ngIf="agencyForm.get('agencyName')?.hasError('required')">
+                    <input matInput formControlName="agencyDesc" required>
+                    <mat-error *ngIf="agencyForm.get('agencyDesc')?.hasError('required')">
                         Agency Name is required
                     </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="half-width">
                     <mat-label>Mobile No.</mat-label>
-                    <input matInput formControlName="mobile" required maxlength="10" inputmode="numeric"
+                    <input matInput formControlName="mobileNo" required maxlength="10" inputmode="numeric"
                         pattern="[0-9]*" (keydown)="digitsOnly($event)">
-                    <mat-error *ngIf="agencyForm.get('mobile')?.hasError('required')">
+                    <mat-error *ngIf="agencyForm.get('mobileNo')?.hasError('required')">
                         Mobile No. is required
                     </mat-error>
-                    <mat-error *ngIf="agencyForm.get('mobile')?.hasError('pattern')">
+                    <mat-error *ngIf="agencyForm.get('mobileNo')?.hasError('pattern')">
                         Enter a valid 10-digit mobile number
                     </mat-error>
                 </mat-form-field>
@@ -79,7 +79,7 @@
             <div class="form-row align-center">
                 <mat-form-field appearance="outline" class="half-width">
                     <mat-label>GST Number</mat-label>
-                    <input matInput formControlName="gst">
+                    <input matInput formControlName="gstNo">
                 </mat-form-field>
 
                 <div class="form-actions half-width">

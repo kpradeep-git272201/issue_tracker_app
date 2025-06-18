@@ -42,7 +42,9 @@ export class ModifyBenificaryComponent {
       const object = data[0];
       const columns = [];
       for (let key in object) {
-        columns.push({ attrId: key, attrName: 'Label.' + key });
+        if(key != "agencyCode"){
+          columns.push({ attrId: key, attrName: 'Label.' + key });
+        }
       }
       this.columns = columns;
     }

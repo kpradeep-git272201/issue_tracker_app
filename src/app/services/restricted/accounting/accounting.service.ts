@@ -51,7 +51,6 @@ export class AccountingService implements OnInit{
       responseType?: any;
       observe?: any;
       reportProgress?: boolean;
-
     },
   ): Observable<any> {
     return this.http
@@ -201,9 +200,9 @@ export class AccountingService implements OnInit{
 
   createMasterAgency(data:any){
     console.log('data' + JSON.stringify(data));
-    const url = `${AppConfig.BASE_API}${AppConfig.endpointPath.masterAgency}`;
+    const url = `${AppConfig.BASE_API}${AppConfig.endpointPath.agency}`;
     console.log(url);
-    const headers = new HttpHeaders().set('content-type', 'application/json').set('Authorization', `${this.token}`);
+    const headers = new HttpHeaders().set('content-type', 'multipart/form-data').set('Authorization', `${this.token}`);
     return this.request('POST', url, { body: data, headers: headers, responseType: 'text' as 'json' , reportProgress: false, observe: 'response' }).pipe(
       map(resp => {
         this.loggedIn = true;

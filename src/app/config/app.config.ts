@@ -12,8 +12,7 @@ export const AppConfig = {
     unMappedBranch: "master/branch/unMappedBranch",
     mappedBranch:"master/branch/mappedBranch",
     saveBranchMappingUnMapping: "master/branch/saveBranchMappingUnMapping",
-    agency: "master/agency",
-    masterAgency:"master/bankAccount/master/agency"
+    agency: "master/agency"
 
   },
 };

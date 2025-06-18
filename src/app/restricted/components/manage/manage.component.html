@@ -5,7 +5,7 @@
       <h2 class="header-title">{{title}}</h2>
 
       <div class="header-actions">
-        <mat-form-field appearance="outline" class="search-field">
+        <mat-form-field appearance="outline" class="search-field" *ngIf="enableGlobalSearch">
           <mat-icon matPrefix>search</mat-icon>
           <input
             matInput
@@ -26,6 +26,7 @@
           mat-stroked-button
           class="action-button"
           (click)="exportExcel()"
+          id="actionButton"
         >
           <mat-icon>download</mat-icon>
           <span>Export</span>
@@ -34,6 +35,7 @@
           mat-stroked-button
           class="action-button"
           (click)="exportExcel()"
+          id="actionButton"
         >
           <mat-icon>add</mat-icon>
           <span>Add</span>
@@ -54,7 +56,7 @@
                   (click)="sortBy(col.field)"
                   class="font-16"
                 >
-                  {{ col.attrName }}
+                  {{ labels[ col.attrName ] ||  col.attrName }}
                   <span *ngIf="sortField() === col.field">
                     {{ sortAsc() ? "▲" : "▼" }}
                   </span>

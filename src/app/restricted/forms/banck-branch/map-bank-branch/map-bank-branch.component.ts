@@ -6,6 +6,8 @@ import { LocalService } from '../../../../services/localStorage/local.service';
 import { isPlatformBrowser } from '@angular/common';
 import { subscribe } from 'diagnostics_channel';
 import { TostService } from '../../../../shared/message/tost.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarComponent } from '../../../../shared/message/success/snackbar/snackbar.component';
 
 @Component({
   selector: 'app-map-bank-branch',
@@ -42,7 +44,8 @@ export class MapBankBranchComponent implements OnInit {
     private accountingService: AccountingService,
     private localService: LocalService,
     @Inject(PLATFORM_ID) private platformId: Object,
-    private tostService: TostService
+    private tostService: TostService,
+    private snackBar: MatSnackBar,
   ) {
     this.form = this.fb.group({
       bankName: [''],
@@ -54,12 +57,14 @@ export class MapBankBranchComponent implements OnInit {
     if (this.isBrowser()) {
       this.accountingService.selectedForMapIds$.subscribe(
         (selectedForMapIds) => {
-          this.mappedBranch=selectedForMapIds;
-        });
+          this.mappedBranch = selectedForMapIds;
+        },
+      );
       this.accountingService.selectedForUnMapIds$.subscribe(
         (selectedForUnMapIds) => {
-          this.unMappedBranch=selectedForUnMapIds;
-        });
+          this.unMappedBranch = selectedForUnMapIds;
+        },
+      );
       this.userData = this.localService.getUserData();
       this.stateCode = this.userData.stateCode;
       this.getBankList();
@@ -71,29 +76,23 @@ export class MapBankBranchComponent implements OnInit {
   }
   onSave() {
     if (this.form.valid) {
-      console.log('Form Data:', this.form.value);
-      console.log(this.rightBranchList);
+      const data = {
+        mappedBranch: this.mappedBranch,
+        unMappedBranch: this.unMappedBranch,
+      };
+      this.accountingService
+        .saveBranchMappingUnMapping(data)
+        .subscribe((resp: any) => {
+          if (resp?.status == 200) {
+            this.getSuucessMessage(resp.body)
+          } else {
+            this.showMessage(resp.body, 'error');
+          }
+        });
     }
-
-    console.log('selectedForMapIds', this.mappedBranch);
-    console.log('selectedForUnMapIds', this.unMappedBranch);
-    const data = {
-      mappedBranch: this.mappedBranch,
-      unMappedBranch: this.unMappedBranch,
-    };
-    this.accountingService
-      .saveBranchMappingUnMapping(data)
-      .subscribe((resp: any) => {
-        if(resp?.status==200){
-        this.showMessage(resp.body, 'success');
-        }else{
-          this.showMessage(resp.body, 'error');
-        }
-      });
   }
 
   onClear() {
- 
     this.form.reset();
     this.AvailableBranchListMapp = [];
     this.rightBranchList = [];
@@ -106,6 +105,20 @@ export class MapBankBranchComponent implements OnInit {
 
   onClose() {}
 
+  getSuucessMessage(message: string) {
+    this.snackBar.openFromComponent(SnackbarComponent, {
+      data: {
+        message: message,
+        onContinue: () => {
+          this.onClear()
+        },
+      },
+      duration: undefined,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+      panelClass: ['no-auto-dismiss'],
+    });
+  }
   getBankList() {
     this.accountingService.getBankListByStateCode(this.stateCode).subscribe(
       (resp: any) => {
@@ -325,8 +338,7 @@ export class MapBankBranchComponent implements OnInit {
     this.zpCode = '';
   }
 
-
-  showMessage(message:any, type:string){
+  showMessage(message: any, type: string) {
     this.tostService.showMessage(message, 3000, type);
   }
 }

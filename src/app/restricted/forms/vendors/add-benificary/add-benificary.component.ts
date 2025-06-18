@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../../../../material/material.module';
 import { AccountingService } from '../../../../services/restricted/accounting/accounting.service';
 import { TostService } from '../../../../shared/message/tost.service';
+import { EncryptionService } from '../../../../services/encrypt/encryption.service';
 
 function regexValidator(pattern: RegExp, errorKey: string): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -42,26 +43,30 @@ export class AddBenificaryComponent {
   constructor(
     private fb: FormBuilder,
     private accountingService: AccountingService,
-    private tostService: TostService
+    private tostService: TostService,
+    private enc: EncryptionService
   ) {
     this.agencyForm = this.fb.group({
-      agencyName: ['', Validators.required],
-      mobile: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+      agencyDesc: ['', Validators.required],
+      mobileNo: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
       email: ['', [Validators.email]],
       pan: ['', regexValidator(/^[A-Z]{5}[0-9]{4}[A-Z]$/, 'invalidPan')],
       tan: ['', regexValidator(/^[A-Z]{4}[0-9]{5}[A-Z]$/, 'invalidTan')],
       tin: [''],
-      gst: ['']
+      gstNo: ['']
     });
   }
 
-  onSave(): void {
+  async onSave(): Promise<void> {
     if (this.agencyForm.valid) {
-      const data = this.agencyForm.value;
-
-      this.accountingService.masterAgency(data).subscribe({
+      const data = this.agencyForm.getRawValue();
+      let formData=data;
+      formData.mobileNo=await  this.enc.encryptString(data.mobileNo);
+      formData.email=await  this.enc.encryptString(data.email);
+      this.accountingService.createMasterAgency(formData).subscribe({
         next: (resp: any) => {
           if (resp?.status === 200) {
+            console.log(resp);
             this.showMessage(resp.body, 'success');
             this.agencyForm.reset();
           } else {

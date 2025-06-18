@@ -3,6 +3,7 @@ import { MaterialModule } from '../../../material/material.module';
 import { MatDialog } from '@angular/material/dialog';
 import { ColumnMenuComponent } from '../../../dialog-module/column-menu/column-menu.component';
 import * as XLSX from 'xlsx';
+import { LabelService } from '../../../services/json/labels/label.service';
 
 @Component({
   selector: 'app-manage',
@@ -11,6 +12,7 @@ import * as XLSX from 'xlsx';
   styleUrl: './manage.component.scss'
 })
 export class ManageComponent {
+  labels: any;
 @Input() set data(value: any[]) {
     this._data.set(value);
   }
@@ -28,7 +30,7 @@ export class ManageComponent {
     return this._columns();
   }
 
-  @Input() enableGlobalSearch = true;
+  @Input() enableGlobalSearch : boolean | undefined;
   @Input() title :string | undefined;
   visibleColumnFields = signal<string[]>([]);
   searchText = signal('');
@@ -42,9 +44,14 @@ export class ManageComponent {
   sortField = signal<string | null>(null);
   sortAsc = signal<boolean>(true);
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog,
+    private labelService: LabelService
+  ) {
+
+  }
 
   ngOnInit() {
+     this.labels = this.labelService.getLabelJson();
     this.visibleColumnFields.set(
       this.columns.filter(col => col.visible !== false).map(col => col.field)
     );

@@ -270,4 +270,33 @@ export class AccountingService implements OnInit{
       },
     ];
   }
+
+
+  // Custom get method 
+   customGet(relativeUrl: string, queryParams: any = null) {
+    let url = `${AppConfig.BASE_API}${relativeUrl}`;
+
+    if (queryParams) {
+      const queryString = Object.keys(queryParams)
+        .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(queryParams[key])}`)
+        .join('&');
+      url = `${url}?${queryString}`;
+    }
+
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `${this.token}`);
+
+    return this.http.get(url, {
+      headers: headers,
+      observe: 'response',
+      reportProgress: false
+    }).pipe(
+      map(resp => resp),
+      catchError(error => of(error))
+    );
+  }
+  
+
+  
 }

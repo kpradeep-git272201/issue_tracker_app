@@ -212,11 +212,18 @@ button {
   } */
 
   ::ng-deep .mat-expansion-panel-spacing{
-    border-left: 6px solid var(--primary-color);
+    // border-left: 6px solid var(--primary-color);
     margin-top: 10px !important;
-    border-radius: 11px !important;
+    // border-radius: 2px !important;
   }
-
+  .top-menu-title{
+    display: flex;
+    gap: 5px;
+  }
+  .menu-icons{
+    color: var(--primary-color);
+    padding-right: 5px;
+  }
   .sub-menus{
     border-left: 0 !important;
   }
@@ -329,3 +336,8 @@ button {
 
   
 
+.sidenav-closed .mat-icon-button {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}

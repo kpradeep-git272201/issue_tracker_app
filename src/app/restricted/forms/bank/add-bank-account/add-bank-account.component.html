@@ -5,7 +5,7 @@
     <div class="form-row d-adjust">
       <mat-form-field appearance="outline" class="form-field flex-item">
         <mat-label class="open-sans">Select Bank Name</mat-label>
-        <mat-select formControlName="bankCode" (selectionChange)="onBankChange($event.value)">
+        <mat-select formControlName="bankCode" (selectionChange)="onBankChange($event.value)" required>
           <mat-option value="">Select</mat-option>
           <mat-option *ngFor="let bank of bankList" [value]="bank.bankCode">
             {{ bank.bankName }}
@@ -16,7 +16,7 @@
       <ng-container *ngIf="form.get('bankCode')?.value">
         <mat-form-field appearance="outline" class="form-field flex-item">
           <mat-label class="open-sans">Select the Bank Branch :</mat-label>
-          <mat-select formControlName="branchCode">
+          <mat-select formControlName="branchCode" required>
             <mat-option value="">Select</mat-option>
             <mat-option *ngFor="let branch of branchList" [value]="branch.branchCode">
               {{ branch.branchName }}
@@ -27,31 +27,69 @@
 
       <mat-form-field appearance="outline" class="form-field flex-item">
         <mat-label class="open-sans">Account No</mat-label>
-        <input matInput formControlName="accountNo" type="text" />
+        <input matInput formControlName="accountNo" type="text" required />
       </mat-form-field>
-      
+
     </div>
 
 
 
-   <table class="table table-bordered">
-  <thead>
-    <tr>
-      <th >S No.</th>
-      <th>Schemes<span class="text-danger">*</span></th>
-      <th> </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-        <td></td>
-        <td class="text-center text-mild-bold">Other Resources</td>
-        <td></td>
-    </tr>
-  </tbody>
-</table>
+    <table class="table table-bordered" *ngIf="form.get('bankCode')?.value">
+      <thead>
+        <tr>
+          <th>S No.</th>
+          <th>Schemes <span class="text-danger">*</span></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
 
+        <!-- Own Resources -->
+        <tr>
+          <td colspan="3" class="text-center text-mild-bold">Own Resources</td>
+        </tr>
+        <ng-container *ngFor="let scheme of ownResources; index as i">
+          <tr>
+            <td>{{ i + 1 }}</td>
+            <td>{{ scheme.schemeName }}</td>
+            <td class="text-center">
+              <input type="checkbox" (change)="onSchemeCheck($event, scheme)" />
+            </td>
+          </tr>
+          <!-- Display components -->
+          <tr *ngFor="let comp of schemeComponentsMap[scheme.schemeId]">
+            <td></td>
+            <td colspan="2">
+              <input type="checkbox" [checked]="true" [value]="comp.componentId" />
+              {{ comp.componentName }}
+            </td>
+          </tr>
 
+        </ng-container>
+
+        <!-- Central Schemes -->
+        <tr>
+          <td colspan="3" class="text-center text-mild-bold">Central Schemes</td>
+        </tr>
+        <ng-container *ngFor="let scheme of centralSchemes; index as i">
+          <tr>
+            <td>{{ i + 1 }}</td>
+            <td>{{ scheme.schemeName }}</td>
+            <td class="text-center">
+              <input type="checkbox" (change)="onSchemeCheck($event, scheme)" />
+            </td>
+          </tr>
+          <!-- Display components -->
+          <tr *ngFor="let comp of schemeComponentsMap[scheme.schemeId]">
+            <td></td>
+            <td colspan="2">
+              <input type="checkbox" [checked]="true" [value]="comp.componentId" />
+              {{ comp.componentName }}
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
 
 
     <div class="form-actions mt-5">

@@ -9,12 +9,11 @@
      line-height: normal;
  }
 
- .card-container {
+ .card-section{
      display: flex;
      flex-wrap: wrap;
      justify-content: space-around;
      gap: 20px;
-     height: auto;
  }
 
  .report-card {

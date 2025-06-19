@@ -15,6 +15,10 @@ export class AddBankAccountComponent {
   form: FormGroup;
   bankList: any = [];
   branchList: any = []; 
+  schemeList : any = [];
+  centralSchemes: any[] = [];
+  ownResources: any[] = [];
+  schemeComponentsMap: { [key: number]: any[] } = {};
 
   constructor(
     private accountingService: AccountingService,
@@ -28,9 +32,21 @@ export class AddBankAccountComponent {
   }
 
   ngOnInit() {
+    // bank list
     this.accountingService.customGet('master/bankAccount/bankListForAddAccount')
       .subscribe(response => {
-        this.bankList = response.body;
+       if(response.body.length > 0){
+         this.bankList = response.body;
+       }
+      });
+    //Scheme list
+    this.accountingService.customGet('master/bankAccount/schemeListForAddAccount')
+      .subscribe(response => {
+        if(response.body.length > 0){
+          this.schemeList = response.body
+          this.centralSchemes = this.schemeList.filter((s: { schemeCategory: any; }) => s.schemeCategory === 'C');
+          this.ownResources = this.schemeList.filter((s: { schemeCategory: any; }) => s.schemeCategory === null);
+        }
       });
   }
 
@@ -46,6 +62,24 @@ export class AddBankAccountComponent {
     }
   }
 
+
+onSchemeCheck(event: any, scheme: any) {
+  if (event.target.checked) {
+    console.log('Checked scheme:', scheme);
+
+    this.accountingService.customGet(`master/bankAccount/schemeComponentListForAddAccount/${scheme.schemeId}`)
+      .subscribe(response => {
+        console.log('Scheme component list:', response.body);
+        this.schemeComponentsMap[scheme.schemeId] = response.body;
+      });
+  } else {
+    console.log('Unchecked scheme:', scheme);
+    delete this.schemeComponentsMap[scheme.schemeId];
+  }
+}
+
+
+
   onClear() {
     this.form.reset();
     this.branchList = [];
@@ -57,5 +91,8 @@ export class AddBankAccountComponent {
 
   onSave() {
     console.log(this.form.value);
+    
   }
+
+
 }

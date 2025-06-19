@@ -10,5 +10,15 @@
 
 
 .text-mild-bold{
-    font-weight: 500;
+  font-weight: 700;
+}
+
+.card-container {
+  padding: 24px;
+  margin-right: 24px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  height: calc(100vh - 17.75rem);
+  background-color: #ffffff;
+  overflow-y: scroll;
 }

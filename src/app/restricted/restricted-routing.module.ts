@@ -8,18 +8,19 @@ import { AddBenificaryComponent } from './forms/vendors/add-benificary/add-benif
 import { ModifyBenificaryComponent } from './forms/vendors/modify-benificary/modify-benificary.component';
 import { AddBankAccountComponent } from './forms/bank/add-bank-account/add-bank-account.component';
 import { ManageBankAccountComponent } from './forms/bank/manage-bank-account/manage-bank-account.component';
+import { authGuard } from '../guard/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: MainComponent, // layout with sidenav + router-outlet
     children: [
-      { path: '', component: DashboardComponent },
-      { path: 'mapBankBranch', component: MapBankBranchComponent },
-      { path: 'addBankAccount', component: AddBankAccountComponent },
-      { path: 'getAddBenificary', component: AddBenificaryComponent },
-      { path: 'manageBankAccount', component: ManageBankAccountComponent },
-      { path: 'getModifyBenificary', component: ModifyBenificaryComponent },
+      { path: '', component: DashboardComponent, canActivate: [authGuard]},
+      { path: 'mapBankBranch', component: MapBankBranchComponent, canActivate: [authGuard] },
+      { path: 'addBankAccount', component: AddBankAccountComponent, canActivate: [authGuard] },
+      { path: 'getAddBenificary', component: AddBenificaryComponent, canActivate: [authGuard] },
+      { path: 'manageBankAccount', component: ManageBankAccountComponent, canActivate: [authGuard] },
+      { path: 'getModifyBenificary', component: ModifyBenificaryComponent, canActivate: [authGuard] },
       { path: '**', component: PageNotFoundComponent }
     ]
   }

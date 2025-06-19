@@ -6,12 +6,9 @@ import {
   OnInit,
   PLATFORM_ID,
 } from '@angular/core';
-import { SidenavComponent } from './layout/components/sidenav/sidenav.component';
-import { MainHeaderComponent } from './layout/components/main-header/main-header.component';
 import { IconsService } from './services/icons/icons.service';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { FooterComponent } from './layout/components/footer/footer.component';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { MaterialModule } from './material/material.module';
@@ -34,7 +31,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     private iconService: IconsService,
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer,
-    private translateService: TranslateService,
     @Inject(PLATFORM_ID) private platformId: Object,
     private themeService: ThemeService,
   ) {
@@ -53,6 +49,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       .subscribe((event: any) => {
         localStorage.setItem('lastVisitedRoute', event.urlAfterRedirects);
       });
+       this.restoreLastVisitedRoute();
   }
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -63,5 +60,19 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   getOpenedStat(event: any) {
     this.opened = event;
+  }
+
+   restoreLastVisitedRoute() {
+    const currentUrl = this.router.url;
+    const lastVisitedRoute = localStorage.getItem('lastVisitedRoute');
+
+    // If we're on root or login, and lastVisitedRoute is valid
+    if (
+      (currentUrl === '/' || currentUrl === '/login') &&
+      lastVisitedRoute &&
+      lastVisitedRoute !== currentUrl
+    ) {
+      this.router.navigateByUrl(lastVisitedRoute);
+    }
   }
 }

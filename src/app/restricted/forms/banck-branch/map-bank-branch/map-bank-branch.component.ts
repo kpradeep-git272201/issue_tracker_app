@@ -4,10 +4,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { AccountingService } from '../../../../services/restricted/accounting/accounting.service';
 import { LocalService } from '../../../../services/localStorage/local.service';
 import { isPlatformBrowser } from '@angular/common';
-import { subscribe } from 'diagnostics_channel';
-import { TostService } from '../../../../shared/message/tost.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackbarComponent } from '../../../../shared/message/success/snackbar/snackbar.component';
+import { MessageService } from '../../../../services/message/message.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-map-bank-branch',
@@ -44,8 +44,8 @@ export class MapBankBranchComponent implements OnInit {
     private accountingService: AccountingService,
     private localService: LocalService,
     @Inject(PLATFORM_ID) private platformId: Object,
-    private tostService: TostService,
-    private snackBar: MatSnackBar,
+    private msgService: MessageService,
+    private router: Router
   ) {
     this.form = this.fb.group({
       bankName: [''],
@@ -84,9 +84,9 @@ export class MapBankBranchComponent implements OnInit {
         .saveBranchMappingUnMapping(data)
         .subscribe((resp: any) => {
           if (resp?.status == 200) {
-            this.getSuucessMessage(resp.body)
+            this.msgService.getSuccessMessage(resp.body)
           } else {
-            this.showMessage(resp.body, 'error');
+            this.msgService.getErrorMessage(resp.body);
           }
         });
     }
@@ -103,22 +103,11 @@ export class MapBankBranchComponent implements OnInit {
     this.selectedIds.clear();
   }
 
-  onClose() {}
-
-  getSuucessMessage(message: string) {
-    this.snackBar.openFromComponent(SnackbarComponent, {
-      data: {
-        message: message,
-        onContinue: () => {
-          this.onClear()
-        },
-      },
-      duration: undefined,
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom',
-      panelClass: ['no-auto-dismiss'],
-    });
+  onClose() {
+    this.router.navigate(['/restricted'])
   }
+
+
   getBankList() {
     this.accountingService.getBankListByStateCode(this.stateCode).subscribe(
       (resp: any) => {
@@ -128,6 +117,7 @@ export class MapBankBranchComponent implements OnInit {
         }
       },
       (error: any) => {
+        this.msgService.getErrorMessage(error);
         console.log('Login error', error);
       },
     );
@@ -145,6 +135,7 @@ export class MapBankBranchComponent implements OnInit {
           }
         },
         (error: any) => {
+          this.msgService.getErrorMessage(error);
           console.log('Login error', error);
         },
       );
@@ -179,6 +170,7 @@ export class MapBankBranchComponent implements OnInit {
           }
         },
         (error: any) => {
+          this.msgService.getErrorMessage(error);
           console.log('Login error', error);
         },
       );
@@ -201,6 +193,7 @@ export class MapBankBranchComponent implements OnInit {
           }
         },
         (error: any) => {
+          this.msgService.getErrorMessage(error);
           console.log('Login error', error);
         },
       );
@@ -338,7 +331,5 @@ export class MapBankBranchComponent implements OnInit {
     this.zpCode = '';
   }
 
-  showMessage(message: any, type: string) {
-    this.tostService.showMessage(message, 3000, type);
-  }
+
 }

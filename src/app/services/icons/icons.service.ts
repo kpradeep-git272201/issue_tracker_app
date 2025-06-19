@@ -57,7 +57,10 @@ export class IconsService {
       'Audit',
       'Funnel',
       'egsLogo',
-      'dashboard-comp-bg'
+      'dashboard-comp-bg',
+      'CheckCircle',
+      'Error',
+      'Warning'
     ];
   }
 }

@@ -1,0 +1,13 @@
+<div class="custom-snackbar success-snackbar">
+   
+  <div class="snackbar-icon"><span><mat-icon svgIcon="Warning"></mat-icon></span></div>
+  <div class="snackbar-message">
+    <div class="snackbar-title">Oops!</div>
+    <div class="snackbar-text">{{data?.message || 'Something went wrong. Please try again later or contact our support team for assistance'}} 
+      <a (click)="onContinue()" class="continue-link">Try again</a>
+    </div>
+  </div>
+  <div class="snackbar-close" (click)="snackBarRef.dismiss()">
+    <mat-icon>close</mat-icon>
+  </div>
+</div>

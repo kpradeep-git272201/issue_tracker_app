@@ -1,10 +1,13 @@
 <div class="custom-snackbar success-snackbar">
-  <div class="snackbar-icon">✔</div>
+  <div class="snackbar-icon"><span><mat-icon svgIcon="CheckCircle"></mat-icon></span></div>
+   
   <div class="snackbar-message">
     <div class="snackbar-title">Success!</div>
     <div class="snackbar-text">{{data?.message}} 
       <a (click)="onContinue()" class="continue-link">Continue</a>
     </div>
   </div>
-  <div class="snackbar-close" (click)="snackBarRef.dismiss()">✕</div>
+  <div class="snackbar-close" (click)="snackBarRef.dismiss()">
+    <mat-icon>close</mat-icon>
+  </div>
 </div>

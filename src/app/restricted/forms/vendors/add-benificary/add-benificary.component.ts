@@ -11,7 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../../../../material/material.module';
 import { AccountingService } from '../../../../services/restricted/accounting/accounting.service';
-import { TostService } from '../../../../shared/message/tost.service';
+
 import { EncryptionService } from '../../../../services/encrypt/encryption.service';
 
 function regexValidator(pattern: RegExp, errorKey: string): ValidatorFn {
@@ -43,7 +43,6 @@ export class AddBenificaryComponent {
   constructor(
     private fb: FormBuilder,
     private accountingService: AccountingService,
-    private tostService: TostService,
     private enc: EncryptionService
   ) {
     this.agencyForm = this.fb.group({
@@ -67,20 +66,20 @@ export class AddBenificaryComponent {
         next: (resp: any) => {
           if (resp?.status === 200) {
             console.log(resp);
-            this.showMessage(resp.body, 'success');
+            // this.showMessage(resp.body, 'success');
             this.agencyForm.reset();
           } else {
-            this.showMessage(resp.body, 'error');
+            // this.showMessage(resp.body, 'error');
           }
         },
         error: (err) => {
-          this.showMessage('Something went wrong', 'error');
+          // this.showMessage('Something went wrong', 'error');
           console.error('API Error:', err);
         }
       });
     } else {
       this.agencyForm.markAllAsTouched();
-      this.showMessage('Please correct validation errors.', 'error');
+      // this.showMessage('Please correct validation errors.', 'error');
     }
   }
 
@@ -101,7 +100,4 @@ export class AddBenificaryComponent {
     }
   }
 
-  showMessage(message: string, type: 'success' | 'error'): void {
-    this.tostService.showMessage(message, 3000, type);
-  }
 }

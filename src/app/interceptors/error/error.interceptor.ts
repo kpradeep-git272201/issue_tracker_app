@@ -1,42 +1,23 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { inject } from '@angular/core';
+import { MessageService } from '../../services/message/message.service';
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
-  const snackBar = inject(MatSnackBar);
+  const messageService = inject(MessageService);
   return next(req).pipe(
     catchError((error) => {
-      // Check for different error types
       if (error.status === 500) {
-        snackBar.open(
-          'Internal Server Error. Please try again later.',
-          'Close',
-          {
-            duration: 5000,
-            panelClass: ['error-snackbar'],
-          },
-        );
+        return throwError(() => messageService.getErrorMessage(error.message));
       } else if (error.status === 404) {
-        snackBar.open('Resource not found.', 'Close', {
-          duration: 5000,
-          panelClass: ['error-snackbar'],
-        });
+        return throwError(() => messageService.getErrorMessage(error.message));
       } else if (error.status === 0) {
-        snackBar.open('Network error. Please check your connection.', 'Close', {
-          duration: 5000,
-          panelClass: ['error-snackbar'],
-        });
-      } else {
-        snackBar.open(
-          error.error?.message || 'Something went wrong.',
-          'Close',
-          {
-            duration: 5000,
-            panelClass: ['error-snackbar'],
-          },
+        return throwError(() => messageService.getErrorMessage(error.message));
+      } else if (error.status == 401) {
+        return throwError(() =>
+          messageService.getErrorMessage('You are Unauthorized'),
         );
       }
-      return throwError(() => error);
+      return throwError(() => messageService.getErrorMessage(error.message));
     }),
   );
 };

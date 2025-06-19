@@ -39,7 +39,7 @@
 
                   <!-- Sub-sub-menu -->
                   <ng-container *ngIf="submenu.subMenus?.length > 0">
-                    <div *ngFor="let subsubmenu of submenu.subMenus" style="margin-left: 16px; padding: 4px 0;">
+                    <div *ngFor="let subsubmenu of submenu.subMenus" style="margin-left: 16px !important; margin-block: 4px; padding: 4px 0;">
                       <button mat-button [routerLink]="subsubmenu?.url" routerLinkActive="active-subsubmenu"
                         #rlaSubSub="routerLinkActive" (click)="getMenu(subsubmenu)"
                         [ngClass]="{ 'active-subsubmenu': rlaSubSub.isActive }">
@@ -52,7 +52,7 @@
                   <ng-container *ngIf="!submenu.subMenus || submenu.subMenus.length === 0">
                     <button mat-button [routerLink]="submenu.url" routerLinkActive="active-submenu"
                       #rlaSub="routerLinkActive" [ngClass]="{ 'active-submenu': rlaSub.isActive }"
-                      style="margin-left: 16px;">
+                     style="margin-left: 16px !important; margin-block: 4px; padding: 4px 0;">
                       {{ labels[submenu?.name] || submenu?.name }}
                     </button>
                   </ng-container>

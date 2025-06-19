@@ -134,7 +134,7 @@ input[type='range'] {
 
 button {
     width: 100%;
-    padding: 0.6rem;
+    // padding: 0.6rem;
     border: none;
     background-color: #006eff;
     color: white;
@@ -264,6 +264,11 @@ button {
     margin-left: 0 !important;
 }
 
+// ::ng-deep .mat-expansion-panel-body {
+//    padding: 0 0 1px 46px !important;
+// }
+
+
 ::ng-deep .mat-expansion-panel-header-title {
     height: 34px;
     transition: color 0.3s ease;
@@ -326,12 +331,13 @@ button {
   text-align: left;
 }
 
-  .active-menu,
+.active-menu,
 .active-submenu,
 .active-subsubmenu {
     font-weight: bold;
     border-right: 5px solid var(--orga-main, #F49A0B);
     background: #FFEFDF !important;
+ 
 }
 
   
@@ -340,4 +346,12 @@ button {
   display: flex;
   justify-content: center;
   width: 100%;
+}
+
+.sub-menu{
+ padding: 0 5px 3px 20px !important;
+}
+
+::ng-deep .mat-expansion-panel-body{
+  padding: 0px 8px 0px 20px !important;
 }

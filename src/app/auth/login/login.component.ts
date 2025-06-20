@@ -19,6 +19,7 @@ export class LoginComponent {
   captchaInput: string = '';
   count: number = 0;
   isInvalidUser:string="";
+  otpTemplate: string="LOGIN";
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -181,5 +182,9 @@ export class LoginComponent {
         console.log('Authentication failed');
       }
     });
+  }
+
+  getVerificationCode(){
+    this.otpTemplate="OTP";
   }
 }

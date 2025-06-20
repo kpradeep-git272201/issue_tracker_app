@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { LandingComponent } from './public/components/landing/landing.component';
+import { LoginComponent } from './auth/login/login.component';
 
 
 export function getPrerenderParams() {
@@ -10,7 +11,8 @@ export function getPrerenderParams() {
   ];
 }
 export const routes: Routes = [
-  { path: '', component: LandingComponent },
+  { path: '', component: LoginComponent },
+  // { path: '', component: LandingComponent },
   {
     path: 'public',
     loadChildren: () =>
